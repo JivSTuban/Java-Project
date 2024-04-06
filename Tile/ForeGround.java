@@ -29,24 +29,19 @@ public class ForeGround {
         try {
 
             tiles[0] = new Tile();
-            tiles[0].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/transparent.png")));
+            tiles[0].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Wall/transparent.png")));
 
-            //wall tiles
             tiles[1] = new Tile();
-            tiles[1].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Wall/wall1.png")));
+            tiles[1].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Wall/CornerWallLeft.png")));
             tiles[1].collision = true;
 
             tiles[2] = new Tile();
-            tiles[2].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Wall/leftDownWall.png")));
+            tiles[2].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Wall/CornerWallRight.png")));
             tiles[2].collision = true;
 
             tiles[3] = new Tile();
-            tiles[3].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Wall/leftWall.png")));
+            tiles[3].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Wall/EndingWallLower.png")));
             tiles[3].collision = true;
-
-            tiles[4] = new Tile();
-            tiles[4].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Wall/rightWall.png")));
-            tiles[4].collision = true;
 
 
 
@@ -86,45 +81,6 @@ public class ForeGround {
         }
     }
 
-
-//    public void loadMap(String filepath){
-//        try{
-//            InputStream is = getClass().getResourceAsStream(filepath);
-//            assert is != null;
-//            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-//
-//            int row = 0;
-//            String line;
-//            while ((line = br.readLine()) != null && row <= GP.maxScreenRow){
-//                String[] nums = line.split(" ");
-//                for (int col = 0; col <= GP.maxScreenCol && col < nums.length; col++) {
-//                    int num = Integer.parseInt(nums[col]);
-//                    mapTileNumber[col][row] = num;
-//                }
-//                row++;
-//            }
-//            br.close();
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//    }
-
-
-    //    public void draw(Graphics2D g2){
-//        int tilenum = 0;
-//        for (int row = 0; row <= GP.maxScreenRow; row++) {
-//            for (int col = 0; col <= GP.maxScreenCol; col++) {
-//                int x = col * GP.tileSize;
-//                int y = row * GP.tileSize;
-//
-//                if(row < GP.maxScreenRow && col < GP.maxScreenCol){
-//                    tilenum = mapTileNumber[col][row];
-//                }
-//
-//                g2.drawImage(tiles[tilenum].image, x, y, GP.tileSize, GP.tileSize, null);
-//            }
-//        }
-//    }
     public void draw(Graphics2D g2){
         int worldCol =0;
         int worldRow =0;
