@@ -31,9 +31,9 @@ public class Player extends Entity {
         getPlayerImage();
     }
     public void setDefault(){
-        worldX = GP.tileSize * 15;
-        worldY = GP.tileSize * 12;
-        setSpeed(9);
+        worldX = GP.tileSize * 3;
+        worldY = GP.tileSize * 78;
+        setSpeed(18);
         direction = "down";
     }
 

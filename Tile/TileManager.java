@@ -19,10 +19,10 @@ public class TileManager {
 
     public TileManager(GamePanel GP) {
         this.GP = GP;
-        tiles = new Tile[10];
+        tiles = new Tile[13];
         mapTileNumber = new int[GP.maxWorldCol][GP.maxWorldRow];
         getTileImage();
-        loadMap("/res/maps/map01.txt");
+        loadMap("/res/maps/BackGroundTiles.txt");
     }
 
     public void getTileImage() {
