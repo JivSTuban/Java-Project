@@ -19,7 +19,7 @@ public class ForeGround {
 
     public ForeGround(GamePanel GP) {
         this.GP = GP;
-        tiles = new Tile[18];
+        tiles = new Tile[25];
         mapTileNumber = new int[GP.maxWorldCol][GP.maxWorldRow];
         getTileImage();
         loadMap("/res/maps/ForeGround.txt");
@@ -95,6 +95,13 @@ public class ForeGround {
             tiles[16].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Wall/16EndingWallLowerRight.png")));
             tiles[16].collision = true;
 
+            tiles[17] = new Tile();
+            tiles[17].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Wall/17EndingWallUpperLeft.png")));
+            tiles[17].collision = true;
+
+            tiles[18] = new Tile();
+            tiles[18].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Wall/18EndingWallUpperRight.png")));
+            tiles[18].collision = true;
 
         }catch (IOException e){
             e.printStackTrace();
@@ -132,11 +139,11 @@ public class ForeGround {
         }
     }
 
-    public void draw(Graphics2D g2){
-        int worldCol =0;
-        int worldRow =0;
+    public void draw(Graphics2D g2) {
+        int worldCol = 0;
+        int worldRow = 0;
 
-        while(worldCol < GP.maxWorldCol && worldRow<GP.maxWorldRow){
+        while (worldCol < GP.maxWorldCol && worldRow < GP.maxWorldRow) {
             int tileNum = mapTileNumber[worldCol][worldRow];
 
             int worldX = worldCol * GP.tileSize;
@@ -144,20 +151,16 @@ public class ForeGround {
             int screenX = worldX - GP.player.worldX + GP.player.screenX;
             int screenY = worldY - GP.player.worldY + GP.player.screenY;
 
-            g2.drawImage(tiles[tileNum].image, screenX, screenY, GP.tileSize, GP.tileSize,null);
+            g2.drawImage(tiles[tileNum].image, screenX, screenY, GP.tileSize, GP.tileSize, null);
             worldCol++;
 
-            if(worldCol == GP.maxWorldCol){
+            if (worldCol == GP.maxWorldCol) {
                 worldCol = 0;
                 worldRow++;
 
             }
         }
 
+
     }
-
-
-
-
-
 }

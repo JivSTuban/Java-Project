@@ -13,7 +13,7 @@ import java.io.InputStreamReader;
 import java.util.Objects;
 
 public class TileManager {
-     GamePanel GP;
+    GamePanel GP;
     public Tile[] tiles;
     public int mapTileNumber[][];
 
@@ -29,16 +29,18 @@ public class TileManager {
         try {
 
             tiles[0] = new Tile();
-            tiles[0].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Background/bgTiles.png")));
+            tiles[0].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Background/0bgTiles.png")));
 
             tiles[1] = new Tile();
-            tiles[1].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Background/TileBridge.png")));
+            tiles[1].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Background/1TileBridge.png")));
 
             tiles[2] = new Tile();
-            tiles[2].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Background/WaterMid.png")));
+            tiles[2].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Background/2WaterMid.png")));
+            tiles[2].collision = true;
 
             tiles[3] = new Tile();
-            tiles[3].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Background/WaterUpper.png")));
+            tiles[3].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Background/3WaterUpper.png")));
+            tiles[3].collision = true;
 
 
 
@@ -103,7 +105,7 @@ public class TileManager {
 //    }
 
 
-//    public void draw(Graphics2D g2){
+    //    public void draw(Graphics2D g2){
 //        int tilenum = 0;
 //        for (int row = 0; row <= GP.maxScreenRow; row++) {
 //            for (int col = 0; col <= GP.maxScreenCol; col++) {
@@ -141,7 +143,6 @@ public class TileManager {
         }
 
     }
-
 
 
 
