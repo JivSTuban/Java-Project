@@ -14,8 +14,8 @@ import java.util.Objects;
 
 public class TileManager {
      GamePanel GP;
-    Tile[] tiles;
-    int mapTileNumber[][];
+    public Tile[] tiles;
+    public int mapTileNumber[][];
 
     public TileManager(GamePanel GP) {
         this.GP = GP;
@@ -50,24 +50,25 @@ public class TileManager {
             //path
             tiles[5] = new Tile();
             tiles[5].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/leftPath.png")));
-            tiles[5].collision = true;
+
 
             tiles[6] = new Tile();
             tiles[6].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/rightPath.png")));
-            tiles[6].collision = true;
+
 
             tiles[7] = new Tile();
             tiles[7].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/downPath.png")));
-            tiles[7].collision = true;
+
 
             tiles[8] = new Tile();
             tiles[8].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/topPath.png")));
-            tiles[8].collision = true;
+
 
 
             //water tiles
             tiles[9] = new Tile();
             tiles[9].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/water.png")));
+            tiles[9].collision = true;
         }catch (IOException e){
             e.printStackTrace();
         }
