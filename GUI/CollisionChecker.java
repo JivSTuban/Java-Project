@@ -31,7 +31,7 @@ public class CollisionChecker {
                 }
                 break;
             case"down":
-                entityBR = (entityBWorldY - e.getSpeed())/gp.tileSize;
+                entityBR = (entityBWorldY + e.getSpeed())/gp.tileSize;
                 tileNum1 = gp.tileManager.mapTileNumber[entityLC][entityBR];
                 tileNum2 = gp.tileManager.mapTileNumber[entityRC][entityBR];
                 if(gp.tileManager.tiles[tileNum1].collision == true || gp.tileManager.tiles[tileNum2].collision == true){
