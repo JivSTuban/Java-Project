@@ -2,6 +2,7 @@ package GUI;
 
 import Controles.KeyHandler;
 import Entities.Player;
+import Tile.ForeGround;
 import Tile.TileManager;
 
 import javax.swing.*;
@@ -24,6 +25,8 @@ public class GamePanel extends JPanel implements Runnable{
 
     final int FPS = 60;
     TileManager tileManager = new TileManager(this);
+
+    ForeGround foreGround = new ForeGround(this);
     KeyHandler keyH = new KeyHandler();
 
     Thread gameThread;
@@ -77,6 +80,7 @@ public class GamePanel extends JPanel implements Runnable{
 
         Graphics2D g2 = (Graphics2D) g;
         tileManager.draw(g2);
+        foreGround.draw(g2);
         player.draw(g2);
         g2.dispose();
     }

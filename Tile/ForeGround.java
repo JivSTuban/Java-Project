@@ -12,50 +12,44 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Objects;
 
-public class TileManager {
-     GamePanel GP;
+public class ForeGround {
+    GamePanel GP;
     public Tile[] tiles;
     public int mapTileNumber[][];
 
-    public TileManager(GamePanel GP) {
+    public ForeGround(GamePanel GP) {
         this.GP = GP;
         tiles = new Tile[10];
         mapTileNumber = new int[GP.maxWorldCol][GP.maxWorldRow];
         getTileImage();
-        loadMap("/res/maps/map01.txt");
+        loadMap("/res/maps/ForeGround.txt");
     }
 
     public void getTileImage() {
         try {
 
             tiles[0] = new Tile();
-            tiles[0].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/grass.png")));
+            tiles[0].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/transparent.png")));
 
-
-
-
-            //path
+            //wall tiles
             tiles[1] = new Tile();
-            tiles[1].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Path/leftPath.png")));
-
+            tiles[1].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Wall/wall1.png")));
+            tiles[1].collision = true;
 
             tiles[2] = new Tile();
-            tiles[2].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/rightPath.png")));
-
+            tiles[2].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Wall/leftDownWall.png")));
+            tiles[2].collision = true;
 
             tiles[3] = new Tile();
-            tiles[3].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Path/downPath.png")));
-
+            tiles[3].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Wall/leftWall.png")));
+            tiles[3].collision = true;
 
             tiles[4] = new Tile();
-            tiles[4].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/topPath.png")));
+            tiles[4].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Wall/rightWall.png")));
+            tiles[4].collision = true;
 
 
 
-            //water tiles
-            tiles[9] = new Tile();
-            tiles[9].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/water.png")));
-            tiles[9].collision = true;
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -116,7 +110,7 @@ public class TileManager {
 //    }
 
 
-//    public void draw(Graphics2D g2){
+    //    public void draw(Graphics2D g2){
 //        int tilenum = 0;
 //        for (int row = 0; row <= GP.maxScreenRow; row++) {
 //            for (int col = 0; col <= GP.maxScreenCol; col++) {

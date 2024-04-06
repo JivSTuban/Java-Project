@@ -24,33 +24,33 @@ public class CollisionChecker {
         switch (e.direction){
             case"up":
                 entityTR = (entityTWorldY - e.getSpeed())/gp.tileSize;
-                tileNum1 = gp.tileManager.mapTileNumber[entityLC][entityTR];
-                tileNum2 = gp.tileManager.mapTileNumber[entityRC][entityTR];
-                if(gp.tileManager.tiles[tileNum1].collision == true || gp.tileManager.tiles[tileNum2].collision == true){
+                tileNum1 = gp.foreGround.mapTileNumber[entityLC][entityTR];
+                tileNum2 = gp.foreGround.mapTileNumber[entityRC][entityTR];
+                if(gp.foreGround.tiles[tileNum1].collision == true || gp.foreGround.tiles[tileNum2].collision == true){
                     e.collisionOn = true;
                 }
                 break;
             case"down":
                 entityBR = (entityBWorldY + e.getSpeed())/gp.tileSize;
-                tileNum1 = gp.tileManager.mapTileNumber[entityLC][entityBR];
-                tileNum2 = gp.tileManager.mapTileNumber[entityRC][entityBR];
-                if(gp.tileManager.tiles[tileNum1].collision == true || gp.tileManager.tiles[tileNum2].collision == true){
+                tileNum1 = gp.foreGround.mapTileNumber[entityLC][entityBR];
+                tileNum2 = gp.foreGround.mapTileNumber[entityRC][entityBR];
+                if(gp.foreGround.tiles[tileNum1].collision == true || gp.foreGround.tiles[tileNum2].collision == true){
                     e.collisionOn = true;
                 }
                 break;
             case"left":
                 entityLC = (entityLWorldX - e.getSpeed())/gp.tileSize;
-                tileNum1 = gp.tileManager.mapTileNumber[entityLC][entityTR];
-                tileNum2 = gp.tileManager.mapTileNumber[entityLC][entityBR];
-                if(gp.tileManager.tiles[tileNum1].collision == true || gp.tileManager.tiles[tileNum2].collision == true){
+                tileNum1 = gp.foreGround.mapTileNumber[entityLC][entityTR];
+                tileNum2 = gp.foreGround.mapTileNumber[entityLC][entityBR];
+                if(gp.foreGround.tiles[tileNum1].collision == true || gp.foreGround.tiles[tileNum2].collision == true){
                     e.collisionOn = true;
                 }
                 break;
             case"right":
                 entityRC = (entityRWorldX + e.getSpeed())/gp.tileSize;
-                tileNum1 = gp.tileManager.mapTileNumber[entityRC][entityTR];
-                tileNum2 = gp.tileManager.mapTileNumber[entityRC][entityBR];
-                if(gp.tileManager.tiles[tileNum1].collision == true || gp.tileManager.tiles[tileNum2].collision == true){
+                tileNum1 = gp.foreGround.mapTileNumber[entityRC][entityTR];
+                tileNum2 = gp.foreGround.mapTileNumber[entityRC][entityBR];
+                if(gp.foreGround.tiles[tileNum1].collision == true || gp.foreGround.tiles[tileNum2].collision == true){
                     e.collisionOn = true;
                 }
                 break;
