@@ -1,8 +1,9 @@
-package Tile;
+package Tile.world1;
 
 
 
 import GUI.GamePanel;
+import Tile.Tile;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -22,7 +23,7 @@ public class TileManager {
         tiles = new Tile[13];
         mapTileNumber = new int[GP.maxWorldCol][GP.maxWorldRow];
         getTileImage();
-        loadMap("/res/maps/BackGroundTiles.txt");
+        loadMap("/res/maps/world1/BackGroundTiles.txt");
     }
 
     public void getTileImage() {

@@ -1,8 +1,9 @@
-package Tile;
+package Tile.world1;
 
 
 
 import GUI.GamePanel;
+import Tile.Tile;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -12,17 +13,17 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Objects;
 
-public class ForeGround {
+public class CollisionTileManger {
     GamePanel GP;
     public Tile[] tiles;
     public int mapTileNumber[][];
 
-    public ForeGround(GamePanel GP) {
+    public CollisionTileManger(GamePanel GP) {
         this.GP = GP;
         tiles = new Tile[25];
         mapTileNumber = new int[GP.maxWorldCol][GP.maxWorldRow];
         getTileImage();
-        loadMap("/res/maps/ForeGround.txt");
+        loadMap("/res/maps/world1/CollisionTiles.txt");
     }
 
     public void getTileImage() {
