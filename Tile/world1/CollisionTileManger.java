@@ -116,6 +116,14 @@ public class CollisionTileManger {
             tiles[21].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Wall/21WallMidR.png")));
             tiles[21].collision = true;
 
+            tiles[22] = new Tile();
+            tiles[22].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Wall/22WallMidL.png")));
+            tiles[22].collision = true;
+
+            tiles[23] = new Tile();
+            tiles[23].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Wall/23UpperCornerLeft2.png")));
+            tiles[23].collision = true;
+
         }catch (IOException e){
             e.printStackTrace();
         }
