@@ -23,7 +23,7 @@ public class CollisionTileManger {
         tiles = new Tile[25];
         mapTileNumber = new int[GP.maxWorldCol][GP.maxWorldRow];
         getTileImage();
-        loadMap("/res/maps/world1/CollisionTiles.txt");
+        loadMap("/res/maps/world1/CollisionTile.txt");
     }
 
     public void getTileImage() {
@@ -103,6 +103,18 @@ public class CollisionTileManger {
             tiles[18] = new Tile();
             tiles[18].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Wall/18EndingWallUpperRight.png")));
             tiles[18].collision = true;
+
+            tiles[19] = new Tile();
+            tiles[19].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Wall/19Corner.png")));
+            tiles[19].collision = true;
+
+            tiles[20] = new Tile();
+            tiles[20].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Wall/20UpperCornerRight2.png")));
+            tiles[20].collision = true;
+
+            tiles[21] = new Tile();
+            tiles[21].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/Wall/21WallMidR.png")));
+            tiles[21].collision = true;
 
         }catch (IOException e){
             e.printStackTrace();

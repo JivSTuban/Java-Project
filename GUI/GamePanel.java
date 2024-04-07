@@ -29,7 +29,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     final int FPS = 144;
     TileManager tileManager = new TileManager(this);
-    CollisionTileManger foreGround = new CollisionTileManger(this);
+    CollisionTileManger collisionTileManger = new CollisionTileManger(this);
     DesignTileManager designTileManager = new DesignTileManager(this);
     OutsideTiles outsideTiles = new OutsideTiles(this);
 
@@ -87,7 +87,7 @@ public class GamePanel extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D) g;
         outsideTiles.draw(g2);
         tileManager.draw(g2);
-        foreGround.draw(g2);
+        collisionTileManger.draw(g2);
         designTileManager.draw(g2);
         player.draw(g2);
 
