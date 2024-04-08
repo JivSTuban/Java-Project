@@ -51,6 +51,15 @@ public class AssetSetter {
         gp.objItem[7].worldX =  2 * gp.tileSize;
         gp.objItem[7].worldY =  19 * gp.tileSize;
 
+        gp.objItem[8] =new DoorOpen();
+        gp.objItem[8].worldX =  1 * gp.tileSize;
+        gp.objItem[8].worldY =  6 * gp.tileSize;
+
+        gp.objItem[9] =new DoorClose();
+        gp.objItem[9].worldX =  1 * gp.tileSize;
+        gp.objItem[9].worldY =  6 * gp.tileSize;
+
+
 
 //        gp.objItem[8] =new AccessCard();
 //        gp.objItem[8].worldX =  5 * gp.tileSize;

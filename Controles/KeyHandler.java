@@ -57,7 +57,7 @@ public class KeyHandler implements KeyListener {
               System.out.print("Enter addItem: "); String str = sc.nextLine();str = str.toLowerCase();
               if( str.equals("addkey") )   addKey =true;
               else if(str.equals("giveboots")) giveBoots = true;
-              else if(str.equals("unlispeed"))  maxDuration = 10000;
+              else if(str.equals("unlispeed"))  maxDuration = 999999;
               else{
                   valid = !valid;
                   System.out.println("--Command not Found");
@@ -115,8 +115,6 @@ public class KeyHandler implements KeyListener {
           }
 
 
-
-
     }
 
     @Override
@@ -139,8 +137,6 @@ public class KeyHandler implements KeyListener {
             shiftPressed = false;
 
         }
-
-
 
     }
 }
