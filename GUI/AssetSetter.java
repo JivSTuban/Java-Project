@@ -24,8 +24,8 @@ public class AssetSetter {
         gp.objItem[0].worldY = spawnRand() * gp.tileSize;
 
         gp.objItem[1] =new ItemBoots();
-        gp.objItem[1].worldX = spawnRand() * gp.tileSize;
-        gp.objItem[1].worldY = spawnRand() * gp.tileSize;
+        gp.objItem[1].worldX = 3 * gp.tileSize;
+        gp.objItem[1].worldY = 78 * gp.tileSize;
 
         gp.objItem[2] =new ItemBoots();
         gp.objItem[2].worldX =  spawnRand() * gp.tileSize;

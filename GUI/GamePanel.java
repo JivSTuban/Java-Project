@@ -12,6 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable{
+
     final int originalTileSize = 16;
     final int scale = 3;
     public final int tileSize = originalTileSize * scale;
@@ -19,6 +20,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int maxScreenRow = 12;
     public final int screenWidth = tileSize * maxScreenCol;
     public final int screenHeight = tileSize * maxScreenRow;
+
 
 
 
@@ -36,12 +38,14 @@ public class GamePanel extends JPanel implements Runnable{
 
     KeyHandler keyH = new KeyHandler();
 
-    public UI ui = new UI(this);
+
 
     Thread gameThread;
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
     public Player player = new Player(this, keyH);
+
+    public UI ui = new UI(this, player);
 
     public SuperItem objItem[] = new SuperItem[10];
 
@@ -57,6 +61,7 @@ public class GamePanel extends JPanel implements Runnable{
         aSetter.setItem();
 
     }
+
 
 
     public void startGameThread(){

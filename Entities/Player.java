@@ -10,16 +10,18 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Player extends Entity {
+    public boolean devMode = false;
     GamePanel GP;
     KeyHandler KH;
 
 
+    int defaultSpeed = 3;
     public  int screenX = 0;
     public  int screenY = 0;
     int chest = 0;
     //Items
-    public int boots = 0;
-
+    public boolean gotBoots = false;
+    boolean justGotBoots = false;
     //playerStats
     public int playerHP = 100;
     public final int maxHP = 100;
@@ -52,6 +54,7 @@ public class Player extends Entity {
         worldY = GP.tileSize * 78;
         setSpeed(4);
         direction = "down";
+
     }
 
     public void getPlayerImage(){
@@ -69,28 +72,43 @@ public class Player extends Entity {
         }
     }
 
+
     public void update(KeyHandler keyH){
-        if(keyH.wPressed || keyH.aPressed || keyH.sPressed || keyH.dPressed){
+        //Developer Mode
+        if(keyH.pressed2)
+            devMode = true;
+        if(!keyH.pressed2)
+            devMode = false;
+
+
+        if(keyH.wPressed || keyH.aPressed || keyH.sPressed || keyH.dPressed || keyH.shiftPressed){
             if(keyH.wPressed){
                 direction = "up";
-
-
             }
             else if(keyH.aPressed){
                 direction = "left";
-
-
             }
+
             else if(keyH.sPressed){
                 direction = "down";
-
-
             }
+
             else if(keyH.dPressed){
                 direction = "right";
-
             }
-            System.out.println("x ="+((worldX/(GP.tileSize-1))) + "\ny = "+((worldY/(GP.tileSize-1))));
+
+            if(gotBoots){
+                if(keyH.shiftPressed){
+                    setSpeed(9);
+                }
+
+                keyH.activateBoots = true;
+
+                if(!keyH.shiftPressed)
+                    setSpeed(defaultSpeed);
+            }
+
+           if(devMode)System.out.println("x ="+((worldX/(GP.tileSize-1))) + "\ny = "+((worldY/(GP.tileSize-1))));
             //Check collision
             collisionOn = false;
             GP.collisionChecker.checkTile(this);
@@ -111,6 +129,7 @@ public class Player extends Entity {
                     case"right":
                         worldX += getSpeed();
                         break;
+
                 }
             }
             spriteCount++;
@@ -142,10 +161,11 @@ public class Player extends Entity {
                     GP.objItem[i] = null;
                     System.out.println(playerHP);
                     break;
-                case "boots": setSpeed(getSpeed()+9);
+                case "boots":
+                    gotBoots = true;
+                    justGotBoots = true;
                     GP.objItem[i] = null;
-                    boots++;
-                    System.out.println(getSpeed());
+                    if(devMode)System.out.println(getSpeed());
                     break;
 
             }
@@ -170,9 +190,9 @@ public class Player extends Entity {
                     GP.objItem[i] = null;
                     System.out.println(playerHP);
                     break;
-                case "boots": setSpeed(getSpeed()+9);
+                case "boots":
+                    gotBoots = true;
                     GP.objItem[i] = null;
-                    boots++;
                     System.out.println(getSpeed());
                     break;
 
