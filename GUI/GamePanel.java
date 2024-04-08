@@ -48,6 +48,7 @@ public class GamePanel extends JPanel implements Runnable{
     public UI ui = new UI(this, player);
 
     public SuperItem objItem[] = new SuperItem[10];
+    public SuperItem doors[] = new SuperItem[10];
 
 
     public GamePanel(){

@@ -22,6 +22,7 @@ public class Player extends Entity {
     //Items
     public boolean gotBoots = false;
     boolean justGotBoots = false;
+    public int accessCard = 0;
     //playerStats
     public int playerHP = 100;
     public final int maxHP = 100;
@@ -79,6 +80,13 @@ public class Player extends Entity {
             devMode = true;
         if(!keyH.pressed2)
             devMode = false;
+        if(keyH.addKey) {
+            accessCard++;
+            keyH.addKey = false;
+            System.out.println("card count: "+accessCard);
+        }
+        if(keyH.giveBoots)
+          gotBoots = true;
 
 
         if(keyH.wPressed || keyH.aPressed || keyH.sPressed || keyH.dPressed || keyH.shiftPressed){
@@ -146,7 +154,7 @@ public class Player extends Entity {
     public void pickUpItem(int i){
         if(i != 999){
             String itemName = GP.objItem[i].name;
-            System.out.println(playerHP);
+//            System.out.println(playerHP);
             switch (itemName){
                 case "salve": ;
                     if(playerHP < maxHP){
@@ -159,13 +167,31 @@ public class Player extends Entity {
 
                     }
                     GP.objItem[i] = null;
-                    System.out.println(playerHP);
+                   // System.out.println(playerHP);
                     break;
                 case "boots":
                     gotBoots = true;
                     justGotBoots = true;
                     GP.objItem[i] = null;
                     if(devMode)System.out.println(getSpeed());
+                    break;
+                case "accessCard":
+                    GP.objItem[i] = null;
+                    if(devMode)System.out.println("got Access Card");
+                    accessCard++;
+                    System.out.println(accessCard);
+                    break;
+                case "DoorClose":
+                 if(accessCard!=0){
+                     GP.objItem[i] = null;
+                     accessCard--;
+                     System.out.println(accessCard);
+                 }
+                 else {
+                     System.out.println("You need Access Card to open this Door");
+                 }
+
+
                     break;
 
             }
