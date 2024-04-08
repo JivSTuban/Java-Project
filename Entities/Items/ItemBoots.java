@@ -1,11 +1,11 @@
 package Entities.Items;
 
 import javax.imageio.ImageIO;
+
 import java.io.IOException;
 
-public class Boots extends SuperItem{
-
-    public Boots() {
+public class ItemBoots extends SuperItem{
+    public ItemBoots() {
         name = "boots";
         try{
             image = ImageIO.read(getClass().getResourceAsStream("/res/items/Boots.png"));

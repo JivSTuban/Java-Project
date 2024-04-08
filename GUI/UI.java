@@ -1,6 +1,6 @@
 package GUI;
 
-import Entities.Items.Boots;
+import Entities.Items.ItemBoots;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -13,7 +13,7 @@ public class UI {
     public UI(GamePanel gp) {
         this.gp = gp;
         arial_40= new Font("Arial", Font.PLAIN,40);
-        Boots boots = new Boots();
+        ItemBoots boots = new ItemBoots();
 
         image = boots.image;
     }

@@ -1,12 +1,10 @@
 package Entities.Items;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.io.IOException;
 
-public class itemSalve extends SuperItem{
-
-    public itemSalve() {
+public class ItemSalve extends SuperItem{
+    public ItemSalve() {
         name = "salve";
         try{
             image = ImageIO.read(getClass().getResourceAsStream("/res/items/Salve.png"));
@@ -17,3 +15,5 @@ public class itemSalve extends SuperItem{
     }
 
 }
+
+

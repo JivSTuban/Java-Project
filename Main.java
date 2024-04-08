@@ -26,6 +26,7 @@ class Main {
         window.setBounds(x, y, windowWidth, windowHeight);
 
         window.setVisible(true);
+        gamePanel.setupGame();
         gamePanel.startGameThread();
     }
 }
