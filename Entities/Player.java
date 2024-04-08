@@ -179,13 +179,13 @@ public class Player extends Entity {
                     GP.objItem[i] = null;
                     if(devMode)System.out.println("got Access Card");
                     accessCard++;
-                    System.out.println(accessCard);
+                    System.out.println("Card count: "+accessCard);
                     break;
                 case "DoorClose":
                  if(accessCard!=0){
                      GP.objItem[i] = null;
                      accessCard--;
-                     System.out.println(accessCard);
+                     System.out.println("Card count: "+accessCard);
                  }
                  else {
                      System.out.println("You need Access Card to open this Door");

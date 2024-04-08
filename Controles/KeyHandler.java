@@ -51,17 +51,20 @@ public class KeyHandler implements KeyListener {
             }
         }
         if (code == KeyEvent.VK_BACK_SLASH ){
-            System.out.println("Scripts:\n-addkey \n-unlispeed\n-giveboots");
+            System.out.println("Scripts:\n-addkey \n-unlispeed\n-giveboots\n-cancel");
 
           do{
               System.out.print("Enter addItem: "); String str = sc.nextLine();str = str.toLowerCase();
-              if( str.equals("addkey") )   addKey =true;
-              else if(str.equals("giveboots")) giveBoots = true;
-              else if(str.equals("unlispeed"))  maxDuration = 999999;
+              if( str.equals("addkey") )   {addKey =true;   valid = true;}
+              else if(str.equals("giveboots")) {giveBoots = true;   valid = true;}
+              else if(str.equals("unlispeed"))  {maxDuration = 999999;   valid = true;}
+              else if(str.equals("cancel"))  {valid = true;}
+
               else{
                   valid = !valid;
                   System.out.println("--Command not Found");
               }
+
           }while(!valid);
         }
         //end of devMode
