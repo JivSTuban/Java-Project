@@ -16,7 +16,21 @@ public class Player extends Entity {
 
     public  int screenX = 0;
     public  int screenY = 0;
+    int chest = 0;
+    //Items
+    public int boots = 0;
 
+    //playerStats
+    public int playerHP = 100;
+    public final int maxHP = 100;
+
+    public int getPlayerHP() {
+        return playerHP;
+    }
+
+    public void setPlayerHP(int playerHP) {
+        this.playerHP = playerHP;
+    }
 
     public Player(GamePanel GP, KeyHandler KH) {
 
@@ -27,13 +41,18 @@ public class Player extends Entity {
         screenX = GP.screenWidth/2;
         screenY = GP.screenHeight/2;
         solidArea = new Rectangle(8,16,32,32);
+        solidAreaDefaultX = 8;
+        solidAreaDefaultY = 16;
+
         setDefault();
         getPlayerImage();
     }
     public void setDefault(){
-        worldX = GP.tileSize * 3;
-        worldY = GP.tileSize * 76;
-        setSpeed(2);
+
+        worldX = GP.tileSize * 7;
+        worldY = GP.tileSize * 78;
+        setSpeed(4);
+
         direction = "down";
     }
 
@@ -77,6 +96,9 @@ public class Player extends Entity {
             //Check collision
             collisionOn = false;
             GP.collisionChecker.checkTile(this);
+            int objIndex = GP.collisionChecker.checkObject(this,true);
+            pickUpItem(objIndex);
+
             if (collisionOn == false){
                 switch (direction){
                     case"up":
@@ -104,6 +126,36 @@ public class Player extends Entity {
             }
         }
     }
+    public void pickUpItem(int i){
+        if(i != 999){
+            String itemName = GP.objItem[i].name;
+            System.out.println(playerHP);
+            switch (itemName){
+                case "salve": ;
+                    if(playerHP < maxHP){
+                        if(playerHP > 100){
+                            setPlayerHP(100);
+                        }
+                        else{
+                            setPlayerHP(getPlayerHP() + 25);
+                        }
+
+                    }
+                    GP.objItem[i] = null;
+                    System.out.println(playerHP);
+                    break;
+                case "boots": setSpeed(getSpeed()+9);
+                    GP.objItem[i] = null;
+                    boots++;
+                    System.out.println(getSpeed());
+                    break;
+
+            }
+
+        }
+    }
+
+
     public void draw(Graphics2D g2){
         //g2.setColor(Color.WHITE);
         //g2.fillRect(x, y, GP.tileSize, GP.tileSize);

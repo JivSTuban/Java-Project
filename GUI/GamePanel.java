@@ -1,6 +1,7 @@
 package GUI;
 
 import Controles.KeyHandler;
+import Entities.Items.SuperItem;
 import Entities.Player;
 import Tile.world1.DesignTileManager;
 import Tile.world1.CollisionTileManger;
@@ -35,9 +36,15 @@ public class GamePanel extends JPanel implements Runnable{
 
     KeyHandler keyH = new KeyHandler();
 
+    public UI ui = new UI(this);
+
     Thread gameThread;
     public CollisionChecker collisionChecker = new CollisionChecker(this);
+    public AssetSetter aSetter = new AssetSetter(this);
     public Player player = new Player(this, keyH);
+
+    public SuperItem objItem[] = new SuperItem[10];
+
 
     public GamePanel(){
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
@@ -46,6 +53,11 @@ public class GamePanel extends JPanel implements Runnable{
         this.addKeyListener(keyH);
         this.setFocusable(true);
     }
+    public void setupGame(){
+        aSetter.setItem();
+
+    }
+
 
     public void startGameThread(){
         gameThread = new Thread(this);
@@ -79,7 +91,7 @@ public class GamePanel extends JPanel implements Runnable{
         }
     }
     public void update(KeyHandler keyH){
-       player.update(keyH);
+        player.update(keyH);
     }
     public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -89,7 +101,15 @@ public class GamePanel extends JPanel implements Runnable{
         tileManager.draw(g2);
         collisionTileManger.draw(g2);
         designTileManager.draw(g2);
+        //Item
+        for(int i=0; i<objItem.length ; i++){
+            if(objItem[i] != null){
+                objItem[i].draw(g2,this);
+            }
+        }
+
         player.draw(g2);
+        ui.draw(g2);
 
         g2.dispose();
     }

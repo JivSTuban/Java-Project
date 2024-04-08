@@ -12,6 +12,7 @@ public class Entity {
     public int spriteCount = 0;
     public int spriteNum = 1;
     public Rectangle solidArea = null;
+    public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     public int getSpeed() {
         return speed;
