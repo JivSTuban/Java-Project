@@ -31,8 +31,8 @@ public class Player extends Entity {
         getPlayerImage();
     }
     public void setDefault(){
-        worldX = GP.tileSize * 46;
-        worldY = GP.tileSize * 19;
+        worldX = GP.tileSize * 3;
+        worldY = GP.tileSize * 76;
         setSpeed(2);
         direction = "down";
     }
@@ -73,6 +73,7 @@ public class Player extends Entity {
                 direction = "right";
 
             }
+            System.out.println("x ="+((worldX/(GP.tileSize-1))) + "\ny = "+((worldY/(GP.tileSize-1))));
             //Check collision
             collisionOn = false;
             GP.collisionChecker.checkTile(this);
