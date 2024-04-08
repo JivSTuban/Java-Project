@@ -152,6 +152,34 @@ public class Player extends Entity {
 
         }
     }
+    public void toxin(int i){
+        if(i != 999){
+            String itemName = GP.objItem[i].name;
+            System.out.println(playerHP);
+            switch (itemName){
+                case "salve": ;
+                    if(playerHP < maxHP){
+                        if(playerHP > 100){
+                            setPlayerHP(100);
+                        }
+                        else{
+                            setPlayerHP(getPlayerHP() + 25);
+                        }
+
+                    }
+                    GP.objItem[i] = null;
+                    System.out.println(playerHP);
+                    break;
+                case "boots": setSpeed(getSpeed()+9);
+                    GP.objItem[i] = null;
+                    boots++;
+                    System.out.println(getSpeed());
+                    break;
+
+            }
+
+        }
+    }
 
 
     public void draw(Graphics2D g2){
