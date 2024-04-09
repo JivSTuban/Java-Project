@@ -10,12 +10,9 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Player extends Entity {
-<<<<<<< HEAD
-    GamePanel GP; //sa video ge remove ni na line
-=======
     public boolean devMode = false;
+
     GamePanel GP;
->>>>>>> b0dc4c552a02e4b70a86ad17e94b808fcf44bd62
     KeyHandler KH;
 
 
@@ -55,15 +52,12 @@ public class Player extends Entity {
         getPlayerImage();
     }
     public void setDefault(){
-<<<<<<< HEAD
         worldX = GP.tileSize * 46;//60
         worldY = GP.tileSize * 24;//25
         setSpeed(3);
-=======
         worldX = GP.tileSize * 7;
         worldY = GP.tileSize * 78;
         setSpeed(4);
->>>>>>> b0dc4c552a02e4b70a86ad17e94b808fcf44bd62
         direction = "down";
 
     }
