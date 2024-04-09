@@ -90,7 +90,7 @@ public class Player extends Entity {
             System.out.println("card count: "+accessCard);
         }
         if(keyH.giveBoots)
-          gotBoots = true;
+            gotBoots = true;
 
 
         if(keyH.wPressed || keyH.aPressed || keyH.sPressed || keyH.dPressed || keyH.shiftPressed){
@@ -120,12 +120,22 @@ public class Player extends Entity {
                     setSpeed(defaultSpeed);
             }
 
-           if(devMode)System.out.println("x ="+((worldX/(GP.tileSize-1))) + "\ny = "+((worldY/(GP.tileSize-1))));
+            if(devMode)System.out.println("x ="+((worldX/(GP.tileSize-1))) + "\ny = "+((worldY/(GP.tileSize-1))));
             //Check collision
             collisionOn = false;
             GP.collisionChecker.checkTile(this);
             int objIndex = GP.collisionChecker.checkObject(this,true);
             pickUpItem(objIndex);
+            //toxin
+            int toxinIndex = GP.collisionChecker.checkToxin(this,true);
+            toxinHit(toxinIndex);
+
+
+
+
+
+
+
 
             if (collisionOn == false){
                 switch (direction){
@@ -171,7 +181,7 @@ public class Player extends Entity {
 
                     }
                     GP.objItem[i] = null;
-                   // System.out.println(playerHP);
+                    // System.out.println(playerHP);
                     break;
                 case "boots":
                     gotBoots = true;
@@ -186,44 +196,29 @@ public class Player extends Entity {
                     System.out.println("Card count: "+accessCard);
                     break;
                 case "DoorClose":
-                 if(accessCard!=0){
-                     GP.objItem[i] = null;
-                     accessCard--;
-                     System.out.println("Card count: "+accessCard);
-                 }
-                 else {
-                     System.out.println("You need Access Card to open this Door");
-                 }
-
-
+                    if(accessCard!=0){
+                        GP.objItem[i] = null;
+                        accessCard--;
+                        System.out.println("Card count: "+accessCard);
+                    }
+                    else {
+                        System.out.println("You need Access Card to open this Door");
+                    }
                     break;
 
             }
 
         }
     }
-    public void toxin(int i){
+    public void toxinHit(int i){
         if(i != 999){
-            String itemName = GP.objItem[i].name;
-            System.out.println(playerHP);
-            switch (itemName){
-                case "salve": ;
-                    if(playerHP < maxHP){
-                        if(playerHP > 100){
-                            setPlayerHP(100);
-                        }
-                        else{
-                            setPlayerHP(getPlayerHP() + 25);
-                        }
+            String itemName = GP.toxins[i].name;
 
-                    }
-                    GP.objItem[i] = null;
-                    System.out.println(playerHP);
-                    break;
-                case "boots":
-                    gotBoots = true;
-                    GP.objItem[i] = null;
-                    System.out.println(getSpeed());
+            switch (itemName){
+                case "toxin":
+                    System.out.println("toxin Hit");
+                    playerHP--;
+                    System.out.println("Player hp: "+playerHP);
                     break;
 
             }

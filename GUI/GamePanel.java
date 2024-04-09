@@ -3,6 +3,7 @@ package GUI;
 import Controles.KeyHandler;
 import Entities.Items.SuperItem;
 import Entities.Player;
+import Entities.Toxin;
 import Tile.world1.DesignTileManager;
 import Tile.world1.CollisionTileManger;
 import Tile.world1.OutsideTiles;
@@ -12,6 +13,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable{
+
 
     final int originalTileSize = 16;
     final int scale = 3;
@@ -48,7 +50,7 @@ public class GamePanel extends JPanel implements Runnable{
     public UI ui = new UI(this, player);
 
     public SuperItem objItem[] = new SuperItem[99];
-    public SuperItem doors[] = new SuperItem[10];
+    public Toxin toxins[] = new Toxin[199];
 
 
     public GamePanel(){
@@ -60,6 +62,7 @@ public class GamePanel extends JPanel implements Runnable{
     }
     public void setupGame(){
         aSetter.setItem();
+        aSetter.setToxin();
 
     }
 
@@ -108,9 +111,15 @@ public class GamePanel extends JPanel implements Runnable{
         collisionTileManger.draw(g2);
         designTileManager.draw(g2);
         //Item
-        for(int i=0; i<objItem.length ; i++){
-            if(objItem[i] != null){
-                objItem[i].draw(g2,this);
+        for (SuperItem superItem : objItem) {
+            if (superItem != null) {
+                superItem.draw(g2, this);
+            }
+        }
+        //toxins
+        for (Toxin toxin : toxins) {
+            if (toxin != null) {
+                toxin.draw(g2, this);
             }
         }
 
