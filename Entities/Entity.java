@@ -16,6 +16,7 @@ public class Entity {
     public int spriteCount = 0;
     public int spriteNum = 1;
     public Rectangle solidArea = null;
+    public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     public Entity(GamePanel gp){
         this.gp = gp;
@@ -28,5 +29,9 @@ public class Entity {
     public void setSpeed(int speed) {
         this.speed = speed;
     }
+<<<<<<< HEAD
 
 }
+=======
+}
+>>>>>>> b0dc4c552a02e4b70a86ad17e94b808fcf44bd62
