@@ -23,14 +23,14 @@ public class NPC_Drone extends Entity{
 
     public void getImage() {
 
-        up1 = setup("/res/npc/DroneUp");
-        up2 = setup("/res/npc/DroneUp2");
+        up1 = setup("/res/npc/DroneDown");
+        up2 = setup("/res/npc/DroneDown2");
         left1 = setup("/res/npc/DroneDown");
         left2 = setup("/res/npc/DroneDown");
         right1 = setup("/res/npc/DroneDown");
         right2 = setup("/res/npc/DroneDown");
-        down1 = setup("/res/npc/DroneDown");
-        down2 = setup("/res/npc/DroneDown2");
+        down1 = setup("/res/npc/DroneUp");
+        down2 = setup("/res/npc/DroneUp2");
     }
     public void setAction(){
         actionCounter++;
@@ -55,6 +55,7 @@ public class NPC_Drone extends Entity{
             actionCounter = 0;
 
         }
+
     }
 
 

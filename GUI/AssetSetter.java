@@ -95,15 +95,15 @@ public class AssetSetter {
         gp.npc[0].worldY = gp.tileSize*74;
 
         gp.npc[1] = new NPC_Drone(gp);
-        gp.npc[1].worldX = gp.tileSize*33;
-        gp.npc[1].worldY = gp.tileSize*74;
+        gp.npc[1].worldX = gp.tileSize*54;
+        gp.npc[1].worldY = gp.tileSize*65;
 
         gp.npc[2] = new NPC_Drone(gp);
-        gp.npc[2].worldX = gp.tileSize*33;
-        gp.npc[2].worldY = gp.tileSize*74;
+        gp.npc[2].worldX = gp.tileSize*6;
+        gp.npc[2].worldY = gp.tileSize*72;
 
         gp.npc[3] = new NPC_Drone(gp);
-        gp.npc[3].worldX = gp.tileSize*34;
-        gp.npc[3].worldY = gp.tileSize*74;
+        gp.npc[3].worldX = gp.tileSize*69;
+        gp.npc[3].worldY = gp.tileSize*77;
     }
 }
