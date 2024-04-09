@@ -1,7 +1,7 @@
 package GUI;
 
 import Entities.Items.*;
-import Entities.NPC_robot;
+import Entities.NPC_Drone;
 import Entities.Toxin;
 
 import java.util.ArrayList;
@@ -90,8 +90,20 @@ public class AssetSetter {
     }
 
     public void setNPC(){
-        gp.npc[0] = new NPC_robot(gp);
-        gp.npc[0].worldX = gp.tileSize*57;
-        gp.npc[0].worldY = gp.tileSize*65;
+        gp.npc[0] = new NPC_Drone(gp);
+        gp.npc[0].worldX = gp.tileSize*34;
+        gp.npc[0].worldY = gp.tileSize*74;
+
+        gp.npc[1] = new NPC_Drone(gp);
+        gp.npc[1].worldX = gp.tileSize*33;
+        gp.npc[1].worldY = gp.tileSize*74;
+
+        gp.npc[2] = new NPC_Drone(gp);
+        gp.npc[2].worldX = gp.tileSize*33;
+        gp.npc[2].worldY = gp.tileSize*74;
+
+        gp.npc[3] = new NPC_Drone(gp);
+        gp.npc[3].worldX = gp.tileSize*34;
+        gp.npc[3].worldY = gp.tileSize*74;
     }
 }
