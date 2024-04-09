@@ -83,7 +83,6 @@ public class AssetSetter {
         posX.add(7);
         posY.add(52);
 
-
         posX.add(38);
         posY.add(64);
         posX.add(38);
@@ -109,7 +108,6 @@ public class AssetSetter {
             posX.add(65);
             posY.add(y);
         }
-
 
         for(int x = 37 ;x!=40;x++) {
             posX.add(x);

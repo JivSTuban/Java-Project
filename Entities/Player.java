@@ -19,7 +19,6 @@ public class Player extends Entity {
     int defaultSpeed = 3;
     public  int screenX = 0;
     public  int screenY = 0;
-    int chest = 0;
     //Items
     public boolean gotBoots = false;
     boolean justGotBoots = false;
@@ -131,13 +130,7 @@ public class Player extends Entity {
             toxinHit(toxinIndex);
 
 
-
-
-
-
-
-
-            if (collisionOn == false){
+            if (!collisionOn){
                 switch (direction){
                     case"up":
                         worldY -= getSpeed();
@@ -170,15 +163,12 @@ public class Player extends Entity {
             String itemName = GP.objItem[i].name;
 //            System.out.println(playerHP);
             switch (itemName){
-                case "salve": ;
+                case "salve":
                     if(playerHP < maxHP){
-                        if(playerHP > 100){
-                            setPlayerHP(100);
-                        }
-                        else{
-                            setPlayerHP(getPlayerHP() + 25);
-                        }
-
+                        setPlayerHP(getPlayerHP() + 25);
+                    }
+                    else{
+                        setPlayerHP(100);
                     }
                     GP.objItem[i] = null;
                     // System.out.println(playerHP);
@@ -214,13 +204,10 @@ public class Player extends Entity {
         if(i != 999){
             String itemName = GP.toxins[i].name;
 
-            switch (itemName){
-                case "toxin":
-                    System.out.println("toxin Hit");
-                    playerHP--;
-                    System.out.println("Player hp: "+playerHP);
-                    break;
-
+            if (itemName.equals("toxin")) {
+                System.out.println("toxin Hit");
+                playerHP--;
+                System.out.println("Player hp: " + playerHP);
             }
 
         }
