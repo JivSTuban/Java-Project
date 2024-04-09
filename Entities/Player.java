@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Player extends Entity {
-    GamePanel GP;
+    GamePanel GP; //sa video ge remove ni na line
     KeyHandler KH;
 
 
@@ -19,7 +19,7 @@ public class Player extends Entity {
 
 
     public Player(GamePanel GP, KeyHandler KH) {
-
+        super(GP);
 
         this.GP = GP;
         this.KH = KH;
@@ -31,8 +31,8 @@ public class Player extends Entity {
         getPlayerImage();
     }
     public void setDefault(){
-        worldX = GP.tileSize * 60;
-        worldY = GP.tileSize * 25;
+        worldX = GP.tileSize * 46;//60
+        worldY = GP.tileSize * 24;//25
         setSpeed(3);
         direction = "down";
     }
@@ -56,22 +56,15 @@ public class Player extends Entity {
         if(keyH.wPressed || keyH.aPressed || keyH.sPressed || keyH.dPressed){
             if(keyH.wPressed){
                 direction = "up";
-
-
             }
             else if(keyH.aPressed){
                 direction = "left";
-
-
             }
             else if(keyH.sPressed){
                 direction = "down";
-
-
             }
             else if(keyH.dPressed){
                 direction = "right";
-
             }
             //Check collision
             collisionOn = false;
