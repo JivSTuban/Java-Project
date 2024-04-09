@@ -1,7 +1,9 @@
 package GUI;
 
 import Controles.KeyHandler;
+import Entities.Entity;
 import Entities.Items.SuperItem;
+//import Entities.NPC_robot;
 import Entities.Player;
 import Entities.Toxin;
 import Tile.world1.DesignTileManager;
@@ -47,6 +49,10 @@ public class GamePanel extends JPanel implements Runnable{
     public AssetSetter aSetter = new AssetSetter(this);
     public Player player = new Player(this, keyH);
 
+    public Entity npc[] = new Entity[10];
+
+
+
     public UI ui = new UI(this, player);
 
     public SuperItem objItem[] = new SuperItem[99];
@@ -63,6 +69,7 @@ public class GamePanel extends JPanel implements Runnable{
     public void setupGame(){
         aSetter.setItem();
         aSetter.setToxin();
+        aSetter.setNPC();
 
     }
 
@@ -83,6 +90,7 @@ public class GamePanel extends JPanel implements Runnable{
         while(gameThread!=null){
 
             update(keyH);
+
             repaint();
 
             try {
@@ -99,9 +107,19 @@ public class GamePanel extends JPanel implements Runnable{
 
         }
     }
+
     public void update(KeyHandler keyH){
         player.update(keyH);
+
+        for(int i = 0;i<npc.length;i++){
+            if(npc[i] != null){
+                npc[i].update();
+            }
+        }
     }
+
+
+
     public void paintComponent(Graphics g){
         super.paintComponent(g);
 
@@ -124,6 +142,12 @@ public class GamePanel extends JPanel implements Runnable{
         }
 
         player.draw(g2);
+        for(int i = 0; i< npc.length;i++){
+            if(npc[i] != null){
+                npc[i].draw(g2);
+            }
+        }
+
         ui.draw(g2);
 
         g2.dispose();

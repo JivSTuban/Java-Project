@@ -13,14 +13,14 @@ public class KeyHandler implements KeyListener {
     public boolean addKey,giveBoots;
     public boolean valid = true;
     Scanner sc = new Scanner(System.in);
-        public boolean activateBoots = false;
-        int bootsDuration = 0,maxDuration = 10;
-        int cd = 0, cdDuration = 100;
-        public boolean devMode = false;
+    public boolean activateBoots = false;
+    int bootsDuration = 0,maxDuration = 10;
+    int cd = 0, cdDuration = 100;
+    public boolean devMode = false;
 
-        boolean canUse = true;
+    boolean canUse = true;
 
-        int rst1=0, rst2=0;
+    int rst1=0, rst2=0;
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -53,19 +53,19 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_BACK_SLASH ){
             System.out.println("Scripts:\n-addkey \n-unlispeed\n-giveboots\n-cancel");
 
-          do{
-              System.out.print("Enter addItem: "); String str = sc.nextLine();str = str.toLowerCase();
-              if( str.equals("addkey") )   {addKey =true;   valid = true;}
-              else if(str.equals("giveboots")) {giveBoots = true;   valid = true;}
-              else if(str.equals("unlispeed"))  {maxDuration = 999999;   valid = true;}
-              else if(str.equals("cancel"))  {valid = true;}
+            do{
+                System.out.print("Enter addItem: "); String str = sc.nextLine();str = str.toLowerCase();
+                if( str.equals("addkey") )   {addKey =true;   valid = true;}
+                else if(str.equals("giveboots")) {giveBoots = true;   valid = true;}
+                else if(str.equals("unlispeed"))  {maxDuration = 999999;   valid = true;}
+                else if(str.equals("cancel"))  {valid = true;}
 
-              else{
-                  valid = !valid;
-                  System.out.println("--Command not Found");
-              }
+                else{
+                    valid = !valid;
+                    System.out.println("--Command not Found");
+                }
 
-          }while(!valid);
+            }while(!valid);
         }
         //end of devMode
 
@@ -83,39 +83,39 @@ public class KeyHandler implements KeyListener {
         }
 
 
-          if(activateBoots){
-              //method for Movement Speed
-              if(canUse){
-                  if (code == KeyEvent.VK_SHIFT  ){
+        if(activateBoots){
+            //method for Movement Speed
+            if(canUse){
+                if (code == KeyEvent.VK_SHIFT  ){
 
-                      shiftPressed = true;
-                  }
-              }
-              //count the duration
-              if(shiftPressed){
-                  bootsDuration++;
-                 if(this.devMode)
-                      System.out.println( "Duration: "+bootsDuration);
-              }
-              //if duration is equal to 10 set movement speed to default
-              if(bootsDuration == maxDuration){
-                  canUse = false;
-                  shiftPressed = false;
-              }
-              //start the cooldown
-              if(!canUse){
-                 cd++;
+                    shiftPressed = true;
+                }
+            }
+            //count the duration
+            if(shiftPressed){
+                bootsDuration++;
+                if(this.devMode)
+                    System.out.println( "Duration: "+bootsDuration);
+            }
+            //if duration is equal to 10 set movement speed to default
+            if(bootsDuration == maxDuration){
+                canUse = false;
+                shiftPressed = false;
+            }
+            //start the cooldown
+            if(!canUse){
+                cd++;
                 if(this.devMode)
                     System.out.println("Cd: "+cd);
 
-              }
-              //check if Cooldown is done
-              if(cd > cdDuration){
-                  canUse = true;
-                  cd = 0;
-                  bootsDuration = 0;
-              }
-          }
+            }
+            //check if Cooldown is done
+            if(cd > cdDuration){
+                canUse = true;
+                cd = 0;
+                bootsDuration = 0;
+            }
+        }
 
 
     }

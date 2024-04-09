@@ -54,7 +54,7 @@ public class Player extends Entity {
         worldX = GP.tileSize * 46;//60
         worldY = GP.tileSize * 24;//25
         setSpeed(3);
-        worldX = GP.tileSize * 7;
+        worldX = GP.tileSize * 65;
         worldY = GP.tileSize * 78;
         setSpeed(4);
         direction = "down";
