@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
-public class Toxin {
+public class Toxin  {
     public BufferedImage image;
     public String name;
     public boolean collision = false;

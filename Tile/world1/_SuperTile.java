@@ -16,9 +16,9 @@ public class _SuperTile {
     GamePanel GP;
     public Tile[] tiles;
 
-    public int mapTileNumber[][];
+    public int[][] mapTileNumber;
 
-    public void loadMap(String filepath, GamePanel GP){
+    public void loadMap(String filepath){
         try{
             InputStream is = getClass().getResourceAsStream(filepath);
             BufferedReader br = new BufferedReader(new InputStreamReader(is));

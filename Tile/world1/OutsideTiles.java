@@ -19,7 +19,7 @@ public class OutsideTiles extends _SuperTile {
         tiles = new Tile[25];
         mapTileNumber = new int[GP.maxWorldCol][GP.maxWorldRow];
         getTileImage();
-        loadMap("/res/maps/OutsideTile.txt",GP);
+        loadMap("/res/maps/OutsideTile.txt");
     }
 
     public void getTileImage() {

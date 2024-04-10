@@ -18,7 +18,7 @@ public class TileManager extends _SuperTile {
         tiles = new Tile[13];
         mapTileNumber = new int[GP.maxWorldCol][GP.maxWorldRow];
         getTileImage();
-        loadMap("/res/maps/world1/BackGroundTiles.txt",GP);
+        loadMap("/res/maps/world1/BackGroundTiles.txt");
     }
     public void getTileImage() {
 

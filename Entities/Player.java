@@ -29,8 +29,6 @@ public class Player extends Entity {
 
     public long bootsCD=0;
 
-
-
     public int getPlayerHP() {
         return playerHP;
     }
@@ -62,22 +60,16 @@ public class Player extends Entity {
 
     }
 
-
     public void getPlayerImage(){
-        try{
-            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/blueKnight/up1.png")));
-            up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/blueKnight/up2.png")));
-            left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/blueKnight/left1.png")));
-            left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/blueKnight/left2.png")));
-            right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/blueKnight/right1.png")));
-            right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/blueKnight/right2.png")));
-            down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/blueKnight/down1.png")));
-            down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/blueKnight/down2.png")));
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+        up1=setup("/res/blueKnight/up1");
+        up2=setup("/res/blueKnight/up2");
+        left1=setup("/res/blueKnight/left1");
+        left2=setup("/res/blueKnight/left2");
+        down1=setup("/res/blueKnight/down1");
+        down2=setup("/res/blueKnight/down2");
+        right1=setup("/res/blueKnight/right1");
+        right2=setup("/res/blueKnight/right2");
     }
-
 
     public void update(KeyHandler keyH){
         //Developer Mode
@@ -122,7 +114,6 @@ public class Player extends Entity {
                 if(!keyH.shiftPressed)
                     setSpeed(defaultSpeed);
             }
-
 
 
             if(devMode)System.out.println("x ="+((worldX/(GP.tileSize-1))) + "\ny = "+((worldY/(GP.tileSize-1))));

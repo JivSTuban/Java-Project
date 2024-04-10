@@ -18,7 +18,7 @@ public class CollisionTileManger extends _SuperTile {
         tiles = new Tile[25];
         mapTileNumber = new int[GP.maxWorldCol][GP.maxWorldRow];
         getTileImage();
-        loadMap("/res/maps/world1/CollisionTile.txt",GP);
+        loadMap("/res/maps/world1/CollisionTile.txt");
     }
     public void getTileImage() {
         setUp(0,"tiles/Wall/0transparent",false);

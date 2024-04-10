@@ -6,6 +6,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Random;
 
 public class Entity {
 
@@ -28,9 +29,8 @@ public class Entity {
         this.gp = gp;
     }
 
-    public void setAction(){}
     public void update(){
-        setAction();
+        setAction("drone");
         collisionOn = false;
         gp.collisionChecker.checkTile(this);
         if (!collisionOn){
@@ -125,4 +125,68 @@ public class Entity {
         }
         return image;
     }
+
+    public void setAction(String npc){
+        actionCounter++;
+        if(npc.equals("drone")) {
+
+            if (actionCounter == 120) {
+                Random random = new Random();
+                int i = random.nextInt(2) + 1;
+
+                if (i == 1) {
+                    holder++;
+                    if (holder == 4)
+                        direction = "down";
+                    else
+                        direction = "up";
+
+                }
+                if (i == 2) {
+                    direction = "down";
+                    holder = 0;
+                }
+
+                actionCounter = 0;
+
+            }
+        }
+        else {
+            if (actionCounter == 120) {
+                Random random = new Random();
+                int i = random.nextInt(4) + 1;
+
+                if (i == 1) {
+                    holder++;
+                    if (holder == 4)
+                        direction = "down";
+                    else
+                        direction = "up";
+
+                }
+                if (i == 2) {
+                    direction = "down";
+                    holder = 0;
+                }
+                if (i == 3) {
+                    holder++;
+                    if (holder == 4)
+                        direction = "right";
+                    else
+                        direction = "up";
+
+                }
+                if (i == 4) {
+                    direction = "left";
+                    holder = 0;
+                }
+
+                actionCounter = 0;
+
+            }
+        }
+
+    }
+
+
 }

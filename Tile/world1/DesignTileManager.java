@@ -17,7 +17,7 @@ public class DesignTileManager extends _SuperTile {
         tiles = new Tile[25];
         mapTileNumber = new int[GP.maxWorldCol][GP.maxWorldRow];
         getTileImage();
-        loadMap("/res/maps/world1/design.txt",GP);
+        loadMap("/res/maps/world1/design.txt");
     }
     public void getTileImage() {
         setUp(0,"tiles/Design/0transparent",false);

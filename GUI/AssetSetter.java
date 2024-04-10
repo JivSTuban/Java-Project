@@ -1,9 +1,11 @@
 package GUI;
 
+import Entities.Entity;
 import Entities.Items.*;
 import Entities.NPC_Drone;
 import Entities.Toxin;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -70,21 +72,22 @@ public class AssetSetter {
 
     }
 
-    public void setNPC(){
-        gp.npc[0] = new NPC_Drone(gp);
-        gp.npc[0].worldX = gp.tileSize*34;
-        gp.npc[0].worldY = gp.tileSize*74;
+    public void setNPCChar(int index, int x, int y, Entity npc) {
+        try {
+            gp.npc[index] = npc.getClass().getDeclaredConstructor(GamePanel.class).newInstance(gp);
+            gp.npc[index].worldX = x * gp.tileSize;
+            gp.npc[index].worldY = y * gp.tileSize;
+        } catch ( InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException | NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-        gp.npc[1] = new NPC_Drone(gp);
-        gp.npc[1].worldX = gp.tileSize*54;
-        gp.npc[1].worldY = gp.tileSize*65;
-
-        gp.npc[2] = new NPC_Drone(gp);
-        gp.npc[2].worldX = gp.tileSize*6;
-        gp.npc[2].worldY = gp.tileSize*72;
-
-        gp.npc[3] = new NPC_Drone(gp);
-        gp.npc[3].worldX = gp.tileSize*69;
-        gp.npc[3].worldY = gp.tileSize*77;
+    public void setNPC() {
+        setNPCChar(0, 34, 74, new NPC_Drone(gp));
+        setNPCChar(1, 54, 65, new NPC_Drone(gp));
+        setNPCChar(2, 6, 72, new NPC_Drone(gp));
+        setNPCChar(3, 69, 77, new NPC_Drone(gp));
     }
 }
