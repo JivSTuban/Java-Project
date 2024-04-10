@@ -73,7 +73,7 @@ public class GamePanel extends JPanel implements Runnable{
         aSetter.setItem();
         aSetter.setToxin();
         aSetter.setNPC();
-        playMusic(0);
+      //  playMusic(0);
 
     }
 
@@ -122,8 +122,6 @@ public class GamePanel extends JPanel implements Runnable{
         }
 
     }
-
-
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);

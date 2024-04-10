@@ -14,7 +14,7 @@ public class Sound {
 
     public void setFile(int i){
         try{
-            AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[0]);
+            AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[i]);
             clip = AudioSystem.getClip();
             clip.open(ais);
         }catch (Exception e){
@@ -23,6 +23,7 @@ public class Sound {
     }
     public void play(){
         clip.start();
+
     }
     public void loop(){
         clip.loop(Clip.LOOP_CONTINUOUSLY);

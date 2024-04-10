@@ -23,47 +23,28 @@ public class AssetSetter {
         this.gp = gp;
     }
 
+    public void setImage(int index, int x, int y, SuperItem item) {
+        try {
+            gp.objItem[index] = item.getClass().newInstance();
+            gp.objItem[index].worldX = x * gp.tileSize;
+            gp.objItem[index].worldY = y * gp.tileSize;
+        } catch (InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void setItem() {
-        gp.objItem[0] = new ItemSalve();
-        gp.objItem[0].worldX = spawnRand() * gp.tileSize;
-        gp.objItem[0].worldY = spawnRand() * gp.tileSize;
 
-        gp.objItem[1] = new ItemBoots();
-        gp.objItem[1].worldX = 3 * gp.tileSize;
-        gp.objItem[1].worldY = 78 * gp.tileSize;
-
-        gp.objItem[2] = new ItemBoots();
-        gp.objItem[2].worldX = spawnRand() * gp.tileSize;
-        gp.objItem[2].worldY = spawnRand() * gp.tileSize;
-
-        gp.objItem[3] = new AccessCard();
-        gp.objItem[3].worldX = 4 * gp.tileSize;
-        gp.objItem[3].worldY = 78 * gp.tileSize;
-
-        gp.objItem[4] = new DoorOpen();
-        gp.objItem[4].worldX = 8 * gp.tileSize;
-        gp.objItem[4].worldY = 50 * gp.tileSize;
-
-        gp.objItem[5] = new DoorClose();
-        gp.objItem[5].worldX = 8 * gp.tileSize;
-        gp.objItem[5].worldY = 50 * gp.tileSize;
-
-
-        gp.objItem[6] = new DoorOpen();
-        gp.objItem[6].worldX = 2 * gp.tileSize;
-        gp.objItem[6].worldY = 19 * gp.tileSize;
-
-        gp.objItem[7] = new DoorClose();
-        gp.objItem[7].worldX = 2 * gp.tileSize;
-        gp.objItem[7].worldY = 19 * gp.tileSize;
-
-        gp.objItem[8] = new DoorOpen();
-        gp.objItem[8].worldX = 1 * gp.tileSize;
-        gp.objItem[8].worldY = 6 * gp.tileSize;
-
-        gp.objItem[9] = new DoorClose();
-        gp.objItem[9].worldX = 1 * gp.tileSize;
-        gp.objItem[9].worldY = 6 * gp.tileSize;
+        setImage(0,spawnRand(),spawnRand(),  new ItemSalve());
+        setImage(1,3,78,  new ItemBoots());
+        setImage(2,spawnRand(),spawnRand(),  new ItemSalve());
+        setImage(3,4,78,  new AccessCard());
+        setImage(4,8,50,  new DoorOpen());
+        setImage(5,8,50,  new DoorClose());
+        setImage(6,2,19,  new DoorOpen());
+        setImage(7,2,19,  new DoorClose());
+        setImage(8,1,6,  new DoorOpen());
+        setImage(9,1,6,  new DoorClose());
 
     }
 
