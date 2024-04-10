@@ -19,8 +19,8 @@ public class KeyHandler implements KeyListener {
         //Boots Cooldown
     int bootsDuration = 0,maxDuration = 2;
     int cdDuration =10;
-    Cooldown cd = new Cooldown(cdDuration * 1000);
-    Cooldown duration = new Cooldown(maxDuration * 1000);
+    public Cooldown cd = new Cooldown(cdDuration * 1000);
+    public Cooldown duration = new Cooldown(maxDuration * 1000);
 
     boolean canUse = true;
 

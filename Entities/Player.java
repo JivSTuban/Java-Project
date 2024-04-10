@@ -27,6 +27,8 @@ public class Player extends Entity {
     public int playerHP = 100;
     public final int maxHP = 100;
 
+    public long bootsCD=0;
+
 
 
     public int getPlayerHP() {
@@ -60,6 +62,7 @@ public class Player extends Entity {
 
     }
 
+
     public void getPlayerImage(){
         try{
             up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/blueKnight/up1.png")));
@@ -78,6 +81,8 @@ public class Player extends Entity {
 
     public void update(KeyHandler keyH){
         //Developer Mode
+        bootsCD = keyH.duration.timeRemaining();
+
         if(keyH.pressed2)
             devMode = true;
         if(!keyH.pressed2)
@@ -117,6 +122,8 @@ public class Player extends Entity {
                 if(!keyH.shiftPressed)
                     setSpeed(defaultSpeed);
             }
+
+
 
             if(devMode)System.out.println("x ="+((worldX/(GP.tileSize-1))) + "\ny = "+((worldY/(GP.tileSize-1))));
             //Check collision
@@ -199,8 +206,13 @@ public class Player extends Entity {
 
         }
     }
-    public void toxinHit(int i){
-        if(i != 999){
+    public void toxinHit(int i) {
+        if (i != 999) {
+            if (playerHP < 1) {
+                playerHP = 0;
+                return;
+            }
+
             String itemName = GP.toxins[i].name;
 
             if (itemName.equals("toxin")) {
@@ -213,9 +225,8 @@ public class Player extends Entity {
     }
 
 
+
     public void draw(Graphics2D g2){
-        //g2.setColor(Color.WHITE);
-        //g2.fillRect(x, y, GP.tileSize, GP.tileSize);
 
         BufferedImage image = null;
         if(direction.equals("up")){

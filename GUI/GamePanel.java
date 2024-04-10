@@ -6,6 +6,7 @@ import Entities.Items.SuperItem;
 //import Entities.NPC_robot;
 import Entities.Player;
 import Entities.Toxin;
+import Sound.Sound;
 import Tile.world1.DesignTileManager;
 import Tile.world1.CollisionTileManger;
 import Tile.world1.OutsideTiles;
@@ -47,8 +48,10 @@ public class GamePanel extends JPanel implements Runnable{
     Thread gameThread;
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
-    public Player player = new Player(this, keyH);
+    //Sound
+    Sound sound = new Sound();
 
+    public Player player = new Player(this, keyH);
     public Entity npc[] = new Entity[10];
 
 
@@ -70,6 +73,7 @@ public class GamePanel extends JPanel implements Runnable{
         aSetter.setItem();
         aSetter.setToxin();
         aSetter.setNPC();
+        playMusic(0);
 
     }
 
@@ -152,5 +156,17 @@ public class GamePanel extends JPanel implements Runnable{
         ui.draw(g2);
 
         g2.dispose();
+    }
+    public void playMusic(int i){
+        sound.setFile(i);
+        sound.play();
+        sound.loop();
+    }
+    public void stopMusic(){
+        sound.stop();
+    }
+    public void playSE(int i){
+        sound.setFile(i);
+        sound.play();
     }
 }
