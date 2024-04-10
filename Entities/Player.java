@@ -27,6 +27,8 @@ public class Player extends Entity {
     public int playerHP = 100;
     public final int maxHP = 100;
 
+
+
     public int getPlayerHP() {
         return playerHP;
     }

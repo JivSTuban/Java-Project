@@ -14,9 +14,13 @@ public class KeyHandler implements KeyListener {
     public boolean valid = true;
     Scanner sc = new Scanner(System.in);
     public boolean activateBoots = false;
-    int bootsDuration = 0,maxDuration = 10;
-    int cd = 0, cdDuration = 100;
+
     public boolean devMode = false;
+        //Boots Cooldown
+    int bootsDuration = 0,maxDuration = 2;
+    int cdDuration =10;
+    Cooldown cd = new Cooldown(cdDuration * 1000);
+    Cooldown duration = new Cooldown(maxDuration * 1000);
 
     boolean canUse = true;
 
@@ -86,35 +90,43 @@ public class KeyHandler implements KeyListener {
         if(activateBoots){
             //method for Movement Speed
             if(canUse){
-                if (code == KeyEvent.VK_SHIFT  ){
 
+                if (code == KeyEvent.VK_SHIFT  ){
                     shiftPressed = true;
                 }
             }
             //count the duration
             if(shiftPressed){
-                bootsDuration++;
-                if(this.devMode)
-                    System.out.println( "Duration: "+bootsDuration);
+                if(!duration.isOnCooldown())
+                    duration.trigger();
+                if(this.devMode) {
+                   // System.out.println("Duration up to max");
+                    System.out.println("Used Time: "+duration.timeRemaining());
+                }
+                if(duration.timeRemaining() < 1000){
+                    canUse = false;
+                    shiftPressed = false;
+                }
             }
-            //if duration is equal to 10 set movement speed to default
-            if(bootsDuration == maxDuration){
-                canUse = false;
-                shiftPressed = false;
-            }
-            //start the cooldown
-            if(!canUse){
-                cd++;
-                if(this.devMode)
-                    System.out.println("Cd: "+cd);
 
+            //start the cooldown
+            if (!canUse) {
+                if(!cd.isOnCooldown())
+                    cd.trigger();// Trigger the cooldown
+
+                if (this.devMode)
+                    System.out.println(cd.timeRemaining()/1000+" sec");
+
+                // Check if the remaining cooldown time is less than 1000 milliseconds
+                if (cd.timeRemaining() < 1000) {
+                    canUse = true;
+                    System.out.println("Cooldown finished, ready to use again");
+                    bootsDuration = 0; // Reset boots duration
+                }
             }
+
             //check if Cooldown is done
-            if(cd > cdDuration){
-                canUse = true;
-                cd = 0;
-                bootsDuration = 0;
-            }
+
         }
 
 
