@@ -13,7 +13,7 @@ public class Toxin  {
     public String name;
     public boolean collision = false;
     public int worldX, worldY;
-    public Rectangle solidArea = new Rectangle(0, 0, 2, 2);
+    public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public int solidAreaDefaultX = 0;
     public int solidAreaDefaultY = 0;
 
@@ -21,7 +21,7 @@ public class Toxin  {
         name = "toxin";
         try{
 //            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/tiles/0toxin.png")));
-            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/Items/Chest.png")));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/toxicSet.png")));
         }catch(IOException e){
             e.printStackTrace();
 

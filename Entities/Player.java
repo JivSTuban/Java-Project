@@ -1,5 +1,6 @@
 package Entities;
 
+import Controles.Cooldown;
 import Controles.KeyHandler;
 import GUI.GamePanel;
 
@@ -8,12 +9,14 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
+import java.util.Random;
 
 public class Player extends Entity {
     public boolean devMode = false;
 
     GamePanel GP;
     KeyHandler KH;
+
 
 
     int defaultSpeed = 3;
@@ -23,7 +26,9 @@ public class Player extends Entity {
         //Boots
              public boolean gotBoots = false;
              boolean justGotBoots = false;
-             //public int bootsCD=0;
+
+        //Salve
+        public int salveCount=0;
 
 
     public int accessCard = 0;
@@ -38,6 +43,9 @@ public class Player extends Entity {
     public void setGold(double gold) {this.gold = gold;}
 
     public int bootsCD=0;
+
+    //Toxin
+    boolean isOn = false;
 
     public int getPlayerHP() {
         return playerHP;
@@ -69,6 +77,7 @@ public class Player extends Entity {
         direction = "down";
 
     }
+    Cooldown dps = new Cooldown(2100);
 
     public void getPlayerImage(){
         up1=setup("/res/blueKnight/up1");
@@ -138,6 +147,10 @@ public class Player extends Entity {
             int toxinIndex = GP.collisionChecker.checkToxin(this,true);
             toxinHit(toxinIndex);
 
+            int NPCcollision = GP.collisionChecker.checkEntity(this,gp.npc);
+            interactNPC(NPCcollision);
+
+
 
             if (!collisionOn){
                 switch (direction){
@@ -173,13 +186,8 @@ public class Player extends Entity {
 //            System.out.println(playerHP);
             switch (itemName){
                 case "salve":
-                    if(playerHP < maxHP){
-                        setPlayerHP(getPlayerHP() + 25);
-                    }
-                    else{
-                        setPlayerHP(100);
-                    }
                     GP.objItem[i] = null;
+                    salveCount++;
                     // System.out.println(playerHP);
                     break;
                 case "boots":
@@ -204,6 +212,18 @@ public class Player extends Entity {
                         System.out.println("You need Access Card to open this Door");
                     }
                     break;
+                case "chest" :
+                    GP.objItem[i] = null;
+                        if(randomizer() == 1){
+                            accessCard++;
+                            System.out.println("got card");
+                        }
+
+                        else{
+                            salveCount++;
+                            System.out.println("got Salve");
+                        }
+
 
             }
 
@@ -220,11 +240,18 @@ public class Player extends Entity {
 
             if (itemName.equals("toxin")) {
                 System.out.println("toxin Hit");
-                playerHP--;
+                if(!dps.isOnCooldown()){
+                    dps.trigger();
+                    playerHP--;
+                }
+
                 System.out.println("Player hp: " + playerHP);
+
             }
 
         }
+
+
     }
 
 
@@ -263,6 +290,16 @@ public class Player extends Entity {
             }
         }
         g2.drawImage(image, screenX, screenY, GP.tileSize, GP.tileSize, null    );
+    }
+
+    public int randomizer(){
+        Random rand =new Random();
+        return rand.nextInt(2)+1;
+    }
+    public void interactNPC(int i){
+        if(i!=999){
+            System.out.println("Drone Hit");
+        }
     }
 
 }

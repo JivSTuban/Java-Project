@@ -10,6 +10,7 @@ public class Sound {
 
     public Sound(){
         soundURL[0] = getClass().getResource("/res/_Sound/BG_music.wav");
+        soundURL[1] = getClass().getResource("/res/_Sound/ToxinSE.wav");
     }
 
     public void setFile(int i){

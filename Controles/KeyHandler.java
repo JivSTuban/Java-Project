@@ -11,6 +11,10 @@ public class KeyHandler implements KeyListener {
     public boolean wPressed,  aPressed,  sPressed,  dPressed, shiftPressed = false ;
     public boolean pressed1, pressed2, pressed0;
     public boolean addKey,giveBoots;
+
+    //UseItem
+
+
     public boolean valid = true;
     Scanner sc = new Scanner(System.in);
     public boolean activateBoots = false;

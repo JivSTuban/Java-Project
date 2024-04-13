@@ -40,6 +40,18 @@ public class UI {
         }
         g2.drawImage(accessCard, 20, 20, gp.tileSize-2,gp.tileSize-2,null);
         g2.drawString( ""+gp.player.accessCard,53,60);
+        /*-------------------------------------------------------------------------------
+                                      Salve Count
+        ------------------------------------------------------------------------------- */
+        try {
+
+            accessCard = ImageIO.read(getClass().getResourceAsStream("/res/Inventory/InvSalve.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        g2.drawImage(accessCard, 20, 70, gp.tileSize-3,gp.tileSize-2,null);
+        g2.drawString( ""+gp.player.salveCount,53,110);
+
 
         /*-------------------------------------------------------------------------------
                                        HealthBar

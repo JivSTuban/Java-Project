@@ -23,7 +23,10 @@ public class Entity {
     public boolean collisionOn = false;
     public int actionCounter =0;
     public int holder=0;
-
+        //NPC set
+    public String NPC_name = "";
+    public int maxHP =0;
+    public int npcHp ;
 
     public Entity(GamePanel gp){
         this.gp = gp;

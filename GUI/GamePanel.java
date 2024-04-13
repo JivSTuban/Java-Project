@@ -67,6 +67,7 @@ public class GamePanel extends JPanel implements Runnable{
         aSetter.setToxin();
         aSetter.setNPC();
       //  playMusic(0);
+       // playSE(1);
 
     }
 
@@ -157,7 +158,8 @@ public class GamePanel extends JPanel implements Runnable{
         sound.play();
         sound.loop();
     }
-    public void stopMusic(){
+    public void stopMusic(int i){
+        sound.setFile(i);
         sound.stop();
     }
     public void playSE(int i){
