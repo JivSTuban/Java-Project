@@ -1,8 +1,6 @@
 package Controles;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Locale;
+
 
 public class Cooldown {
     public long lastTriggerTime;

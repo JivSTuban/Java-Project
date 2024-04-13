@@ -2,12 +2,6 @@ package Tile.world1;
 
 import GUI.GamePanel;
 import Tile.Tile;
-import Utility.UtilityTool;
-
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.io.IOException;
-import java.util.Objects;
 
 public class DesignTileManager extends _SuperTile {
 
@@ -20,17 +14,17 @@ public class DesignTileManager extends _SuperTile {
         loadMap("/res/maps/world1/design.txt");
     }
     public void getTileImage() {
-        setUp(0,"tiles/Design/0transparent",false);
-        setUp(1,"tiles/Design/1capsuleTop",true);
-        setUp(2,"tiles/Design/2capsuleBot",true);
-        setUp(3,"tiles/Design/3toxin1",false);
-        setUp(4,"tiles/Design/4toxin2",false);
-        setUp(5,"tiles/Design/5trashCanTop",true);
-        setUp(6,"tiles/Design/6trashCanBot",true);
-        setUp(7,"tiles/Design/7DDoorCloseL",true);
-        setUp(8,"tiles/Design/8DDoorCloseR",true);
-        setUp(9,"tiles/Design/9SDoorClose",true);
-        setUp(10,"tiles/Design/10SDoorOpen",true);
+        addTile(0,"tiles/Design/0transparent",false);
+        addTile(1,"tiles/Design/1capsuleTop",true);
+        addTile(2,"tiles/Design/2capsuleBot",true);
+        addTile(3,"tiles/Design/3toxin1",false);
+        addTile(4,"tiles/Design/4toxin2",false);
+        addTile(5,"tiles/Design/5trashCanTop",true);
+        addTile(6,"tiles/Design/6trashCanBot",true);
+        addTile(7,"tiles/Design/7DDoorCloseL",true);
+        addTile(8,"tiles/Design/8DDoorCloseR",true);
+        addTile(9,"tiles/Design/9SDoorClose",true);
+        addTile(10,"tiles/Design/10SDoorOpen",true);
 
     }
 

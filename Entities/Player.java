@@ -20,14 +20,24 @@ public class Player extends Entity {
     public  int screenX = 0;
     public  int screenY = 0;
     //Items
-    public boolean gotBoots = false;
-    boolean justGotBoots = false;
+        //Boots
+             public boolean gotBoots = false;
+             boolean justGotBoots = false;
+             //public int bootsCD=0;
+
+
     public int accessCard = 0;
     //playerStats
     public int playerHP = 100;
     public final int maxHP = 100;
+    //Player Gold
+    private double gold  =  1000;
 
-    public long bootsCD=0;
+    public double getGold() {return gold;}
+
+    public void setGold(double gold) {this.gold = gold;}
+
+    public int bootsCD=0;
 
     public int getPlayerHP() {
         return playerHP;
@@ -73,7 +83,7 @@ public class Player extends Entity {
 
     public void update(KeyHandler keyH){
         //Developer Mode
-        bootsCD = keyH.duration.timeRemaining();
+        bootsCD = (int)keyH.cd.timeRemaining();
 
         if(keyH.pressed2)
             devMode = true;

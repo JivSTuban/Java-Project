@@ -16,7 +16,7 @@ public class KeyHandler implements KeyListener {
     public boolean activateBoots = false;
 
     public boolean devMode = false;
-        //Boots Cooldown
+    //Boots Cooldown
     int bootsDuration = 0,maxDuration = 2;
     int cdDuration =10;
     public Cooldown cd = new Cooldown(cdDuration * 1000);
@@ -94,19 +94,22 @@ public class KeyHandler implements KeyListener {
                 if (code == KeyEvent.VK_SHIFT  ){
                     shiftPressed = true;
                 }
-            }
+
             //count the duration
             if(shiftPressed){
                 if(!duration.isOnCooldown())
                     duration.trigger();
-                if(this.devMode) {
-                   // System.out.println("Duration up to max");
-                    System.out.println("Used Time: "+duration.timeRemaining());
-                }
-                if(duration.timeRemaining() < 1000){
-                    canUse = false;
-                    shiftPressed = false;
-                }
+                    if (this.devMode) {
+
+                        System.out.println("Used Time: " + duration.timeRemaining());
+                    }
+                    if (duration.timeRemaining() < 1000 ) {
+                        canUse = false;
+                        shiftPressed = false;
+
+                    }
+
+            }
             }
 
             //start the cooldown

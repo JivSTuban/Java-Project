@@ -4,12 +4,6 @@ package Tile.world1;
 
 import GUI.GamePanel;
 import Tile.Tile;
-import Utility.UtilityTool;
-
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.io.IOException;
-import java.util.Objects;
 
 public class OutsideTiles extends _SuperTile {
 
@@ -23,7 +17,7 @@ public class OutsideTiles extends _SuperTile {
     }
 
     public void getTileImage() {
-        setUp(0,"tiles/outsideTile",false);
+        addTile(0,"tiles/outsideTile",false);
     }
 
 }

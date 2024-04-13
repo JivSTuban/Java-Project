@@ -27,13 +27,9 @@ public class GamePanel extends JPanel implements Runnable{
     public final int screenHeight = tileSize * maxScreenRow;
 
 
-
-
     //World settings
     public int maxWorldCol = 80;
     public int maxWorldRow = 80;
-    public int worldWidth = tileSize * maxWorldCol;
-    public int worldHeight = tileSize * maxWorldRow;
 
     final int FPS = 144;
     TileManager tileManager = new TileManager(this);
@@ -43,8 +39,6 @@ public class GamePanel extends JPanel implements Runnable{
 
     KeyHandler keyH = new KeyHandler();
 
-
-
     Thread gameThread;
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
@@ -53,7 +47,6 @@ public class GamePanel extends JPanel implements Runnable{
 
     public Player player = new Player(this, keyH);
     public Entity npc[] = new Entity[10];
-
 
 
     public UI ui = new UI(this, player);
@@ -76,8 +69,6 @@ public class GamePanel extends JPanel implements Runnable{
       //  playMusic(0);
 
     }
-
-
 
     public void startGameThread(){
         gameThread = new Thread(this);
@@ -125,9 +116,11 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
+        long drawStart = 0;
+        drawStart = System.nanoTime();
 
         Graphics2D g2 = (Graphics2D) g;
-        outsideTiles.draw(g2);
+       // outsideTiles.draw(g2);
         tileManager.draw(g2);
         collisionTileManger.draw(g2);
         designTileManager.draw(g2);
@@ -152,6 +145,10 @@ public class GamePanel extends JPanel implements Runnable{
         }
 
         ui.draw(g2);
+        long drawEnd = System.nanoTime();
+        long passed = drawEnd - drawStart;
+        System.out.println("Draw Time: "+passed);
+
 
         g2.dispose();
     }

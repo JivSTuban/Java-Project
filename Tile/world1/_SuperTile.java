@@ -70,7 +70,7 @@ public class _SuperTile {
         }
 
     }
-    public void setUp(int index,String imageName, boolean collision){
+    public void addTile(int index, String imageName, boolean collision){
         UtilityTool uTool = new UtilityTool();
 
         try{
