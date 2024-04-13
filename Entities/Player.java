@@ -84,6 +84,9 @@ public class Player extends Entity {
     public void update(KeyHandler keyH){
         //Developer Mode
         bootsCD = (int)keyH.cd.timeRemaining();
+        if(keyH.cd.timeRemaining() <1000){
+            keyH.canUse = true;
+        }
 
         if(keyH.pressed2)
             devMode = true;
@@ -118,7 +121,6 @@ public class Player extends Entity {
                 if(keyH.shiftPressed){
                     setSpeed(9);
                 }
-
                 keyH.activateBoots = true;
 
                 if(!keyH.shiftPressed)

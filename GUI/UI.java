@@ -12,7 +12,7 @@ import java.text.DecimalFormat;
 public class UI {
     GamePanel gp;
     Font arial_16;
-    BufferedImage image,healthImage,bootsImage,coinImage;
+    BufferedImage accessCard,healthImage,bootsImage,coinImage;
     DecimalFormat df = new DecimalFormat("###,###.##");
     boolean drawBoots = false;
 
@@ -21,7 +21,7 @@ public class UI {
         arial_16 = new Font("Arial", Font.PLAIN,16);
         AccessCard accessCard = new AccessCard();
         // Player player1 = new Player();
-        image = accessCard.image;
+
 
 
     }
@@ -32,8 +32,14 @@ public class UI {
         /*-------------------------------------------------------------------------------
                                       Access card Count
         ------------------------------------------------------------------------------- */
-        g2.drawImage(image, gp.tileSize/2, gp.tileSize, gp.tileSize,gp.tileSize,null);
-        g2.drawString( "x"+gp.player.accessCard,74,90);
+        try {
+
+            accessCard = ImageIO.read(getClass().getResourceAsStream("/res/Inventory/InvAccessCard.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        g2.drawImage(accessCard, 20, 20, gp.tileSize-2,gp.tileSize-2,null);
+        g2.drawString( ""+gp.player.accessCard,53,60);
 
         /*-------------------------------------------------------------------------------
                                        HealthBar
@@ -64,28 +70,23 @@ public class UI {
                 e.printStackTrace();
             }
 
-        }
-        else {
-            try {
-                bootsImage = ImageIO.read(getClass().getResourceAsStream("/res/Boots/boots1.png"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        g2.drawImage(bootsImage, 10, 10, gp.tileSize, gp.tileSize, null);
-        if(gp.player.bootsCD>1000){
-          g2.drawString(String.valueOf(gp.player.bootsCD/1000),30,36);
+
+
+
+        g2.drawImage(bootsImage, 10, 500, gp.tileSize-4, gp.tileSize-4, null);
+
+          g2.drawString(String.valueOf(gp.player.bootsCD/1000),28,528);
         }
 
         /*-------------------------------------------------------------------------------
                                      Coin
         ------------------------------------------------------------------------------- */
         try{
-                healthImage = ImageIO.read(getClass().getResourceAsStream("/res/UI/Coin.png"));
+            coinImage = ImageIO.read(getClass().getResourceAsStream("/res/UI/Coin.png"));
         }catch(IOException e){
             e.printStackTrace();
         }
-        g2.drawImage(healthImage, 670, 25, gp.tileSize/2,gp.tileSize/2,null);
+        g2.drawImage(coinImage, 670, 25, gp.tileSize/2,gp.tileSize/2,null);
         g2.setFont(arial_16);
         g2.setColor(Color.YELLOW);
         g2.drawString( ""+df.format(gp.player.getGold()),700,43);

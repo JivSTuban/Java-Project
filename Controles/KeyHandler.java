@@ -22,7 +22,7 @@ public class KeyHandler implements KeyListener {
     public Cooldown cd = new Cooldown(cdDuration * 1000);
     public Cooldown duration = new Cooldown(maxDuration * 1000);
 
-    boolean canUse = true;
+    public boolean canUse = true;
 
     int rst1=0, rst2=0;
 
@@ -95,42 +95,41 @@ public class KeyHandler implements KeyListener {
                     shiftPressed = true;
                 }
 
-            //count the duration
-            if(shiftPressed){
-                if(!duration.isOnCooldown())
-                    duration.trigger();
-                    if (this.devMode) {
+                //count the duration
+                if(shiftPressed){
+                    if(!duration.isOnCooldown()){
+                        duration.trigger();
 
+                    }
+                    if (this.devMode) {
                         System.out.println("Used Time: " + duration.timeRemaining());
                     }
-                    if (duration.timeRemaining() < 1000 ) {
+                    if (duration.timeRemaining() < 1000  ) {
+                        if (this.devMode)
+                            System.out.println("cooldown start");
                         canUse = false;
                         shiftPressed = false;
 
                     }
 
-            }
+                }
             }
 
             //start the cooldown
-            if (!canUse) {
+              if (!canUse) {
                 if(!cd.isOnCooldown())
                     cd.trigger();// Trigger the cooldown
 
                 if (this.devMode)
                     System.out.println(cd.timeRemaining()/1000+" sec");
 
-                // Check if the remaining cooldown time is less than 1000 milliseconds
-                if (cd.timeRemaining() < 1000) {
-                    canUse = true;
-                    System.out.println("Cooldown finished, ready to use again");
-                    bootsDuration = 0; // Reset boots duration
-                }
+                //check if Cooldown is done
+
             }
 
-            //check if Cooldown is done
 
         }
+
 
 
     }

@@ -25,11 +25,12 @@ public class AssetSetter {
         this.gp = gp;
     }
 
-    public void setImage(int index, int x, int y, SuperItem item) {
+    public void setImage(int index, int x, int y, SuperItem item,boolean collision) {
         try {
             gp.objItem[index] = item.getClass().newInstance();
             gp.objItem[index].worldX = x * gp.tileSize;
             gp.objItem[index].worldY = y * gp.tileSize;
+            gp.objItem[index].collision = collision;
         } catch (InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
@@ -37,16 +38,16 @@ public class AssetSetter {
 
     public void setItem() {
 
-        setImage(0,spawnRand(),spawnRand(),  new ItemSalve());
-        setImage(1,3,78,  new ItemBoots());
-        setImage(2,spawnRand(),spawnRand(),  new ItemSalve());
-        setImage(3,4,78,  new AccessCard());
-        setImage(4,8,50,  new DoorOpen());
-        setImage(5,8,50,  new DoorClose());
-        setImage(6,2,19,  new DoorOpen());
-        setImage(7,2,19,  new DoorClose());
-        setImage(8,1,6,  new DoorOpen());
-        setImage(9,1,6,  new DoorClose());
+        setImage(0,spawnRand(),spawnRand(),  new ItemSalve(), false);
+        setImage(1,3,78,  new ItemBoots(), false);
+        setImage(2,spawnRand(),spawnRand(),  new ItemSalve(),false);
+        setImage(3,4,78,  new AccessCard(),false);
+        setImage(4,8,50,  new DoorOpen(),false);
+        setImage(5,8,50,  new DoorClose(),true);
+        setImage(6,2,19,  new DoorOpen(),false);
+        setImage(7,2,19,  new DoorClose(),true);
+        setImage(8,1,6,  new DoorOpen(),false);
+        setImage(9,1,6,  new DoorClose(),true);
 
     }
 
