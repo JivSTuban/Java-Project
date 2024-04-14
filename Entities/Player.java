@@ -72,7 +72,7 @@ public class Player extends Entity {
     }
     public void setDefault(){
         worldX = GP.tileSize * 2;
-        worldY = GP.tileSize * 77;
+        worldY = GP.tileSize * 76;
         setSpeed(4);
         direction = "down";
 
@@ -137,18 +137,19 @@ public class Player extends Entity {
             }
 
 
-            if(devMode)System.out.println("x ="+((worldX/(GP.tileSize-1))) + "\ny = "+((worldY/(GP.tileSize-1))));
+            if(devMode)System.out.println("x ="+Math.round((((float) worldX /(GP.tileSize)+1))) + "\ny = "+Math.round((((float) worldY /(GP.tileSize)+1))));
             //Check collision
             collisionOn = false;
             GP.collisionChecker.checkTile(this);
+
             int objIndex = GP.collisionChecker.checkObject(this,true);
-            pickUpItem(objIndex);
+                pickUpItem(objIndex);
             //toxin
             int toxinIndex = GP.collisionChecker.checkToxin(this,true);
-            toxinHit(toxinIndex);
+                toxinHit(toxinIndex);
 
             int NPCcollision = GP.collisionChecker.checkEntity(this,gp.npc);
-            interactNPC(NPCcollision);
+                interactNPC(NPCcollision);
 
 
 
@@ -224,7 +225,6 @@ public class Player extends Entity {
                             System.out.println("got Salve");
                         }
 
-
             }
 
         }
@@ -292,12 +292,15 @@ public class Player extends Entity {
         g2.drawImage(image, screenX, screenY, GP.tileSize, GP.tileSize, null    );
     }
 
+
+
     public int randomizer(){
         Random rand =new Random();
         return rand.nextInt(2)+1;
     }
     public void interactNPC(int i){
         if(i!=999){
+            playerHP--;
             System.out.println("Drone Hit");
         }
     }

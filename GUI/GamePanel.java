@@ -124,7 +124,7 @@ public class GamePanel extends JPanel implements Runnable{
        // outsideTiles.draw(g2);
         tileManager.draw(g2);
         collisionTileManger.draw(g2);
-        designTileManager.draw(g2);
+
         //Item
         for (SuperItem superItem : objItem) {
             if (superItem != null) {
@@ -139,6 +139,7 @@ public class GamePanel extends JPanel implements Runnable{
         }
 
         player.draw(g2);
+        designTileManager.draw(g2);
         for(int i = 0; i< npc.length;i++){
             if(npc[i] != null){
                 npc[i].draw(g2);

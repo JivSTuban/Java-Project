@@ -83,8 +83,6 @@ public class UI {
             }
 
 
-
-
         g2.drawImage(bootsImage, 10, 500, gp.tileSize-4, gp.tileSize-4, null);
 
           g2.drawString(String.valueOf(gp.player.bootsCD/1000),28,528);

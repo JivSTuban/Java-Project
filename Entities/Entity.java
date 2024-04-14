@@ -2,6 +2,7 @@ package Entities;
 
 import GUI.GamePanel;
 
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -27,6 +28,7 @@ public class Entity {
     public String NPC_name = "";
     public int maxHP =0;
     public int npcHp ;
+    public int type = 2;
 
     public Entity(GamePanel gp){
         this.gp = gp;
@@ -143,7 +145,6 @@ public class Entity {
                         direction = "down";
                     else
                         direction = "up";
-
                 }
                 if (i == 2) {
                     direction = "down";

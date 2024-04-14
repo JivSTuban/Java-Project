@@ -13,7 +13,7 @@ public class NPC_Drone extends Entity{
         direction = "down";
         speed = 1;
         getImage();
-
+        type = 2;
         maxHP = 5;
         npcHp = maxHP;
 
@@ -24,9 +24,6 @@ public class NPC_Drone extends Entity{
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
-
-
-
     }
 
     public void getImage() {
@@ -36,32 +33,6 @@ public class NPC_Drone extends Entity{
         down1 = setup("/res/npc/DroneDown");
         down2 = setup("/res/npc/DroneDown2");
     }
-    public void setAction(){
-        actionCounter++;
-
-
-        if (actionCounter == 120) {
-            Random random = new Random();
-            int i = random.nextInt(2) + 1;
-
-            if (i == 1) {
-                holder++;
-                if (holder == 4)
-                    direction = "down";
-                else
-                    direction = "up";
-
-            }
-            if (i == 2) {
-                direction = "down";
-                holder = 0;
-            }
-
-            actionCounter = 0;
-
-        }
-    }
-
 
 
 

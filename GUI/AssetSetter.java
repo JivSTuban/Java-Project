@@ -48,11 +48,13 @@ public class AssetSetter {
         setImage(7,2,19,  new DoorClose(),true);
         setImage(8,1,6,  new DoorOpen(),false);
         setImage(9,1,6,  new DoorClose(),true);
+        setImage(9,4,75,  new Chest(),false);
 
     }
 
     public void setToxin() {
         int[][] positions = {
+                // {x,y}
                 {11, 54}, {10, 54}, {10, 53}, {9, 53}, {9, 52}, {7, 51}, {7, 52},
                 {38, 64}, {38, 65}, {39, 65},
                 {66, 69}, {63, 67}, {64, 68}, {65, 69},
@@ -62,7 +64,7 @@ public class AssetSetter {
                 {64, 69}, {64, 70}, {64, 71}, {64, 72}, {64, 73},
                 {63, 69}, {63, 70}, {63, 71}, {63, 72}, {63, 73},
                 {68, 69}, {68, 70},
-                {69, 70}, {68, 70},
+                {69, 70}, {68, 70}
 
         };
         for (int i = 0; i < positions.length; i++) {

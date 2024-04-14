@@ -1,5 +1,6 @@
 package Entities;
 
+import Entities.Items.SuperItem;
 import GUI.GamePanel;
 
 import javax.imageio.ImageIO;
@@ -8,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
-public class Toxin  {
+public class Toxin  extends SuperItem {
     public BufferedImage image;
     public String name;
     public boolean collision = false;
