@@ -52,28 +52,7 @@ public class AssetSetter {
 
     }
 
-    public void setToxin() {
-        int[][] positions = {
-                // {x,y}
-                {11, 54}, {10, 54}, {10, 53}, {9, 53}, {9, 52}, {7, 51}, {7, 52},
-                {38, 64}, {38, 65}, {39, 65},
-                {66, 69}, {63, 67}, {64, 68}, {65, 69},
-                {37, 66}, {36, 67}, {36, 68},
-                {66, 69}, {66, 70}, {66, 71}, {66, 72}, {66, 73},
-                {65, 69}, {65, 70}, {65, 71}, {65, 72}, {65, 73},
-                {64, 69}, {64, 70}, {64, 71}, {64, 72}, {64, 73},
-                {63, 69}, {63, 70}, {63, 71}, {63, 72}, {63, 73},
-                {68, 69}, {68, 70},
-                {69, 70}, {68, 70}
 
-        };
-        for (int i = 0; i < positions.length; i++) {
-            gp.toxins[i] = new Toxin();
-            gp.toxins[i].worldX = positions[i][0] * gp.tileSize;
-            gp.toxins[i].worldY = positions[i][1] * gp.tileSize;
-        }
-
-    }
 
     public void setNPCChar(int index, int x, int y, Entity npc) {
         try {

@@ -33,8 +33,10 @@ public class Player extends Entity {
 
     public int accessCard = 0;
     //playerStats
-    public int playerHP = 100;
-    public final int maxHP = 100;
+    public int maxHP = 500;
+    public int playerHP = maxHP;
+    public int level = 1;
+    public int exp = 0;
     //Player Gold
     private double gold  =  1000;
 
@@ -139,21 +141,20 @@ public class Player extends Entity {
 
             if(devMode)System.out.println("x ="+Math.round((((float) worldX /(GP.tileSize)+1))) + "\ny = "+Math.round((((float) worldY /(GP.tileSize)+1))));
             //Check collision
+            gp.toxinOn = false;//reset the toxin
             collisionOn = false;
-            GP.collisionChecker.checkTile(this);
+            GP.collisionChecker.checkTile(this);//check the collision and toxin again
 
             int objIndex = GP.collisionChecker.checkObject(this,true);
                 pickUpItem(objIndex);
             //toxin
-            int toxinIndex = GP.collisionChecker.checkToxin(this,true);
-                toxinHit(toxinIndex);
 
-            int NPCcollision = GP.collisionChecker.checkEntity(this,gp.npc);
-                interactNPC(NPCcollision);
-
+            int NPCCollision = GP.collisionChecker.checkEntity(this,gp.npc);
+                interactNPC(NPCCollision);
 
 
             if (!collisionOn){
+
                 switch (direction){
                     case"up":
                         worldY -= getSpeed();
@@ -229,32 +230,6 @@ public class Player extends Entity {
 
         }
     }
-    public void toxinHit(int i) {
-        if (i != 999) {
-            if (playerHP < 1) {
-                playerHP = 0;
-                return;
-            }
-
-            String itemName = GP.toxins[i].name;
-
-            if (itemName.equals("toxin")) {
-                System.out.println("toxin Hit");
-                if(!dps.isOnCooldown()){
-                    dps.trigger();
-                    playerHP--;
-                }
-
-                System.out.println("Player hp: " + playerHP);
-
-            }
-
-        }
-
-
-    }
-
-
 
     public void draw(Graphics2D g2){
 

@@ -1,9 +1,12 @@
 package GUI;
 
+import Controles.Cooldown;
 import Entities.Entity;
 
 public class CollisionChecker {
     GamePanel gp;
+
+
     public CollisionChecker(GamePanel gp){
         this.gp = gp;
     }
@@ -20,6 +23,7 @@ public class CollisionChecker {
 
         int tileNum1, tileNum2;
         int tileNum3, tileNum4;
+        int toxin1, toxin2;
 
         switch (e.direction){
             case"up":
@@ -28,9 +32,14 @@ public class CollisionChecker {
                 tileNum2 = gp.collisionTileManger.mapTileNumber[entityRC][entityTR];
                 tileNum3 = gp.designTileManager.mapTileNumber[entityLC][entityTR];
                 tileNum4 = gp.designTileManager.mapTileNumber[entityRC][entityTR];
+                toxin1 = gp.tileManager.mapTileNumber[entityLC][entityTR];
+                toxin2 = gp.tileManager.mapTileNumber[entityRC][entityTR];
                 if((gp.collisionTileManger.tiles[tileNum1].collision  || gp.collisionTileManger.tiles[tileNum2].collision )||
                         (gp.designTileManager.tiles[tileNum3].collision  || gp.designTileManager.tiles[tileNum4].collision )){
                     e.collisionOn = true;
+                }
+                if(gp.tileManager.tiles[toxin1].toxin  || gp.tileManager.tiles[toxin2].toxin ){
+                 gp.toxinOn = true;
                 }
                 break;
             case"down":
@@ -39,9 +48,14 @@ public class CollisionChecker {
                 tileNum2 = gp.collisionTileManger.mapTileNumber[entityRC][entityBR];
                 tileNum3 = gp.designTileManager.mapTileNumber[entityLC][entityBR];
                 tileNum4 = gp.designTileManager.mapTileNumber[entityRC][entityBR];
+                toxin1 = gp.tileManager.mapTileNumber[entityLC][entityBR];
+                toxin2 = gp.tileManager.mapTileNumber[entityRC][entityBR];
                 if((gp.collisionTileManger.tiles[tileNum1].collision  || gp.collisionTileManger.tiles[tileNum2].collision )||
                         (gp.designTileManager.tiles[tileNum3].collision  || gp.designTileManager.tiles[tileNum4].collision )){
                     e.collisionOn = true;
+                }
+                if(gp.tileManager.tiles[toxin1].toxin  || gp.tileManager.tiles[toxin2].toxin ){
+                    gp.toxinOn = true;
                 }
                 break;
             case"left":
@@ -50,9 +64,14 @@ public class CollisionChecker {
                 tileNum2 = gp.collisionTileManger.mapTileNumber[entityLC][entityBR];
                 tileNum3 = gp.designTileManager.mapTileNumber[entityLC][entityTR];
                 tileNum4 = gp.designTileManager.mapTileNumber[entityLC][entityBR];
+                toxin1 = gp.tileManager.mapTileNumber[entityLC][entityTR];
+                toxin2 = gp.tileManager.mapTileNumber[entityLC][entityBR];
                 if((gp.collisionTileManger.tiles[tileNum1].collision || gp.collisionTileManger.tiles[tileNum2].collision)||
                         (gp.designTileManager.tiles[tileNum3].collision  || gp.designTileManager.tiles[tileNum4].collision )){
                     e.collisionOn = true;
+                }
+                if(gp.tileManager.tiles[toxin1].toxin  || gp.tileManager.tiles[toxin2].toxin ){
+                    gp.toxinOn = true;
                 }
                 break;
             case"right":
@@ -61,10 +80,15 @@ public class CollisionChecker {
                 tileNum2 = gp.collisionTileManger.mapTileNumber[entityRC][entityBR];
                 tileNum3 = gp.designTileManager.mapTileNumber[entityRC][entityTR];
                 tileNum4 = gp.designTileManager.mapTileNumber[entityRC][entityBR];
+                toxin1 = gp.tileManager.mapTileNumber[entityRC][entityTR];
+                toxin2 = gp.tileManager.mapTileNumber[entityRC][entityBR];
 
                 if((gp.collisionTileManger.tiles[tileNum1].collision  || gp.collisionTileManger.tiles[tileNum2].collision )||
                         (gp.designTileManager.tiles[tileNum3].collision  || gp.designTileManager.tiles[tileNum4].collision )){
                     e.collisionOn = true;
+                }
+                if(gp.tileManager.tiles[toxin1].toxin  || gp.tileManager.tiles[toxin2].toxin ){
+                    gp.toxinOn = true;
                 }
                 break;
 

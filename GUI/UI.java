@@ -57,8 +57,9 @@ public class UI {
                                        HealthBar
         ------------------------------------------------------------------------------- */
         try{
-            int getImgHP = gp.player.getPlayerHP()/10;
-            if(gp.player.getPlayerHP() <10)
+            int getHP = gp.player.maxHP/10;
+            int getImgHP = gp.player.getPlayerHP()/getHP;
+            if(gp.player.getPlayerHP() <2)
                 healthImage = ImageIO.read(getClass().getResourceAsStream("/res/HealthBar/HealthBar-01.png"));
             else
             healthImage = ImageIO.read(getClass().getResourceAsStream("/res/HealthBar/HealthBar-0"+getImgHP+".png"));

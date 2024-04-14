@@ -32,6 +32,7 @@ public class _SuperTile {
                     String numbers[] = line.split(" ");
                     int num = Integer.parseInt(numbers[col]);
 
+
                     mapTileNumber[col][row] = num;
                     col++;
                 }
@@ -78,6 +79,18 @@ public class _SuperTile {
             tiles[index].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/" + imageName + ".png")));
             tiles[index].image = uTool.scaleImage(tiles[index].image,GP.tileSize, GP.tileSize);
             tiles[index].collision =collision;
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    public void addToxin(int index, String imageName, boolean toxin){
+        UtilityTool uTool = new UtilityTool();
+
+        try{
+            tiles[index] = new Tile();
+            tiles[index].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/res/" + imageName + ".png")));
+            tiles[index].image = uTool.scaleImage(tiles[index].image,GP.tileSize, GP.tileSize);
+            tiles[index].toxin = toxin;
         }catch(IOException e){
             e.printStackTrace();
         }

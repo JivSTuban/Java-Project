@@ -22,6 +22,8 @@ public class Entity {
     public Rectangle solidArea = new Rectangle(0 , 0, 48,48);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
+    public boolean toxinOn = false;
+
     public int actionCounter =0;
     public int holder=0;
         //NPC set
@@ -37,6 +39,7 @@ public class Entity {
     public void update(){
         setAction("drone");
         collisionOn = false;
+
         gp.collisionChecker.checkTile(this);
         if (!collisionOn){
             switch (direction){

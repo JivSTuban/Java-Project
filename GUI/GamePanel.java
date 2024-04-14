@@ -1,5 +1,6 @@
 package GUI;
 
+import Controles.Cooldown;
 import Controles.KeyHandler;
 import Entities.Entity;
 import Entities.Items.SuperItem;
@@ -25,6 +26,9 @@ public class GamePanel extends JPanel implements Runnable{
     public final int maxScreenRow = 12;
     public final int screenWidth = tileSize * maxScreenCol;
     public final int screenHeight = tileSize * maxScreenRow;
+    public boolean toxinOn = false;
+
+    Cooldown dps = new Cooldown(1000);
 
 
     //World settings
@@ -64,7 +68,6 @@ public class GamePanel extends JPanel implements Runnable{
     }
     public void setupGame(){
         aSetter.setItem();
-        aSetter.setToxin();
         aSetter.setNPC();
       //  playMusic(0);
        // playSE(1);
@@ -106,6 +109,13 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void update(KeyHandler keyH){
         player.update(keyH);
+        if(this.toxinOn){//check for toxin collision
+            if(!dps.isOnCooldown()){//add timer to the damage make it damage per second
+                dps.trigger();//trigger the dps
+                player.playerHP--;//minus 1 hp for hero if step on the toxin
+                System.out.println(player.playerHP);
+            }
+        }
 
         for(int i = 0;i<npc.length;i++){
             if(npc[i] != null){
