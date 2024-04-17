@@ -23,6 +23,7 @@ public class Entity {
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     public boolean toxinOn = false;
+    String[] dialogues = new String[20];
 
     public int actionCounter =0;
     public int holder=0;
@@ -34,6 +35,9 @@ public class Entity {
 
     public Entity(GamePanel gp){
         this.gp = gp;
+    }
+    public void speak(){
+
     }
 
     public void update(){

@@ -1,6 +1,6 @@
 package GUI;
 
-import Controles.Cooldown;
+
 import Entities.Entity;
 
 public class CollisionChecker {
@@ -97,6 +97,7 @@ public class CollisionChecker {
     }
 
 
+
     public int checkObject(Entity entity, boolean player) {
         int index = 999;
 
@@ -140,49 +141,7 @@ public class CollisionChecker {
 
         return index;
     }
-    public int checkToxin(Entity entity, boolean player) {
-        int index = 999;
 
-        for (int i = 0; i < gp.toxins.length; i++) {
-            if (gp.toxins[i] != null) {
-                entity.solidArea.x = entity.worldX + entity.solidArea.x;
-                entity.solidArea.y = entity.worldY + entity.solidArea.y;
-                gp.toxins[i].solidArea.x = gp.toxins[i].worldX + gp.toxins[i].solidArea.x;
-                gp.toxins[i].solidArea.y = gp.toxins[i].worldY + gp.toxins[i].solidArea.y;
-
-                switch (entity.direction) {
-                    case "up":
-                        entity.solidArea.y -= entity.getSpeed();
-                        break;
-                    case "down":
-                        entity.solidArea.y += entity.getSpeed();
-                        break;
-                    case "left":
-                        entity.solidArea.x -= entity.getSpeed() - 5;
-                        break;
-                    case "right":
-                        entity.solidArea.x += entity.getSpeed() - 5;
-                        break;
-                }
-
-                if (entity.solidArea.intersects(gp.toxins[i].solidArea)) {
-                    if (gp.toxins[i].collision) {
-                        entity.collisionOn = true;
-                    }
-                    if (player) {
-                        index = i;
-                    }
-                }
-
-                entity.solidArea.x = entity.solidAreaDefaultX;
-                entity.solidArea.y = entity.solidAreaDefaultY;
-                gp.toxins[i].solidArea.x = gp.toxins[i].solidAreaDefaultX;
-                gp.toxins[i].solidArea.y = gp.toxins[i].solidAreaDefaultY;
-            }
-        }
-
-        return index;
-    }
 
 
     public int checkEntity (Entity entity, Entity[] target){

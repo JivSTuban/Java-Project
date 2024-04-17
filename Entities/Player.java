@@ -267,8 +267,6 @@ public class Player extends Entity {
         g2.drawImage(image, screenX, screenY, GP.tileSize, GP.tileSize, null    );
     }
 
-
-
     public int randomizer(){
         Random rand =new Random();
         return rand.nextInt(2)+1;
@@ -276,7 +274,8 @@ public class Player extends Entity {
     public void interactNPC(int i){
         if(i!=999){
             playerHP--;
-            System.out.println("Drone Hit");
+            gp.gameState = gp.dialogueState;
+            gp.npc[i].speak();
         }
     }
 

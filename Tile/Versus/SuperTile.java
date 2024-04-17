@@ -1,4 +1,4 @@
-package Tile.world1;
+package Tile.Versus;
 
 import GUI.GamePanel;
 import Tile.Tile;
@@ -12,23 +12,23 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Objects;
 
-public class _SuperTile {
+public class SuperTile {
     GamePanel GP;
     public Tile[] tiles;
 
     public int[][] mapTileNumber;
 
-    public void loadMap(String filepath){
-        try{
+    public void loadMap(String filepath) {
+        try {
             InputStream is = getClass().getResourceAsStream(filepath);
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
-            int col =0;
-            int row =0;
+            int col = 0;
+            int row = 0;
 
-            while (col < GP.maxWorldCol && row < GP.maxWorldRow){
+            while (col < GP.maxWorldCol && row < GP.maxWorldRow) {
                 String line = br.readLine();
-                while(col<GP.maxWorldCol){
+                while (col < GP.maxWorldCol) {
                     String[] numbers = line.split(" ");
                     int num = Integer.parseInt(numbers[col]);
 
@@ -36,7 +36,7 @@ public class _SuperTile {
                     mapTileNumber[col][row] = num;
                     col++;
                 }
-                if(col == GP.maxWorldCol){
+                if (col == GP.maxWorldCol) {
                     col = 0;
                     row++;
                 }
@@ -48,6 +48,7 @@ public class _SuperTile {
             throw new RuntimeException(e);
         }
     }
+
     public void draw(Graphics2D g2) {
         int worldCol = 0;
         int worldRow = 0;

@@ -3,23 +3,16 @@ package GUI;
 import Entities.Entity;
 import Entities.Items.*;
 import Entities.NPC_Drone;
-import Entities.Toxin;
-
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.Random;
 
 public class AssetSetter {
     GamePanel gp;
     Random rand = new Random();
-    int i = 0;
-    ArrayList<Integer> posX = new ArrayList<>();
-    ArrayList<Integer> posY = new ArrayList<>();
 
     public int spawnRand() {
         return rand.nextInt(78) + 1;
     }
-
 
     public AssetSetter(GamePanel gp) {
         this.gp = gp;

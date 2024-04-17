@@ -8,15 +8,17 @@ import Entities.Items.SuperItem;
 import Entities.Player;
 import Entities.Toxin;
 import Sound.Sound;
+import Tile.Versus.BackgroundTM;
+import Tile.Versus.DesignTM;
 import Tile.world1.DesignTileManager;
 import Tile.world1.CollisionTileManger;
-import Tile.world1.OutsideTiles;
+
 import Tile.world1.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class GamePanel extends JPanel implements Runnable{
+public class GamePanel extends JPanel implements Runnable {
 
 
     final int originalTileSize = 16;
@@ -29,19 +31,22 @@ public class GamePanel extends JPanel implements Runnable{
     public boolean toxinOn = false;
 
     Cooldown dps = new Cooldown(1000);
-
-
     //World settings
     public int maxWorldCol = 80;
     public int maxWorldRow = 80;
 
     final int FPS = 144;
+    //Main Map
+
+
     TileManager tileManager = new TileManager(this);
     CollisionTileManger collisionTileManger = new CollisionTileManger(this);
     DesignTileManager designTileManager = new DesignTileManager(this);
-    OutsideTiles outsideTiles = new OutsideTiles(this);
-
-    KeyHandler keyH = new KeyHandler();
+    //Versus Screen
+    BackgroundTM  bgTMVersus = new BackgroundTM(this);
+    DesignTM dTMVersus = new DesignTM(this);
+    //keyhandler
+    KeyHandler keyH = new KeyHandler(this);
 
     Thread gameThread;
     public CollisionChecker collisionChecker = new CollisionChecker(this);
@@ -50,31 +55,41 @@ public class GamePanel extends JPanel implements Runnable{
     Sound sound = new Sound();
 
     public Player player = new Player(this, keyH);
-    public Entity npc[] = new Entity[10];
+    public UI ui = new UI(this);
+    public Entity[] npc = new Entity[10];
+
+    //Game State
+    public int gameState = 1;
+    public final int playState = 1;
+    public final int pauseState = 2;
+    public final int dialogueState = 3;
+    public final int versusScreen = 4;
+    public final int inventoryState = 5;
 
 
-    public UI ui = new UI(this, player);
-
-    public SuperItem objItem[] = new SuperItem[99];
-    public Toxin toxins[] = new Toxin[199];
 
 
-    public GamePanel(){
-        this.setPreferredSize(new Dimension(screenWidth,screenHeight));
+    public SuperItem[] objItem = new SuperItem[99];
+    public Toxin[] toxins = new Toxin[199];
+
+
+    public GamePanel() {
+        this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
     }
-    public void setupGame(){
+
+    public void setupGame() {
         aSetter.setItem();
         aSetter.setNPC();
-      //  playMusic(0);
-       // playSE(1);
+        //  playMusic(0);
+        // playSE(1);
 
     }
 
-    public void startGameThread(){
+    public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
     }
@@ -82,11 +97,11 @@ public class GamePanel extends JPanel implements Runnable{
     @Override
     public void run() {
 
-        double drawInterval = 1000000000/FPS;
-        
-        double nextDrawTime = System.nanoTime()+drawInterval;
+        double drawInterval = (double) 1000000000 / FPS;
 
-        while(gameThread!=null){
+        double nextDrawTime = System.nanoTime() + drawInterval;
+
+        while (gameThread != null) {
 
             update(keyH);
 
@@ -94,8 +109,8 @@ public class GamePanel extends JPanel implements Runnable{
 
             try {
                 double remainingTime = nextDrawTime - System.nanoTime();
-                remainingTime = remainingTime/1000000;
-                if (remainingTime<0){
+                remainingTime = remainingTime / 1000000;
+                if (remainingTime < 0) {
                     remainingTime = 0;
                 }
                 Thread.sleep((long) remainingTime);
@@ -107,31 +122,49 @@ public class GamePanel extends JPanel implements Runnable{
         }
     }
 
-    public void update(KeyHandler keyH){
+    public void update(KeyHandler keyH) {
         player.update(keyH);
-        if(this.toxinOn){//check for toxin collision
-            if(!dps.isOnCooldown()){//add timer to the damage make it damage per second
+        if (this.toxinOn) {//check for toxin collision
+            if (!dps.isOnCooldown()) {//add timer to the damage make it damage per second
                 dps.trigger();//trigger the dps
                 player.playerHP--;//minus 1 hp for hero if step on the toxin
                 System.out.println(player.playerHP);
             }
         }
-
-        for(int i = 0;i<npc.length;i++){
-            if(npc[i] != null){
-                npc[i].update();
+        if (player.playerHP < 0)
+            player.playerHP = 0;
+        for (Entity entity : npc) {
+            if (entity != null) {
+                entity.update();
             }
         }
 
     }
 
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
         long drawStart = 0;
         drawStart = System.nanoTime();
 
         Graphics2D g2 = (Graphics2D) g;
-       // outsideTiles.draw(g2);
+        if (gameState != versusScreen) {
+            mainMap(g2);
+        }
+        if(gameState == versusScreen){
+            versusScreen(g2);
+        }
+
+    }
+
+
+
+    /* ---------------------------------------------------------------------------------------------------------------------------
+                                                            MAPS
+     ---------------------------------------------------------------------------------------------------------------------------*/
+
+    private void mainMap(Graphics2D g2){
+
+        //the main screen
         tileManager.draw(g2);
         collisionTileManger.draw(g2);
 
@@ -150,9 +183,9 @@ public class GamePanel extends JPanel implements Runnable{
 
         player.draw(g2);
         designTileManager.draw(g2);
-        for(int i = 0; i< npc.length;i++){
-            if(npc[i] != null){
-                npc[i].draw(g2);
+        for (Entity entity : npc) {
+            if (entity != null) {
+                entity.draw(g2);
             }
         }
 
@@ -164,17 +197,26 @@ public class GamePanel extends JPanel implements Runnable{
 
         g2.dispose();
     }
-    public void playMusic(int i){
+    private void versusScreen(Graphics2D g2){
+        bgTMVersus.draw(g2);
+        player.draw(g2);
+        dTMVersus.draw(g2);
+        ui.draw(g2);
+        g2.dispose();
+    }
+
+    public void playMusic ( int i){
         sound.setFile(i);
         sound.play();
         sound.loop();
     }
-    public void stopMusic(int i){
+    public void stopMusic ( int i){
         sound.setFile(i);
         sound.stop();
     }
-    public void playSE(int i){
+    public void playSE ( int i){
         sound.setFile(i);
         sound.play();
     }
+
 }

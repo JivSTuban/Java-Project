@@ -8,9 +8,11 @@ import java.awt.event.KeyListener;
 import java.util.Scanner;
 
 public class KeyHandler implements KeyListener {
+    GamePanel gp;
     public boolean wPressed,  aPressed,  sPressed,  dPressed, shiftPressed = false ;
     public boolean pressed1, pressed2, pressed0;
     public boolean addKey,giveBoots;
+    public boolean openInventory = false;
 
     //UseItem
 
@@ -29,6 +31,10 @@ public class KeyHandler implements KeyListener {
     public boolean canUse = true;
 
     int rst1=0, rst2=0;
+
+    public KeyHandler (GamePanel gp){
+        this.gp = gp;
+    }
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -76,64 +82,97 @@ public class KeyHandler implements KeyListener {
             }while(!valid);
         }
         //end of devMode
+        /*-------------------------------------------------------------------------------------------------------------
+                                                  Inventory
+         -------------------------------------------------------------------------------------------------------------*/
+        if(code == KeyEvent.VK_I){
+            if(!openInventory){
+                openInventory =true;
+                gp.gameState = gp.inventoryState;
 
-        if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
-            wPressed = true;
-        }
-        if (code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT){
-            aPressed = true;
-        }
-        if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
-            sPressed = true;
-        }
-        if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT){
-            dPressed = true;
-        }
-
-
-        if(activateBoots){
-            //method for Movement Speed
-            if(canUse){
-
-                if (code == KeyEvent.VK_SHIFT  ){
-                    shiftPressed = true;
-                }
-
-                //count the duration
-                if(shiftPressed){
-                    if(!duration.isOnCooldown()){
-                        duration.trigger();
-
-                    }
-                    if (this.devMode) {
-                        System.out.println("Used Time: " + duration.timeRemaining());
-                    }
-                    if (duration.timeRemaining() < 1000  ) {
-                        if (this.devMode)
-                            System.out.println("cooldown start");
-                        canUse = false;
-                        shiftPressed = false;
-
-                    }
-
-                }
+            }
+            else {
+                openInventory =false;
+                gp.gameState = gp.playState;
             }
 
-            //start the cooldown
-              if (!canUse) {
-                if(!cd.isOnCooldown())
-                    cd.trigger();// Trigger the cooldown
+        }
+        if(openInventory){
+            if(code == KeyEvent.VK_UP){
+                if(gp.ui.slotRow != 0)
+                    gp.ui.slotRow--;
+            }if(code == KeyEvent.VK_DOWN){
+                if(gp.ui.slotRow != 3)
+                    gp.ui.slotRow++;
 
-                if (this.devMode)
-                    System.out.println(cd.timeRemaining()/1000+" sec");
+            }if(code == KeyEvent.VK_LEFT){
+                if(gp.ui.slotCol != 0)
+                    gp.ui.slotCol--;
+            }if(code == KeyEvent.VK_RIGHT){
+                if(gp.ui.slotCol != 4)
+                    gp.ui.slotCol++;
+            }
+        }
 
-                //check if Cooldown is done
 
+        if(gp.gameState == gp.playState){
+
+            if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
+                wPressed = true;
+            }
+            if (code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT){
+                aPressed = true;
+            }
+            if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN){
+                sPressed = true;
+            }
+            if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT){
+                dPressed = true;
             }
 
 
-        }
+            if(activateBoots){
+                //method for Movement Speed
+                if(canUse){
 
+                    if (code == KeyEvent.VK_SHIFT  ){
+                        shiftPressed = true;
+                    }
+
+                    //count the duration
+                    if(shiftPressed){
+                        if(!duration.isOnCooldown()){
+                            duration.trigger();
+
+                        }
+                        if (this.devMode) {
+                            System.out.println("Used Time: " + duration.timeRemaining());
+                        }
+                        if (duration.timeRemaining() < 1000  ) {
+                            if (this.devMode)
+                                System.out.println("cooldown start");
+                            canUse = false;
+                            shiftPressed = false;
+                        }
+                    }
+                }
+                //start the cooldown
+                if (!canUse) {
+                    if(!cd.isOnCooldown())
+                        cd.trigger();// Trigger the cooldown
+                    if (this.devMode)
+                        System.out.println(cd.timeRemaining()/1000+" sec");
+                }
+            }
+        }
+        if(gp.gameState == gp.pauseState){
+
+        }
+        if(gp.gameState == gp.dialogueState){
+            if(code == KeyEvent.VK_ENTER){
+                gp.gameState = gp.playState;
+            }
+        }
 
 
     }

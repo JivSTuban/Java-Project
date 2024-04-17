@@ -1,13 +1,12 @@
-package Tile.world1;
+package Tile.Versus;
 
 import GUI.GamePanel;
 import Tile.Tile;
+import Tile.world1._SuperTile;
 
+public class DesignTM extends SuperTile {
 
-public class DesignTileManager extends _SuperTile {
-
-
-    public DesignTileManager(GamePanel GP) {
+    public DesignTM(GamePanel GP) {
         this.GP = GP;
         tiles = new Tile[25];
         mapTileNumber = new int[GP.maxWorldCol][GP.maxWorldRow];
