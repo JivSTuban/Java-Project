@@ -12,6 +12,7 @@ import java.util.Random;
 public class Entity {
 
     GamePanel gp;
+
     public int speed;
     public int worldX, worldY;
     public boolean collision = false;
@@ -126,7 +127,6 @@ public class Entity {
         }
 
     }
-
 
     public BufferedImage setup(String imagePath){
         BufferedImage image = null;
