@@ -26,7 +26,6 @@ public class DesignTileManager extends _SuperTile {
         addTile(8,"tiles/Design/8DDoorCloseR",true);
         addTile(9,"tiles/Design/9SDoorClose",true);
         addTile(10,"tiles/Design/10SDoorOpen",true);
-
     }
 
 }
