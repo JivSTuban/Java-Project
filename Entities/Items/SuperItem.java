@@ -1,11 +1,12 @@
 package Entities.Items;
 
+import Entities.Entity;
 import GUI.GamePanel;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class SuperItem {
+public class SuperItem  {
     public BufferedImage image;
     public String name;
     public boolean collision = false;
@@ -13,6 +14,8 @@ public class SuperItem {
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public int solidAreaDefaultX = 0;
     public int solidAreaDefaultY = 0;
+    public String description = "";
+
 
     public void draw(Graphics2D g2, GamePanel gp) {
         int screenX = worldX - gp.player.worldX + gp.player.screenX;

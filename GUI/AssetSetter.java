@@ -43,6 +43,7 @@ public class AssetSetter {
         setImage(8,1,6,  new DoorOpen(),false);
         setImage(9,1,6,  new DoorClose(),true);
         setImage(9,4,75,  new Chest(),false);
+        setImage(10,10,75,  new Chest(),false);
 
     }
 

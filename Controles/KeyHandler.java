@@ -1,6 +1,6 @@
 package Controles;
 
-import Entities.Player;
+import Entities.Items.ItemSalve;
 import GUI.GamePanel;
 
 import java.awt.event.KeyEvent;
@@ -13,6 +13,7 @@ public class KeyHandler implements KeyListener {
     public boolean pressed1, pressed2, pressed0;
     public boolean addKey,giveBoots;
     public boolean openInventory = false;
+
 
     //UseItem
 
@@ -65,12 +66,20 @@ public class KeyHandler implements KeyListener {
             }
         }
         if (code == KeyEvent.VK_BACK_SLASH ){
-            System.out.println("Scripts:\n-addkey \n-unlispeed\n-giveboots\n-cancel");
+            System.out.println("Scripts:\n-addkey \n-unlispeed\n-giveboots\n-givesalve\n-cancel");
 
             do{
                 System.out.print("Enter addItem: "); String str = sc.nextLine();str = str.toLowerCase();
                 if( str.equals("addkey") )   {addKey =true;   valid = true;}
                 else if(str.equals("giveboots")) {giveBoots = true;   valid = true;}
+                else if(str.equals("givesalve")) {
+                    if(gp.player.searchInventory("salve")) {
+                        gp.player.inventory.add(new ItemSalve());
+                    }
+                    gp.player.salveCount++;
+                    valid = true;
+
+                }
                 else if(str.equals("unlispeed"))  {maxDuration = 999999;   valid = true;}
                 else if(str.equals("cancel"))  {valid = true;}
 
@@ -97,21 +106,41 @@ public class KeyHandler implements KeyListener {
             }
 
         }
-        if(openInventory){
-            if(code == KeyEvent.VK_UP){
-                if(gp.ui.slotRow != 0)
+
+        if(openInventory) {
+            if (code == KeyEvent.VK_UP) {
+                if (gp.ui.slotRow != 0)
                     gp.ui.slotRow--;
-            }if(code == KeyEvent.VK_DOWN){
-                if(gp.ui.slotRow != 3)
+            }
+            if (code == KeyEvent.VK_DOWN) {
+                if (gp.ui.slotRow != 3)
                     gp.ui.slotRow++;
 
-            }if(code == KeyEvent.VK_LEFT){
-                if(gp.ui.slotCol != 0)
+            }
+            if (code == KeyEvent.VK_LEFT) {
+                if (gp.ui.slotCol != 0)
                     gp.ui.slotCol--;
-            }if(code == KeyEvent.VK_RIGHT){
-                if(gp.ui.slotCol != 4)
+            }
+            if (code == KeyEvent.VK_RIGHT) {
+                if (gp.ui.slotCol != 4)
                     gp.ui.slotCol++;
             }
+            if (code == KeyEvent.VK_ESCAPE) {
+                openInventory = false;
+                gp.gameState = gp.playState;
+            }
+
+                if (code == KeyEvent.VK_Z ) {
+                    if (gp.player.inventory.get(gp.ui.getItemIndexOnSlot()).name.equals("salve")) {
+                        gp.player.playerHP += 20;
+                        gp.player.salveCount--;
+
+                    }
+                    if (gp.player.salveCount == 0) {
+                        gp.player.removeItem("salve");
+                    }
+                }
+
         }
 
 
