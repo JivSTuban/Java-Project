@@ -2,13 +2,15 @@ package Entities;
 
 import Controles.Cooldown;
 import Controles.KeyHandler;
+import Entities.Items.AccessCard;
+import Entities.Items.ItemBoots;
+import Entities.Items.ItemSalve;
+import Entities.Items.SuperItem;
 import GUI.GamePanel;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.Objects;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Player extends Entity {
@@ -22,6 +24,13 @@ public class Player extends Entity {
     int defaultSpeed = 3;
     public  int screenX = 0;
     public  int screenY = 0;
+
+    public ArrayList<SuperItem> inventory = new ArrayList<SuperItem>();
+    public final int invetntorySize = 20;
+    //items
+
+    public ItemBoots boots = new ItemBoots();
+
     //Items
         //Boots
              public boolean gotBoots = false;
@@ -29,6 +38,7 @@ public class Player extends Entity {
 
         //Salve
         public int salveCount=0;
+
 
 
     public int accessCard = 0;
@@ -71,6 +81,7 @@ public class Player extends Entity {
 
         setDefault();
         getPlayerImage();
+
     }
     public void setDefault(){
         worldX = GP.tileSize * 2;
@@ -79,6 +90,8 @@ public class Player extends Entity {
         direction = "down";
 
     }
+
+
     Cooldown dps = new Cooldown(2100);
 
     public void getPlayerImage(){
@@ -91,9 +104,28 @@ public class Player extends Entity {
         right1=setup("/res/blueKnight/right1");
         right2=setup("/res/blueKnight/right2");
     }
+    public void removeItem (String name){
+            for(int i=0;i<inventory.size();i++){
+                if(inventory.get(i).name.equals(name)){
+                    inventory.remove(i);
+                    break;
+                }
+            }
+
+    }
+    public boolean searchInventory(String name){
+        for (SuperItem superItem : inventory) {
+            if (superItem.name.equals(name)) {
+                return false;
+
+            }
+        }
+        return true;
+    }
 
     public void update(KeyHandler keyH){
         //Developer Mode
+
         bootsCD = (int)keyH.cd.timeRemaining();
         if(keyH.cd.timeRemaining() <1000){
             keyH.canUse = true;
@@ -190,6 +222,9 @@ public class Player extends Entity {
                 case "salve":
                     GP.objItem[i] = null;
                     salveCount++;
+                    if(searchInventory("salve")){
+                        inventory.add(new ItemSalve());
+                    }
                     // System.out.println(playerHP);
                     break;
                 case "boots":
@@ -197,17 +232,24 @@ public class Player extends Entity {
                     justGotBoots = true;
                     GP.objItem[i] = null;
                     if(devMode)System.out.println(getSpeed());
+                    inventory.add(new ItemBoots());
                     break;
                 case "accessCard":
                     GP.objItem[i] = null;
                     if(devMode)System.out.println("got Access Card");
                     accessCard++;
+                    if(searchInventory("accessCard")){
+                        inventory.add(new AccessCard());
+                    }
                     System.out.println("Card count: "+accessCard);
                     break;
                 case "DoorClose":
                     if(accessCard!=0){
                         GP.objItem[i] = null;
                         accessCard--;
+                        if(accessCard == 0){
+                            removeItem("accessCard");
+                        }
                         System.out.println("Card count: "+accessCard);
                     }
                     else {
@@ -218,11 +260,15 @@ public class Player extends Entity {
                     GP.objItem[i] = null;
                         if(randomizer() == 1){
                             accessCard++;
+                            inventory.add(new AccessCard());
                             System.out.println("got card");
                         }
 
                         else{
                             salveCount++;
+                            if(searchInventory("salve")) {
+                                inventory.add(new ItemSalve());
+                            }
                             System.out.println("got Salve");
                         }
 

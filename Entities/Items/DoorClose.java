@@ -1,10 +1,13 @@
 package Entities.Items;
 
+import GUI.GamePanel;
+
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
 public class DoorClose extends SuperItem{
     public DoorClose() {
+
         name = "DoorClose";
         collision = true;
         try{

@@ -24,6 +24,9 @@ public class Entity {
     public boolean collisionOn = false;
     public boolean toxinOn = false;
     String[] dialogues = new String[20];
+    //Item
+    public String discription = "";
+
 
     public int actionCounter =0;
     public int holder=0;
