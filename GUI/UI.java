@@ -70,14 +70,14 @@ public class UI {
 
 
     public void drawSubWindow(int x, int y, int width, int height){
-       Color c = new Color(0,0,0,190);
+       Color c = new Color(28,32,36,250);
         g2.setColor(c);
-        g2.fillRoundRect(x,y,width,height, 35, 35);
+        g2.fillRect(x,y,width,height);
 
-        c = new Color(255,255,255);
+        c = new Color(254,196,13);
         g2.setColor(c);
-        g2.setStroke(new BasicStroke(5));
-        g2.drawRoundRect(x+5,y+5,width-10,height-10,25,25);
+        g2.setStroke(new BasicStroke(2));
+        g2.drawRect(x+5,y+5,width-10,height-10);
 
     }
     /*-------------------------------------------------------------------------------
@@ -86,10 +86,10 @@ public class UI {
 
     private void drawInventoryScreen(){
         //Frame
-        int frameX = gp.tileSize*9;
-        int frameY = gp.tileSize;
+        int frameX = gp.tileSize*10;
+        int frameY = gp.tileSize-10;
         int frameWidth = gp.tileSize * 6;
-        int frameHeight= gp.tileSize * 5;
+        int frameHeight= gp.tileSize * 10;
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
         //Slot
