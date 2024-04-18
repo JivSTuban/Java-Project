@@ -84,8 +84,8 @@ public class Player extends Entity {
 
     }
     public void setDefault(){
-        worldX = GP.tileSize * 45;//kilid
-        worldY = GP.tileSize * 4;//ibabaw
+        worldX = GP.tileSize * 6;//kilid
+        worldY = GP.tileSize * 73;//ibabaw
         setSpeed(4);
         direction = "down";
 
