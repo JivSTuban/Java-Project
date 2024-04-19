@@ -11,6 +11,8 @@ public class AccessCard extends SuperItem{
 
         name = "accessCard";
         description = "Open a door";
+        invLabel = "Access Card";
+        quantity = 0;
         try{
             image = ImageIO.read(getClass().getResourceAsStream("/res/items/accessCard.png"));
         }catch(IOException e){

@@ -1,6 +1,5 @@
 package Entities;
 
-import Controles.Cooldown;
 import Controles.KeyHandler;
 import Entities.Items.AccessCard;
 import Entities.Items.ItemBoots;
@@ -19,53 +18,41 @@ public class Player extends Entity {
     GamePanel GP;
     KeyHandler KH;
 
-
-
     int defaultSpeed = 3;
     public  int screenX = 0;
     public  int screenY = 0;
 
-    public ArrayList<SuperItem> inventory = new ArrayList<SuperItem>();
+    public ArrayList<SuperItem> inventory = new ArrayList<>();
+    public ArrayList<String> skills = new ArrayList<>();
     public final int invetntorySize = 20;
-    //items
-
-    public ItemBoots boots = new ItemBoots();
-
-    //Items
-        //Boots
-             public boolean gotBoots = false;
-             boolean justGotBoots = false;
-
-        //Salve
-        public int salveCount=0;
-
-
-
+    /*-----------------------------------------------------------------------------------------------
+                                            Items
+     -----------------------------------------------------------------------------------------------*/
+    public boolean gotBoots = false; //Boots
+    boolean justGotBoots = false;
+    public int salveCount=0;
     public int accessCard = 0;
-    //playerStats
+    public int bootsCD=0;
+    /*-----------------------------------------------------------------------------------------------
+                                          Player Stats
+    -----------------------------------------------------------------------------------------------*/
     public int maxHP = 500;
     public int playerHP = maxHP;
     public int level = 1;
     public int exp = 0;
-    //Player Gold
-    private double gold  =  1000;
-
-    public double getGold() {return gold;}
-
-    public void setGold(double gold) {this.gold = gold;}
-
-    public int bootsCD=0;
-
-    //Toxin
-    boolean isOn = false;
-
     public int getPlayerHP() {
         return playerHP;
     }
+    /*-----------------------------------------------------------------------------------------------
+                                            Player Gold
+     -----------------------------------------------------------------------------------------------*/
+    private double gold  =  1000;
+    public double getGold() {return gold;}
+    public void setGold(double gold) {this.gold = gold;}
 
-    public void setPlayerHP(int playerHP) {
-        this.playerHP = playerHP;
-    }
+    /*-----------------------------------------------------------------------------------------------
+                                            Constructor
+     -----------------------------------------------------------------------------------------------*/
 
     public Player(GamePanel GP, KeyHandler KH) {
         super(GP);
@@ -82,18 +69,19 @@ public class Player extends Entity {
         setDefault();
         getPlayerImage();
 
+
     }
     public void setDefault(){
-        worldX = GP.tileSize * 45;//kilid
-        worldY = GP.tileSize * 4;//ibabaw
+        worldX = GP.tileSize * 3;//kilid
+        worldY = GP.tileSize * 78;//ibabaw
         setSpeed(4);
         direction = "down";
 
     }
 
-
-    Cooldown dps = new Cooldown(2100);
-
+    /*-----------------------------------------------------------------------------------------------
+                                       Setting Up Player Image
+      -----------------------------------------------------------------------------------------------*/
     public void getPlayerImage(){
         up1=setup("/res/blueKnight/up1");
         up2=setup("/res/blueKnight/up2");
@@ -104,6 +92,9 @@ public class Player extends Entity {
         right1=setup("/res/blueKnight/right1");
         right2=setup("/res/blueKnight/right2");
     }
+    /*-----------------------------------------------------------------------------------------------
+                                     Inventory Setting
+    -----------------------------------------------------------------------------------------------*/
     public void removeItem (String name){
             for(int i=0;i<inventory.size();i++){
                 if(inventory.get(i).name.equals(name)){
@@ -122,15 +113,16 @@ public class Player extends Entity {
         }
         return true;
     }
-
+     /*-----------------------------------------------------------------------------------------------
+                                        Update scene
+       -----------------------------------------------------------------------------------------------*/
     public void update(KeyHandler keyH){
-        //Developer Mode
+                                                     //--Developer Mode
 
         bootsCD = (int)keyH.cd.timeRemaining();
         if(keyH.cd.timeRemaining() <1000){
             keyH.canUse = true;
         }
-
         if(keyH.pressed2)
             devMode = true;
         if(!keyH.pressed2)
@@ -186,7 +178,6 @@ public class Player extends Entity {
 
 
             if (!collisionOn){
-
                 switch (direction){
                     case"up":
                         worldY -= getSpeed();
@@ -214,6 +205,9 @@ public class Player extends Entity {
             }
         }
     }
+    /*-----------------------------------------------------------------------------------------------
+                                       PickUp Item
+      -----------------------------------------------------------------------------------------------*/
     public void pickUpItem(int i){
         if(i != 999){
             String itemName = GP.objItem[i].name;
@@ -238,9 +232,7 @@ public class Player extends Entity {
                     GP.objItem[i] = null;
                     if(devMode)System.out.println("got Access Card");
                     accessCard++;
-                    if(searchInventory("accessCard")){
-                        inventory.add(new AccessCard());
-                    }
+                    addToInventory("card");
                     System.out.println("Card count: "+accessCard);
                     break;
                 case "DoorClose":
@@ -258,25 +250,25 @@ public class Player extends Entity {
                     break;
                 case "chest" :
                     GP.objItem[i] = null;
-                        if(randomizer() == 1){
-                            accessCard++;
-                            inventory.add(new AccessCard());
-                            System.out.println("got card");
-                        }
+                    if(randomizer() == 1){
+                        accessCard++;
+                        addToInventory("card");
+                        System.out.println("got card");
+                    }
 
-                        else{
-                            salveCount++;
-                            if(searchInventory("salve")) {
-                                inventory.add(new ItemSalve());
-                            }
-                            System.out.println("got Salve");
-                        }
+                    else{
+                        salveCount++;
+                        addToInventory("salve");
+                        System.out.println("got Salve");
+                    }
 
             }
 
         }
     }
-
+    /*-----------------------------------------------------------------------------------------------
+                                     Draw Player Image
+    -----------------------------------------------------------------------------------------------*/
     public void draw(Graphics2D g2){
 
         BufferedImage image = null;
@@ -322,6 +314,15 @@ public class Player extends Entity {
             playerHP--;
             gp.gameState = gp.dialogueState;
             gp.npc[i].speak();
+            gp.gameState = gp.versusScreen;
+        }
+    }
+    void addToInventory(String name){
+        if(searchInventory("salve")&& name.equals("salve")) {
+            inventory.add(new ItemSalve());
+        }
+        if(searchInventory("accessCard") && name.equals("card")){
+            inventory.add(new AccessCard());
         }
     }
 

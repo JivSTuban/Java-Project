@@ -106,7 +106,6 @@ public class KeyHandler implements KeyListener {
             }
 
         }
-
         if(openInventory) {
             if (code == KeyEvent.VK_UP) {
                 if (gp.ui.slotRow != 0)
@@ -125,24 +124,23 @@ public class KeyHandler implements KeyListener {
                 if (gp.ui.slotCol != 4)
                     gp.ui.slotCol++;
             }
-            if (code == KeyEvent.VK_ESCAPE) {
+            if (code == KeyEvent.VK_ESCAPE ) {
                 openInventory = false;
                 gp.gameState = gp.playState;
             }
 
-                if (code == KeyEvent.VK_Z ) {
-                    if (gp.player.inventory.get(gp.ui.getItemIndexOnSlot()).name.equals("salve")) {
-                        gp.player.playerHP += 20;
-                        gp.player.salveCount--;
+            if (code == KeyEvent.VK_Z ) {
+                if (gp.player.inventory.get(gp.ui.getItemIndexOnSlot()).name.equals("salve")) {
+                    gp.player.playerHP += 20;
+                    gp.player.salveCount--;
 
-                    }
-                    if (gp.player.salveCount == 0) {
-                        gp.player.removeItem("salve");
-                    }
                 }
+                if (gp.player.salveCount == 0) {
+                    gp.player.removeItem("salve");
+                }
+            }
 
         }
-
 
         if(gp.gameState == gp.playState){
 
@@ -202,7 +200,32 @@ public class KeyHandler implements KeyListener {
                 gp.gameState = gp.playState;
             }
         }
+           /*-------------------------------------------------------------------------------------------------------------
+                                                  Versus Screen
+         -------------------------------------------------------------------------------------------------------------*/
+        if(gp.gameState == gp.versusScreen) {
+            if (code == KeyEvent.VK_X) {
+                gp.gameState = gp.playState;
+            }
+            if (code == KeyEvent.VK_UP) {
+                if (gp.vsScreen.slotRow != 0)
+                    gp.vsScreen.slotRow--;
+            }
+            if (code == KeyEvent.VK_DOWN) {
+                if (gp.vsScreen.slotRow < 1 )
+                    gp.vsScreen.slotRow++;
 
+            }
+            if (code == KeyEvent.VK_LEFT) {
+                if (gp.vsScreen.slotCol != 0)
+                    gp.vsScreen.slotCol-=3;
+            }
+            if (code == KeyEvent.VK_RIGHT) {
+                if (gp.vsScreen.slotCol < 1)
+                    gp.vsScreen.slotCol+=3;
+            }
+
+        }
 
     }
 

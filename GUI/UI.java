@@ -1,5 +1,6 @@
 package GUI;
 
+import Controles.Cooldown;
 import Entities.Items.AccessCard;
 import Entities.Player;
 
@@ -13,20 +14,26 @@ public class UI {
     GamePanel gp;
     Player player;
     Graphics2D g2;
-    Font arial_16;
-    Font arial_10;
-    BufferedImage accessCard,healthImage,bootsImage,coinImage,invHud;
+    Font arial_16, arial_14, arial_10, arial_12;
+
+    Cooldown blink = new Cooldown(300);
+
+    BufferedImage accessCard,healthImage,bootsImage,coinImage,selectItem;
     DecimalFormat df = new DecimalFormat("###,###.##");
     boolean drawBoots = false;
     public String currentDialogue = "";
     public int slotCol = 0;
     public int slotRow = 0;
 
+     InventoryHUD  invHUD = new InventoryHUD(gp,this);
+
 
     public UI(GamePanel gp ) {
         this.gp = gp;
         arial_16 = new Font("Arial", Font.PLAIN,16);
         arial_10 = new Font("Arial", Font.PLAIN,10);
+        arial_14 = new Font("Arial", Font.PLAIN,14);
+        arial_12 = new Font("Arial", Font.PLAIN,14);
         AccessCard accessCard = new AccessCard();
         // Player player1 = new Player();
 
@@ -46,7 +53,10 @@ public class UI {
             drawDialogueScreen();
         }
         if(gp.gameState == gp.inventoryState){
+            invHUD.draw(g2);
             drawInventoryScreen();
+
+
         }
     }
 
@@ -56,7 +66,7 @@ public class UI {
         int y = gp.tileSize/2;
         int width = gp.screenWidth - (gp.tileSize*4);
         int height = gp.tileSize*5;
-        drawSubWindow(x,y,width,height);
+        drawSubWindow(x,y,width,height,0);
 
         x += gp.tileSize;
         y += gp.tileSize;
@@ -69,8 +79,8 @@ public class UI {
     }
 
 
-    public void drawSubWindow(int x, int y, int width, int height){
-       Color c = new Color(28,32,36,250);
+    public void drawSubWindow(int x, int y, int width, int height, int alpha){
+       Color c = new Color(28,32,36,alpha);
         g2.setColor(c);
         g2.fillRect(x,y,width,height);
 
@@ -90,17 +100,16 @@ public class UI {
         int frameY = gp.tileSize-10;
         int frameWidth = gp.tileSize * 6;
         int frameHeight= gp.tileSize * 6;
-        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
         //Slot
         final int slotXStart = frameX + 10;
-        final int slotYStart = frameY + 15;
+        final int slotYStart = frameY + 30;
         int slotX = slotXStart;
         int slotY = slotYStart;
-        int slotSize = gp.tileSize +3;
+        int slotSize = gp.tileSize +4;
         //draw Players Item
         for(int i=0; i<gp.player.inventory.size();i++){
-            g2.drawImage(gp.player.inventory.get(i).image,slotX,slotY,null);
+            g2.drawImage(gp.player.inventory.get(i).image, slotX, slotY+2, 50, 50, null);
 
             slotX += slotSize;
             if(i == 4 || i == 9 || i == 14){
@@ -119,13 +128,18 @@ public class UI {
         g2.setColor(Color.white);
         g2.setStroke(new BasicStroke(3));
 
-        g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight,10, 10 );
+        try {
+            selectItem = ImageIO.read(getClass().getResourceAsStream("/res/Inventory/selectItem.png"));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+           g2.drawImage(selectItem, cursorX, cursorY, cursorWidth + 3, cursorHeight, null);
 
         int dFrameX = frameX;
         int dFrameY = frameY +frameHeight;
         int dFrameWidth = frameWidth;
         int dFrameHeight = gp.tileSize*3;
-        drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
+        drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight,0);
 
         int textX = dFrameX + 20;
         int textY = dFrameY + gp.tileSize;
@@ -133,14 +147,17 @@ public class UI {
 
         int itemIndex = getItemIndexOnSlot();
         if(itemIndex < gp.player.inventory.size()){
+            g2.setFont(arial_16);
+            g2.drawString(gp.player.inventory.get(itemIndex).invLabel,500,290);
+            g2.setFont(arial_12);
             for(String line: gp.player.inventory.get(itemIndex).description.split("\n")){
-                g2.drawString(line,textX,textY);
+                g2.drawString(line,textX,textY-30);
                 textY += 32;
             }
 
         }
-        textY += 32;
-        g2.drawString("[Z] Use",textX,textY);
+
+
 
 
 
