@@ -337,13 +337,16 @@ public class Player extends Entity {
         Random rand =new Random();
         return rand.nextInt(2)+1;
     }
-    public void interactNPC(int i, KeyHandler keyH){
+    public void interactNPC(int i,KeyHandler keyH){
         if(i!=999){
            // playerHP--;
+            if(gp.keyH.zPressed == true) {
+                gp.gameState = gp.dialogueState;
+                gp.npc[i].speak();
+            }
+            gp.keyH.zPressed = false;
 
-            gp.gameState = gp.dialogueState;
-            gp.npc[i].speak();
-                if(gp.npc[i].isEnemy)
+            if(gp.npc[i].isEnemy)
                     gp.gameState = gp.versusScreen;
 
         }

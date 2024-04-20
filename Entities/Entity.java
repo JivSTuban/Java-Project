@@ -27,6 +27,7 @@ public class Entity {
     public boolean toxinOn = false;
     public boolean isEnemy = false;
     String[] dialogues = new String[20];
+    public int dialogueIndex = 0;
     //Item
     public String discription = "";
 

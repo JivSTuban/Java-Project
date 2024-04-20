@@ -68,6 +68,7 @@ public class UI {
         int height = gp.tileSize*5;
         drawSubWindow(x,y,width,height,0);
 
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,18F));
         x += gp.tileSize;
         y += gp.tileSize;
         for(String line: currentDialogue.split("\n")){
@@ -87,7 +88,7 @@ public class UI {
         c = new Color(254,196,13);
         g2.setColor(c);
         g2.setStroke(new BasicStroke(2));
-       // g2.drawRect(x+5,y+5,width-10,height-10);
+        g2.drawRect(x+5,y+5,width-10,height-10);
 
     }
     /*-------------------------------------------------------------------------------
