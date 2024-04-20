@@ -14,8 +14,9 @@ public class NPC_Drone extends Entity{
         speed = 1;
         getImage();
         type = 2;
-        maxHP = 5;
+        maxHP = 50;
         npcHp = maxHP;
+
 
         solidArea.x = 3;
         solidArea.y = 18;
@@ -24,8 +25,10 @@ public class NPC_Drone extends Entity{
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         setDialogue();
+        npcDamge = 10;
 
     }
+
 
     public void getImage() {
 

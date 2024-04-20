@@ -16,6 +16,7 @@ import Tile.world1.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -28,6 +29,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int screenWidth = tileSize * maxScreenCol;
     public final int screenHeight = tileSize * maxScreenRow;
     public boolean toxinOn = false;
+    public boolean NPCCollide = false;
 
 
     //World settings
@@ -37,6 +39,7 @@ public class GamePanel extends JPanel implements Runnable {
     final int FPS = 144;
     Cooldown dps = new Cooldown(1000);
     //Main Map
+
 
 
     TileManager tileManager = new TileManager(this);
@@ -76,6 +79,13 @@ public class GamePanel extends JPanel implements Runnable {
 
     public SuperItem[] objItem = new SuperItem[99];
 
+     /*-----------------------------------------------------------------------------------------------------------------------
+                                                      Versus Screen
+     -----------------------------------------------------------------------------------------------------------------------*/
+    public boolean playerTurn = true;
+    public Cooldown turnTimer = new Cooldown(6000);
+    public Cooldown npcAttackCD = new Cooldown( 7000);
+
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -83,7 +93,6 @@ public class GamePanel extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
-
     }
 
     public void setupGame() {
@@ -129,6 +138,21 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update(KeyHandler keyH) {
         player.update(keyH);
+        if(gameState == versusScreen){
+            if(turnTimer.isOnCooldown() && !(npcAttackCD.isOnCooldown() )){
+                if(npc[player.NPCCollision].getNpcHp() > 1){
+                    player.setPlayerHP(player.getPlayerHP() - npc[player.NPCCollision].getNpcDamge());
+                    npcAttackCD.trigger();
+                    System.out.println("Damage taken: " + player.getPlayerHP());
+                }
+            }
+            if(npc[player.NPCCollision].getNpcHp() < 1){
+                player.setGold(player.getGold() + 200);
+                npc[player.NPCCollision]= null;
+                gameState = playState;
+            }
+        }
+
         if (this.toxinOn) {//check for toxin collision
             if (!dps.isOnCooldown()) {//add timer to the damage make it damage per second
                 dps.trigger();//trigger the dps

@@ -9,11 +9,13 @@ import java.util.Scanner;
 
 public class KeyHandler implements KeyListener {
     GamePanel gp;
-    public boolean wPressed,  aPressed,  sPressed,  dPressed, shiftPressed = false ;
+    public boolean wPressed,  aPressed,  sPressed,  dPressed, zPressed, shiftPressed = false ;
     public boolean pressed1, pressed2, pressed0;
     public boolean addKey,giveBoots;
     public boolean openInventory = false;
 
+    InventoryKeyHandler invHandler = new InventoryKeyHandler();
+    VersusHandler verHandler = new VersusHandler();
 
     //UseItem
 
@@ -45,8 +47,6 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
-
-        //Developer Mode
         if (code == KeyEvent.VK_1 ){
             pressed1 = true;
             devMode = true;
@@ -65,6 +65,8 @@ public class KeyHandler implements KeyListener {
                 rst2 = 0;
             }
         }
+
+
         if (code == KeyEvent.VK_BACK_SLASH ){
             System.out.println("Scripts:\n-addkey \n-unlispeed\n-giveboots\n-givesalve\n-cancel");
 
@@ -80,7 +82,7 @@ public class KeyHandler implements KeyListener {
                     valid = true;
 
                 }
-                else if(str.equals("unlispeed"))  {maxDuration = 999999;   valid = true;}
+                //else if(str.equals("unlispeed"))  {maxDuration = 999999;   valid = true;}
                 else if(str.equals("cancel"))  {valid = true;}
 
                 else{
@@ -90,7 +92,7 @@ public class KeyHandler implements KeyListener {
 
             }while(!valid);
         }
-        //end of devMode
+
         /*-------------------------------------------------------------------------------------------------------------
                                                   Inventory
          -------------------------------------------------------------------------------------------------------------*/
@@ -106,42 +108,10 @@ public class KeyHandler implements KeyListener {
             }
 
         }
-        if(openInventory) {
-            if (code == KeyEvent.VK_UP) {
-                if (gp.ui.slotRow != 0)
-                    gp.ui.slotRow--;
-            }
-            if (code == KeyEvent.VK_DOWN) {
-                if (gp.ui.slotRow != 3)
-                    gp.ui.slotRow++;
-
-            }
-            if (code == KeyEvent.VK_LEFT) {
-                if (gp.ui.slotCol != 0)
-                    gp.ui.slotCol--;
-            }
-            if (code == KeyEvent.VK_RIGHT) {
-                if (gp.ui.slotCol != 4)
-                    gp.ui.slotCol++;
-            }
-            if (code == KeyEvent.VK_ESCAPE ) {
-                openInventory = false;
-                gp.gameState = gp.playState;
-            }
-
-            if (code == KeyEvent.VK_Z ) {
-                if (gp.player.inventory.get(gp.ui.getItemIndexOnSlot()).name.equals("salve")) {
-                    gp.player.playerHP += 20;
-                    gp.player.salveCount--;
-
-                }
-                if (gp.player.salveCount == 0) {
-                    gp.player.removeItem("salve");
-                }
-            }
-
-        }
-
+        invHandler.inventoryKeys(openInventory,code,gp);
+        /*-------------------------------------------------------------------------------------------------------------
+                                                  Game State
+         -------------------------------------------------------------------------------------------------------------*/
         if(gp.gameState == gp.playState){
 
             if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP){
@@ -155,6 +125,9 @@ public class KeyHandler implements KeyListener {
             }
             if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT){
                 dPressed = true;
+            }
+            if (code == KeyEvent.VK_Z){
+                zPressed = true;
             }
 
 
@@ -203,29 +176,16 @@ public class KeyHandler implements KeyListener {
            /*-------------------------------------------------------------------------------------------------------------
                                                   Versus Screen
          -------------------------------------------------------------------------------------------------------------*/
-        if(gp.gameState == gp.versusScreen) {
-            if (code == KeyEvent.VK_X) {
-                gp.gameState = gp.playState;
-            }
-            if (code == KeyEvent.VK_UP) {
-                if (gp.vsScreen.slotRow != 0)
-                    gp.vsScreen.slotRow--;
-            }
-            if (code == KeyEvent.VK_DOWN) {
-                if (gp.vsScreen.slotRow < 1 )
-                    gp.vsScreen.slotRow++;
-
-            }
-            if (code == KeyEvent.VK_LEFT) {
-                if (gp.vsScreen.slotCol != 0)
-                    gp.vsScreen.slotCol-=3;
-            }
-            if (code == KeyEvent.VK_RIGHT) {
-                if (gp.vsScreen.slotCol < 1)
-                    gp.vsScreen.slotCol+=3;
-            }
+        if((code == KeyEvent.VK_Z && gp.gameState == gp.versusScreen) || zPressed) {
+            zPressed = true;
+            verHandler.versusKeys(gp, code);
+        }
+        if (code == KeyEvent.VK_X && gp.gameState == gp.versusScreen) {
+            gp.gameState = gp.playState;
+            zPressed = false;
 
         }
+
 
     }
 

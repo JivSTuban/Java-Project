@@ -31,11 +31,29 @@ public class Entity {
 
     public int actionCounter =0;
     public int holder=0;
-        //NPC set
+        /*--------------------------------------------------------------------------------------------------------
+                                            NPC settings
+         --------------------------------------------------------------------------------------------------------*/
     public String NPC_name = "";
     public int maxHP =0;
     public int npcHp ;
     public int type = 2;
+    public int npcDamge = 0;
+
+    public int getNpcHp() {
+        return npcHp;
+    }
+
+    public void setNpcHp(int npcHp) {
+        this.npcHp = npcHp;
+    }
+
+    public int getNpcDamge() {
+        return npcDamge;
+    }
+    /*--------------------------------------------------------------------------------------------------------
+                                            NPC settings End here
+       --------------------------------------------------------------------------------------------------------*/
 
     public Entity(GamePanel gp){
         this.gp = gp;

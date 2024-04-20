@@ -1,11 +1,18 @@
 package Entities.PlayerSkills;
 
+import GUI.GamePanel;
+
 import java.util.Random;
 
 public class PlayerSkills {
+    GamePanel gp;
     Random rand = new Random();
+
     private int skillDamage = 0;
-     String skillName = "";
+    public int manaCost = 0;
+    public String skillName = "";
+    public String description = "";
+
     public int getSkillDamage() {
         return skillDamage;
     }
@@ -13,4 +20,7 @@ public class PlayerSkills {
     public void setSkillDamage(int skillDamage) {
         this.skillDamage = skillDamage;
     }
+
+
+
 }

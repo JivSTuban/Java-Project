@@ -27,7 +27,8 @@ public class VersusScreen {
 
     public void draw(Graphics2D g2){
         this.g2 = g2;
-        drawSkillSection();
+        if(gp.keyH.zPressed)
+            drawSkillSection();
     }
     public void drawSubWindow(int x, int y, int width, int height){
         Color c = new Color(28,32,36,250);
@@ -49,17 +50,16 @@ public class VersusScreen {
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
 
         //Slot
-        final int slotXStart = frameX + 10;
-        final int slotYStart = frameY + 15;
+        final int slotXStart = frameX + 20;
+        final int slotYStart = frameY + 20;
         int slotX = slotXStart;
         int slotY = slotYStart;
-        int slotSize = gp.tileSize +3;
+        int slotSize = gp.tileSize;
         //draw Players Item
-        for(int i=0; i<gp.player.inventory.size();i++){
-            g2.drawImage(gp.player.inventory.get(i).image,slotX,slotY,null);
-
-            slotX += slotSize;
-            if(i == 4 || i == 9 || i == 14){
+        for(int i=0; i<gp.player.skills.size();i++){
+            g2.drawString(gp.player.skills.get(i).skillName,slotX+20,slotY+30);
+            slotX += slotSize+44;
+            if(i == 1){
                 slotX = slotXStart;
                 slotY += slotSize;
             }
@@ -67,15 +67,15 @@ public class VersusScreen {
 
 
         //cursor
-        int cursorX = slotXStart + (gp.tileSize * slotCol);
+        int cursorX = slotXStart-40 + (gp.tileSize * slotCol);
         int cursorY = slotYStart + (gp.tileSize * slotRow);
-        int cursorWidth = 130;
+        int cursorWidth = gp.tileSize*2;
         int cursorHeight = gp.tileSize;
         // Draw Cursor
         g2.setColor(Color.white);
         g2.setStroke(new BasicStroke(3));
 
-        g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight,10, 10 );
+        g2.drawRoundRect(cursorX*2, cursorY, cursorWidth, cursorHeight,10, 10 );
 
         int dFrameX = frameX;
         int dFrameY = frameY +frameHeight;
@@ -83,26 +83,26 @@ public class VersusScreen {
         int dFrameHeight = gp.tileSize*3;
        // drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
 
-        int textX = dFrameX + 20;
-        int textY = dFrameY + gp.tileSize;
-        g2.setFont(g2.getFont().deriveFont(12F));
+        int textX = dFrameX + 30;
+        int textY = 400;
+        g2.setFont(g2.getFont().deriveFont(14F));
 
         int itemIndex = getSkillIndexOnSlot();
-        if(itemIndex < gp.player.inventory.size()){
-            for(String line: gp.player.inventory.get(itemIndex).description.split("\n")){
-                g2.drawString(line,textX,textY);
+        if(itemIndex < gp.player.skills.size()){
+            for(String line: gp.player.skills.get(itemIndex).description.split("\n")){
+                g2.drawString(line,400,textY);
                 textY += 32;
             }
 
         }
         textY += 32;
-        g2.drawString("[Z] Use",textX,textY);
+        g2.drawString("[Enter] Use",textX,textY);
 
 
 
     }
     public int getSkillIndexOnSlot(){
-        return slotCol + (slotRow * 5);
+        return slotCol + (slotRow * 2);
     }
 
 

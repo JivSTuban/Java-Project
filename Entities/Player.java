@@ -5,6 +5,7 @@ import Entities.Items.AccessCard;
 import Entities.Items.ItemBoots;
 import Entities.Items.ItemSalve;
 import Entities.Items.SuperItem;
+import Entities.PlayerSkills.*;
 import GUI.GamePanel;
 
 import java.awt.*;
@@ -23,8 +24,11 @@ public class Player extends Entity {
     public  int screenY = 0;
 
     public ArrayList<SuperItem> inventory = new ArrayList<>();
-    public ArrayList<String> skills = new ArrayList<>();
+    public ArrayList<PlayerSkills> skills = new ArrayList<>();
     public final int invetntorySize = 20;
+    public int NPCCollision = -1;
+
+
     /*-----------------------------------------------------------------------------------------------
                                             Items
      -----------------------------------------------------------------------------------------------*/
@@ -39,10 +43,23 @@ public class Player extends Entity {
     public int maxHP = 500;
     public int playerHP = maxHP;
     public int level = 1;
+    public int mana = 100;
     public int exp = 0;
     public int getPlayerHP() {
         return playerHP;
     }
+
+    public void setPlayerHP(int playerHP) {
+        this.playerHP = playerHP;
+    }
+
+    /*-----------------------------------------------------------------------------------------------
+                                              Player Skills
+        -----------------------------------------------------------------------------------------------*/
+    Skill1 skill1 = new Skill1(gp);
+    Skill2 skill2 = new Skill2(gp);
+    Skill3 skill3 = new Skill3(gp);
+    Skill4 skill4 = new Skill4(gp);
     /*-----------------------------------------------------------------------------------------------
                                             Player Gold
      -----------------------------------------------------------------------------------------------*/
@@ -65,15 +82,18 @@ public class Player extends Entity {
         solidArea = new Rectangle(8,16,32,32);
         solidAreaDefaultX = 8;
         solidAreaDefaultY = 16;
-
         setDefault();
         getPlayerImage();
 
+        skills.add(skill1);
+        skills.add(skill2);
+        skills.add(skill3);
+        skills.add(skill4);
 
     }
     public void setDefault(){
         worldX = GP.tileSize * 3;//kilid
-        worldY = GP.tileSize * 78;//ibabaw
+        worldY = GP.tileSize * 77;//ibabaw
         setSpeed(4);
         direction = "down";
 
@@ -117,6 +137,7 @@ public class Player extends Entity {
                                         Update scene
        -----------------------------------------------------------------------------------------------*/
     public void update(KeyHandler keyH){
+       // updateSkills();
                                                      //--Developer Mode
 
         bootsCD = (int)keyH.cd.timeRemaining();
@@ -173,8 +194,8 @@ public class Player extends Entity {
                 pickUpItem(objIndex);
             //toxin
 
-            int NPCCollision = GP.collisionChecker.checkEntity(this,gp.npc);
-                interactNPC(NPCCollision);
+            NPCCollision = GP.collisionChecker.checkEntity(this,gp.npc);
+                interactNPC(NPCCollision, keyH);
 
 
             if (!collisionOn){
@@ -309,14 +330,20 @@ public class Player extends Entity {
         Random rand =new Random();
         return rand.nextInt(2)+1;
     }
-    public void interactNPC(int i){
+    public void interactNPC(int i, KeyHandler keyH){
         if(i!=999){
-            playerHP--;
+           // playerHP--;
+
             gp.gameState = gp.dialogueState;
             gp.npc[i].speak();
-            gp.gameState = gp.versusScreen;
+                gp.gameState = gp.versusScreen;
+
         }
     }
+
+    /* --------------------------------------------------------------------
+                              Extra methods
+     --------------------------------------------------------------------*/
     void addToInventory(String name){
         if(searchInventory("salve")&& name.equals("salve")) {
             inventory.add(new ItemSalve());
@@ -324,6 +351,17 @@ public class Player extends Entity {
         if(searchInventory("accessCard") && name.equals("card")){
             inventory.add(new AccessCard());
         }
+    }
+    void updateSkills(){
+        skill1.setSkillDamage(10);
+        skill2.setSkillDamage(20);
+        skill3.setSkillDamage(30);
+        skill4.setSkillDamage(40);
+
+        skill1.update();
+        skill2.update();
+        skill3.update();
+        skill4.update();
     }
 
 }
