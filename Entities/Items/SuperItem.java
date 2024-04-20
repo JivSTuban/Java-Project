@@ -11,7 +11,7 @@ public class SuperItem  {
     public BufferedImage image,invImg;
     public String name, invLabel;
     public int quantity;
-
+    public int count;
     public boolean collision = false;
     public int worldX, worldY;
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);

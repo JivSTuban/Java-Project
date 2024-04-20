@@ -13,7 +13,7 @@ import java.text.DecimalFormat;
 public class UI {
     GamePanel gp;
     Player player;
-    Graphics2D g2;
+    public Graphics2D g2;
     Font arial_16, arial_14, arial_10, arial_12;
 
     Cooldown blink = new Cooldown(300);
@@ -110,6 +110,10 @@ public class UI {
         //draw Players Item
         for(int i=0; i<gp.player.inventory.size();i++){
             g2.drawImage(gp.player.inventory.get(i).image, slotX, slotY+2, 50, 50, null);
+            g2.setFont(arial_10);
+            if(gp.player.inventory.get(i).count != 0)
+            g2.drawString(String.valueOf(gp.player.inventory.get(i).count),slotX+38,slotY+45);
+            g2.setFont(arial_14);
 
             slotX += slotSize;
             if(i == 4 || i == 9 || i == 14){
@@ -165,6 +169,9 @@ public class UI {
     public int getItemIndexOnSlot(){
         return slotCol + (slotRow * 5);
     }
+    public void alert(String alert,int x, int y){
+        g2.drawString(alert,x,y);
+    }
 
 
     private void gameHud(Graphics2D g2){
@@ -172,46 +179,22 @@ public class UI {
 
         g2.setFont(arial_16);
         g2.setColor(Color.white);
-        /*-------------------------------------------------------------------------------
-                                      Access card Count
-        ------------------------------------------------------------------------------- */
-        try {
-
-            accessCard = ImageIO.read(getClass().getResourceAsStream("/res/Inventory/InvAccessCard.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        g2.drawImage(accessCard, 20, 20, gp.tileSize-2,gp.tileSize-2,null);
-        g2.drawString( ""+gp.player.accessCard,53,60);
-        /*-------------------------------------------------------------------------------
-                                      Salve Count
-        ------------------------------------------------------------------------------- */
-        try {
-
-            accessCard = ImageIO.read(getClass().getResourceAsStream("/res/Inventory/InvSalve.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        g2.drawImage(accessCard, 20, 70, gp.tileSize-3,gp.tileSize-2,null);
-        g2.drawString( ""+gp.player.salveCount,53,110);
-
 
         /*-------------------------------------------------------------------------------
                                        HealthBar
         ------------------------------------------------------------------------------- */
-        try{
-            int getImgHP = gp.player.getPlayerHP()/(gp.player.maxHP/10);
-            if(gp.player.getPlayerHP() <(gp.player.maxHP/10))
-                healthImage = ImageIO.read(getClass().getResourceAsStream("/res/HealthBar/HealthBar-01.png"));
-            else
-                healthImage = ImageIO.read(getClass().getResourceAsStream("/res/HealthBar/HealthBar-0"+getImgHP+".png"));
 
+        try{
+            healthImage = ImageIO.read(getClass().getResourceAsStream("/res/HealthBar/HealthBar-01.png"));
         }catch(IOException e){
             e.printStackTrace();
         }
         g2.setFont(arial_10);
-        g2.drawString( ""+gp.player.playerHP,430,271);
-        g2.drawImage(healthImage, 383, 250, gp.tileSize,gp.tileSize,null);
+        int hpPrint = gp.player.getPlayerHP()/((gp.player.maxHP/100))/2;
+        drawPlayerHpBar(hpPrint);
+        g2.setColor(Color.white);
+        g2.drawString( ""+gp.player.playerHP,437,271);
+        g2.drawImage(healthImage, 379, 250,56 ,gp.tileSize,null);
 
         /*-------------------------------------------------------------------------------
                                      Boots Cooldown
@@ -225,10 +208,7 @@ public class UI {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
             g2.drawImage(bootsImage, 10, 500, gp.tileSize-4, gp.tileSize-4, null);
-
             g2.drawString(String.valueOf(gp.player.bootsCD/1000),28,528);
         }
 
@@ -244,6 +224,11 @@ public class UI {
         g2.setFont(arial_16);
         g2.setColor(Color.YELLOW);
         g2.drawString( ""+df.format(gp.player.getGold()),700,43);
+
+    }
+    void drawPlayerHpBar(int hp){
+        g2.setColor(Color.red);
+        g2.fillRoundRect(382, 268,hp,10,7,7);
 
     }
 }

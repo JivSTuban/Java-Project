@@ -27,8 +27,11 @@ public class VersusScreen {
 
     public void draw(Graphics2D g2){
         this.g2 = g2;
-        if(gp.keyH.zPressed)
+      //  if(gp.keyH.zPressed) {
             drawSkillSection();
+        drawPlayerHpBar(gp.player.getPlayerHP(),100,10);
+        drawNPCHpBar(gp.npc[gp.player.NPCCollision].getNpcHp(),400,10);
+      //  }
     }
     public void drawSubWindow(int x, int y, int width, int height){
         Color c = new Color(28,32,36,250);
@@ -99,6 +102,16 @@ public class VersusScreen {
         g2.drawString("[Enter] Use",textX,textY);
 
 
+
+    }
+    void drawPlayerHpBar(int hp,int x, int y){
+        g2.setColor(Color.red);
+        g2.fillRoundRect(x,y,hp/2,10,10,10);
+
+    }
+    void drawNPCHpBar(int hp,int x, int y){
+        g2.setColor(Color.red);
+        g2.fillRoundRect(x,y,hp*3,10,10,10);
 
     }
     public int getSkillIndexOnSlot(){

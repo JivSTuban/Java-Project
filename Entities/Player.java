@@ -40,7 +40,7 @@ public class Player extends Entity {
     /*-----------------------------------------------------------------------------------------------
                                           Player Stats
     -----------------------------------------------------------------------------------------------*/
-    public int maxHP = 500;
+    public int maxHP = 100;
     public int playerHP = maxHP;
     public int level = 1;
     public int mana = 100;
@@ -133,11 +133,23 @@ public class Player extends Entity {
         }
         return true;
     }
-     /*-----------------------------------------------------------------------------------------------
+    public int searchInventoryIndex(String name) {
+        for (int i = 0; i < inventory.size(); i++) {
+            SuperItem superItem = inventory.get(i);
+            if (superItem.name.equals(name)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /*-----------------------------------------------------------------------------------------------
                                         Update scene
        -----------------------------------------------------------------------------------------------*/
     public void update(KeyHandler keyH){
        // updateSkills();
+        updateInventoryCount();
+
                                                      //--Developer Mode
 
         bootsCD = (int)keyH.cd.timeRemaining();
@@ -362,6 +374,14 @@ public class Player extends Entity {
         skill2.update();
         skill3.update();
         skill4.update();
+    }
+    void updateInventoryCount(){
+        if(!inventory.isEmpty()) {
+            if (searchInventoryIndex("salve") != -1)
+                inventory.get(searchInventoryIndex("salve")).count = salveCount;
+            if (searchInventoryIndex("accessCard") != -1)
+                inventory.get(searchInventoryIndex("accessCard")).count = accessCard;
+        }
     }
 
 }

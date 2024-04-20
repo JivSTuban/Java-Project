@@ -78,7 +78,8 @@ public class KeyHandler implements KeyListener {
                     if(gp.player.searchInventory("salve")) {
                         gp.player.inventory.add(new ItemSalve());
                     }
-                    gp.player.salveCount++;
+
+                    gp.player.salveCount += sc.nextInt();
                     valid = true;
 
                 }

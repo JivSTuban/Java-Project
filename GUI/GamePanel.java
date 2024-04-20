@@ -4,7 +4,6 @@ import Controles.Cooldown;
 import Controles.KeyHandler;
 import Entities.Entity;
 import Entities.Items.SuperItem;
-//import Entities.NPC_robot;
 import Entities.Player;
 import Sound.Sound;
 import Tile.Versus.BackgroundTM;
@@ -16,7 +15,8 @@ import Tile.world1.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.Random;
+
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -42,6 +42,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 
 
+
     TileManager tileManager = new TileManager(this);
     CollisionTileManger collisionTileManger = new CollisionTileManger(this);
     DesignTileManager designTileManager = new DesignTileManager(this);
@@ -55,7 +56,7 @@ public class GamePanel extends JPanel implements Runnable {
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public AssetSetter aSetter = new AssetSetter(this);
     public SuperItem superItem = new SuperItem();
-
+    Random rand = new Random();
 
 
     //Sound
@@ -66,9 +67,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     public VersusScreen vsScreen  = new VersusScreen(this);
     public Entity[] npc = new Entity[10];
-    /*-----------------------------------------------------------------------------
-                                   Game State
-     -----------------------------------------------------------------------------*/
+    /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                       Game State
+     -----------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
     public int gameState = 1;
     public final int playState = 1;
     public final int pauseState = 2;
@@ -82,9 +83,8 @@ public class GamePanel extends JPanel implements Runnable {
      /*-----------------------------------------------------------------------------------------------------------------------
                                                       Versus Screen
      -----------------------------------------------------------------------------------------------------------------------*/
-    public boolean playerTurn = true;
     public Cooldown turnTimer = new Cooldown(6000);
-    public Cooldown npcAttackCD = new Cooldown( 7000);
+    public Cooldown npcAttackCD = new Cooldown( 6100);
 
 
     public GamePanel() {
@@ -147,7 +147,7 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
             if(npc[player.NPCCollision].getNpcHp() < 1){
-                player.setGold(player.getGold() + 200);
+                player.setGold(player.getGold() +  goldDrop(npc[player.NPCCollision].NPC_name));
                 npc[player.NPCCollision]= null;
                 gameState = playState;
             }
@@ -172,8 +172,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-//        long drawStart = 0;
-//        drawStart = System.nanoTime();
+        long drawStart = 0;
+        drawStart = System.nanoTime();
 
         Graphics2D g2 = (Graphics2D) g;
         if (gameState != versusScreen) {
@@ -184,9 +184,9 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
 
-//        long drawEnd = System.nanoTime();
-//        long passed = drawEnd - drawStart;
-//        System.out.println("Draw Time: "+passed);
+        long drawEnd = System.nanoTime();
+        long passed = drawEnd - drawStart;
+        System.out.println("Draw Time: "+passed);
 
     }
 
@@ -238,6 +238,11 @@ public class GamePanel extends JPanel implements Runnable {
     public void playSE ( int i){
         sound.setFile(i);
         sound.play();
+    }
+    double goldDrop(String name){
+        if(name.equals("drone"))
+            return rand.nextDouble(100,150);
+        return 0;
     }
 
 }
