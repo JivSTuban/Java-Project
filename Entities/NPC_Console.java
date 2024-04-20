@@ -14,8 +14,16 @@ public class NPC_Console extends Entity{
 
     public void getImage() {
         up1 = setup("/res/npc_console/entryrobot1");
+        up2 = setup("/res/npc_console/entryrobot1");
         down1 = setup("/res/npc_console/entryrobot2");
         down2 = setup("/res/npc_console/entryrobot3");
+        right1 = setup("/res/npc_console/entryrobot1");
+        right2 = setup("/res/npc_console/entryrobot2");
+        left1 = setup("/res/npc_console/entryrobot1");
+        left2 = setup("/res/npc_console/entryrobot2");
+
+
+
     }
     public void setDialogue(){
         dialogues[0] = "Welcome to Mitsu Realm!";

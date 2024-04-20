@@ -96,7 +96,6 @@ public class Player extends Entity {
         worldY = GP.tileSize * 77;//ibabaw
         setSpeed(4);
         direction = "down";
-
     }
 
     /*-----------------------------------------------------------------------------------------------
@@ -127,11 +126,11 @@ public class Player extends Entity {
     public boolean searchInventory(String name){
         for (SuperItem superItem : inventory) {
             if (superItem.name.equals(name)) {
-                return false;
+                return true;
 
             }
         }
-        return true;
+        return false;
     }
     public int searchInventoryIndex(String name) {
         for (int i = 0; i < inventory.size(); i++) {
@@ -149,9 +148,7 @@ public class Player extends Entity {
     public void update(KeyHandler keyH){
        // updateSkills();
         updateInventoryCount();
-
                                                      //--Developer Mode
-
         bootsCD = (int)keyH.cd.timeRemaining();
         if(keyH.cd.timeRemaining() <1000){
             keyH.canUse = true;
@@ -200,7 +197,7 @@ public class Player extends Entity {
             //Check collision
             gp.toxinOn = false;//reset the toxin
             collisionOn = false;
-            GP.collisionChecker.checkTile(this);//check the collision and toxin again
+            GP.collisionChecker.checkTile(this, true);//check the collision and toxin again
 
             int objIndex = GP.collisionChecker.checkObject(this,true);
                 pickUpItem(objIndex);
@@ -249,9 +246,7 @@ public class Player extends Entity {
                 case "salve":
                     GP.objItem[i] = null;
                     salveCount++;
-                    if(searchInventory("salve")){
-                        inventory.add(new ItemSalve());
-                    }
+                    addToInventory("salve");
                     // System.out.println(playerHP);
                     break;
                 case "boots":
@@ -348,7 +343,8 @@ public class Player extends Entity {
 
             gp.gameState = gp.dialogueState;
             gp.npc[i].speak();
-                gp.gameState = gp.versusScreen;
+                if(gp.npc[i].isEnemy)
+                    gp.gameState = gp.versusScreen;
 
         }
     }
@@ -357,11 +353,14 @@ public class Player extends Entity {
                               Extra methods
      --------------------------------------------------------------------*/
     void addToInventory(String name){
-        if(searchInventory("salve")&& name.equals("salve")) {
+        if((!searchInventory(name))&& name.equals("salve")) {
             inventory.add(new ItemSalve());
         }
-        if(searchInventory("accessCard") && name.equals("card")){
+        if((!searchInventory(name)) && name.equals("card")){
             inventory.add(new AccessCard());
+        }
+        if((!searchInventory(name)) && name.equals("boots")){
+            inventory.add(new ItemBoots());
         }
     }
     void updateSkills(){

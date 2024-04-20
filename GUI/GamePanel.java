@@ -50,7 +50,7 @@ public class GamePanel extends JPanel implements Runnable {
     BackgroundTM  bgTMVersus = new BackgroundTM(this);
     DesignTM dTMVersus = new DesignTM(this);
     //keyhandler
-    KeyHandler keyH = new KeyHandler(this);
+    public KeyHandler keyH = new KeyHandler(this);
 
     Thread gameThread;
     public CollisionChecker collisionChecker = new CollisionChecker(this);
@@ -141,7 +141,7 @@ public class GamePanel extends JPanel implements Runnable {
         if(gameState == versusScreen){
             if(turnTimer.isOnCooldown() && !(npcAttackCD.isOnCooldown() )){
                 if(npc[player.NPCCollision].getNpcHp() > 1){
-                    player.setPlayerHP(player.getPlayerHP() - npc[player.NPCCollision].getNpcDamge());
+                    player.setPlayerHP(player.getPlayerHP() - npc[player.NPCCollision].getNpcDamage());
                     npcAttackCD.trigger();
                     System.out.println("Damage taken: " + player.getPlayerHP());
                 }

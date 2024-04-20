@@ -4,6 +4,7 @@ import GUI.GamePanel;
 
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -24,6 +25,7 @@ public class Entity {
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     public boolean toxinOn = false;
+    public boolean isEnemy = false;
     String[] dialogues = new String[20];
     //Item
     public String discription = "";
@@ -38,7 +40,7 @@ public class Entity {
     public int maxHP =0;
     public int npcHp ;
     public int type = 2;
-    public int npcDamge = 0;
+    public int npcDamage = 0;
 
     public int getNpcHp() {
         return npcHp;
@@ -48,8 +50,8 @@ public class Entity {
         this.npcHp = npcHp;
     }
 
-    public int getNpcDamge() {
-        return npcDamge;
+    public int getNpcDamage() {
+        return npcDamage;
     }
     /*--------------------------------------------------------------------------------------------------------
                                             NPC settings End here
@@ -66,7 +68,7 @@ public class Entity {
         setAction("drone");
         collisionOn = false;
 
-        gp.collisionChecker.checkTile(this);
+        gp.collisionChecker.checkTile(this, false);
         if (!collisionOn){
             switch (direction){
                 case"up":
@@ -148,7 +150,6 @@ public class Entity {
         }
 
     }
-
     public BufferedImage setup(String imagePath){
         BufferedImage image = null;
         try{

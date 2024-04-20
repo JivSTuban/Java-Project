@@ -66,6 +66,6 @@ public class AssetSetter {
         setNPCChar(1, 54, 65, new NPC_Drone(gp));
         setNPCChar(2, 6, 72, new NPC_Drone(gp));
         setNPCChar(3, 69, 77, new NPC_Drone(gp));
-//        setNPCChar(4, 5, 77, new NPC_Console(gp));
+        setNPCChar(4, 5, 77, new NPC_Console(gp));
     }
 }

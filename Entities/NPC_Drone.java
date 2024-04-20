@@ -2,8 +2,6 @@ package Entities;
 
 import GUI.GamePanel;
 
-import java.util.Random;
-
 public class NPC_Drone extends Entity{
 
     public NPC_Drone(GamePanel gp){
@@ -25,7 +23,8 @@ public class NPC_Drone extends Entity{
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         setDialogue();
-        npcDamge = 10;
+        npcDamage = 10;
+        isEnemy = true;
 
     }
 

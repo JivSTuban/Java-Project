@@ -75,7 +75,7 @@ public class KeyHandler implements KeyListener {
                 if( str.equals("addkey") )   {addKey =true;   valid = true;}
                 else if(str.equals("giveboots")) {giveBoots = true;   valid = true;}
                 else if(str.equals("givesalve")) {
-                    if(gp.player.searchInventory("salve")) {
+                    if(!gp.player.searchInventory("salve")) {
                         gp.player.inventory.add(new ItemSalve());
                     }
 

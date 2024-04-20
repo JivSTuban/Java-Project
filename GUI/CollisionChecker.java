@@ -2,6 +2,7 @@ package GUI;
 
 
 import Entities.Entity;
+import Entities.Player;
 
 public class CollisionChecker {
     GamePanel gp;
@@ -10,7 +11,7 @@ public class CollisionChecker {
     public CollisionChecker(GamePanel gp){
         this.gp = gp;
     }
-    public void checkTile(Entity e){
+    public void checkTile(Entity e,boolean player){
         int entityLWorldX = e.worldX + e.solidArea.x ;
         int entityRWorldX = e.worldX + e.solidArea.x + e.solidArea.width;
         int entityTWorldY = e.worldY + e.solidArea.y;
@@ -39,7 +40,8 @@ public class CollisionChecker {
                     e.collisionOn = true;
                 }
                 if(gp.tileManager.tiles[toxin1].toxin  || gp.tileManager.tiles[toxin2].toxin ){
-                 gp.toxinOn = true;
+                    if(player)
+                         gp.toxinOn = true;
                 }
                 break;
             case"down":
@@ -54,8 +56,9 @@ public class CollisionChecker {
                         (gp.designTileManager.tiles[tileNum3].collision  || gp.designTileManager.tiles[tileNum4].collision )){
                     e.collisionOn = true;
                 }
-                if(gp.tileManager.tiles[toxin1].toxin  || gp.tileManager.tiles[toxin2].toxin ){
-                    gp.toxinOn = true;
+                if(gp.tileManager.tiles[toxin1].toxin  || gp.tileManager.tiles[toxin2].toxin  ){
+                    if(player)
+                     gp.toxinOn = true;
                 }
                 break;
             case"left":
@@ -71,7 +74,8 @@ public class CollisionChecker {
                     e.collisionOn = true;
                 }
                 if(gp.tileManager.tiles[toxin1].toxin  || gp.tileManager.tiles[toxin2].toxin ){
-                    gp.toxinOn = true;
+                    if(player)
+                     gp.toxinOn = true;
                 }
                 break;
             case"right":
@@ -87,8 +91,9 @@ public class CollisionChecker {
                         (gp.designTileManager.tiles[tileNum3].collision  || gp.designTileManager.tiles[tileNum4].collision )){
                     e.collisionOn = true;
                 }
-                if(gp.tileManager.tiles[toxin1].toxin  || gp.tileManager.tiles[toxin2].toxin ){
-                    gp.toxinOn = true;
+                if(gp.tileManager.tiles[toxin1].toxin  || gp.tileManager.tiles[toxin2].toxin){
+                    if(player)
+                        gp.toxinOn = true;
                 }
                 break;
 
