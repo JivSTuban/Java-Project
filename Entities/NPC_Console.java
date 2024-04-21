@@ -7,7 +7,7 @@ public class NPC_Console extends Entity{
         super(gp);
         NPC_name = "console";
         collision = true;
-        direction = "left";
+        direction = "up";
         getImage();
         setDialogue();
     }
