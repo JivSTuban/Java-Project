@@ -43,12 +43,14 @@ public class UI {
      this.g2 = g2;
         gameHud(g2);
 
+        //playstate
         if(gp.gameState == gp.playState){
-
+        //pausestate
         }
         if(gp.gameState == gp.pauseState){
 
         }
+        //dialoguestate
         if(gp.gameState == gp.dialogueState){
             drawDialogueScreen();
         }
@@ -56,10 +58,8 @@ public class UI {
             invHUD.draw(g2);
             drawInventoryScreen();
 
-
         }
     }
-
     public void drawDialogueScreen(){
         //Window
         int x = gp.tileSize*2;

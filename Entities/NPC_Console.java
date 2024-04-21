@@ -13,14 +13,14 @@ public class NPC_Console extends Entity{
     }
 
     public void getImage() {
-        up1 = setup("/res/npc_console/entryrobot4");
-        up2 = setup("/res/npc_console/entryrobot4");
-        down1 = setup("/res/npc_console/entryrobot2");
-        down2 = setup("/res/npc_console/entryrobot3");
-        right1 = setup("/res/npc_console/entryrobot4");
-        right2 = setup("/res/npc_console/entryrobot2");
-        left1 = setup("/res/npc_console/entryrobot4");
-        left2 = setup("/res/npc_console/entryrobot4");
+        up1 = setup("/res/npc_console/$robotback1");
+        up2 = setup("/res/npc_console/$robotback2");
+        down1 = setup("/res/npc_console/$robotfront1");
+        down2 = setup("/res/npc_console/$robotfront2");
+        right1 = setup("/res/npc_console/$robotright1");
+        right2 = setup("/res/npc_console/$robotright2");
+        left1 = setup("/res/npc_console/$robotleft1");
+        left2 = setup("/res/npc_console/$robotleft2");
 
 
 
@@ -40,9 +40,11 @@ public class NPC_Console extends Entity{
 
         switch (gp.player.direction){
             case "up":
-                direction= "down";break;
+                direction= "down";
+                break;
             case "down":
-                direction= "up";break;
+                direction= "up";
+                break;
             case "left":
                 direction= "right";
                 break;
@@ -50,5 +52,5 @@ public class NPC_Console extends Entity{
                 direction= "left";
                 break;
         }
-}
+    }
 }

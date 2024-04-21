@@ -9,8 +9,9 @@ import java.util.Scanner;
 
 public class KeyHandler implements KeyListener {
     GamePanel gp;
-    public boolean wPressed,  aPressed,  sPressed,  dPressed, zPressed, shiftPressed = false ;
+    public boolean wPressed,  aPressed,  sPressed,  dPressed, shiftPressed = false ;
     public boolean pressed1, pressed2, pressed0;
+    public boolean zPressed = true;
     public boolean addKey,giveBoots;
     public boolean openInventory = false;
 
@@ -18,7 +19,6 @@ public class KeyHandler implements KeyListener {
     VersusHandler verHandler = new VersusHandler();
 
     //UseItem
-
 
     public boolean valid = true;
     Scanner sc = new Scanner(System.in);
