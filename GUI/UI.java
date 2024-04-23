@@ -43,12 +43,16 @@ public class UI {
      this.g2 = g2;
         gameHud(g2);
 
+        g2.setFont(arial_10);
+        g2.setColor(Color.white);
+
         //playstate
         if(gp.gameState == gp.playState){
-        //pausestate
-        }
-        if(gp.gameState == gp.pauseState){
 
+        }
+        //pausestate
+        if(gp.gameState == gp.pauseState){
+            drawPauseScreen();
         }
         //dialoguestate
         if(gp.gameState == gp.dialogueState){
@@ -77,6 +81,23 @@ public class UI {
         }
 
 
+    }
+     /*-------------------------------------------------------------------------------
+                                    Pause Screen
+        ------------------------------------------------------------------------------- */
+    public void drawPauseScreen(){
+
+        String text = "PAUSED";
+        int x = getXForCenteredText(text);
+        int y = gp.screenHeight;
+
+        g2.drawString(text, x, y);
+    }
+    public int getXForCenteredText(String text){
+
+        int length = (int)g2.getFontMetrics().getStringBounds(text,g2).getWidth();
+        int x = gp.screenWidth/2 - length/2;
+        return  x;
     }
 
 

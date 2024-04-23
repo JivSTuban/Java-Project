@@ -98,6 +98,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setupGame() {
         aSetter.setItem();
         aSetter.setNPC();
+        gameState = playState;
           //playMusic(0);
         // playSE(1);
 
@@ -118,7 +119,6 @@ public class GamePanel extends JPanel implements Runnable {
         while (gameThread != null) {
 
             update(keyH);
-
             repaint();
 
             try {
@@ -135,7 +135,6 @@ public class GamePanel extends JPanel implements Runnable {
 
         }
     }
-
     public void update(KeyHandler keyH) {
         player.update(keyH);
         if(gameState == versusScreen){
@@ -150,6 +149,12 @@ public class GamePanel extends JPanel implements Runnable {
                 player.setGold(player.getGold() +  goldDrop(npc[player.NPCCollision].NPC_name));
                 npc[player.NPCCollision]= null;
                 gameState = playState;
+            }
+            if(gameState == playState){
+                player.update(keyH);
+            }
+            if (gameState == pauseState){
+                //
             }
         }
 
@@ -219,8 +224,6 @@ public class GamePanel extends JPanel implements Runnable {
         }
 
         ui.draw(g2);
-
-
 
         g2.dispose();
     }

@@ -27,8 +27,8 @@ public class NPC_Console extends Entity{
     }
     public void setDialogue(){
         dialogues[0] = "Welcome to Mitsu Realm!";
-        dialogues[1] = " \n\n Realm of Technology Veemax, the technomancer, deptly \nmanipulates machines and technology.";
-        dialogues[2] = " \n\n the technomancer, deptly manipulates \nmachines and technology.";
+        dialogues[1] = " Realm of Technology Veemax, the technomancer, deptly \nmanipulates machines and technology.";
+        dialogues[2] = " the technomancer, deptly manipulates \nmachines and technology.";
     }
     public void speak(){
 

@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class KeyHandler implements KeyListener {
     GamePanel gp;
-    public boolean wPressed,  aPressed,  sPressed,  dPressed, shiftPressed = false ;
+    public boolean wPressed,  aPressed,  sPressed,  dPressed, shiftPressed, pPressed = false ;
     public boolean pressed1, pressed2, pressed0;
     public boolean zPressed = true;
     public boolean addKey,giveBoots;
@@ -65,7 +65,6 @@ public class KeyHandler implements KeyListener {
                 rst2 = 0;
             }
         }
-
 
         if (code == KeyEvent.VK_BACK_SLASH ){
             System.out.println("Scripts:\n-addkey \n-unlispeed\n-giveboots\n-givesalve\n-cancel");
@@ -130,8 +129,29 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_Z){
                 zPressed = true;
             }
+            //pause
+            if (code == KeyEvent.VK_P ){
+                if(!pPressed){
+                    pPressed =true;
+                // if(gp.gameState == gp.playState) {
+                gp.gameState = gp.pauseState;
+                }
+                //else if(gp.gameState == gp.pauseState){
+                // gp.gameState = gp.playState;
+                // }
+            }
 
+            // pause state
+            if(code == KeyEvent.VK_P){
+                    gp.gameState = gp.playState;
+                }
 
+            //dialogue state
+            else if(gp.gameState == gp.dialogueState){
+                if (code == KeyEvent.VK_Z){
+                    gp.gameState = gp.playState;
+                }
+            }
             if(activateBoots){
                 //method for Movement Speed
                 if(canUse){
