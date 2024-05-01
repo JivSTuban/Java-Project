@@ -43,8 +43,9 @@ public class VersusScreen {
             drawPlayerHpBar(gp.player.getPlayerHP(),118,115);
             playerHPHUD =  setup("/res/versus/vsHPBarPlayer");
             g2.drawImage(playerHPHUD, 160, 55, 400,170,null);
-            int currPos = (gp.npc[gp.player.NPCCollision].maxHP - gp.npc[gp.player.NPCCollision].getNpcHp())+1287;
-            drawNPCHpBar(gp.npc[gp.player.NPCCollision].getNpcHp(),currPos,190);
+            float temp = 100-((float)gp.npc[gp.player.NPCCollision].getNpcHp() / (float)gp.npc[gp.player.NPCCollision].maxHP)*100;
+            int width = 230 - (int)(230 * (temp / 100));
+            drawNPCHpBar(width,1287+(230-width),190);
             EnemyHPHUD =  setup("/res/versus/vsHPBarEnemy");
             g2.drawImage(EnemyHPHUD, 1260, 55, 400,170,null);
 
@@ -134,16 +135,14 @@ public class VersusScreen {
 
         Color color = Color.decode("#2DFE54");
         g2.setColor(color);
-        int hpPrint = gp.player.getPlayerHP()/((gp.player.maxHP/100));
+        int hpPrint = (gp.player.getPlayerHP()/((gp.player.maxHP)))*100;
         g2.fillRoundRect(x,y,  (hpPrint)-18,10,10,10);
 
     }
-    void drawNPCHpBar(int hp,int x, int y){
+    void drawNPCHpBar(int width,int x, int y){
         Color color = Color.decode("#2DFE54");
         g2.setColor(color);
-        int hpPrint = (hp/((gp.npc[gp.player.NPCCollision].maxHP/50)));
-        g2.fillRoundRect(x,y,hpPrint,32,10,10);
-
+        g2.fillRoundRect(x,y,width,32,10,10);
     }
     public int getSkillIndexOnSlot(){
         return slotCol + (slotRow * 2);

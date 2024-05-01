@@ -5,42 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bb09f887-d28d-4ee8-8d2c-f69bb00afeef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Logger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LoginRegister/LoginForm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/PlayerImage/RedwalkDown2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/PlayerImage/RedwalkForward2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controles/InventoryKeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controles/InventoryKeyHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controles/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controles/KeyHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/AssetSetter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/HackingUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/HackingUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/MainGameSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/MainGameSettings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/VersusScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/VersusScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoginForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/LoginRegister/LoginForm.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoginForm.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mitsu-Realm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Mitsu-Realm.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RegistrationForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/LoginRegister/RegistrationForm.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RegistrationForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoginRegister/RegistrationForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/InventoryKeyHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/InventoryKeyHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/KeyHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/KeyHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Entity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/GamePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/HackingUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/HackingUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/VersusScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/VersusScreen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginForm$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginForm$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginForm.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Mitsu-Realm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Mitsu-Realm.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/RegistrationForm$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/RegistrationForm$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/RegistrationForm.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +50,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/STING/Desktop/Mitsu-Realm/LoginRegister",
+    "last_opened_file_path": "C:/Coding/Mitsu-Realm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
