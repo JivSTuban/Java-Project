@@ -21,7 +21,7 @@ public class Entity {
     public String direction;
     public int spriteCount = 0;
     public int spriteNum = 1;
-    public Rectangle solidArea = new Rectangle(0 , 0, 48,48);
+    public Rectangle solidArea = new Rectangle(0 , 10, 48,48);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     public boolean toxinOn = false;
@@ -37,6 +37,7 @@ public class Entity {
                                             NPC settings
          --------------------------------------------------------------------------------------------------------*/
     public String NPC_name = "";
+    public String NPC_VSname = "";
     public int maxHP =0;
     public int npcHp ;
     public int type = 2;

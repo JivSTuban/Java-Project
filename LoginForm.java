@@ -74,8 +74,9 @@ public class LoginForm extends JDialog {
 
     public User getUserFromDatabase(String username, String password) {
         User user = null;
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/mitsu_realm?serverTimezone=UTC", "root", "")) {
-            String query = "SELECT * FROM users WHERE Username = ? AND Password = ?";
+
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/mitsurealmdb?serverTimezone=UTC", "root", "")) {
+            String query = "SELECT * FROM users WHERE username = ? AND password = ?";
             try (PreparedStatement preparedStatement = conn.prepareStatement(query)) {
                 preparedStatement.setString(1, username);
                 preparedStatement.setString(2, password);

@@ -4,6 +4,7 @@ import Controles.Cooldown;
 import Controles.KeyHandler;
 import Entities.Entity;
 import Entities.Items.SuperItem;
+import Entities.NPC_Drone;
 import Entities.Player;
 import Sound.Sound;
 import Tile.Versus.BackgroundTM;
@@ -12,9 +13,12 @@ import Tile.world1.DesignTileManager;
 import Tile.world1.CollisionTileManger;
 
 import Tile.world1.TileManager;
+import Users.User;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 
@@ -22,13 +26,14 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     final int originalTileSize = 16;
-    final int scale = 3;
+    final int scale = 5;
     public final int tileSize = originalTileSize * scale;
-    public final int maxScreenCol = 16;
+    public final int maxScreenCol = 22;
     public final int maxScreenRow = 12;
     public final int screenWidth = tileSize * maxScreenCol;
     public final int screenHeight = tileSize * maxScreenRow;
     public boolean toxinOn = false;
+    public boolean footStepOn = false;
     public boolean NPCCollide = false;
 
 
@@ -38,7 +43,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     final int FPS = 144;
     Cooldown dps = new Cooldown(1000);
+    Cooldown footStepCd = new Cooldown(1200);
+    Cooldown footRemoveCd = new Cooldown(1000);
     //Main Map
+    User user = new User();
 
 
 
@@ -66,7 +74,7 @@ public class GamePanel extends JPanel implements Runnable {
     public UI ui = new UI(this);
 
     public VersusScreen vsScreen  = new VersusScreen(this);
-    public Entity[] npc = new Entity[10];
+    public Entity[] npc = new Entity[99];
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
                                                                        Game State
      -----------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -76,9 +84,12 @@ public class GamePanel extends JPanel implements Runnable {
     public final int dialogueState = 3;
     public final int versusScreen = 4;
     public final int inventoryState = 5;
+    public final int hackingState = 6;
 
 
     public SuperItem[] objItem = new SuperItem[99];
+    public SuperItem[] footStep = new SuperItem[99];
+
 
      /*-----------------------------------------------------------------------------------------------------------------------
                                                       Versus Screen
@@ -98,6 +109,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setupGame() {
         aSetter.setItem();
         aSetter.setNPC();
+
           //playMusic(0);
         // playSE(1);
 
@@ -106,6 +118,8 @@ public class GamePanel extends JPanel implements Runnable {
     public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
+
+
     }
 
     @Override
@@ -138,19 +152,49 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update(KeyHandler keyH) {
         player.update(keyH);
-        if(gameState == versusScreen){
-            if(turnTimer.isOnCooldown() && !(npcAttackCD.isOnCooldown() )){
-                if(npc[player.NPCCollision].getNpcHp() > 1){
-                    player.setPlayerHP(player.getPlayerHP() - npc[player.NPCCollision].getNpcDamage());
-                    npcAttackCD.trigger();
-                    System.out.println("Damage taken: " + player.getPlayerHP());
+//       if(!ui.startUp){
+//           if(!ui.hacking.cdToHack.isOnCooldown()){
+//               ui.hackFailed = true;
+//
+//           }
+//       }
+
+
+        if(footStepOn && !toxinOn) {
+            aSetter.setToxin(Math.round((((float) player.worldX / (this.tileSize)))), Math.round((float) (player.worldY+20.5 )/ (this.tileSize)));
+
+        }
+        if (!footStepCd.isOnCooldown()) {
+            footStepOn = false;
+            footRemoveCd.trigger();
+
+                for(int i = 0; i<99;i++){
+                    footStep[i] = null;
+
+            }
+
+        }
+
+
+
+        //System.out.println(footStepCd.timeRemaining());
+      //  System.out.println("Player at x:"+player.worldX+"\nPlayer at y"+player.worldY);
+        if(player.NPCCollision != 999 ){
+            if(gameState == versusScreen){
+                if(turnTimer.isOnCooldown() && !(npcAttackCD.isOnCooldown() )){
+                    if(npc[player.NPCCollision].getNpcHp() > 1){
+                        player.setPlayerHP(player.getPlayerHP() - npc[player.NPCCollision].getNpcDamage());
+                        npcAttackCD.trigger();
+                        System.out.println("Damage taken: " + player.getPlayerHP());
+                    }
+                }
+                if(npc[player.NPCCollision].getNpcHp() < 1 ){
+                    player.setGold(player.getGold() +  goldDrop(npc[player.NPCCollision].NPC_name));
+                    npc[player.NPCCollision]= null;
+                    gameState = playState;
                 }
             }
-            if(npc[player.NPCCollision].getNpcHp() < 1){
-                player.setGold(player.getGold() +  goldDrop(npc[player.NPCCollision].NPC_name));
-                npc[player.NPCCollision]= null;
-                gameState = playState;
-            }
+
         }
 
         if (this.toxinOn) {//check for toxin collision
@@ -158,6 +202,10 @@ public class GamePanel extends JPanel implements Runnable {
                 dps.trigger();//trigger the dps
                 player.playerHP--;//minus 1 hp for hero if step on the toxin
                 System.out.println(player.playerHP);
+               footStepCd.trigger();
+               footStepOn = true;
+
+
             }
         }
         if (player.playerHP < 0)
@@ -171,6 +219,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void paintComponent(Graphics g) {
+
         super.paintComponent(g);
         long drawStart = 0;
         drawStart = System.nanoTime();
@@ -186,7 +235,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         long drawEnd = System.nanoTime();
         long passed = drawEnd - drawStart;
-        System.out.println("Draw Time: "+passed);
+        //System.out.println("Draw Time: "+passed);
 
     }
 
@@ -199,11 +248,19 @@ public class GamePanel extends JPanel implements Runnable {
     private void mainMap(Graphics2D g2){
 
         //the main screen
+
         tileManager.draw(g2);
         collisionTileManger.draw(g2);
 
+
         //Item
         for (SuperItem superItem : objItem) {
+            if (superItem != null) {
+                superItem.draw(g2, this);
+            }
+        }
+        //drawFootStep
+        for (SuperItem superItem : footStep) {
             if (superItem != null) {
                 superItem.draw(g2, this);
             }
@@ -217,8 +274,8 @@ public class GamePanel extends JPanel implements Runnable {
                 entity.draw(g2);
             }
         }
-
         ui.draw(g2);
+
 
 
 

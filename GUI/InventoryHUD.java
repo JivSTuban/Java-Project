@@ -32,7 +32,7 @@ public class InventoryHUD {
         drawInventoryScreen();
     }
     private void hudBg(){
-        ui.drawSubWindow(478, 12, 267,530,230);
+        ui.drawSubWindow(1450, 12, 450,970,230);
 
     }
     private void drawInventoryScreen() {
@@ -42,7 +42,7 @@ public class InventoryHUD {
         }catch (Exception e){
             e.printStackTrace();
         }
-        g2.drawImage(invHud, 478, 12, 267,530,null);
+        g2.drawImage(invHud, 1450, 12, 450,970,null);
     }
 
 }

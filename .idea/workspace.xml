@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bb09f887-d28d-4ee8-8d2c-f69bb00afeef" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Entities/Items/FootStep.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Entities/Items/HackingDevice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/HackingUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Utility/Paint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/FORMS/Register.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Items/hackingDevice.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImage/footstepToxin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImage/idle1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImage/playerVS.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImage/walkDown1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImage/walkDown2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImage/walkForward1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImage/walkForward2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImage/walkLeft1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImage/walkLeft2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImage/walkRight1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImage/walkRight2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/versus/BGbackground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/versus/bg5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/versus/blackBG.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/versus/g2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/versus/select.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/versus/versusBg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/versus/vsHPBarEnemy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/versus/vsHPBarPlayer.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controles/InventoryKeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controles/InventoryKeyHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controles/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controles/KeyHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/NPC_Drone.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/NPC_Drone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/PlayerSkills/Skill1.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/PlayerSkills/Skill1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/PlayerSkills/Skill2.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/PlayerSkills/Skill2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/PlayerSkills/Skill3.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/PlayerSkills/Skill3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/PlayerSkills/Skill4.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/PlayerSkills/Skill4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/AssetSetter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/InventoryHUD.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/InventoryHUD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/MainGameSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/MainGameSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/VersusScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/VersusScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoginForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/LoginForm.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoginForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RegistrationForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/RegistrationForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Controles/Cooldown.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Controles/InventoryKeyHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Controles/KeyHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Controles/VersusHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Entities/Entity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Entities/Items/AccessCard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Entities/Items/Chest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Entities/Items/DoorClose.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Entities/Items/DoorOpen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Entities/Items/ItemBoots.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Entities/Items/SuperItem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Entities/Items/itemSalve.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Entities/NPC_Console.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Entities/NPC_Drone.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Entities/Player.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Entities/PlayerSkills/PlayerSkills.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Entities/PlayerSkills/Skill1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Entities/PlayerSkills/Skill2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Entities/PlayerSkills/Skill3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Entities/PlayerSkills/Skill4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/GUI/AssetSetter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/GUI/CollisionChecker.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/GUI/GamePanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/GUI/InventoryHUD.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/GUI/MainGameSettings.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/GUI/UI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/GUI/VersusScreen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/LoginForm$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/LoginForm$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/LoginForm.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/RegistrationForm$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/RegistrationForm$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/RegistrationForm.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Sound/Sound.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Tile/Tile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Tile/Versus/BackgroundTM.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Tile/Versus/DesignTM.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Tile/Versus/SuperTile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Tile/world1/CollisionTileManger.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Tile/world1/DesignTileManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Tile/world1/OutsideTiles.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Tile/world1/TileManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Tile/world1/_SuperTile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Users/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java Project/Utility/UtilityTool.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/Inventory/InventoryHUD.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/Inventory/InventoryHUD.png" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Sting421&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/JivSTuban/Mitsu-Realm.git&quot;,
+    &quot;accountId&quot;: &quot;09aa4fbc-8c06-41ec-9692-fcbf79e8a02b&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2fURrKl1pvlVrcxX7mT3yfT6JEw" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/STING/Desktop/Mitsu-Realm/res/Items&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\STING\Desktop\Mitsu-Realm\res\Items" />
+      <recent name="C:\Users\STING\Desktop\Mitsu-Realm\res\Inventory" />
+      <recent name="C:\Users\STING\Desktop\Mitsu-Realm\res\versus" />
+      <recent name="C:\Users\STING\Desktop\Mitsu-Realm\res\PlayerImage" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\STING\Desktop\Mitsu-Realm\res\versus" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Mitsu-Realm" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bb09f887-d28d-4ee8-8d2c-f69bb00afeef" name="Changes" comment="" />
+      <created>1713853868725</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1713853868725</updated>
+    </task>
+    <servers />
+  </component>
+</project>

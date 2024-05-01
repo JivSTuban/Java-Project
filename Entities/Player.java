@@ -1,10 +1,7 @@
 package Entities;
 
 import Controles.KeyHandler;
-import Entities.Items.AccessCard;
-import Entities.Items.ItemBoots;
-import Entities.Items.ItemSalve;
-import Entities.Items.SuperItem;
+import Entities.Items.*;
 import Entities.PlayerSkills.*;
 import GUI.GamePanel;
 
@@ -29,14 +26,17 @@ public class Player extends Entity {
     public int NPCCollision = -1;
 
 
+
     /*-----------------------------------------------------------------------------------------------
-                                            Items
+                                                    Items
      -----------------------------------------------------------------------------------------------*/
     public boolean gotBoots = false; //Boots
     boolean justGotBoots = false;
     public int salveCount=0;
     public int accessCard = 0;
     public int bootsCD=0;
+
+    public int hackingDevice = 0;
     /*-----------------------------------------------------------------------------------------------
                                           Player Stats
     -----------------------------------------------------------------------------------------------*/
@@ -52,6 +52,7 @@ public class Player extends Entity {
     public void setPlayerHP(int playerHP) {
         this.playerHP = playerHP;
     }
+    public boolean doorCollision = false;
 
     /*-----------------------------------------------------------------------------------------------
                                               Player Skills
@@ -79,7 +80,7 @@ public class Player extends Entity {
 
         screenX = GP.screenWidth/2;
         screenY = GP.screenHeight/2;
-        solidArea = new Rectangle(8,16,32,32);
+        solidArea = new Rectangle(9,17,55,60);
         solidAreaDefaultX = 8;
         solidAreaDefaultY = 16;
         setDefault();
@@ -93,7 +94,7 @@ public class Player extends Entity {
     }
     public void setDefault(){
         worldX = GP.tileSize * 3;//kilid
-        worldY = GP.tileSize * 77;//ibabaw
+        worldY = GP.tileSize * 74;//ibabaw
         setSpeed(4);
         direction = "down";
     }
@@ -102,44 +103,14 @@ public class Player extends Entity {
                                        Setting Up Player Image
       -----------------------------------------------------------------------------------------------*/
     public void getPlayerImage(){
-        up1=setup("/res/blueKnight/up1");
-        up2=setup("/res/blueKnight/up2");
-        left1=setup("/res/blueKnight/left1");
-        left2=setup("/res/blueKnight/left2");
-        down1=setup("/res/blueKnight/down1");
-        down2=setup("/res/blueKnight/down2");
-        right1=setup("/res/blueKnight/right1");
-        right2=setup("/res/blueKnight/right2");
-    }
-    /*-----------------------------------------------------------------------------------------------
-                                     Inventory Setting
-    -----------------------------------------------------------------------------------------------*/
-    public void removeItem (String name){
-            for(int i=0;i<inventory.size();i++){
-                if(inventory.get(i).name.equals(name)){
-                    inventory.remove(i);
-                    break;
-                }
-            }
-
-    }
-    public boolean searchInventory(String name){
-        for (SuperItem superItem : inventory) {
-            if (superItem.name.equals(name)) {
-                return true;
-
-            }
-        }
-        return false;
-    }
-    public int searchInventoryIndex(String name) {
-        for (int i = 0; i < inventory.size(); i++) {
-            SuperItem superItem = inventory.get(i);
-            if (superItem.name.equals(name)) {
-                return i;
-            }
-        }
-        return -1;
+        up1=setup("/res/PlayerImage/walkForward1");
+        up2=setup("/res/PlayerImage/walkForward2");
+        left1=setup("/res/PlayerImage/walkLeft1");
+        left2=setup("/res/PlayerImage/walkLeft2");
+        down1=setup("/res/PlayerImage/walkDown1");
+        down2=setup("/res/PlayerImage/walkDown2");
+        right1=setup("/res/PlayerImage/walkRight1");
+        right2=setup("/res/PlayerImage/walkRight2");
     }
 
     /*-----------------------------------------------------------------------------------------------
@@ -147,24 +118,8 @@ public class Player extends Entity {
        -----------------------------------------------------------------------------------------------*/
     public void update(KeyHandler keyH){
        // updateSkills();
-        updateInventoryCount();
-                                                     //--Developer Mode
-        bootsCD = (int)keyH.cd.timeRemaining();
-        if(keyH.cd.timeRemaining() <1000){
-            keyH.canUse = true;
-        }
-        if(keyH.pressed2)
-            devMode = true;
-        if(!keyH.pressed2)
-            devMode = false;
-        if(keyH.addKey) {
-            accessCard++;
-            keyH.addKey = false;
-            System.out.println("card count: "+accessCard);
-        }
-        if(keyH.giveBoots)
-            gotBoots = true;
 
+        developerSettings(keyH);
 
         if(keyH.wPressed || keyH.aPressed || keyH.sPressed || keyH.dPressed || keyH.shiftPressed){
             if(keyH.wPressed){
@@ -184,7 +139,7 @@ public class Player extends Entity {
 
             if(gotBoots){
                 if(keyH.shiftPressed){
-                    setSpeed(9);
+                    setSpeed(7);
                 }
                 keyH.activateBoots = true;
 
@@ -234,6 +189,8 @@ public class Player extends Entity {
                 spriteCount = 0;
             }
         }
+
+
     }
     /*-----------------------------------------------------------------------------------------------
                                        PickUp Item
@@ -245,9 +202,8 @@ public class Player extends Entity {
             switch (itemName){
                 case "salve":
                     GP.objItem[i] = null;
-                    salveCount++;
                     addToInventory("salve");
-                    // System.out.println(playerHP);
+                    addToInventory(itemName,1);
                     break;
                 case "boots":
                     gotBoots = true;
@@ -256,22 +212,34 @@ public class Player extends Entity {
                     if(devMode)System.out.println(getSpeed());
                     inventory.add(new ItemBoots());
                     break;
+                case "hackingDevice":
+                    GP.objItem[i] = null;
+                    addToInventory("hackingDevice");
+                    addToInventory(itemName,1);
+                    System.out.println("hackingDevice");
+                    break;
                 case "accessCard":
                     GP.objItem[i] = null;
                     if(devMode)System.out.println("got Access Card");
-                    accessCard++;
                     addToInventory("card");
-                    System.out.println("Card count: "+accessCard);
+                    addToInventory(itemName,1);
                     break;
                 case "DoorClose":
-                    if(accessCard!=0){
-                        GP.objItem[i] = null;
-                        accessCard--;
-                        if(accessCard == 0){
-                            removeItem("accessCard");
-                        }
-                        System.out.println("Card count: "+accessCard);
-                    }
+                 //  if(searchInventoryIndex("accessCard") >-1){
+
+                       if(searchInventory("accessCard") || searchInventory("hackingDevice")){
+                        if(!gp.keyH.doorOpen)
+                            gp.gameState  = gp.inventoryState;
+                           if(gp.keyH.doorOpen){
+                                   GP.objItem[i] = null;
+                                   KH.doorOpen =false;
+                               }
+
+//                           if( (gp.player.inventory.get(gp.player.searchInventoryIndex("accessCard")).quantity) == 0)
+//                               gp.player.removeItem("accessCard");
+                       }
+
+                   //}
                     else {
                         System.out.println("You need Access Card to open this Door");
                     }
@@ -279,16 +247,18 @@ public class Player extends Entity {
                 case "chest" :
                     GP.objItem[i] = null;
                     if(randomizer() == 1){
-                        accessCard++;
                         addToInventory("card");
+                        addToInventory("accessCard",1);
                         System.out.println("got card");
                     }
 
                     else{
-                        salveCount++;
+                       // (inventory.get(i).quantity)++;
                         addToInventory("salve");
+                        addToInventory("salve",1);
                         System.out.println("got Salve");
                     }
+                    break;
 
             }
 
@@ -352,17 +322,7 @@ public class Player extends Entity {
     /* --------------------------------------------------------------------
                               Extra methods
      --------------------------------------------------------------------*/
-    void addToInventory(String name){
-        if((!searchInventory(name))&& name.equals("salve")) {
-            inventory.add(new ItemSalve());
-        }
-        if((!searchInventory(name)) && name.equals("card")){
-            inventory.add(new AccessCard());
-        }
-        if((!searchInventory(name)) && name.equals("boots")){
-            inventory.add(new ItemBoots());
-        }
-    }
+
     void updateSkills(){
         skill1.setSkillDamage(10);
         skill2.setSkillDamage(20);
@@ -374,13 +334,76 @@ public class Player extends Entity {
         skill3.update();
         skill4.update();
     }
-    void updateInventoryCount(){
-        if(!inventory.isEmpty()) {
-            if (searchInventoryIndex("salve") != -1)
-                inventory.get(searchInventoryIndex("salve")).count = salveCount;
-            if (searchInventoryIndex("accessCard") != -1)
-                inventory.get(searchInventoryIndex("accessCard")).count = accessCard;
+
+    /*-----------------------------------------------------------------------------------------------
+                                 Inventory Setting
+    -----------------------------------------------------------------------------------------------*/
+    public void addToInventory(String name){
+        if((!searchInventory(name))&& name.equals("salve")) {
+            inventory.add(new ItemSalve());
         }
+        if((!searchInventory("accessCard")) && name.equals("card")){
+            inventory.add(new AccessCard());
+        }
+        if((!searchInventory(name)) && name.equals("boots")){
+            inventory.add(new ItemBoots());
+        }
+        if((!searchInventory(name)) && name.equals("hackingDevice")){
+            inventory.add(new HackingDevice());
+        }
+    }
+    public void addToInventory(String name, int quantity){
+        (inventory.get(searchInventoryIndex(name)).quantity)+=quantity;
+    }
+    public void removeItem (String name){
+        for(int i=0;i<inventory.size();i++){
+            if(inventory.get(i).name.equals(name)){
+                inventory.remove(i);
+                break;
+            }
+        }
+
+    }
+    public boolean searchInventory(String name){
+        for (SuperItem superItem : inventory) {
+            if (superItem.name.equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public int searchInventoryIndex(String name) {
+        for (int i = 0; i < inventory.size(); i++) {
+            SuperItem superItem = inventory.get(i);
+            if (superItem.name.equals(name)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
+
+    /*-----------------------------------------------------------------------------------------------
+                                     DeveloperMOde
+    -----------------------------------------------------------------------------------------------*/
+
+    void developerSettings(KeyHandler keyH){
+        bootsCD = (int)keyH.cd.timeRemaining();
+        if(keyH.cd.timeRemaining() <1000){
+            keyH.canUse = true;
+        }
+        if(keyH.pressed2)
+            devMode = true;
+        if(!keyH.pressed2)
+            devMode = false;
+        if(keyH.addKey) {
+            addToInventory("card");
+            (inventory.get(searchInventoryIndex("accessCard")).quantity)++;
+            keyH.addKey = false;
+        }
+        if(keyH.giveBoots)
+            gotBoots = true;
     }
 
 }

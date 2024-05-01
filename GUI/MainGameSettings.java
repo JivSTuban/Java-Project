@@ -16,8 +16,8 @@ public class MainGameSettings {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int screenWidth = (int) screenSize.getWidth();
         int screenHeight = (int) screenSize.getHeight();
-        int windowWidth = 800; // window width
-        int windowHeight = 600; // window height
+        int windowWidth = 1920; // window width
+        int windowHeight = 1080; // window height
         int x = (screenWidth - windowWidth) / 2;
         int y = (screenHeight - windowHeight) / 2;
         window.setBounds(x, y, windowWidth, windowHeight);

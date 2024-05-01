@@ -9,13 +9,14 @@ import java.util.Scanner;
 
 public class KeyHandler implements KeyListener {
     GamePanel gp;
-    public boolean wPressed,  aPressed,  sPressed,  dPressed, zPressed, shiftPressed = false ;
+    public boolean wPressed,  aPressed,  sPressed,  dPressed, zPressed =false, shiftPressed = false ;
     public boolean pressed1, pressed2, pressed0;
     public boolean addKey,giveBoots;
     public boolean openInventory = false;
-
+    public boolean selectIp = false;
     InventoryKeyHandler invHandler = new InventoryKeyHandler();
     VersusHandler verHandler = new VersusHandler();
+    public boolean doorOpen = false;
 
     //UseItem
 
@@ -47,35 +48,62 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
-        if (code == KeyEvent.VK_1 ){
+        //test
+        if (code == KeyEvent.VK_H) {
+            gp.gameState = gp.hackingState;
+        }
+
+
+        if (code == KeyEvent.VK_1) {
             pressed1 = true;
             devMode = true;
             rst1++;
-            if(rst1 == 2){
+            if (rst1 == 2) {
                 pressed1 = false;
                 devMode = false;
                 rst2 = 0;
             }
         }
-        if (code == KeyEvent.VK_2 ){
+        if (code == KeyEvent.VK_2) {
             pressed2 = true;
             rst2++;
-            if(rst2 == 2){
+            if (rst2 == 2) {
                 pressed2 = false;
                 rst2 = 0;
             }
         }
 
+        if (gp.gameState == gp.hackingState) {
+            if (code == KeyEvent.VK_ESCAPE) {
+                gp.gameState = gp.playState;
+            }
+            if (code == KeyEvent.VK_ENTER) {
+                selectIp = true;
+            }
+            if (code == KeyEvent.VK_UP && gp.ui.hacking.slotRow != 0) gp.ui.hacking.slotRow--;
+            if (code == KeyEvent.VK_DOWN && gp.ui.hacking.slotRow != 5) gp.ui.hacking.slotRow++;
+            if (code == KeyEvent.VK_LEFT && gp.ui.hacking.slotCol != 0) gp.ui.hacking.slotCol--;
+            if (code == KeyEvent.VK_RIGHT && gp.ui.hacking.slotCol != 7) gp.ui.hacking.slotCol++;
 
-        if (code == KeyEvent.VK_BACK_SLASH ){
+        }
+
+
+        if (code == KeyEvent.VK_BACK_SLASH) {
             System.out.println("Scripts:\n-addkey \n-unlispeed\n-giveboots\n-givesalve\n-cancel");
 
-            do{
-                System.out.print("Enter addItem: "); String str = sc.nextLine();str = str.toLowerCase();
-                if( str.equals("addkey") )   {addKey =true;   valid = true;}
-                else if(str.equals("giveboots")) {giveBoots = true;   valid = true;}
-                else if(str.equals("givesalve")) {
-                    if(!gp.player.searchInventory("salve")) {
+            do {
+                System.out.print("Enter addItem: ");
+                String str = sc.nextLine();
+                str = str.toLowerCase();
+                if (str.equals("addkey")) {
+                    gp.player.addToInventory("card");
+                    gp.player.inventory.get(gp.player.searchInventoryIndex("accessCard")).quantity += sc.nextInt();
+                    valid = true;
+                } else if (str.equals("giveboots")) {
+                    giveBoots = true;
+                    valid = true;
+                } else if (str.equals("givesalve")) {
+                    if (!gp.player.searchInventory("salve")) {
                         gp.player.inventory.add(new ItemSalve());
                     }
 
@@ -84,19 +112,22 @@ public class KeyHandler implements KeyListener {
 
                 }
                 //else if(str.equals("unlispeed"))  {maxDuration = 999999;   valid = true;}
-                else if(str.equals("cancel"))  {valid = true;}
-
-                else{
+                else if (str.equals("cancel")) {
+                    valid = true;
+                } else {
                     valid = !valid;
                     System.out.println("--Command not Found");
                 }
 
-            }while(!valid);
+            } while (!valid);
         }
 
         /*-------------------------------------------------------------------------------------------------------------
                                                   Inventory
          -------------------------------------------------------------------------------------------------------------*/
+        if (gp.gameState == gp.inventoryState)
+            openInventory = true;
+
         if(code == KeyEvent.VK_I){
             if(!openInventory){
                 openInventory =true;

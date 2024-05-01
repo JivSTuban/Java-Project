@@ -107,7 +107,7 @@ public class RegistrationForm extends JDialog {
     private User addUserToDatabase(String username, String password) {
         User user = null;
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/mitsu_realm?serverTimezone=UTC", "root", "");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/mitsurealmdb?serverTimezone=UTC", "root", "");
             String insertUser = "INSERT INTO users (Username, Password) " + "VALUES (?, ?)";
             PreparedStatement preparedStatement = conn.prepareStatement(insertUser);
             preparedStatement.setString(1, username);

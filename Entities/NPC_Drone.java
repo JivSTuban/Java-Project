@@ -7,8 +7,9 @@ public class NPC_Drone extends Entity{
     public NPC_Drone(GamePanel gp){
         super(gp);
         NPC_name = "drone";
+        NPC_VSname = "Drone";
         collision = true;
-        direction = "down";
+        direction = "own";
         speed = 1;
         getImage();
         type = 2;

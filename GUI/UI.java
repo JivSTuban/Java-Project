@@ -14,9 +14,12 @@ public class UI {
     GamePanel gp;
     Player player;
     public Graphics2D g2;
-    Font arial_16, arial_14, arial_10, arial_12;
+    boolean startUp = true;
+    public boolean hackFailed = false;
+    Font arial_20,arial_16, arial_14, arial_10, arial_12;
 
     Cooldown blink = new Cooldown(300);
+    public HackingUI hacking   ;
 
     BufferedImage accessCard,healthImage,bootsImage,coinImage,selectItem;
     DecimalFormat df = new DecimalFormat("###,###.##");
@@ -30,6 +33,7 @@ public class UI {
 
     public UI(GamePanel gp ) {
         this.gp = gp;
+        arial_20 = new Font("Arial", Font.PLAIN,20);
         arial_16 = new Font("Arial", Font.PLAIN,16);
         arial_10 = new Font("Arial", Font.PLAIN,10);
         arial_14 = new Font("Arial", Font.PLAIN,14);
@@ -44,7 +48,7 @@ public class UI {
         gameHud(g2);
 
         if(gp.gameState == gp.playState){
-
+                startUp = true;
         }
         if(gp.gameState == gp.pauseState){
 
@@ -57,6 +61,17 @@ public class UI {
             drawInventoryScreen();
 
 
+        }
+        if(gp.gameState == gp.hackingState){
+            drawSubWindow(440,80,1100,700,200);
+            if(startUp){
+                hacking = new HackingUI(gp,this);
+                startUp = false;
+                hacking.cdToHack.trigger();
+            }
+            hacking.draw(g2);
+            hacking.drawHackingScreen();
+           // gp.gameState = gp.versusScreen;
         }
     }
 
@@ -82,7 +97,7 @@ public class UI {
     public void drawSubWindow(int x, int y, int width, int height, int alpha){
        Color c = new Color(28,32,36,alpha);
         g2.setColor(c);
-        g2.fillRect(x,y,width,height);
+        g2.fillRoundRect(x,y,width,height,10,10);
 
         c = new Color(254,196,13);
         g2.setColor(c);
@@ -91,14 +106,14 @@ public class UI {
 
     }
     /*-------------------------------------------------------------------------------
-                                    Inventory Hub
+                                    Inventory Hud
         ------------------------------------------------------------------------------- */
 
     private void drawInventoryScreen(){
         //Frame
-        int frameX = gp.tileSize*10;
-        int frameY = gp.tileSize-10;
-        int frameWidth = gp.tileSize * 6;
+        int frameX = (gp.tileSize*18)+18;
+        int frameY = gp.tileSize+20;
+        int frameWidth = gp.tileSize * 6 ;
         int frameHeight= gp.tileSize * 6;
 
         //Slot
@@ -109,10 +124,10 @@ public class UI {
         int slotSize = gp.tileSize +4;
         //draw Players Item
         for(int i=0; i<gp.player.inventory.size();i++){
-            g2.drawImage(gp.player.inventory.get(i).image, slotX, slotY+2, 50, 50, null);
-            g2.setFont(arial_10);
-            if(gp.player.inventory.get(i).count != 0)
-            g2.drawString(String.valueOf(gp.player.inventory.get(i).count),slotX+38,slotY+45);
+            g2.drawImage(gp.player.inventory.get(i).image, slotX, slotY+7, 70, 70, null);
+            g2.setFont(arial_20);
+            if(gp.player.inventory.get(i).quantity != 0)
+            g2.drawString(String.valueOf(gp.player.inventory.get(i).quantity),slotX+60,slotY+65);
             g2.setFont(arial_14);
 
             slotX += slotSize;
@@ -137,7 +152,7 @@ public class UI {
         }catch (Exception e){
             e.printStackTrace();
         }
-           g2.drawImage(selectItem, cursorX, cursorY, cursorWidth + 3, cursorHeight, null);
+           g2.drawImage(selectItem, cursorX, cursorY, cursorWidth+5, cursorHeight, null);
 
         int dFrameX = frameX;
         int dFrameY = frameY +frameHeight;
@@ -146,23 +161,20 @@ public class UI {
         drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight,0);
 
         int textX = dFrameX + 20;
-        int textY = dFrameY + gp.tileSize;
+        int textY = (dFrameY + gp.tileSize)-70;
         g2.setFont(g2.getFont().deriveFont(12F));
 
         int itemIndex = getItemIndexOnSlot();
         if(itemIndex < gp.player.inventory.size()){
+            g2.setFont(arial_20);
+            g2.drawString(gp.player.inventory.get(itemIndex).invLabel,1480,490);
             g2.setFont(arial_16);
-            g2.drawString(gp.player.inventory.get(itemIndex).invLabel,500,290);
-            g2.setFont(arial_12);
             for(String line: gp.player.inventory.get(itemIndex).description.split("\n")){
                 g2.drawString(line,textX,textY-30);
                 textY += 32;
             }
 
         }
-
-
-
 
 
     }
@@ -193,8 +205,8 @@ public class UI {
         int hpPrint = gp.player.getPlayerHP()/((gp.player.maxHP/100))/2;
         drawPlayerHpBar(hpPrint);
         g2.setColor(Color.white);
-        g2.drawString( ""+gp.player.playerHP,437,271);
-        g2.drawImage(healthImage, 379, 250,56 ,gp.tileSize,null);
+        g2.drawString( ""+gp.player.playerHP,950,462);
+        g2.drawImage(healthImage, 890, 425,56 ,gp.tileSize,null);
 
         /*-------------------------------------------------------------------------------
                                      Boots Cooldown
@@ -208,8 +220,9 @@ public class UI {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            g2.drawImage(bootsImage, 10, 500, gp.tileSize-4, gp.tileSize-4, null);
-            g2.drawString(String.valueOf(gp.player.bootsCD/1000),28,528);
+            g2.drawImage(bootsImage, 20, 950, gp.tileSize-4, gp.tileSize-4, null);
+            g2.setFont(arial_20);
+            g2.drawString(String.valueOf(gp.player.bootsCD/1000),50,995);
         }
 
         /*-------------------------------------------------------------------------------
@@ -220,16 +233,19 @@ public class UI {
         }catch(IOException e){
             e.printStackTrace();
         }
-        g2.drawImage(coinImage, 670, 25, gp.tileSize/2,gp.tileSize/2,null);
-        g2.setFont(arial_16);
+        g2.drawImage(coinImage, 1750, 25, gp.tileSize/2,gp.tileSize/2,null);
+        g2.setFont(arial_20);
         g2.setColor(Color.YELLOW);
-        g2.drawString( ""+df.format(gp.player.getGold()),700,43);
+        g2.drawString( ""+df.format(gp.player.getGold()),1800,50);
 
     }
     void drawPlayerHpBar(int hp){
         g2.setColor(Color.red);
-        g2.fillRoundRect(382, 268,hp,10,7,7);
+        g2.fillRoundRect(893, 458,hp,12,7,7);
 
+    }
+    public void drawImageInForm(BufferedImage image, int x, int y, int width, int height){
+        g2.drawImage(image, x, y, width, height, null);
     }
 }
 
