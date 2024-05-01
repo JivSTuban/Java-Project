@@ -121,7 +121,7 @@ public class Player extends Entity {
 
         developerSettings(keyH);
 
-        if(keyH.wPressed || keyH.aPressed || keyH.sPressed || keyH.dPressed || keyH.shiftPressed){
+        if(keyH.wPressed || keyH.aPressed || keyH.sPressed || keyH.dPressed || keyH.shiftPressed || keyH.zPressed == true){
             if(keyH.wPressed){
                 direction = "up";
             }
@@ -161,8 +161,7 @@ public class Player extends Entity {
             NPCCollision = GP.collisionChecker.checkEntity(this,gp.npc);
                 interactNPC(NPCCollision, keyH);
 
-
-            if (!collisionOn){
+            if (!collisionOn && gp.keyH.zPressed == false){
                 switch (direction){
                     case"up":
                         worldY -= getSpeed();
@@ -179,6 +178,8 @@ public class Player extends Entity {
 
                 }
             }
+            gp.keyH.zPressed = false;
+
             spriteCount++;
             if(spriteCount>12){
                 if (spriteNum==1){
@@ -307,14 +308,17 @@ public class Player extends Entity {
         Random rand =new Random();
         return rand.nextInt(2)+1;
     }
-    public void interactNPC(int i, KeyHandler keyH){
+    public void interactNPC(int i,KeyHandler keyH){
         if(i!=999){
            // playerHP--;
+            if(gp.keyH.zPressed == true) {
+                gp.gameState = gp.dialogueState;
+                gp.npc[i].speak();
+            }
+            gp.keyH.zPressed = false;
 
-            gp.gameState = gp.dialogueState;
-            gp.npc[i].speak();
-                if(gp.npc[i].isEnemy)
-                    gp.gameState = gp.versusScreen;
+            if(gp.npc[i].isEnemy)
+                gp.gameState = gp.versusScreen;
 
         }
     }

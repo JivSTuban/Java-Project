@@ -109,7 +109,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setupGame() {
         aSetter.setItem();
         aSetter.setNPC();
-
+        gameState = playState;
           //playMusic(0);
         // playSE(1);
 
@@ -118,8 +118,6 @@ public class GamePanel extends JPanel implements Runnable {
     public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
-
-
     }
 
     @Override
@@ -158,8 +156,6 @@ public class GamePanel extends JPanel implements Runnable {
 //
 //           }
 //       }
-
-
         if(footStepOn && !toxinOn) {
             aSetter.setToxin(Math.round((((float) player.worldX / (this.tileSize)))), Math.round((float) (player.worldY+20.5 )/ (this.tileSize)));
 
@@ -175,8 +171,6 @@ public class GamePanel extends JPanel implements Runnable {
 
         }
 
-
-
         //System.out.println(footStepCd.timeRemaining());
       //  System.out.println("Player at x:"+player.worldX+"\nPlayer at y"+player.worldY);
         if(player.NPCCollision != 999 ){
@@ -188,10 +182,16 @@ public class GamePanel extends JPanel implements Runnable {
                         System.out.println("Damage taken: " + player.getPlayerHP());
                     }
                 }
-                if(npc[player.NPCCollision].getNpcHp() < 1 ){
+                if(npc[player.NPCCollision].getNpcHp() < 1){
                     player.setGold(player.getGold() +  goldDrop(npc[player.NPCCollision].NPC_name));
                     npc[player.NPCCollision]= null;
                     gameState = playState;
+                }
+                if(gameState == playState){
+                    player.update(keyH);
+                }
+                if (gameState == pauseState){
+                    //
                 }
             }
 

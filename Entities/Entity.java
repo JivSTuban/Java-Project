@@ -27,6 +27,7 @@ public class Entity {
     public boolean toxinOn = false;
     public boolean isEnemy = false;
     String[] dialogues = new String[20];
+    public int dialogueIndex = 0;
     //Item
     public String discription = "";
 
@@ -66,6 +67,8 @@ public class Entity {
     }
 
     public void update(){
+        //NPC_Console console = new NPC_Console(gp);
+
         setAction("drone");
         collisionOn = false;
 
@@ -96,7 +99,6 @@ public class Entity {
             }
             spriteCount = 0;
         }
-
 
     }
     public int getSpeed() {
@@ -218,9 +220,65 @@ public class Entity {
                 actionCounter = 0;
 
             }
+            actionCounter++;
+            if(npc.equals("console")) {
+
+                if (actionCounter == 120) {
+                    Random random = new Random();
+                    int i = random.nextInt(2) + 1;
+
+                    if (i == 1) {
+                        holder++;
+                        if (holder == 4)
+                            direction = "down";
+                        else
+                            direction = "up";
+                    }
+                    if (i == 2) {
+                        direction = "down";
+                        holder = 0;
+                    }
+
+                    actionCounter = 0;
+
+                }
+            }
+            else {
+                if (actionCounter == 120) {
+                    Random random = new Random();
+                    int i = random.nextInt(4) + 1;
+
+                    if (i == 1) {
+                        holder++;
+                        if (holder == 4)
+                            direction = "down";
+                        else
+                            direction = "up";
+
+                    }
+                    if (i == 2) {
+                        direction = "down";
+                        holder = 0;
+                    }
+                    if (i == 3) {
+                        holder++;
+                        if (holder == 4)
+                            direction = "down";
+                        else
+                            direction = "up";
+
+                    }
+                    if (i == 4) {
+                        direction = "up";
+                        holder = 0;
+                    }
+
+                    actionCounter = 0;
+
+                }
         }
 
     }
 
-
+}
 }

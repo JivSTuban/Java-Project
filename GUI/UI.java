@@ -47,19 +47,24 @@ public class UI {
      this.g2 = g2;
         gameHud(g2);
 
+        g2.setFont(arial_10);
+        g2.setColor(Color.white);
+
+        //playstate
         if(gp.gameState == gp.playState){
                 startUp = true;
         }
+        //pausestate
         if(gp.gameState == gp.pauseState){
-
+            drawPauseScreen();
         }
+        //dialoguestate
         if(gp.gameState == gp.dialogueState){
             drawDialogueScreen();
         }
         if(gp.gameState == gp.inventoryState){
             invHUD.draw(g2);
             drawInventoryScreen();
-
 
         }
         if(gp.gameState == gp.hackingState){
@@ -74,7 +79,6 @@ public class UI {
            // gp.gameState = gp.versusScreen;
         }
     }
-
     public void drawDialogueScreen(){
         //Window
         int x = gp.tileSize*2;
@@ -83,6 +87,7 @@ public class UI {
         int height = gp.tileSize*5;
         drawSubWindow(x,y,width,height,0);
 
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,18F));
         x += gp.tileSize;
         y += gp.tileSize;
         for(String line: currentDialogue.split("\n")){
@@ -91,6 +96,23 @@ public class UI {
         }
 
 
+    }
+     /*-------------------------------------------------------------------------------
+                                    Pause Screen
+        ------------------------------------------------------------------------------- */
+    public void drawPauseScreen(){
+
+        String text = "PAUSED";
+        int x = getXForCenteredText(text);
+        int y = gp.screenHeight;
+
+        g2.drawString(text, x, y);
+    }
+    public int getXForCenteredText(String text){
+
+        int length = (int)g2.getFontMetrics().getStringBounds(text,g2).getWidth();
+        int x = gp.screenWidth/2 - length/2;
+        return  x;
     }
 
 
@@ -102,7 +124,7 @@ public class UI {
         c = new Color(254,196,13);
         g2.setColor(c);
         g2.setStroke(new BasicStroke(2));
-       // g2.drawRect(x+5,y+5,width-10,height-10);
+        g2.drawRect(x+5,y+5,width-10,height-10);
 
     }
     /*-------------------------------------------------------------------------------
