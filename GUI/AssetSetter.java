@@ -4,7 +4,10 @@ import Entities.Entity;
 import Entities.Items.*;
 import Entities.NPC_Console;
 import Entities.NPC_Drone;
+import LoginRegister.LoginForm;
+
 import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 import java.util.Random;
 
 public class AssetSetter {
@@ -37,22 +40,27 @@ public class AssetSetter {
         gp.footStep[i].worldY = y * gp.tileSize;
     }
 
-    public void setItem() {
-
-        setImage(0,spawnRand(),spawnRand(),  new ItemSalve(), false);
-        setImage(1,3,78,  new ItemBoots(), false);
-        setImage(2,spawnRand(),spawnRand(),  new ItemSalve(),false);
-        setImage(3,4,78,  new AccessCard(),false);
+    public void setItem(LoginForm loginForm) throws SQLException {
+        if (loginForm.getItemCountInDatabase("Salve") < 2) {
+            setImage(0, 5, 76, new ItemSalve(), false);
+        }
+        if (loginForm.getItemCountInDatabase("Boots") == 0){
+            setImage(1,3,78,  new ItemBoots(), false);
+        }
+        if (loginForm.getItemCountInDatabase("Salve") < 2) {
+            setImage(2,spawnRand(),spawnRand(),  new ItemSalve(),false);
+            setImage(9,4,75,  new Chest(),false);
+        }
+        if (loginForm.getItemCountInDatabase("AccessCard") < 2) {
+            setImage(3,4,78,  new AccessCard(),false);
+            setImage(10,10,75,  new Chest(),false);
+        }
         setImage(4,8,50,  new DoorOpen(),false);
         setImage(5,8,50,  new DoorClose(),true);
         setImage(6,2,19,  new DoorOpen(),false);
         setImage(7,2,19,  new DoorClose(),true);
         setImage(8,1,6,  new DoorOpen(),false);
         setImage(9,1,6,  new DoorClose(),true);
-        setImage(9,4,75,  new Chest(),false);
-        setImage(10,10,75,  new HackingDevice(),false);
-        //setImage(11,11,75,  new FootStep(),false);
-       // setFootStep(11,11,75);
 
     }
     public void setToxin(int x ,int y) {

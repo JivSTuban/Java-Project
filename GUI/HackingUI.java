@@ -9,7 +9,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class HackingUI {
+public class HackingUI{
     DecimalFormat df = new DecimalFormat("#,###.###");
 
     GamePanel gp;
@@ -40,8 +40,8 @@ public class HackingUI {
         this.gp = gp;
         this.ui = ui;
 
-        pickLocation(loc);
-        arial_16 = new Font("Arial", Font.PLAIN,16);
+
+
         arial_10 = new Font("Arial", Font.PLAIN,10);
         arial_14 = new Font("Arial", Font.PLAIN,14);
         arial_20 = new Font("Arial", Font.PLAIN,20);
@@ -71,7 +71,6 @@ public class HackingUI {
         g2.setFont(arial_20);
         printIP();
         g2.setColor(Color.YELLOW);
-
 
     }
 
@@ -199,16 +198,15 @@ public class HackingUI {
     public void checker(){
 
         int num = selected;
-        if((num == ip[0] && !ipfound[0])||(num == ip[1] && !ipfound[1]) ||(num == ip[2] && !ipfound[2]) ||(num == ip[3] && !ipfound[3])){
-            for(int i = 0; i<4 ;i++){
-                if(num == ip[i])
-                    ipfound[i] = true;
+        for (int i = 0; i < 4; i++) {
+            if (num == ip[i] && !ipfound[i]) {
+                ipfound[i] = true;
+                foundCounter++;
+                break;
             }
-            foundCounter++;
         }
-        else{
             wrongNumber++;
-        }
+
         gp.keyH.selectIp = false;
     }
 
@@ -223,7 +221,6 @@ public class HackingUI {
                 g2.drawString("." + ip[i], x, 125);
             else
                 g2.drawString(" " + ip[i], x, 125);
-
 
             g2.setColor(Color.RED);
 

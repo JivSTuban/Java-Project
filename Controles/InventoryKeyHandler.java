@@ -35,7 +35,9 @@ public class InventoryKeyHandler {
                 if (gp.player.inventory.get(gp.ui.getItemIndexOnSlot()).name.equals("accessCard")){
                     (gp.player.inventory.get(gp.player.searchInventoryIndex("accessCard")).quantity)--;
                     gp.keyH.doorOpen = true;
+                    gp.keyH.openInventory = false;
                     gp.gameState = gp.playState;
+
                 }
                 if (gp.player.inventory.get(gp.ui.getItemIndexOnSlot()).name.equals("hackingDevice")){
                     gp.gameState = gp.hackingState;

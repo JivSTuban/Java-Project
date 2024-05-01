@@ -1,15 +1,19 @@
-import GUI.GamePanel;
+package LoginRegister;
+
 import Users.User;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.sql.*;
 
 public class RegistrationForm extends JDialog {
     public User user;
+    LoginForm loginForm;
     private JTextField tfname;
     private JButton cancelButton;
     private JButton registerButton;
@@ -48,23 +52,25 @@ public class RegistrationForm extends JDialog {
         setMinimumSize(new Dimension(600, 400));
         setModal(true);
         setLocationRelativeTo(parent);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                System.exit(0); // Exit the program
+            }
+        });
 
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 registerUser();
+                dispose();
             }
         });
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                try {
-                    LoginForm loginForm = new LoginForm(null);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
             }
         });
         setVisible(true);
@@ -94,11 +100,6 @@ public class RegistrationForm extends JDialog {
         user = addUserToDatabase(username, password);
         if (user != null) {
             dispose();
-            try {
-                LoginForm loginForm = new LoginForm(null);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
         } else {
             JOptionPane.showMessageDialog(this, "Failed to register new user.", "Try again", JOptionPane.ERROR_MESSAGE);
         }
@@ -107,7 +108,7 @@ public class RegistrationForm extends JDialog {
     private User addUserToDatabase(String username, String password) {
         User user = null;
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/mitsurealmdb?serverTimezone=UTC", "root", "");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/mitsu_realm?serverTimezone=UTC", "root", "");
             String insertUser = "INSERT INTO users (Username, Password) " + "VALUES (?, ?)";
             PreparedStatement preparedStatement = conn.prepareStatement(insertUser);
             preparedStatement.setString(1, username);

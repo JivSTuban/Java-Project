@@ -6,6 +6,7 @@ import Entities.Entity;
 import Entities.Items.SuperItem;
 import Entities.NPC_Drone;
 import Entities.Player;
+import LoginRegister.LoginForm;
 import Sound.Sound;
 import Tile.Versus.BackgroundTM;
 import Tile.Versus.DesignTM;
@@ -17,13 +18,15 @@ import Users.User;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
 
 public class GamePanel extends JPanel implements Runnable {
-
+    private boolean isDead = false;
 
     final int originalTileSize = 16;
     final int scale = 5;
@@ -46,7 +49,7 @@ public class GamePanel extends JPanel implements Runnable {
     Cooldown footStepCd = new Cooldown(1200);
     Cooldown footRemoveCd = new Cooldown(1000);
     //Main Map
-    User user = new User();
+    User user;
 
 
 
@@ -65,12 +68,12 @@ public class GamePanel extends JPanel implements Runnable {
     public AssetSetter aSetter = new AssetSetter(this);
     public SuperItem superItem = new SuperItem();
     Random rand = new Random();
-
+    LoginForm loginForm;
 
     //Sound
     Sound sound = new Sound();
 
-    public Player player = new Player(this, keyH);
+    public Player player;
     public UI ui = new UI(this);
 
     public VersusScreen vsScreen  = new VersusScreen(this);
@@ -91,26 +94,33 @@ public class GamePanel extends JPanel implements Runnable {
     public SuperItem[] footStep = new SuperItem[99];
 
 
-     /*-----------------------------------------------------------------------------------------------------------------------
+    /*-----------------------------------------------------------------------------------------------------------------------
                                                       Versus Screen
      -----------------------------------------------------------------------------------------------------------------------*/
     public Cooldown turnTimer = new Cooldown(6000);
     public Cooldown npcAttackCD = new Cooldown( 6100);
 
 
-    public GamePanel() {
+    public GamePanel(User user) throws SQLException, IOException {
+        this.user = user;
+        loginForm = new LoginForm(user, "");
+        player = new Player(this, keyH, user,loginForm);
+        LoginForm loginForm = new LoginForm(user, "");
+        loginForm.addItemsToPlayer(player);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
     }
+    public void addItemInventoryFromDB(){}
 
-    public void setupGame() {
-        aSetter.setItem();
+
+    public void setupGame(LoginForm loginForm) throws SQLException {
+        aSetter.setItem(loginForm);
         aSetter.setNPC();
-        gameState = playState;
-          //playMusic(0);
+
+        //playMusic(0);
         // playSE(1);
 
     }
@@ -127,9 +137,14 @@ public class GamePanel extends JPanel implements Runnable {
 
         double nextDrawTime = System.nanoTime() + drawInterval;
 
-        while (gameThread != null) {
+        while (gameThread != null ) {
 
-            update(keyH);
+           try{
+               update(keyH);
+               loginForm.updateLocationToDB(String.valueOf(Math.round((((float) player.worldX / (this.tileSize))))), String.valueOf(Math.round((float) (player.worldY+20.5 )/ (this.tileSize))));
+           }catch (SQLException e){
+               e.printStackTrace();
+           }
 
             repaint();
 
@@ -146,70 +161,20 @@ public class GamePanel extends JPanel implements Runnable {
             }
 
         }
+
     }
 
-    public void update(KeyHandler keyH) {
+    public void update(KeyHandler keyH) throws SQLException {
+
+
         player.update(keyH);
-//       if(!ui.startUp){
-//           if(!ui.hacking.cdToHack.isOnCooldown()){
-//               ui.hackFailed = true;
-//
-//           }
-//       }
-        if(footStepOn && !toxinOn) {
-            aSetter.setToxin(Math.round((((float) player.worldX / (this.tileSize)))), Math.round((float) (player.worldY+20.5 )/ (this.tileSize)));
-
-        }
-        if (!footStepCd.isOnCooldown()) {
-            footStepOn = false;
-            footRemoveCd.trigger();
-
-                for(int i = 0; i<99;i++){
-                    footStep[i] = null;
-
-            }
-
-        }
-
-        //System.out.println(footStepCd.timeRemaining());
-      //  System.out.println("Player at x:"+player.worldX+"\nPlayer at y"+player.worldY);
-        if(player.NPCCollision != 999 ){
-            if(gameState == versusScreen){
-                if(turnTimer.isOnCooldown() && !(npcAttackCD.isOnCooldown() )){
-                    if(npc[player.NPCCollision].getNpcHp() > 1){
-                        player.setPlayerHP(player.getPlayerHP() - npc[player.NPCCollision].getNpcDamage());
-                        npcAttackCD.trigger();
-                        System.out.println("Damage taken: " + player.getPlayerHP());
-                    }
-                }
-                if(npc[player.NPCCollision].getNpcHp() < 1){
-                    player.setGold(player.getGold() +  goldDrop(npc[player.NPCCollision].NPC_name));
-                    npc[player.NPCCollision]= null;
-                    gameState = playState;
-                }
-                if(gameState == playState){
-                    player.update(keyH);
-                }
-                if (gameState == pauseState){
-                    //
-                }
-            }
-
-        }
-
-        if (this.toxinOn) {//check for toxin collision
-            if (!dps.isOnCooldown()) {//add timer to the damage make it damage per second
-                dps.trigger();//trigger the dps
-                player.playerHP--;//minus 1 hp for hero if step on the toxin
-                System.out.println(player.playerHP);
-               footStepCd.trigger();
-               footStepOn = true;
-
-
-            }
-        }
-        if (player.playerHP < 0)
+        footStepSettings();
+        versusMethod();
+        if (player.playerHP < 0){
             player.playerHP = 0;
+            isDead = true;
+        }
+
         for (Entity entity : npc) {
             if (entity != null) {
                 entity.update();
@@ -228,8 +193,10 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState != versusScreen) {
             mainMap(g2);
         }
-        if(gameState == versusScreen){
-             vsScreen.draw(g2);
+        else if(gameState == versusScreen){
+            if(keyH.isfight){
+                vsScreen.draw(g2);
+            }
         }
 
 
@@ -248,11 +215,8 @@ public class GamePanel extends JPanel implements Runnable {
     private void mainMap(Graphics2D g2){
 
         //the main screen
-
         tileManager.draw(g2);
         collisionTileManger.draw(g2);
-
-
         //Item
         for (SuperItem superItem : objItem) {
             if (superItem != null) {
@@ -275,10 +239,6 @@ public class GamePanel extends JPanel implements Runnable {
             }
         }
         ui.draw(g2);
-
-
-
-
         g2.dispose();
     }
 
@@ -301,5 +261,57 @@ public class GamePanel extends JPanel implements Runnable {
             return rand.nextDouble(100,150);
         return 0;
     }
+
+    /* ---------------------------------------------------------------------------------------------------------------------------
+                                                            FootStep Settings
+     ---------------------------------------------------------------------------------------------------------------------------*/
+        private void footStepSettings(){
+            if (this.toxinOn) {//check for toxin collision
+                if (!dps.isOnCooldown()) {//add timer to the damage make it damage per second
+                    dps.trigger();//trigger the dps
+                    player.playerHP--;//minus 1 hp for hero if step on the toxin
+                    System.out.println(player.playerHP);
+                    footStepCd.trigger();
+                    footStepOn = true;
+                }
+            }
+
+            if(footStepOn && !toxinOn) {
+                aSetter.setToxin(Math.round((((float) player.worldX / (this.tileSize)))), Math.round((float) (player.worldY+20.5 )/ (this.tileSize)));
+            }
+            if (!footStepCd.isOnCooldown()) {
+                footStepOn = false;
+                footRemoveCd.trigger();
+
+                for(int i = 0; i<99;i++){
+                    footStep[i] = null;
+                }
+            }
+        }
+    /* ---------------------------------------------------------------------------------------------------------------------------
+                                                       Versus Settings
+    ---------------------------------------------------------------------------------------------------------------------------*/
+        private void versusMethod(){
+            if(player.NPCCollision != 999 ){
+                if(gameState == versusScreen){
+                    if(turnTimer.isOnCooldown() && !(npcAttackCD.isOnCooldown() )){
+                        if(npc[player.NPCCollision].getNpcHp() > 1){
+                            player.setPlayerHP(player.getPlayerHP() - npc[player.NPCCollision].getNpcDamage());
+                            npcAttackCD.trigger();
+                            System.out.println("Damage taken: " + player.getPlayerHP());
+                        }
+                    }
+                    if(npc[player.NPCCollision].getNpcHp() < 1){
+                        keyH.isfight = false;
+                        player.setGold(player.getGold() +  goldDrop(npc[player.NPCCollision].NPC_name));
+                        gameState = playState;
+                    }
+
+//
+                }
+
+            }
+        }
+
 
 }

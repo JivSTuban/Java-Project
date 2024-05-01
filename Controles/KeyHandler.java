@@ -17,6 +17,7 @@ public class KeyHandler implements KeyListener {
     InventoryKeyHandler invHandler = new InventoryKeyHandler();
     VersusHandler verHandler = new VersusHandler();
     public boolean doorOpen = false;
+    public boolean isfight = false;
 
     //UseItem
 
@@ -102,7 +103,13 @@ public class KeyHandler implements KeyListener {
                 } else if (str.equals("giveboots")) {
                     giveBoots = true;
                     valid = true;
-                } else if (str.equals("givesalve")) {
+                } else if (str.equals("goto")) {
+                    int y = sc.nextInt();
+                    int x = sc.nextInt();
+                  gp.player.worldY = y;
+                  gp.player.worldX = x;
+                    valid = true;
+                }else if (str.equals("givesalve")) {
                     if (!gp.player.searchInventory("salve")) {
                         gp.player.inventory.add(new ItemSalve());
                     }
@@ -229,16 +236,20 @@ public class KeyHandler implements KeyListener {
            /*-------------------------------------------------------------------------------------------------------------
                                                   Versus Screen
          -------------------------------------------------------------------------------------------------------------*/
-        if((code == KeyEvent.VK_Z && gp.gameState == gp.versusScreen) || zPressed) {
-            zPressed = true;
-            verHandler.versusKeys(gp, code);
-        }
-        if (code == KeyEvent.VK_X && gp.gameState == gp.versusScreen) {
-            gp.gameState = gp.playState;
-            zPressed = false;
+//        if(gp.gameState == gp.versusScreen){
+//            verHandler.versusKeys(gp, code);
+//        }
+        if(gp.gameState == gp.versusScreen){
+            if((code == KeyEvent.VK_Z  || isfight)) {
+                isfight = true;
+                verHandler.versusKeys(gp, code);
+            }
+            if (code == KeyEvent.VK_X ) {
+                gp.gameState = gp.playState;
+                isfight = false;
 
+            }
         }
-
 
     }
 

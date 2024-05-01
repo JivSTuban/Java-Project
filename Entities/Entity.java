@@ -18,6 +18,7 @@ public class Entity {
     public int worldX, worldY;
     public boolean collision = false;
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
+    public BufferedImage redup1, redup2, reddown1, reddown2, redleft1, redleft2, redright1, redright2;
     public String direction;
     public int spriteCount = 0;
     public int spriteNum = 1;
@@ -73,7 +74,7 @@ public class Entity {
         collisionOn = false;
 
         gp.collisionChecker.checkTile(this, false);
-        if (!collisionOn){
+        if (!collisionOn ){
             switch (direction){
                 case"up":
                     worldY -= getSpeed();
@@ -165,118 +166,120 @@ public class Entity {
 
     public void setAction(String npc){
         actionCounter++;
-        if(npc.equals("drone")) {
+       if(!gp.player.collision) {
+           if(npc.equals("drone")) {
 
-            if (actionCounter == 120) {
-                Random random = new Random();
-                int i = random.nextInt(2) + 1;
+               if (actionCounter == 120) {
+                   Random random = new Random();
+                   int i = random.nextInt(2) + 1;
 
-                if (i == 1) {
-                    holder++;
-                    if (holder == 4)
-                        direction = "down";
-                    else
-                        direction = "up";
-                }
-                if (i == 2) {
-                    direction = "down";
-                    holder = 0;
-                }
+                   if (i == 1) {
+                       holder++;
+                       if (holder == 4)
+                           direction = "down";
+                       else
+                           direction = "up";
+                   }
+                   if (i == 2) {
+                       direction = "down";
+                       holder = 0;
+                   }
 
-                actionCounter = 0;
+                   actionCounter = 0;
 
-            }
-        }
-        else {
-            if (actionCounter == 120) {
-                Random random = new Random();
-                int i = random.nextInt(4) + 1;
+               }
+           }
+           else {
+               if (actionCounter == 120) {
+                   Random random = new Random();
+                   int i = random.nextInt(4) + 1;
 
-                if (i == 1) {
-                    holder++;
-                    if (holder == 4)
-                        direction = "down";
-                    else
-                        direction = "up";
+                   if (i == 1) {
+                       holder++;
+                       if (holder == 4)
+                           direction = "down";
+                       else
+                           direction = "up";
 
-                }
-                if (i == 2) {
-                    direction = "down";
-                    holder = 0;
-                }
-                if (i == 3) {
-                    holder++;
-                    if (holder == 4)
-                        direction = "right";
-                    else
-                        direction = "up";
+                   }
+                   if (i == 2) {
+                       direction = "down";
+                       holder = 0;
+                   }
+                   if (i == 3) {
+                       holder++;
+                       if (holder == 4)
+                           direction = "right";
+                       else
+                           direction = "up";
 
-                }
-                if (i == 4) {
-                    direction = "left";
-                    holder = 0;
-                }
+                   }
+                   if (i == 4) {
+                       direction = "left";
+                       holder = 0;
+                   }
 
-                actionCounter = 0;
+                   actionCounter = 0;
 
-            }
-            actionCounter++;
-            if(npc.equals("console")) {
+               }
+               actionCounter++;
+               if(npc.equals("console")) {
 
-                if (actionCounter == 120) {
-                    Random random = new Random();
-                    int i = random.nextInt(2) + 1;
+                   if (actionCounter == 120) {
+                       Random random = new Random();
+                       int i = random.nextInt(2) + 1;
 
-                    if (i == 1) {
-                        holder++;
-                        if (holder == 4)
-                            direction = "down";
-                        else
-                            direction = "up";
-                    }
-                    if (i == 2) {
-                        direction = "down";
-                        holder = 0;
-                    }
+                       if (i == 1) {
+                           holder++;
+                           if (holder == 4)
+                               direction = "down";
+                           else
+                               direction = "up";
+                       }
+                       if (i == 2) {
+                           direction = "down";
+                           holder = 0;
+                       }
 
-                    actionCounter = 0;
+                       actionCounter = 0;
 
-                }
-            }
-            else {
-                if (actionCounter == 120) {
-                    Random random = new Random();
-                    int i = random.nextInt(4) + 1;
+                   }
+               }
+               else {
+                   if (actionCounter == 120) {
+                       Random random = new Random();
+                       int i = random.nextInt(4) + 1;
 
-                    if (i == 1) {
-                        holder++;
-                        if (holder == 4)
-                            direction = "down";
-                        else
-                            direction = "up";
+                       if (i == 1) {
+                           holder++;
+                           if (holder == 4)
+                               direction = "down";
+                           else
+                               direction = "up";
 
-                    }
-                    if (i == 2) {
-                        direction = "down";
-                        holder = 0;
-                    }
-                    if (i == 3) {
-                        holder++;
-                        if (holder == 4)
-                            direction = "down";
-                        else
-                            direction = "up";
+                       }
+                       if (i == 2) {
+                           direction = "down";
+                           holder = 0;
+                       }
+                       if (i == 3) {
+                           holder++;
+                           if (holder == 4)
+                               direction = "down";
+                           else
+                               direction = "up";
 
-                    }
-                    if (i == 4) {
-                        direction = "up";
-                        holder = 0;
-                    }
+                       }
+                       if (i == 4) {
+                           direction = "up";
+                           holder = 0;
+                       }
 
-                    actionCounter = 0;
+                       actionCounter = 0;
 
-                }
-        }
+                   }
+               }
+       }
 
     }
 
