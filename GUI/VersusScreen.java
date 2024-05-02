@@ -29,6 +29,7 @@ public class VersusScreen {
 
     public void draw(Graphics2D g2){
         this.g2 = g2;
+        int enemyIndex = gp.player.NPCCollision;
         if(gp.keyH.isfight) {
             battleFieldBG =  setup("/res/versus/versusBg");
             g2.drawImage(battleFieldBG, 0, -40, 1920,1080,null);
@@ -43,7 +44,7 @@ public class VersusScreen {
             drawPlayerHpBar(gp.player.getPlayerHP(),118,115);
             playerHPHUD =  setup("/res/versus/vsHPBarPlayer");
             g2.drawImage(playerHPHUD, 160, 55, 400,170,null);
-            float temp = 100-((float)gp.npc[gp.player.NPCCollision].getNpcHp() / (float)gp.npc[gp.player.NPCCollision].maxHP)*100;
+            float temp = 100-((float)gp.npc[enemyIndex].getNpcHp() / (float)gp.npc[enemyIndex].maxHP)*100;
             int width = 230 - (int)(230 * (temp / 100));
             drawNPCHpBar(width,1287+(230-width),190);
             EnemyHPHUD =  setup("/res/versus/vsHPBarEnemy");
@@ -52,10 +53,10 @@ public class VersusScreen {
             Font font = new Font("Arial", Font.PLAIN, 20);
             g2.setFont(font);
             g2.setColor(Color.WHITE);
-            g2.drawString(gp.npc[gp.player.NPCCollision].NPC_VSname, 600, 93);
+            g2.drawString(gp.npc[enemyIndex].NPC_VSname, 600, 93);
             drawSkillSection();
-            if(gp.npc[gp.player.NPCCollision].getNpcHp() <1)
-                gp.npc[gp.player.NPCCollision] = null;
+            if(gp.npc[enemyIndex].getNpcHp() <1)
+                gp.npc[enemyIndex] = null;
 
         }
     }
@@ -127,8 +128,6 @@ public class VersusScreen {
         }
         textY += 32;
         g2.drawString("[Enter] Use",textX,textY);
-
-
 
     }
     void drawPlayerHpBar(int hp,int x, int y){

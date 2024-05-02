@@ -29,12 +29,16 @@ public class VersusHandler {
            if(!gp.turnTimer.isOnCooldown()){
 
                if (code == KeyEvent.VK_ENTER ) {
-                   gp.npc[gp.player.NPCCollision].setNpcHp(gp.npc[gp.player.NPCCollision].getNpcHp() -
-                           gp.player.skills.get(gp.vsScreen.getSkillIndexOnSlot()).getSkillDamage()); //return player damage
-                   System.out.println("Skill Damage =  "+gp.player.skills.get(gp.vsScreen.getSkillIndexOnSlot()).getSkillDamage());
-                   System.out.println("Skill name: "+ gp.player.skills.get(gp.vsScreen.getSkillIndexOnSlot()).skillName);
-                   System.out.println("Drone "+gp.player.NPCCollision+" Hp: " +gp.npc[gp.player.NPCCollision].getNpcHp());
-                   gp.turnTimer.trigger();
+                   if(gp.player.mana >= gp.player.skills.get(gp.vsScreen.getSkillIndexOnSlot()).getManaCost()){ //check if mana is enough
+                       gp.player.mana -= gp.player.skills.get(gp.vsScreen.getSkillIndexOnSlot()).getManaCost();
+                       gp.npc[gp.player.NPCCollision].setNpcHp(gp.npc[gp.player.NPCCollision].getNpcHp() -
+                               gp.player.skills.get(gp.vsScreen.getSkillIndexOnSlot()).getSkillDamage()); //return player damage
+                       System.out.println("Skill Damage =  "+gp.player.skills.get(gp.vsScreen.getSkillIndexOnSlot()).getSkillDamage());
+                       System.out.println("Skill name: "+ gp.player.skills.get(gp.vsScreen.getSkillIndexOnSlot()).skillName);
+                       System.out.println( gp.npc[gp.player.NPCCollision].NPC_VSname+" "+gp.player.NPCCollision+" Hp: " +gp.npc[gp.player.NPCCollision].getNpcHp());
+                       gp.turnTimer.trigger();
+                   }
+
                }
            }
         }

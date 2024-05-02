@@ -8,7 +8,7 @@ public class Skill4 extends PlayerSkills{
         this.gp = gp;
         setSkillDamage(40);
         skillName = "Wabalo";
-        manaCost = 10;
+        manaCost = 15;
 
         description = "this is skill 4 \nDamage:"+getSkillDamage()+"\nMana cost: "+manaCost;
 

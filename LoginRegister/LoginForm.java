@@ -113,11 +113,11 @@ public class LoginForm extends JDialog {
         preparedStatement.close();
     }
 
-    public int lastX() throws SQLException {
+    public int lastX(User user) throws SQLException {
         int x = 0;
         query = "SELECT `WorldX` FROM `users` WHERE username = ?";
         preparedStatement = conn.prepareStatement(query);
-        preparedStatement.setString(1,playerUser.username);
+        preparedStatement.setString(1,user.username);
 
         ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -130,28 +130,22 @@ public class LoginForm extends JDialog {
 
         return x;
     }
-    public int lastY() throws SQLException {
+    public int lastY(User user) throws SQLException {
         int y = 0;
 
-        query = "SELECT `WorldX` FROM `users` WHERE username = ?";
+        query = "SELECT `WorldY` FROM `users` WHERE username = ?";
         preparedStatement = conn.prepareStatement(query);
-        preparedStatement.setString(1, playerUser.username);
+        preparedStatement.setString(1, user.username);
         ResultSet resultSet = preparedStatement.executeQuery();
 
         if (resultSet.next()) { // Move to the first row of the result set
             y = resultSet.getInt("WorldY"); // Get the value of WorldX column
         }
-
         resultSet.close();
         preparedStatement.close();
 
         return y;
     }
-
-
-
-
-
 
     private String loginUser() throws SQLException, IOException {
         String username = tfname.getText();
@@ -161,7 +155,6 @@ public class LoginForm extends JDialog {
             JOptionPane.showMessageDialog(this, "Username and password are required.", "Try again", JOptionPane.ERROR_MESSAGE);
             return "";
         }
-
         user = getUserFromDatabase(username, password);
         if (user != null) {
             JOptionPane.showMessageDialog(this, "Login successful.", "Success", JOptionPane.INFORMATION_MESSAGE);

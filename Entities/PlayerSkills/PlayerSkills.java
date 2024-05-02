@@ -17,10 +17,8 @@ public class PlayerSkills {
         return skillDamage;
     }
 
-    public void setSkillDamage(int skillDamage) {
-        this.skillDamage = skillDamage;
-    }
+    public int getManaCost() {return manaCost;}
 
-
+    public void setSkillDamage(int skillDamage) {this.skillDamage = skillDamage;}
 
 }

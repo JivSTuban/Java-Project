@@ -48,7 +48,8 @@ public class Player extends Entity {
     public int maxHP = 100;
     public int playerHP = maxHP;
     public int level = 1;
-    public int mana = 100;
+    public int maxMana = 100;
+    public int mana = maxMana;
     public int exp = 0;
     public int getPlayerHP() {
         return playerHP;
@@ -99,14 +100,14 @@ public class Player extends Entity {
 
     }
     public void setDefault(){
-        worldX = GP.tileSize * 3;//kilid
-        worldY = GP.tileSize * 74;//ibabaw
-//        try{
-//            worldX = GP.tileSize * loginForm.lastX();
-//            worldY = GP.tileSize * loginForm.lastY();
-//        }catch (SQLException e){
-//            e.printStackTrace();
-//        }
+//        worldX = GP.tileSize * 3;//kilid
+//        worldY = GP.tileSize * 74;//ibabaw
+        try{
+            worldX = GP.tileSize * loginForm.lastX(user);
+            worldY = GP.tileSize * loginForm.lastY(user);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
 
 
         setSpeed(4);

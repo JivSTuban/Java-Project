@@ -7,8 +7,8 @@ public class Skill2 extends PlayerSkills{
     public Skill2(GamePanel gp) {
         this.gp = gp;
         setSkillDamage(20);
-        skillName = "Toya";
-        manaCost = 10;
+        skillName = "IP Man punch";
+        manaCost = 30;
 
         description = "this is skill 2 \nDamage:"+getSkillDamage()+"\nMana cost: "+manaCost;
 

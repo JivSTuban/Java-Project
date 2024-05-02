@@ -6,9 +6,46 @@
   <component name="ChangeListManager">
     <list default="true" id="bb09f887-d28d-4ee8-8d2c-f69bb00afeef" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controles/VersusHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controles/VersusHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/PlayerSkills/PlayerSkills.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/PlayerSkills/PlayerSkills.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/PlayerSkills/PlayerSkills.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/PlayerSkills/Skill1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/PlayerSkills/Skill1.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/PlayerSkills/Skill1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/PlayerSkills/Skill2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/PlayerSkills/Skill2.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/PlayerSkills/Skill2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/PlayerSkills/Skill3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/PlayerSkills/Skill3.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/PlayerSkills/Skill3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/PlayerSkills/Skill4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/PlayerSkills/Skill4.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/PlayerSkills/Skill4.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/VersusScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/VersusScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoginRegister/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoginRegister/LoginForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/VersusHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/VersusHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_Drone.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_Drone.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/PlayerSkills/PlayerSkills.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/PlayerSkills/PlayerSkills.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/PlayerSkills/Skill1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/PlayerSkills/Skill1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/PlayerSkills/Skill2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/PlayerSkills/Skill2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/PlayerSkills/Skill3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/PlayerSkills/Skill3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/PlayerSkills/Skill4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/PlayerSkills/Skill4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/VersusScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/VersusScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/PlayerImage/walkDown1.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/PlayerImage/walkDown1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/PlayerImage/walkDown2.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/PlayerImage/walkDown2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/PlayerImage/walkForward1.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/PlayerImage/walkForward1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/PlayerImage/walkForward2.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/PlayerImage/walkForward2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/PlayerImage/walkLeft1.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/PlayerImage/walkLeft1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/PlayerImage/walkLeft2.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/PlayerImage/walkLeft2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/PlayerImage/walkRight1.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/PlayerImage/walkRight1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/PlayerImage/walkRight2.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/PlayerImage/walkRight2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/PlayerImage/walkDown1.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/PlayerImage/walkDown1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/PlayerImage/walkDown2.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/PlayerImage/walkDown2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/PlayerImage/walkForward1.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/PlayerImage/walkForward1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/PlayerImage/walkForward2.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/PlayerImage/walkForward2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/PlayerImage/walkLeft1.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/PlayerImage/walkLeft1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/PlayerImage/walkLeft2.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/PlayerImage/walkLeft2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/PlayerImage/walkRight1.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/PlayerImage/walkRight1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/PlayerImage/walkRight2.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/PlayerImage/walkRight2.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +104,7 @@
       <recent name="C:\Users\STING\Desktop\Mitsu-Realm\res\versus" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\STING\Desktop\Mitsu-Realm\res\PlayerImage" />
       <recent name="C:\Users\STING\Desktop\Mitsu-Realm\res\versus" />
     </key>
   </component>
