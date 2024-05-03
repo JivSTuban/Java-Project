@@ -5,30 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bb09f887-d28d-4ee8-8d2c-f69bb00afeef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LoginRegister/Starter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logger.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoginRegister/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoginRegister/LoginForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoginRegister/RegistrationForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoginRegister/RegistrationForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/MainGameSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/MainGameSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoginRegister/Starter.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoginRegister/Starter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/GamePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Logger.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginForm$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginForm$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginForm.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/RegistrationForm$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/RegistrationForm$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/RegistrationForm.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
