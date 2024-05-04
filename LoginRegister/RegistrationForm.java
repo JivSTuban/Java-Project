@@ -23,6 +23,7 @@ public class RegistrationForm extends JDialog {
     private JPanel RegisterPanel;
     private JPasswordField pfpass;
     private JPasswordField pfconpass;
+    boolean triedLogin = false, cancelled = false;
 
     public User getUsernameFromDatabase(String username) {
         User user = null;
@@ -44,7 +45,9 @@ public class RegistrationForm extends JDialog {
         }
         return user;
     }
+    public RegistrationForm(){
 
+    }
     public RegistrationForm(JFrame parent) throws IOException {
         super(parent);
         setTitle("Mitsu Realm");
@@ -63,20 +66,25 @@ public class RegistrationForm extends JDialog {
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                registerUser();
+
+                User user = registerUser();
+                if (user == null){
+                    triedLogin = true;
+                }
                 dispose();
             }
         });
         cancelButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                cancelled = true;
                 dispose();
             }
         });
         setVisible(true);
     }
 
-    private void registerUser() {
+    private User registerUser() {
         String username = tfname.getText();
         String password = new String(pfpass.getPassword()); // Get password from JPasswordField
         String confirmPassword = new String(pfconpass.getPassword()); // Get password from JPasswordField
@@ -84,24 +92,26 @@ public class RegistrationForm extends JDialog {
 
         if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             JOptionPane.showMessageDialog(this, "All fields are required.", "Try again", JOptionPane.ERROR_MESSAGE);
-            return;
+            return null;
         }
 
         if (sameUsername != null) {
             JOptionPane.showMessageDialog(this, "Username is already taken.", "Try again", JOptionPane.ERROR_MESSAGE);
-            return;
+            return null;
         }
 
         if (!password.equals(confirmPassword)) {
             JOptionPane.showMessageDialog(this, "Passwords do not match.", "Try again", JOptionPane.ERROR_MESSAGE);
-            return;
+            return null;
         }
 
         user = addUserToDatabase(username, password);
         if (user != null) {
             dispose();
+            return user;
         } else {
             JOptionPane.showMessageDialog(this, "Failed to register new user.", "Try again", JOptionPane.ERROR_MESSAGE);
+            return null;
         }
     }
 

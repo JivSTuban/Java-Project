@@ -4,6 +4,7 @@ package LoginRegister;
 import Entities.Player;
 
 import Users.User;
+import com.sun.tools.javac.Main;
 
 
 import javax.swing.*;
@@ -14,6 +15,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.sql.*;
+import java.util.logging.Logger;
 
 
 public class LoginForm extends JDialog {
@@ -29,6 +31,7 @@ public class LoginForm extends JDialog {
     private JButton registerbtn;
     public User user;
     User userFilled;
+    boolean triedLogin = false, rbtnc = false;
 
     public User playerUser;
     private String username;
@@ -42,6 +45,7 @@ public class LoginForm extends JDialog {
         setMinimumSize(new Dimension(600, 400));
         setModal(true);
         setLocationRelativeTo(parent);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -52,8 +56,12 @@ public class LoginForm extends JDialog {
         loginbtn.addActionListener(e -> {
 
             try {
-                loginUser();
+
+                User user = loginUser();
+                triedLogin = user == null;
                 dispose();
+
+
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             } catch (IOException ex) {
@@ -66,6 +74,7 @@ public class LoginForm extends JDialog {
         registerbtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                rbtnc = true;
                 dispose();
 
             }
@@ -147,13 +156,13 @@ public class LoginForm extends JDialog {
         return y;
     }
 
-    private String loginUser() throws SQLException, IOException {
+    private User loginUser() throws SQLException, IOException {
         String username = tfname.getText();
         String password = pfpass.getText();
 
         if (username.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Username and password are required.", "Try again", JOptionPane.ERROR_MESSAGE);
-            return "";
+            return null;
         }
         user = getUserFromDatabase(username, password);
         if (user != null) {
@@ -161,11 +170,11 @@ public class LoginForm extends JDialog {
             dispose(); // Close the login form
 
             System.out.println(user.username);
-
+            return user;
         } else {
             JOptionPane.showMessageDialog(this, "Invalid username or password.", "Try again", JOptionPane.ERROR_MESSAGE);
         }
-        return username;
+        return null;
     }
 
     public User getUserFromDatabase(String username, String password) throws SQLException {

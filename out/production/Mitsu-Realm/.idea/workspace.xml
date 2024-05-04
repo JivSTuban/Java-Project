@@ -14,6 +14,7 @@
       <change afterPath="$PROJECT_DIR$/res/npc/Veemax/sprite_Veemax3.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/res/npc/Veemax/sprite_Veemax4.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/res/npc/Veemax/sprite_Veemax5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LoginRegister/Starter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controles/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controles/KeyHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controles/VersusHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controles/VersusHandler.java" afterDir="false" />
@@ -28,6 +29,11 @@
       <change beforePath="$PROJECT_DIR$/GUI/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/GamePanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/VersusScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/VersusScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoginRegister/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoginRegister/LoginForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logger.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoginRegister/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoginRegister/LoginForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoginRegister/RegistrationForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoginRegister/RegistrationForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/KeyHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/KeyHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/VersusHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/VersusHandler.class" afterDir="false" />
@@ -42,6 +48,22 @@
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/GamePanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/VersusScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/VersusScreen.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/GamePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Logger.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginForm$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginForm$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginForm.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/RegistrationForm$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/RegistrationForm$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/RegistrationForm.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +107,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Coding/Mitsu-Realm&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/user/IdeaProjects/mitsu/Mitsu-Realm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
@@ -103,6 +125,7 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\STING\Desktop\Mitsu-Realm\res\NPCOptimusKhai" />
       <recent name="C:\Users\STING\Desktop\Mitsu-Realm\res\npc\Veemax" />
+      <recent name="C:\Users\STING\Desktop\Mitsu-Realm\res\PlayerImage" />
       <recent name="C:\Users\STING\Desktop\Mitsu-Realm\res\PlayerImage" />
       <recent name="C:\Users\STING\Desktop\Mitsu-Realm\res\versus" />
     </key>

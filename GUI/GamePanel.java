@@ -19,6 +19,8 @@ import Users.User;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -117,17 +119,17 @@ public class GamePanel extends JPanel implements Runnable {
         this.addKeyListener(keyH);
         this.setFocusable(true);
     }
-    public void addItemInventoryFromDB(){}
 
 
     public void setupGame(LoginForm loginForm) throws SQLException {
         aSetter.setItem(loginForm);
         aSetter.setNPC();
 
-        //playMusic(0);
+         //playMusic(0);
         // playSE(1);
 
     }
+
 
     public void startGameThread() {
         gameThread = new Thread(this);

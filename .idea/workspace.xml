@@ -5,43 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bb09f887-d28d-4ee8-8d2c-f69bb00afeef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Entities/NPC_OptimusKhai.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Entities/NPC_Veemax.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/npc/NPCOptimusKhai/sprite_ok8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/npc/Veemax/sprite_Veemax0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/npc/Veemax/sprite_Veemax1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/npc/Veemax/sprite_Veemax2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/npc/Veemax/sprite_Veemax3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/npc/Veemax/sprite_Veemax4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/npc/Veemax/sprite_Veemax5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LoginRegister/Starter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/Starter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controles/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controles/KeyHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controles/VersusHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controles/VersusHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/NPC_Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/NPC_Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/NPC_Drone.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/NPC_Drone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/PlayerSkills/PlayerSkills.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/PlayerSkills/PlayerSkills.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/PlayerSkills/Skill3.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/PlayerSkills/Skill3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/PlayerSkills/Skill4.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/PlayerSkills/Skill4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/AssetSetter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/VersusScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/VersusScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/MainGameSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/MainGameSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logger.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/LoginRegister/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoginRegister/LoginForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoginRegister/RegistrationForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoginRegister/RegistrationForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/KeyHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/KeyHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/VersusHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/VersusHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Entity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_Console.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_Console.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_Drone.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_Drone.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/PlayerSkills/PlayerSkills.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/PlayerSkills/PlayerSkills.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/PlayerSkills/Skill3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/PlayerSkills/Skill3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/PlayerSkills/Skill4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/PlayerSkills/Skill4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/AssetSetter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/AssetSetter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/GamePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/VersusScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/VersusScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/MainGameSettings.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/MainGameSettings.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Logger.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginForm$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginForm$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginForm.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/RegistrationForm$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/RegistrationForm$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/RegistrationForm.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,19 +68,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Coding/Mitsu-Realm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Merging main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/user/IdeaProjects/mitsu/Mitsu-Realm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\STING\Desktop\Mitsu-Realm\LoginRegister" />
