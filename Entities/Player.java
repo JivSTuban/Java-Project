@@ -29,6 +29,7 @@ public class Player extends Entity {
     public ArrayList<PlayerSkills> skills = new ArrayList<>();
     public final int invetntorySize = 20;
     public int NPCCollision ;
+    public int accessCardDropCount =0;
 
 
 
@@ -78,7 +79,7 @@ public class Player extends Entity {
                                             Constructor
      -----------------------------------------------------------------------------------------------*/
 
-    public Player(GamePanel GP, KeyHandler KH, User user,LoginForm loginForm) {
+    public Player(GamePanel GP, KeyHandler KH, User user,LoginForm loginForm) throws SQLException {
         super(GP);
         this.loginForm = loginForm;
         this.GP = GP;
@@ -99,7 +100,7 @@ public class Player extends Entity {
         skills.add(skill4);
 
     }
-    public void setDefault(){
+    public void setDefault() throws SQLException {
 //        worldX = GP.tileSize * 3;//kilid
 //        worldY = GP.tileSize * 74;//ibabaw
         try{
@@ -108,6 +109,7 @@ public class Player extends Entity {
         }catch (SQLException e){
             e.printStackTrace();
         }
+        setGold(loginForm.lastMoney(user));
 
 
         setSpeed(4);
@@ -138,80 +140,84 @@ public class Player extends Entity {
         // updateSkills();
 
         developerSettings(keyH);
-
-        if(keyH.wPressed || keyH.aPressed || keyH.sPressed || keyH.dPressed || keyH.shiftPressed){
-            if(keyH.wPressed){
-                direction = "up";
-            }
-            else if(keyH.aPressed){
-                direction = "left";
-            }
-
-            else if(keyH.sPressed){
-                direction = "down";
-            }
-
-            else if(keyH.dPressed){
-                direction = "right";
-            }
-
-            if(gotBoots){
-                if(keyH.shiftPressed){
-                    setSpeed(7);
+//        if(keyH.pPressed)
+//            gp.gameState = gp.pauseState;
+//
+//        if(gp.gameState != gp.pauseState){
+            if(keyH.wPressed || keyH.aPressed || keyH.sPressed || keyH.dPressed || keyH.shiftPressed){
+                if(keyH.wPressed){
+                    direction = "up";
                 }
-                keyH.activateBoots = true;
+                else if(keyH.aPressed){
+                    direction = "left";
+                }
 
-                if(!keyH.shiftPressed)
-                    setSpeed(defaultSpeed);
-            }
+                else if(keyH.sPressed){
+                    direction = "down";
+                }
+
+                else if(keyH.dPressed){
+                    direction = "right";
+                }
+
+                if(gotBoots){
+                    if(keyH.shiftPressed){
+                        setSpeed(7);
+                    }
+                    keyH.activateBoots = true;
+
+                    if(!keyH.shiftPressed)
+                        setSpeed(defaultSpeed);
+                }
 
 
-            if(devMode)System.out.println("x ="+Math.round((((float) worldX /(GP.tileSize)+1))) + "\ny = "+Math.round((((float) worldY /(GP.tileSize)+1))));
-            //Check collision
-            gp.toxinOn = false;//reset the toxin
-            collisionOn = false;
-            GP.collisionChecker.checkTile(this, true);//check the collision and toxin again
+                if(devMode)System.out.println("x ="+Math.round((((float)worldX / (gp.tileSize)))) + "\ny = "+Math.round((float) (worldY+20.5 )/ (gp.tileSize)));
+                //Check collision
+                gp.toxinOn = false;//reset the toxin
+                collisionOn = false;
+                GP.collisionChecker.checkTile(this, true);//check the collision and toxin again
 
-            int objIndex = GP.collisionChecker.checkObject(this,true);
-            try{
-                pickUpItem(objIndex);
-            }catch (SQLException e){
-                e.printStackTrace();
-            }
-            //toxin
+                int objIndex = GP.collisionChecker.checkObject(this,true);
+                try{
+                    pickUpItem(objIndex);
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+                //toxin
 
-            NPCCollision = GP.collisionChecker.checkEntity(this,gp.npc);
-            interactNPC(NPCCollision, keyH);
+                NPCCollision = GP.collisionChecker.checkEntity(this,gp.npc);
+                interactNPC(NPCCollision, keyH);
 
-            if (!collisionOn ){
-                switch (direction){
-                    case"up":
-                        worldY -= getSpeed();
-                        break;
-                    case"down":
-                        worldY += getSpeed();
-                        break;
-                    case"left":
-                        worldX -= getSpeed();
-                        break;
-                    case"right":
-                        worldX += getSpeed();
-                        break;
+                if (!collisionOn ){
+                    switch (direction){
+                        case"up":
+                            worldY -= getSpeed();
+                            break;
+                        case"down":
+                            worldY += getSpeed();
+                            break;
+                        case"left":
+                            worldX -= getSpeed();
+                            break;
+                        case"right":
+                            worldX += getSpeed();
+                            break;
 
+                    }
+                }
+                gp.keyH.zPressed = false;
+
+                spriteCount++;
+                if(spriteCount>12){
+                    if (spriteNum==1){
+                        spriteNum=2;
+                    } else if (spriteNum==2) {
+                        spriteNum=1;
+                    }
+                    spriteCount = 0;
                 }
             }
-            gp.keyH.zPressed = false;
-
-            spriteCount++;
-            if(spriteCount>12){
-                if (spriteNum==1){
-                    spriteNum=2;
-                } else if (spriteNum==2) {
-                    spriteNum=1;
-                }
-                spriteCount = 0;
-            }
-        }
+        //}
 
 
     }
@@ -343,7 +349,7 @@ public class Player extends Entity {
         if(i!=999){
             // playerHP--;
 
-            if(gp.npc[i].isEnemy)
+            if(gp.npc[i].isEnemy && gp.npc[i].NPC_name != null)
                 gp.gameState = gp.versusScreen;
             else{
                 if(gp.keyH.zPressed) {

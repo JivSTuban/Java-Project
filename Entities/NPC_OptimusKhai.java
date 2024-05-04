@@ -17,18 +17,21 @@ public class NPC_OptimusKhai extends Entity{
         direction = "left";
         NPC_name = "OptimusKhai";
         NPC_VSname = "Optimus Khai";
+        NPC_getVSImgae = "/res/npc/NPCOptimusKhai/sprite_ok8";
+        NPC_getVSGIF = "/res/npc/NPCOptimusKhai/Optimus-Khai-Skill-GIF";
+
         collision = true;
         direction = "down";
-        speed = 1;
         getImage();
         type = 2;
         maxHP = 150;
         npcHp = maxHP;
+        speed = 1;
 
         solidArea.x = 3;
         solidArea.y = 18;
-        solidArea.width = 42;
-        solidArea.height = 30;
+        solidArea.width = 242;
+        solidArea.height = 230;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         setDialogue();
@@ -38,20 +41,20 @@ public class NPC_OptimusKhai extends Entity{
     }
     @Override
     public void setSkills(){
+//
+//        if(!skill2Activated && droneHp == 30)
+//            droneSpawn = false;
 
-        if(!skill2Activated && droneHp == 30)
-            droneSpawn = false;
-
-        if(skill2Activated || droneHp >0){
-            if(turnCounter<5)
-                turnCounter++;
-            while(pickSkill >=40 && pickSkill<50){
-                pickSkill = rand.nextInt(1,100)+1;
-            }
-        }
+//        if(skill2Activated || droneHp >0){
+//            if(turnCounter<5)
+//                turnCounter++;
+//            while(pickSkill >=40 && pickSkill<50){
+//                pickSkill = rand.nextInt(1,100)+1;
+//            }
+//        }
         if(pickSkill <= 40){
             this.npcDamage = 30;
-            npcSkillName = "Use Basic attack";
+            npcSkillName = "Use Generics";
         }
         else if(pickSkill<=50){
             this.npcDamage = 0;
@@ -72,16 +75,18 @@ public class NPC_OptimusKhai extends Entity{
             System.out.println("Interface activated");
 
         }
-        if(turnCounter < 5 ){
-            turnCounter =1;
-            skill2Activated = false;
-        }
-        if(droneHp <=0) {
-            droneHp = 30;
-            droneSpawn =false;
-            skill2Activated = false;
-            turnCounter = 1;
-        }
+//        if(turnCounter < 5 ){
+//            turnCounter =1;
+//            skill2Activated = false;
+//        }
+//        if(droneHp <=0) {
+//            droneHp = 30;
+//            droneSpawn =false;
+//            skill2Activated = false;
+//            turnCounter = 1;
+//        }
+        skill2Activated = true;
+        droneSpawn = true;
 
     }
 //    @Override

@@ -54,6 +54,18 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_H) {
             gp.gameState = gp.hackingState;
         }
+        if (code == KeyEvent.VK_P ){
+            if(!pPressed){
+                pPressed =true;
+                gp.gameState = gp.pauseState;
+            }
+            else{
+                pPressed =false;
+                gp.gameState = gp.playState;
+            }
+
+        }
+
 
 
         if (code == KeyEvent.VK_1) {
@@ -172,21 +184,10 @@ public class KeyHandler implements KeyListener {
                 zPressed = true;
             }
             //pause
-            if (code == KeyEvent.VK_P ){
-                if(!pPressed){
-                    pPressed =true;
-                // if(gp.gameState == gp.playState) {
-                gp.gameState = gp.pauseState;
-                }
-                //else if(gp.gameState == gp.pauseState){
-                // gp.gameState = gp.playState;
-                // }
-            }
 
-            // pause state
-            if(code == KeyEvent.VK_P){
-                    gp.gameState = gp.playState;
-                }
+
+
+
 
             //dialogue state
             else if(gp.gameState == gp.dialogueState){
@@ -228,9 +229,7 @@ public class KeyHandler implements KeyListener {
                 }
             }
         }
-        if(gp.gameState == gp.pauseState){
 
-        }
         if(gp.gameState == gp.dialogueState){
             if(code == KeyEvent.VK_ENTER){
                 gp.gameState = gp.playState;
@@ -271,6 +270,7 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT){
             dPressed = false;
         }
+
 
         if (code == KeyEvent.VK_SHIFT){
             shiftPressed = false;

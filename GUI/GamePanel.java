@@ -3,6 +3,7 @@ package GUI;
 import Controles.Cooldown;
 import Controles.KeyHandler;
 import Entities.Entity;
+import Entities.Items.AccessCard;
 import Entities.Items.SuperItem;
 import Entities.NPC_Drone;
 import Entities.NPC_OptimusKhai;
@@ -53,8 +54,6 @@ public class GamePanel extends JPanel implements Runnable {
     Cooldown footRemoveCd = new Cooldown(1000);
     //Main Map
     User user;
-
-
 
 
 
@@ -146,8 +145,11 @@ public class GamePanel extends JPanel implements Runnable {
         while (gameThread != null ) {
 
            try{
-               update(keyH);
+              if(gameState!=pauseState){
+                  update(keyH);
+              }
                loginForm.updateLocationToDB(String.valueOf(Math.round((((float) player.worldX / (this.tileSize))))), String.valueOf(Math.round((float) (player.worldY+20.5 )/ (this.tileSize))));
+               loginForm.updateMoneyToDB(player.getGold());
            }catch (SQLException e){
                e.printStackTrace();
            }
@@ -173,20 +175,33 @@ public class GamePanel extends JPanel implements Runnable {
     public void update(KeyHandler keyH) throws SQLException {
 
 
-        player.update(keyH);
-        footStepSettings();
-        versusMethod();
+       try{
+           if(gameState != versusScreen){
+               player.update(keyH);
+               footStepSettings();
+           }
+           if(gameState == versusScreen)
+               versusMethod();
+       }catch (Exception e){
+           System.out.println();
+       }
+
         if (player.playerHP < 0){
             player.playerHP = 0;
             isDead = true;
         }
 
-        for (Entity entity : npc) {
-            if (entity != null) {
+           if(gameState != versusScreen){
+               for (Entity entity : npc) {
+                   if (entity != null ) {
+                       if(!entity.NPC_name.equals("OptimusKhai")){
+                           entity.update();
 
-                entity.update();
-            }
-        }
+                       }
+                   }
+               }
+           }
+
 
     }
 
@@ -200,12 +215,16 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState != versusScreen) {
             mainMap(g2);
         }
-        else if(gameState == versusScreen){
-            if(keyH.isfight){
+        else {
+            if(player.NPCCollision != 999){
                 vsScreen.draw(g2);
+                if(npc[player.NPCCollision].getNpcHp() < 1){
+                    //  aSetter.setItemDrop(player.accessCardDropCount,Math.round((((float) player.worldX / (this.tileSize)))), Math.round((float) (player.worldY+20.5 )/ (this.tileSize)));
+                    npc[player.NPCCollision] = null;
+                }
             }
-        }
 
+        }
 
         long drawEnd = System.nanoTime();
         long passed = drawEnd - drawStart;
@@ -242,7 +261,10 @@ public class GamePanel extends JPanel implements Runnable {
         designTileManager.draw(g2);
         for (Entity entity : npc) {
             if (entity != null) {
-                entity.draw(g2);
+                if(entity.NPC_name.equals("OptimusKhai"))
+                    entity.draw(g2,true);
+                else
+                    entity.draw(g2,false);
             }
         }
         ui.draw(g2);
@@ -265,7 +287,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
     double goldDrop(String name){
         if(name.equals("drone"))
-            return rand.nextDouble(100,150);
+            return rand.nextDouble(15,20);
         return 0;
     }
 
@@ -299,47 +321,57 @@ public class GamePanel extends JPanel implements Runnable {
                                                        Versus Settings
     ---------------------------------------------------------------------------------------------------------------------------*/
         private void versusMethod(){
-            if(player.NPCCollision == 6 ){//this is the boss
-                if(gameState == versusScreen){
+            try{
+                if(player.NPCCollision == 6 ){//this is the boss
+                    if(gameState == versusScreen){
 
-                    if(turnTimer.isOnCooldown() && !(npcAttackCD.isOnCooldown() )){
-                        if(npc[player.NPCCollision].getNpcHp() > 1){
-                            int enemyDMG = npc[player.NPCCollision].getDamage();
-                            player.setPlayerHP(player.getPlayerHP() - enemyDMG);
-                            System.out.println("(Enemy) -- damage = "+enemyDMG);
+                        if(turnTimer.isOnCooldown() && !(npcAttackCD.isOnCooldown() )){
+                            if(npc[player.NPCCollision].getNpcHp() > 1){
+                                int enemyDMG = npc[player.NPCCollision].getDamage();
+                                player.setPlayerHP(player.getPlayerHP() - enemyDMG);
+                                System.out.println("(Enemy) -- damage = "+enemyDMG);
+                                enemySkillUsed = npc[player.NPCCollision].getSkillName();
+                                npcAttackCD.trigger();
+                                System.out.println( "(Enemy) -- Current HP: "+npc[player.NPCCollision].npcHp);
+                                System.out.println("(Player Hp)=: "+ player.getPlayerHP());
+
+                            }
+                        }
+                    }
+
+                    if(npc[player.NPCCollision].getNpcHp() < 1){
+                        keyH.isfight = false;
+                        player.setGold(player.getGold() +  goldDrop(npc[player.NPCCollision].NPC_name));
+
+                        gameState = playState;
+                    }
+
+                }
+                else if(player.NPCCollision != 999  ){
+                    if(gameState == versusScreen){
+//
+                        if(turnTimer.isOnCooldown() && !(npcAttackCD.isOnCooldown() )){
+                            if(npc[player.NPCCollision].getNpcHp() > 1){
+                                player.setPlayerHP(player.getPlayerHP() - npc[player.NPCCollision].getDamage());
+                                npcAttackCD.trigger();
+                                System.out.println("Damage taken: " + player.getPlayerHP());
+                                System.out.println("NPC last HP: "+npc[player.NPCCollision].getNpcHp());
+                                if(npc[player.NPCCollision].getNpcHp() < 1){
+                                    npc[player.NPCCollision].setNpcHp(0);
+                                }
+                            }
+                        }
+                        if(npc[player.NPCCollision].getNpcHp() < 1){
+                            loginForm.addEnemyKilledToDB(player.NPCCollision);
                             enemySkillUsed = npc[player.NPCCollision].getSkillName();
-                            npcAttackCD.trigger();
-                            System.out.println( "(Enemy) -- Current HP: "+npc[player.NPCCollision].npcHp);
-                            System.out.println("(Player Hp)=: "+ player.getPlayerHP());
-
+                            keyH.isfight = false;
+                            player.setGold(player.getGold() +  goldDrop(npc[player.NPCCollision].NPC_name));
+                            gameState = playState;
                         }
                     }
                 }
-
-                if(npc[player.NPCCollision].getNpcHp() < 1){
-                    keyH.isfight = false;
-                    player.setGold(player.getGold() +  goldDrop(npc[player.NPCCollision].NPC_name));
-                    gameState = playState;
-                }
-
-            }
-           else if(player.NPCCollision != 999 ){
-                if(gameState == versusScreen){
-                    if(turnTimer.isOnCooldown() && !(npcAttackCD.isOnCooldown() )){
-                        if(npc[player.NPCCollision].getNpcHp() > 1){
-                            player.setPlayerHP(player.getPlayerHP() - npc[player.NPCCollision].getDamage());
-                            npcAttackCD.trigger();
-                            System.out.println("Damage taken: " + player.getPlayerHP());
-                        }
-                    }
-                }
-                enemySkillUsed = npc[player.NPCCollision].getSkillName();
-                if(npc[player.NPCCollision].getNpcHp() < 1){
-                    keyH.isfight = false;
-                    player.setGold(player.getGold() +  goldDrop(npc[player.NPCCollision].NPC_name));
-                    gameState = playState;
-                }
-
+            }catch (Exception e){
+              e.printStackTrace();
             }
 
 

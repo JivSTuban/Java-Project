@@ -46,6 +46,7 @@ public abstract class Entity {
     public int npcDamage = 10;
     public String npcSkillName = "";
     public boolean droneSpawn  = false;
+    public boolean skill2Activated = false;
     public int droneHp = 30;
     public int getNpcHp() {
         return npcHp;
@@ -56,6 +57,8 @@ public abstract class Entity {
     }
 
     public int turnCounter = 1;
+
+    public String  NPC_getVSImgae = "", NPC_getVSGIF="";
     /*--------------------------------------------------------------------------------------------------------
                                             NPC settings End here
        --------------------------------------------------------------------------------------------------------*/
@@ -74,7 +77,7 @@ public abstract class Entity {
         collisionOn = false;
 
         gp.collisionChecker.checkTile(this, false);
-        if (!collisionOn){
+        if (!collisionOn  ){
             switch (direction){
                 case"up":
                     worldY -= getSpeed();
@@ -90,7 +93,7 @@ public abstract class Entity {
                     break;
 
             }
-        }
+       }
         spriteCount++;
         if(spriteCount>12){
             if (spriteNum==1){
@@ -110,7 +113,7 @@ public abstract class Entity {
         this.speed = speed;
     }
 
-    public void draw(Graphics2D g2){
+    public void draw(Graphics2D g2, boolean isBoss){
         BufferedImage image = null;
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
         int screenY = worldY - gp.player.worldY + gp.player.screenY;
@@ -150,7 +153,13 @@ public abstract class Entity {
                     image = right2;
                 }
             }
-            g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+
+          if(isBoss){
+              g2.drawImage(image, screenX-100, screenY-150, gp.tileSize+400, gp.tileSize+400, null);
+          }
+          else{
+              g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+          }
         }
 
     }
@@ -223,7 +232,7 @@ public abstract class Entity {
 
                 }
                 actionCounter++;
-                if(npc.equals("console")) {
+                if(npc.equals("console") || npc.equals("optimusKhai")) {
 
                     if (actionCounter == 120) {
                         Random random = new Random();
