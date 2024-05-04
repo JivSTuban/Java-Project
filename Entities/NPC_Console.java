@@ -2,7 +2,9 @@ package Entities;
 
 import GUI.GamePanel;
 
-public class NPC_Console extends Entity{
+import java.util.Random;
+
+public class NPC_Console extends Entity {
     public NPC_Console(GamePanel gp) {
         super(gp);
         NPC_name = "console";
@@ -23,34 +25,17 @@ public class NPC_Console extends Entity{
         left2 = setup("/res/npc_console/$robotleft2");
 
 
-
     }
-    public void setDialogue(){
+
+    public void setDialogue() {
         dialogues[0] = "Welcome to Mitsu Realm!";
         dialogues[1] = " Realm of Technology Veemax, the technomancer, deptly \nmanipulates machines and technology.";
         dialogues[2] = " the technomancer, deptly manipulates \nmachines and technology.";
     }
-    public void speak(){
+    @Override
+    public int getDamage(){return 0;}
+    @Override
+    public String getSkillName(){return "";}
+    public void setSkills(){}
 
-        if (dialogues[dialogueIndex] == null){
-            dialogueIndex = 0;
-        }
-        gp.ui.currentDialogue = dialogues[dialogueIndex];
-        dialogueIndex++;
-
-        switch (gp.player.direction){
-            case "up":
-                direction= "down";
-                break;
-            case "down":
-                direction= "up";
-                break;
-            case "left":
-                direction= "right";
-                break;
-            case "right":
-                direction= "left";
-                break;
-        }
-    }
 }

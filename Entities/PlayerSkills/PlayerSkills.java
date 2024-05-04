@@ -12,6 +12,7 @@ public class PlayerSkills {
     public int manaCost = 0;
     public String skillName = "";
     public String description = "";
+    public boolean isArea = false;
 
     public int getSkillDamage() {
         return skillDamage;

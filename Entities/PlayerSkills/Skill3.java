@@ -11,6 +11,7 @@ public class Skill3 extends PlayerSkills{
         skillName = "skill 3";
         manaCost = 10;
         description = "this is skill 3 \nDamage:"+getSkillDamage()+"\nMana cost: "+manaCost;
+        isArea = true;
 
 
     }

@@ -119,22 +119,23 @@ public class Player extends Entity {
       -----------------------------------------------------------------------------------------------*/
     public void getPlayerImage(){
 
-            up1 = setup("/res/PlayerImage/walkForward1");
-            up2 = setup("/res/PlayerImage/walkForward2");
-            left1 = setup("/res/PlayerImage/walkLeft1");
-            left2 = setup("/res/PlayerImage/walkLeft2");
-            down1 = setup("/res/PlayerImage/walkDown1");
-            down2 = setup("/res/PlayerImage/walkDown2");
-            right1 = setup("/res/PlayerImage/walkRight1");
-            right2 = setup("/res/PlayerImage/walkRight2");
+        up1 = setup("/res/PlayerImage/walkForward1");
+        up2 = setup("/res/PlayerImage/walkForward2");
+        left1 = setup("/res/PlayerImage/walkLeft1");
+        left2 = setup("/res/PlayerImage/walkLeft2");
+        down1 = setup("/res/PlayerImage/walkDown1");
+        down2 = setup("/res/PlayerImage/walkDown2");
+        right1 = setup("/res/PlayerImage/walkRight1");
+        right2 = setup("/res/PlayerImage/walkRight2");
 
     }
 
     /*-----------------------------------------------------------------------------------------------
                                         Update scene
        -----------------------------------------------------------------------------------------------*/
+
     public void update(KeyHandler keyH){
-       // updateSkills();
+        // updateSkills();
 
         developerSettings(keyH);
 
@@ -172,15 +173,15 @@ public class Player extends Entity {
             GP.collisionChecker.checkTile(this, true);//check the collision and toxin again
 
             int objIndex = GP.collisionChecker.checkObject(this,true);
-                try{
-                    pickUpItem(objIndex);
-                }catch (SQLException e){
-                    e.printStackTrace();
-                }
+            try{
+                pickUpItem(objIndex);
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
             //toxin
 
             NPCCollision = GP.collisionChecker.checkEntity(this,gp.npc);
-                interactNPC(NPCCollision, keyH);
+            interactNPC(NPCCollision, keyH);
 
             if (!collisionOn ){
                 switch (direction){
@@ -214,6 +215,7 @@ public class Player extends Entity {
 
 
     }
+
     /*-----------------------------------------------------------------------------------------------
                                        PickUp Item
       -----------------------------------------------------------------------------------------------*/
@@ -250,23 +252,23 @@ public class Player extends Entity {
                     addToInventory(itemName,1);
                     break;
                 case "DoorClose":
-                 //  if(searchInventoryIndex("accessCard") >-1){
+                    //  if(searchInventoryIndex("accessCard") >-1){
 
-                       if(searchInventory("accessCard") || searchInventory("hackingDevice")){
+                    if(searchInventory("accessCard") || searchInventory("hackingDevice")){
                         if(!gp.keyH.doorOpen)
                             gp.gameState  = gp.inventoryState;
-                           if(gp.keyH.doorOpen){
-                                   GP.objItem[i] = null;
-                                   KH.doorOpen =false;
-                               }
+                        if(gp.keyH.doorOpen){
+                            GP.objItem[i] = null;
+                            KH.doorOpen =false;
+                        }
 
-                         if(gp.player.searchInventory("accessCard")){
-                             if( (gp.player.inventory.get(gp.player.searchInventoryIndex("accessCard")).quantity) == 0)
-                                 gp.player.removeItem("accessCard");
-                         }
-                       }
+                        if(gp.player.searchInventory("accessCard")){
+                            if( (gp.player.inventory.get(gp.player.searchInventoryIndex("accessCard")).quantity) == 0)
+                                gp.player.removeItem("accessCard");
+                        }
+                    }
 
-                   //}
+                    //}
                     else {
                         System.out.println("You need Access Card to open this Door");
                     }
@@ -281,7 +283,7 @@ public class Player extends Entity {
                     }
 
                     else{
-                       // (inventory.get(i).quantity)++;
+                        // (inventory.get(i).quantity)++;
                         addToInventory("salve");
                         addToInventory("salve",1);
                         System.out.println("got Salve");
@@ -329,7 +331,7 @@ public class Player extends Entity {
                 image = right2;
             }
 
-       }
+        }
         g2.drawImage(image, screenX, screenY, GP.tileSize, GP.tileSize, null    );
     }
 
@@ -339,7 +341,7 @@ public class Player extends Entity {
     }
     public void interactNPC(int i,KeyHandler keyH){
         if(i!=999){
-           // playerHP--;
+            // playerHP--;
 
             if(gp.npc[i].isEnemy)
                 gp.gameState = gp.versusScreen;
@@ -452,5 +454,10 @@ public class Player extends Entity {
             player.inventory.add(new ItemBoots());
         }
     }
-
+    @Override
+    public int getDamage(){return 0;}
+    @Override
+    public String getSkillName(){return "";}
+    @Override
+    public void setSkills(){}
 }

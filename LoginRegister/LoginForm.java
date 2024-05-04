@@ -99,12 +99,12 @@ public class LoginForm extends JDialog {
 
 
     public void addItemToDatabase(String itemName) throws SQLException {
-            query = "INSERT INTO items (ItemName, Username) VALUES (?, ?)";
-            preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setString(1, itemName);
-            preparedStatement.setString(2, playerUser.username);
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
+        query = "INSERT INTO items (ItemName, Username) VALUES (?, ?)";
+        preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setString(1, itemName);
+        preparedStatement.setString(2, playerUser.username);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
     }
     public void updateLocationToDB(String x, String y) throws SQLException {
         query = "UPDATE `users` SET WorldX = '" + x + "', WorldY = '" + y + "' WHERE username = '" + playerUser.username + "'";

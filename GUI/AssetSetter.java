@@ -1,9 +1,7 @@
 package GUI;
 
-import Entities.Entity;
+import Entities.*;
 import Entities.Items.*;
-import Entities.NPC_Console;
-import Entities.NPC_Drone;
 import LoginRegister.LoginForm;
 
 import java.lang.reflect.InvocationTargetException;
@@ -41,20 +39,20 @@ public class AssetSetter {
     }
 
     public void setItem(LoginForm loginForm) throws SQLException {
-        if (loginForm.getItemCountInDatabase("Salve") < 2) {
+       // if (loginForm.getItemCountInDatabase("Salve") < 2) {
             setImage(0, 5, 76, new ItemSalve(), false);
-        }
-        if (loginForm.getItemCountInDatabase("Boots") == 0){
+     //   }
+     //   if (loginForm.getItemCountInDatabase("Boots") == 0){
             setImage(1,3,78,  new ItemBoots(), false);
-        }
-        if (loginForm.getItemCountInDatabase("Salve") < 2) {
+      //  }
+      //  if (loginForm.getItemCountInDatabase("Salve") < 2) {
             setImage(2,spawnRand(),spawnRand(),  new ItemSalve(),false);
             setImage(9,4,75,  new Chest(),false);
-        }
-        if (loginForm.getItemCountInDatabase("AccessCard") < 2) {
+      //  }
+     //   if (loginForm.getItemCountInDatabase("AccessCard") < 2) {
             setImage(3,4,78,  new AccessCard(),false);
             setImage(10,10,75,  new Chest(),false);
-        }
+      //  }
         setImage(4,8,50,  new DoorOpen(),false);
         setImage(5,8,50,  new DoorClose(),true);
         setImage(6,2,19,  new DoorOpen(),false);
@@ -92,7 +90,10 @@ public class AssetSetter {
         setNPCChar(2, 6, 72, new NPC_Drone(gp));
         setNPCChar(3, 69, 77, new NPC_Drone(gp));
         setNPCChar(4, 5, 77, new NPC_Console(gp));
-        setNPCChar(98, 0, 0, new NPC_Drone(gp));
+        setNPCChar(5,5,77,new NPC_Veemax(gp));
+        setNPCChar(6,71,5,new NPC_OptimusKhai(gp));//Boss
+
+        setNPCChar(7, 0, 0, new NPC_Drone(gp));;
 
     }
 //    public void footStep(int x, int y) {

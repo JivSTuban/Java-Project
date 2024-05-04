@@ -2,6 +2,8 @@ package Entities;
 
 import GUI.GamePanel;
 
+import java.util.Random;
+
 public class NPC_Drone extends Entity{
 
     public NPC_Drone(GamePanel gp){
@@ -24,6 +26,7 @@ public class NPC_Drone extends Entity{
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         setDialogue();
+
         npcDamage = 10;
         isEnemy = true;
 
@@ -51,6 +54,17 @@ public class NPC_Drone extends Entity{
         }
 
     }
+    @Override
+    public int getDamage(){
+        return npcDamage;
+    }
+    @Override
+    public String getSkillName(){
+        return "Basic Attack";
+    }
+    @Override
+    public void setSkills(){}
+
 
 
 

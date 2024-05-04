@@ -5,6 +5,7 @@ import Controles.KeyHandler;
 import Entities.Entity;
 import Entities.Items.SuperItem;
 import Entities.NPC_Drone;
+import Entities.NPC_OptimusKhai;
 import Entities.Player;
 import LoginRegister.LoginForm;
 import Sound.Sound;
@@ -54,6 +55,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 
 
+
     TileManager tileManager = new TileManager(this);
     CollisionTileManger collisionTileManger = new CollisionTileManger(this);
     DesignTileManager designTileManager = new DesignTileManager(this);
@@ -94,9 +96,11 @@ public class GamePanel extends JPanel implements Runnable {
     public SuperItem[] footStep = new SuperItem[99];
 
 
+
     /*-----------------------------------------------------------------------------------------------------------------------
                                                       Versus Screen
      -----------------------------------------------------------------------------------------------------------------------*/
+    public String enemySkillUsed = "";
     public Cooldown turnTimer = new Cooldown(6000);
     public Cooldown npcAttackCD = new Cooldown( 6100);
 
@@ -106,7 +110,7 @@ public class GamePanel extends JPanel implements Runnable {
         loginForm = new LoginForm(user, "");
         player = new Player(this, keyH, user,loginForm);
         LoginForm loginForm = new LoginForm(user, "");
-        loginForm.addItemsToPlayer(player);
+   //     loginForm.addItemsToPlayer(player);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
@@ -177,6 +181,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         for (Entity entity : npc) {
             if (entity != null) {
+
                 entity.update();
             }
         }
@@ -292,25 +297,50 @@ public class GamePanel extends JPanel implements Runnable {
                                                        Versus Settings
     ---------------------------------------------------------------------------------------------------------------------------*/
         private void versusMethod(){
-            if(player.NPCCollision != 999 ){
+            if(player.NPCCollision == 6 ){//this is the boss
+                if(gameState == versusScreen){
+
+                    if(turnTimer.isOnCooldown() && !(npcAttackCD.isOnCooldown() )){
+                        if(npc[player.NPCCollision].getNpcHp() > 1){
+                            int enemyDMG = npc[player.NPCCollision].getDamage();
+                            player.setPlayerHP(player.getPlayerHP() - enemyDMG);
+                            System.out.println("(Enemy) -- damage = "+enemyDMG);
+                            enemySkillUsed = npc[player.NPCCollision].getSkillName();
+                            npcAttackCD.trigger();
+                            System.out.println( "(Enemy) -- Current HP: "+npc[player.NPCCollision].npcHp);
+                            System.out.println("(Player Hp)=: "+ player.getPlayerHP());
+
+                        }
+                    }
+                }
+
+                if(npc[player.NPCCollision].getNpcHp() < 1){
+                    keyH.isfight = false;
+                    player.setGold(player.getGold() +  goldDrop(npc[player.NPCCollision].NPC_name));
+                    gameState = playState;
+                }
+
+            }
+           else if(player.NPCCollision != 999 ){
                 if(gameState == versusScreen){
                     if(turnTimer.isOnCooldown() && !(npcAttackCD.isOnCooldown() )){
                         if(npc[player.NPCCollision].getNpcHp() > 1){
-                            player.setPlayerHP(player.getPlayerHP() - npc[player.NPCCollision].getNpcDamage());
+                            player.setPlayerHP(player.getPlayerHP() - npc[player.NPCCollision].getDamage());
                             npcAttackCD.trigger();
                             System.out.println("Damage taken: " + player.getPlayerHP());
                         }
                     }
-                    if(npc[player.NPCCollision].getNpcHp() < 1){
-                        keyH.isfight = false;
-                        player.setGold(player.getGold() +  goldDrop(npc[player.NPCCollision].NPC_name));
-                        gameState = playState;
-                    }
-
-//
+                }
+                enemySkillUsed = npc[player.NPCCollision].getSkillName();
+                if(npc[player.NPCCollision].getNpcHp() < 1){
+                    keyH.isfight = false;
+                    player.setGold(player.getGold() +  goldDrop(npc[player.NPCCollision].NPC_name));
+                    gameState = playState;
                 }
 
             }
+
+
         }
 
 

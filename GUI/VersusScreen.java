@@ -18,6 +18,7 @@ public class VersusScreen {
     public int slotCol = 0;
     public int slotRow = 0;
 
+
     public VersusScreen(GamePanel gp ) {
         this.gp = gp;
         arial_16 = new Font("Arial", Font.PLAIN,16);
@@ -50,11 +51,21 @@ public class VersusScreen {
             EnemyHPHUD =  setup("/res/versus/vsHPBarEnemy");
             g2.drawImage(EnemyHPHUD, 1260, 55, 400,170,null);
 
+            //print enemy skill used
+            if(gp.npcAttackCD.timeRemaining()>1000 && gp.npcAttackCD.timeRemaining()<3400){
+                int x =1200;
+                int y = 300;
+                drawSubWindow(x,y,200,100);
+                g2.drawString(gp.enemySkillUsed,x+50,y+45);
+            }
+
+
             Font font = new Font("Arial", Font.PLAIN, 20);
             g2.setFont(font);
             g2.setColor(Color.WHITE);
-            g2.drawString(gp.npc[enemyIndex].NPC_VSname, 600, 93);
-            drawSkillSection();
+            g2.drawString(gp.npc[enemyIndex].NPC_VSname, 1350, 130);
+              drawSkillSection();
+
             if(gp.npc[enemyIndex].getNpcHp() <1)
                 gp.npc[enemyIndex] = null;
 
@@ -132,15 +143,15 @@ public class VersusScreen {
     }
     void drawPlayerHpBar(int hp,int x, int y){
 
-        Color color = Color.decode("#2DFE54");
-        g2.setColor(color);
+      //  Color color = Color.decode("#2DFE54");
+        g2.setColor(Color.RED);
         int hpPrint = (gp.player.getPlayerHP()/((gp.player.maxHP)))*100;
         g2.fillRoundRect(x,y,  (hpPrint)-18,10,10,10);
 
     }
     void drawNPCHpBar(int width,int x, int y){
-        Color color = Color.decode("#2DFE54");
-        g2.setColor(color);
+       // Color color = Color.decode("#2DFE54");
+        g2.setColor(Color.RED);
         g2.fillRoundRect(x,y,width,32,10,10);
     }
     public int getSkillIndexOnSlot(){

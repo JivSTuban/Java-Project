@@ -5,6 +5,7 @@ import GUI.GamePanel;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class KeyHandler implements KeyListener {
@@ -97,7 +98,9 @@ public class KeyHandler implements KeyListener {
                 String str = sc.nextLine();
                 str = str.toLowerCase();
                 if (str.equals("addkey")) {
-                    gp.player.addToInventory("card");
+
+                        gp.player.addToInventory("accessCard",99);
+
                     gp.player.inventory.get(gp.player.searchInventoryIndex("accessCard")).quantity += sc.nextInt();
                     valid = true;
                 } else if (str.equals("giveboots")) {
