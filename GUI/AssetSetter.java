@@ -61,7 +61,8 @@ public class AssetSetter {
         setImage(7,2,19,  new DoorClose(),true);
         setImage(8,1,6,  new DoorOpen(),false);
         setImage(9,1,6,  new DoorClose(),true);
-
+        setImage(10,14,2,  new DoorClose(),true);
+        setImage(11,13,1,  new SecretPackage(),false);
     }
     public void setToxin(int x ,int y) {
 

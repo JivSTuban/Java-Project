@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class KeyHandler implements KeyListener {
     GamePanel gp;
     public boolean wPressed,  aPressed,  sPressed,  dPressed, zPressed =false, shiftPressed = false, pPressed = false;
-    public boolean pressed1, pressed2, pressed0;
+    public boolean pressed1, pressed2, spacePressed = false;
     public boolean addKey,giveBoots;
     public boolean openInventory = false;
     public boolean selectIp = false;
@@ -18,6 +18,7 @@ public class KeyHandler implements KeyListener {
     VersusHandler verHandler = new VersusHandler();
     public boolean doorOpen = false;
     public boolean isfight = false;
+    int dialogueIndex=0;
 
     //UseItem
 
@@ -87,7 +88,6 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_RIGHT && gp.ui.hacking.slotCol != 7) gp.ui.hacking.slotCol++;
 
         }
-
 
         if (code == KeyEvent.VK_BACK_SLASH) {
             System.out.println("Scripts:\n-addkey \n-unlispeed\n-giveboots\n-givesalve\n-cancel");
@@ -168,6 +168,10 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_Z){
                 zPressed = true;
             }
+            if (code == KeyEvent.VK_BACK_SPACE){
+                spacePressed = true;
+            }
+
             //pause
             if (code == KeyEvent.VK_P ){
                 if(!pPressed){
@@ -227,6 +231,11 @@ public class KeyHandler implements KeyListener {
         }
         if(gp.gameState == gp.pauseState){
 
+        }
+        if(gp.gameState == gp.dialogueState){
+            if(code==KeyEvent.VK_SPACE){
+                dialogueIndex++;
+            }
         }
         if(gp.gameState == gp.dialogueState){
             if(code == KeyEvent.VK_ENTER){

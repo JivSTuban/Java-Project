@@ -7,6 +7,7 @@ import GUI.GamePanel;
 import LoginRegister.LoginForm;
 import Users.User;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.sql.SQLException;
@@ -88,7 +89,7 @@ public class Player extends Entity {
         screenX = GP.screenWidth/2;
         screenY = GP.screenHeight/2;
         solidArea = new Rectangle(9,17,55,60);
-        solidAreaDefaultX = 8;
+        solidAreaDefaultX = 2;
         solidAreaDefaultY = 16;
         setDefault();
         getPlayerImage();
@@ -100,8 +101,8 @@ public class Player extends Entity {
 
     }
     public void setDefault(){
-//        worldX = GP.tileSize * 3;//kilid
-//        worldY = GP.tileSize * 74;//ibabaw
+        worldX = GP.tileSize * 2;//kilid
+        worldY = GP.tileSize * 18;//ibabaw
         try{
             worldX = GP.tileSize * loginForm.lastX(user);
             worldY = GP.tileSize * loginForm.lastY(user);
@@ -138,7 +139,7 @@ public class Player extends Entity {
 
         developerSettings(keyH);
 
-        if(keyH.wPressed || keyH.aPressed || keyH.sPressed || keyH.dPressed || keyH.shiftPressed){
+        if(keyH.wPressed || keyH.aPressed || keyH.sPressed || keyH.dPressed || keyH.shiftPressed || keyH.zPressed == true){
             if(keyH.wPressed){
                 direction = "up";
             }
@@ -182,7 +183,7 @@ public class Player extends Entity {
             NPCCollision = GP.collisionChecker.checkEntity(this,gp.npc);
                 interactNPC(NPCCollision, keyH);
 
-            if (!collisionOn ){
+            if (!collisionOn && keyH.zPressed == false){
                 switch (direction){
                     case"up":
                         worldY -= getSpeed();
@@ -254,12 +255,11 @@ public class Player extends Entity {
 
                        if(searchInventory("accessCard") || searchInventory("hackingDevice")){
                         if(!gp.keyH.doorOpen)
-                            gp.gameState  = gp.inventoryState;
-                           if(gp.keyH.doorOpen){
-                                   GP.objItem[i] = null;
-                                   KH.doorOpen =false;
-                               }
-
+                            gp.gameState = gp.inventoryState;
+                            if (gp.keyH.doorOpen) {
+                                GP.objItem[i] = null;
+                                KH.doorOpen = false;
+                            }
                          if(gp.player.searchInventory("accessCard")){
                              if( (gp.player.inventory.get(gp.player.searchInventoryIndex("accessCard")).quantity) == 0)
                                  gp.player.removeItem("accessCard");
@@ -268,6 +268,8 @@ public class Player extends Entity {
 
                    //}
                     else {
+                        gp.gameState = gp.dialogueState;
+
                         System.out.println("You need Access Card to open this Door");
                     }
                     break;
