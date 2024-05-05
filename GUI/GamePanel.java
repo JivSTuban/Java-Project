@@ -5,7 +5,9 @@ import Controles.KeyHandler;
 import Entities.Entity;
 import Entities.Items.*;
 import Entities.Player;
+import LoginRegister.Ded;
 import LoginRegister.LoginForm;
+import LoginRegister.Starter;
 import Sound.Sound;
 import Tile.Versus.BackgroundTM;
 import Tile.Versus.DesignTM;
@@ -37,11 +39,13 @@ public class GamePanel extends JPanel implements Runnable {
     public boolean toxinOn = false;
     public boolean footStepOn = false;
     public boolean NPCCollide = false;
+    private volatile boolean isRunning = true;
+
 
     public ArrayList<String> newGameOption = new ArrayList<>();
 
 
-
+    private Starter starter;
     //World settings
     public int maxWorldCol = 80;
     public int maxWorldRow = 80;
@@ -79,7 +83,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public Player player;
     public UI ui = new UI(this);
-
+    Ded ded;
     public VersusScreen vsScreen  = new VersusScreen(this);
     public Entity[] npc = new Entity[99];
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -115,11 +119,11 @@ public class GamePanel extends JPanel implements Runnable {
     public Cooldown npcAttackCD = new Cooldown( 6100);
 
 
-    public GamePanel(User user) throws SQLException, IOException {
+    public GamePanel(User user, Starter starter, LoginForm loginForm) throws SQLException, IOException {
         this.user = user;
-        loginForm = new LoginForm(user, "");
+        this.starter = starter;
+        this.loginForm = loginForm;
         player = new Player(this, keyH, user,loginForm);
-        LoginForm loginForm = new LoginForm(user, "");
    //     loginForm.addItemsToPlayer(player);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
@@ -156,9 +160,30 @@ public class GamePanel extends JPanel implements Runnable {
 
         double nextDrawTime = System.nanoTime() + drawInterval;
 
-        while (gameThread != null ) {
+        while (gameThread != null && isRunning) {
             if(player.getPlayerHP() <1){
-                break;
+
+                starter.closeFrame();
+                ded = new Ded(loginForm);
+                try {
+                    while (!ded.retried)Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                if (ded.retried){
+
+                    try {
+
+                         starter = new Starter(loginForm);
+                        isRunning = false;
+                    } catch (SQLException | IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
+
+                }
+
+
             }
 
             try {
@@ -192,14 +217,7 @@ public class GamePanel extends JPanel implements Runnable {
             }
 
         }
-        try {
-           // loginForm.deleteItemsOnDB();
-            loginForm.resetDB();
 
-            startGameThread();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
 
 
     }

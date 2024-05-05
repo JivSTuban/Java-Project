@@ -109,15 +109,15 @@ public class Player extends Entity {
 //        worldX = GP.tileSize * 3;//kilid
 //        worldY = GP.tileSize * 74;//ibabaw
         try{
-            worldX = GP.tileSize * loginForm.lastX(user);
-            worldY = GP.tileSize * loginForm.lastY(user);
+            worldX = GP.tileSize * loginForm.lastX(loginForm);
+            worldY = GP.tileSize * loginForm.lastY(loginForm);
         }catch (SQLException e){
             e.printStackTrace();
         }
-        setGold(loginForm.lastMoney(user));
+        setGold(loginForm.lastMoney(loginForm));
         loginForm.addItemsToPlayer(this);
         mana = loginForm.lastMana(user);
-        setPlayerHP(loginForm.lastHP(user));
+        setPlayerHP(loginForm.lastHP(loginForm));
         setSpeed(4);
         direction = "down";
     }
@@ -236,7 +236,7 @@ public class Player extends Entity {
       -----------------------------------------------------------------------------------------------*/
     public void pickUpItem(int i) throws SQLException {
         if(i != 999){
-            LoginForm loginForm = new LoginForm(user, "");
+            LoginForm loginForm1 = new LoginForm(loginForm.user, "");
             String itemName = GP.objItem[i].name;
 //            System.out.println(playerHP);
             switch (itemName){

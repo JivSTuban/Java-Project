@@ -28,14 +28,14 @@ public class LoginForm extends JDialog {
     private JButton loginbtn;
     private JButton registerbtn;
     public User user;
+    public User playerUser;
     User userFilled;
     boolean triedLogin = false, rbtnc = false;
 
-    public User playerUser;
-    private String username;
     public LoginForm(User user, String str) throws SQLException {
         playerUser = user;
     }
+    public String username;
     public LoginForm(JFrame parent) throws IOException, SQLException, IllegalArgumentException {
         super(parent);
         setTitle("Mitsu Realm");
@@ -103,7 +103,8 @@ public class LoginForm extends JDialog {
         return itemCount;
     }
 
-    public void resetDB() throws SQLException {
+    public void resetDB(User playerUser) throws SQLException {
+        System.out.print(playerUser.username);
             query = "UPDATE `users` SET WorldX = '"+3+"', WorldY = '" + 78 + "',Money = '"+100+"', mana='"+100+"',Health='"+100+"' WHERE username = '" + playerUser.username + "'";
             preparedStatement = conn.prepareStatement(query);
             preparedStatement.executeUpdate();
@@ -113,7 +114,7 @@ public class LoginForm extends JDialog {
     public void deleteItemsOnDB() throws SQLException {
         String query = "DELETE * FROM items WHERE username = ?";
         preparedStatement = conn.prepareStatement(query);
-        preparedStatement.setString(1, playerUser.username);
+        preparedStatement.setString(1, username);
         preparedStatement.executeUpdate();
         preparedStatement.close();
     }
@@ -129,7 +130,7 @@ public class LoginForm extends JDialog {
         preparedStatement.setString(1, itemName);
         preparedStatement.setInt(2, itemIndex);
         preparedStatement.setInt(3, quantity);
-        preparedStatement.setString(4, playerUser.username);
+        preparedStatement.setString(4, username);
         preparedStatement.executeUpdate();
         preparedStatement.close();
     }
@@ -137,7 +138,7 @@ public class LoginForm extends JDialog {
         query = "INSERT INTO `enemy`(`index`, `username`) VALUES (?,?)";
         preparedStatement = conn.prepareStatement(query);
         preparedStatement.setInt(1, index);
-        preparedStatement.setString(2, playerUser.username);
+        preparedStatement.setString(2, username);
         preparedStatement.executeUpdate();
         preparedStatement.close();
     }
@@ -151,7 +152,7 @@ public class LoginForm extends JDialog {
 
         try (PreparedStatement preparedStatement = conn.prepareStatement("SELECT COUNT(*) AS index_count FROM items WHERE `itemIndex` = ? AND username = ?")) {
             preparedStatement.setInt(1, itemIndex);
-            preparedStatement.setString(2, playerUser.username);
+            preparedStatement.setString(2, username);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     indexCount = resultSet.getInt("index_count");
@@ -168,7 +169,7 @@ public class LoginForm extends JDialog {
 
         try (PreparedStatement preparedStatement = conn.prepareStatement("SELECT COUNT(*) AS index_count FROM enemy WHERE `index` = ? AND username = ?")) {
             preparedStatement.setInt(1, enemyIndex);
-            preparedStatement.setString(2, playerUser.username);
+            preparedStatement.setString(2, username);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     indexCount = resultSet.getInt("index_count");
@@ -233,8 +234,8 @@ public class LoginForm extends JDialog {
     public void addItemsToPlayer(Player player){
         query = "SELECT name FROM items WHERE Username = ?";
         try (PreparedStatement preparedStatement = conn.prepareStatement(query)) {
-            preparedStatement.setString(1, playerUser.username);
-            System.out.println(playerUser.username);
+            preparedStatement.setString(1, player.loginForm.username);
+            System.out.println(player.loginForm.username);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) { // Iterate through all rows returned by the query
                     String itemName = resultSet.getString("name");
@@ -275,11 +276,11 @@ public class LoginForm extends JDialog {
                                                            GET Methods
     ****************************************************************************************************************************** */
 
-    public int lastX(User user) throws SQLException {
+    public int lastX(LoginForm loginForm) throws SQLException {
         int x = 0;
         query = "SELECT `WorldX` FROM `users` WHERE username = ?";
         preparedStatement = conn.prepareStatement(query);
-        preparedStatement.setString(1,user.username);
+        preparedStatement.setString(1,loginForm.user.username);
 
         ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -292,11 +293,11 @@ public class LoginForm extends JDialog {
 
         return x;
     }
-    public double lastMoney(User user) throws SQLException {
+    public double lastMoney(LoginForm loginForm) throws SQLException {
         double x = 0;
         query = "SELECT `Money` FROM `users` WHERE username = ?";
         preparedStatement = conn.prepareStatement(query);
-        preparedStatement.setString(1,user.username);
+        preparedStatement.setString(1,loginForm.user.username);
 
         ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -309,12 +310,12 @@ public class LoginForm extends JDialog {
 
         return x;
     }
-    public int lastY(User user) throws SQLException {
+    public int lastY(LoginForm loginForm) throws SQLException {
         int y = 0;
 
         query = "SELECT `WorldY` FROM `users` WHERE username = ?";
         preparedStatement = conn.prepareStatement(query);
-        preparedStatement.setString(1, user.username);
+        preparedStatement.setString(1, loginForm.user.username);
         ResultSet resultSet = preparedStatement.executeQuery();
 
         if (resultSet.next()) { // Move to the first row of the result set
@@ -325,12 +326,12 @@ public class LoginForm extends JDialog {
 
         return y;
     }
-    public int lastHP(User user) throws SQLException {
+    public int lastHP(LoginForm loginForm) throws SQLException {
         int y = 0;
 
         query = "SELECT `Health` FROM `users` WHERE username = ?";
         preparedStatement = conn.prepareStatement(query);
-        preparedStatement.setString(1, user.username);
+        preparedStatement.setString(1, loginForm.user.username);
         ResultSet resultSet = preparedStatement.executeQuery();
 
         if (resultSet.next()) { // Move to the first row of the result set
@@ -347,7 +348,7 @@ public class LoginForm extends JDialog {
         // Using parameterized query to prevent SQL injection
         String query = "SELECT `quantity` FROM `items` WHERE `username` = ? AND `name` = ?";
         preparedStatement = conn.prepareStatement(query);
-        preparedStatement.setString(1, playerUser.username);
+        preparedStatement.setString(1, username);
         preparedStatement.setString(2, itemName);
         ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -382,25 +383,25 @@ public class LoginForm extends JDialog {
     ****************************************************************************************************************************** */
 
     public void updateLocationToDB(String x, String y) throws SQLException {
-        query = "UPDATE `users` SET WorldX = '" + x + "', WorldY = '" + y + "' WHERE username = '" + playerUser.username + "'";
+        query = "UPDATE `users` SET WorldX = '" + x + "', WorldY = '" + y + "' WHERE username = '" + username + "'";
         preparedStatement = conn.prepareStatement(query);
         preparedStatement.executeUpdate();
         preparedStatement.close();
     }
     public void updateMoneyToDB(double x) throws SQLException {
-        query = "UPDATE `users` SET Money = '" + x + "' WHERE username = '" + playerUser.username + "'";
+        query = "UPDATE `users` SET Money = '" + x + "' WHERE username = '" + username + "'";
         preparedStatement = conn.prepareStatement(query);
         preparedStatement.executeUpdate();
         preparedStatement.close();
     }
     public void updateHealthToDB(int x) throws SQLException {
-        query = "UPDATE `users` SET Health = '" + x + "' WHERE username = '" + playerUser.username + "'";
+        query = "UPDATE `users` SET Health = '" + x + "' WHERE username = '" + username + "'";
         preparedStatement = conn.prepareStatement(query);
         preparedStatement.executeUpdate();
         preparedStatement.close();
     }
     public void updateManaToDB(int x) throws SQLException {
-        query = "UPDATE `users` SET mana = '" + x + "' WHERE username = '" + playerUser.username + "'";
+        query = "UPDATE `users` SET mana = '" + x + "' WHERE username = '" + username + "'";
         preparedStatement = conn.prepareStatement(query);
         preparedStatement.executeUpdate();
         preparedStatement.close();
