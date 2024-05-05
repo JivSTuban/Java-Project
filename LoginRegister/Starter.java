@@ -46,7 +46,7 @@ public class Starter extends MainGameSettings {
     public GamePanel getGamePanel(LoginForm loginForm) throws SQLException, IOException {
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setResizable(false);
+        window.setResizable(true);
         window.setTitle("Mitsu Realm");
         GamePanel gamePanel = new GamePanel(loginForm.user);
         window.add(gamePanel);
@@ -55,8 +55,8 @@ public class Starter extends MainGameSettings {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int screenWidth = (int) screenSize.getWidth();
         int screenHeight = (int) screenSize.getHeight();
-        int windowWidth = 1920; // window width
-        int windowHeight = 1080; // window height
+        int windowWidth = (int)screenSize.getWidth(); // window width
+        int windowHeight = (int)screenSize.getHeight(); // window height
         int x = (screenWidth - windowWidth) / 2;
         int y = (screenHeight - windowHeight) / 2;
         window.setBounds(x, y, windowWidth, windowHeight);

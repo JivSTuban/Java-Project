@@ -98,6 +98,7 @@ public class GamePanel extends JPanel implements Runnable {
     public SuperItem[] objItem = new SuperItem[99];
     public SuperItem[] footStep = new SuperItem[99];
     public SuperItem[] accessCardDrop = new SuperItem[4];
+    public int accessCardDropCount = 0;
 
 
 
@@ -221,8 +222,15 @@ public class GamePanel extends JPanel implements Runnable {
         else {
             if(player.NPCCollision != 999){
                 vsScreen.draw(g2);
+                int dropChance = rand.nextInt(1,100);
                 if(npc[player.NPCCollision].getNpcHp() < 1){
-                    aSetter.setItemDrop(player.accessCardDropCount,Math.round((((float) player.worldX / (this.tileSize)))), Math.round((float) (player.worldY+20.5 )/ (this.tileSize)));
+                    if(dropChance <= 30 && accessCardDropCount < 3){
+                        aSetter.setItemDrop(player.accessCardDropCount,Math.round((((float) player.worldX / (this.tileSize)))), Math.round((float) (player.worldY+20.5 )/ (this.tileSize)));
+                        accessCardDropCount++;
+                    }
+
+                    else
+                        System.out.println("No Drop");
                     npc[player.NPCCollision] = null;
                 }
             }

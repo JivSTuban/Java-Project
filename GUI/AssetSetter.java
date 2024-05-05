@@ -104,7 +104,8 @@ public class AssetSetter {
 
 
         setNPCChar(4, 5, 77, new NPC_Console(gp));
-        setNPCChar(5,5,77,new NPC_Veemax(gp));
+        setNPCChar(5,1,24,new NPC_Veemax(gp));
+        setNPCChar(23, 6, 20, new NPC_Viper(gp));
         //Boss
         setNPCChar(6,70,3,new NPC_OptimusKhai(gp));
        // setNPCChar(6,19,61,new NPC_OptimusKhai(gp));//Boss

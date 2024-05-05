@@ -4,21 +4,21 @@ import GUI.GamePanel;
 
 import java.util.Random;
 
-public class NPC_Veemax extends Entity{
+public class NPC_Viper extends Entity{
 
-    public NPC_Veemax(GamePanel gp){
+    public NPC_Viper(GamePanel gp){
         super(gp);
-        NPC_name = "Veemax";
-        NPC_VSname = "Veemax";
+        NPC_name = "Viper";
+        NPC_VSname = "Viper";
         collision = true;
-        direction = "down";
+        direction = "right";
         getImage();
         type = 2;
         maxHP = 150;
         npcHp = maxHP;
-        npcScaleX = gp.tileSize+70;
-        npcScaleY = gp.tileSize+70;
-        NPC_getVSImgae = "/res/npc/NPCOptimusKhai/sprite_ok8";
+        npcScaleX = gp.tileSize+40;
+        npcScaleY = gp.tileSize+40;
+        NPC_getVSImgae = "/res/npc/NPCViper/ViperRobot";
         NPC_getVSGIF = "/res/npc/NPCOptimusKhai/Optimus-Khai-Skill-GIF";
 
         solidArea.x = 3;
@@ -65,14 +65,17 @@ public class NPC_Veemax extends Entity{
 
     public void getImage() {
 
-        up1 = setup("/res/npc/Veemax/sprite_Veemax1");
-        up2 = setup("/res/npc/Veemax/sprite_Veemax1");
-        right1 = setup("/res/npc/Veemax/sprite_Veemax1");
-        right2 = setup("/res/npc/Veemax/sprite_Veemax1");
-        down1 = setup("/res/npc/Veemax/sprite_Veemax1");
-        down2 = setup("/res/npc/Veemax/sprite_Veemax1");
-        left1 = setup("/res/npc/Veemax/sprite_Veemax1");
-        left2 = setup("/res/npc/Veemax/sprite_Veemax1");
+
+        up1 = setup("/res/npc/NPCViper/ViperRobotright");
+        up2 = setup("/res/npc/NPCViper/ViperRobotright");
+        right1 = setup("/res/npc/NPCViper/ViperRobotright");
+        right2 = setup("/res/npc/NPCViper/ViperRobotright");
+        down1 = setup("/res/npc/NPCViper/ViperRobotright");
+        down2 = setup("/res/npc/NPCViper/ViperRobotright");
+        left1 = setup("/res/npc/NPCViper/ViperRobotright");
+        left2 = setup("/res/npc/NPCViper/ViperRobotright");
+
+
     }
     public void setDialogue(){
         dialogues[0] = "You hit the Drone \n You hit the Drone";
