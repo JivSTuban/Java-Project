@@ -15,6 +15,7 @@ import Tile.Versus.DesignTM;
 import Tile.world1.DesignTileManager;
 import Tile.world1.CollisionTileManger;
 
+import Tile.world1.Foreground;
 import Tile.world1.TileManager;
 import Users.User;
 
@@ -60,6 +61,7 @@ public class GamePanel extends JPanel implements Runnable {
     TileManager tileManager = new TileManager(this);
     CollisionTileManger collisionTileManger = new CollisionTileManger(this);
     DesignTileManager designTileManager = new DesignTileManager(this);
+    Foreground foregroundTileManager = new Foreground(this);
     //Versus Screen
     BackgroundTM  bgTMVersus = new BackgroundTM(this);
     DesignTM dTMVersus = new DesignTM(this);
@@ -95,6 +97,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public SuperItem[] objItem = new SuperItem[99];
     public SuperItem[] footStep = new SuperItem[99];
+    public SuperItem[] accessCardDrop = new SuperItem[4];
 
 
 
@@ -219,7 +222,7 @@ public class GamePanel extends JPanel implements Runnable {
             if(player.NPCCollision != 999){
                 vsScreen.draw(g2);
                 if(npc[player.NPCCollision].getNpcHp() < 1){
-                    //  aSetter.setItemDrop(player.accessCardDropCount,Math.round((((float) player.worldX / (this.tileSize)))), Math.round((float) (player.worldY+20.5 )/ (this.tileSize)));
+                    aSetter.setItemDrop(player.accessCardDropCount,Math.round((((float) player.worldX / (this.tileSize)))), Math.round((float) (player.worldY+20.5 )/ (this.tileSize)));
                     npc[player.NPCCollision] = null;
                 }
             }
@@ -243,6 +246,7 @@ public class GamePanel extends JPanel implements Runnable {
         //the main screen
         tileManager.draw(g2);
         collisionTileManger.draw(g2);
+        foregroundTileManager.draw(g2);
         //Item
         for (SuperItem superItem : objItem) {
             if (superItem != null) {
@@ -251,6 +255,11 @@ public class GamePanel extends JPanel implements Runnable {
         }
         //drawFootStep
         for (SuperItem superItem : footStep) {
+            if (superItem != null) {
+                superItem.draw(g2, this);
+            }
+        }
+        for (SuperItem superItem : accessCardDrop) {
             if (superItem != null) {
                 superItem.draw(g2, this);
             }

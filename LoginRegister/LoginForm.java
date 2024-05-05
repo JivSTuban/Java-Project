@@ -252,13 +252,13 @@ public class LoginForm extends JDialog {
     }
 
     public void addItemsToPlayer(Player player){
-        query = "SELECT ItemName FROM items WHERE Username = ?";
+        query = "SELECT name FROM items WHERE Username = ?";
         try (PreparedStatement preparedStatement = conn.prepareStatement(query)) {
             preparedStatement.setString(1, playerUser.username);
             System.out.println(playerUser.username);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) { // Iterate through all rows returned by the query
-                    String itemName = resultSet.getString("ItemName");
+                    String itemName = resultSet.getString("name");
                     switch (itemName) {
                         case "Salve":
                             player.addToInventoryFromDatabase("salve", player);

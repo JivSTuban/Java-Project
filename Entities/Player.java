@@ -110,7 +110,7 @@ public class Player extends Entity {
             e.printStackTrace();
         }
         setGold(loginForm.lastMoney(user));
-
+        loginForm.addItemsToPlayer(this);
 
         setSpeed(4);
         direction = "down";
@@ -450,13 +450,13 @@ public class Player extends Entity {
             gotBoots = true;
     }
     public void addToInventoryFromDatabase(String name, Player player){
-        if(player.searchInventory("salve")&& name.equals("salve")) {
+        if(!player.searchInventory("salve")&& name.equals("salve")) {
             player.inventory.add(new ItemSalve());
         }
-        if(player.searchInventory("accessCard")){
+        if(!player.searchInventory("accessCard")){
             player.inventory.add(new AccessCard());
         }
-        if(player.searchInventory("boots") && name.equals("boots")){
+        if(!player.searchInventory("boots") && name.equals("boots")){
             player.inventory.add(new ItemBoots());
         }
     }

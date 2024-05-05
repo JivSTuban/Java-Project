@@ -38,9 +38,9 @@ public class AssetSetter {
         gp.footStep[i].worldY = y * gp.tileSize;
     }
     public void setItemDrop(int i, int x, int y) {
-        gp.footStep[i] = new AccessCard();
-        gp.footStep[i].worldX = x * gp.tileSize;
-        gp.footStep[i].worldY = y * gp.tileSize;
+        gp.objItem[i] = new AccessCard();
+        gp.objItem[i].worldX = x * gp.tileSize;
+        gp.objItem[i].worldY = y * gp.tileSize;
     }
 
     public void setItem(LoginForm loginForm) throws SQLException {
