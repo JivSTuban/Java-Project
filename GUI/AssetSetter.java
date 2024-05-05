@@ -12,6 +12,7 @@ public class AssetSetter {
     GamePanel gp;
     Random rand = new Random();
     int index=0;
+    int itemIndex = 0;
 
 
     public int spawnRand() {
@@ -22,16 +23,17 @@ public class AssetSetter {
         this.gp = gp;
     }
 
-    public void setImage(int index, int x, int y, SuperItem item,boolean collision) throws SQLException {
+    public void setImage(int x, int y, SuperItem item,boolean collision) throws SQLException {
        if(!gp.loginForm.isItemAvailable(index)){
            try {
-               gp.objItem[index] = item.getClass().newInstance();
-               gp.objItem[index].worldX = x * gp.tileSize;
-               gp.objItem[index].worldY = y * gp.tileSize;
-               gp.objItem[index].collision = collision;
+               gp.objItem[itemIndex] = item.getClass().newInstance();
+               gp.objItem[itemIndex].worldX = x * gp.tileSize;
+               gp.objItem[itemIndex].worldY = y * gp.tileSize;
+               gp.objItem[itemIndex].collision = collision;
            } catch (InstantiationException | IllegalAccessException e) {
                e.printStackTrace();
            }
+           itemIndex++;
        }
     }
     public void setFootStep(int i, int x, int y) {
@@ -47,28 +49,30 @@ public class AssetSetter {
 
     public void setItem(LoginForm loginForm) throws SQLException {
        // if (loginForm.getItemCountInDatabase("Salve") < 2) {
-            setImage(0, 5, 76, new ItemSalve(), false);
+            setImage( 5, 76, new ItemSalve(), false);
+        setImage( 5, 76, new Chest(), false);
+        setImage( 7, 76, new Chest(), false);
      //   }
      //   if (loginForm.getItemCountInDatabase("Boots") == 0){
-            setImage(1,14,74,  new ItemBoots(), false);
+            setImage(14,74,  new ItemBoots(), false);
       //  }
       //  if (loginForm.getItemCountInDatabase("Salve") < 2) {
-            setImage(2,spawnRand(),spawnRand(),  new ItemSalve(),false);
-            setImage(9,4,75,  new Chest(),false);
+            setImage(spawnRand(),spawnRand(),  new ItemSalve(),false);
+            setImage(4,75,  new Chest(),false);
       //  }
      //   if (loginForm.getItemCountInDatabase("AccessCard") < 2) {
-            setImage(3,4,78,  new AccessCard(),false);
-            setImage(10,14,75,  new Chest(),false);
+            setImage(4,78,  new AccessCard(),false);
+            setImage(14,75,  new Chest(),false);
       //  }
-        setImage(4,8,50,  new DoorOpen(),false);
-        setImage(5,8,50,  new DoorClose(),true);
-        setImage(6,2,19,  new DoorOpen(),false);
-        setImage(7,2,19,  new DoorClose(),true);
-        setImage(8,1,6,  new DoorOpen(),false);
-        setImage(9,1,6,  new DoorClose(),true);
-        setImage(10,15,74,  new HackingDevice(),false);
-        setImage(11,15,76,  new DoorOpen(),false);
-        setImage(12,15,76,  new DoorClose(),true);
+        setImage(8,50,  new DoorOpen(),false);
+        setImage(8,50,  new DoorClose(),true);
+        setImage(2,19,  new DoorOpen(),false);
+        setImage(2,19,  new DoorClose(),true);
+        setImage(1,6,  new DoorOpen(),false);
+        setImage(1,6,  new DoorClose(),true);
+        setImage(15,74,  new HackingDevice(),false);
+        setImage(15,76,  new DoorOpen(),false);
+        setImage(   15,76,  new DoorClose(),true);
 
     }
     public void dropAccessCard(int x ,int y) throws SQLException {
@@ -76,8 +80,8 @@ public class AssetSetter {
         setItemDrop(gp.player.accessCardDropCount,x,y);
         gp.player.accessCardDropCount++;
 
-        setImage(10,14,2,  new DoorClose(),true);
-        setImage(11,13,1,  new SecretPackage(),false);
+        setImage(14,2,  new DoorClose(),true);
+        setImage(13,1,  new SecretPackage(),false);
     }
     public void setToxin(int x ,int y) {
 

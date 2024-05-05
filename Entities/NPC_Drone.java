@@ -12,8 +12,8 @@ public class NPC_Drone extends Entity{
         NPC_VSname = "Drone";
         collision = true;
         direction = "own";
-        NPC_getVSImgae = "/res/npc/NPCDrone/DroneUP";
-        NPC_getVSGIF = "/res/npc/NPCOptimusKhai/Optimus-Khai-Skill-GIF";
+        NPC_getVSImgae = "/res/npc/NPCDrone/DroneVS";
+        NPC_getVSGIF = "/res/npc/NPCDrone/DroneGIF";
         speed = 1;
         getImage();
         type = 2;

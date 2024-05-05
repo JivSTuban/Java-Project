@@ -59,7 +59,7 @@ public class VersusScreen {
                 Font font = new Font("Arial", Font.PLAIN, 40);
                 g2.setFont(font);
                 g2.setColor(Color.WHITE);
-                g2.drawString(gp.loginForm.username.toUpperCase(), 300, 150);
+                g2.drawString(gp.user.username.toUpperCase(), 300, 150);
 
                 /* **************************************************
                  *                  Enemy side                    *

@@ -38,7 +38,13 @@ public class Ded extends JFrame {
         exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                try {
+                    loginForm.resetDB(loginForm.user);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
                 System.exit(0);
+
             }
         });
     }

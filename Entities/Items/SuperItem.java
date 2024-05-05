@@ -19,6 +19,7 @@ public class SuperItem  {
     public int solidAreaDefaultY = 0;
     public String description = "";
 
+    public double price =0.0;
 
 
     public void draw(Graphics2D g2, GamePanel gp) {

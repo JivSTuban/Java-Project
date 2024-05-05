@@ -7,7 +7,6 @@ import java.awt.event.KeyEvent;
 public class StoreHandler {
 
     public void openStoreHandler(boolean openStore, int code, GamePanel gp) {
-        if (openStore) {
 
             if (code == KeyEvent.VK_UP && gp.ui.slotRow != 0) gp.ui.slotRow--;
             if (code == KeyEvent.VK_DOWN && gp.ui.slotRow != 3) gp.ui.slotRow++;
@@ -16,36 +15,18 @@ public class StoreHandler {
 
 
             if (code == KeyEvent.VK_ESCAPE) {
-                gp.keyH.openInventory = false;
+                gp.keyH.openStore = false;
                 gp.gameState = gp.playState;
             }
 
             if (code == KeyEvent.VK_Z) {
-                if (gp.player.inventory.get(gp.ui.getItemIndexOnSlot()).name.equals("salve") &&
-                        (gp.player.getPlayerHP() != gp.player.maxHP)) {
-                    if (gp.player.getPlayerHP() <= gp.player.maxHP - 20) {
-                        gp.player.playerHP += 20;
-                    } else {
-                        gp.player.setPlayerHP(gp.player.maxHP);
-
-                    }
-                    gp.player.salveCount--;
-                }
-                if (gp.player.inventory.get(gp.ui.getItemIndexOnSlot()).name.equals("accessCard")) {
-                    (gp.player.inventory.get(gp.player.searchInventoryIndex("accessCard")).quantity)--;
-                    gp.keyH.doorOpen = true;
-                    gp.keyH.openInventory = false;
-                    gp.gameState = gp.playState;
-
-                }
-                if (gp.player.inventory.get(gp.ui.getItemIndexOnSlot()).name.equals("hackingDevice")) {
-                    gp.gameState = gp.hackingState;
-                }
-
-                if (gp.player.salveCount == 0) {
-                    gp.player.removeItem("salve");
+                if(gp.player.getGold() >= gp.storeItem.get(gp.ui.getItemIndexOnSlot()).price ) {
+                    gp.player.addToInventoryFromStore(gp.storeItem.get(gp.ui.getItemIndexOnSlot()).name);
+                    System.out.println("Item name in Store:" +gp.storeItem.get(gp.ui.getItemIndexOnSlot()).name);
+                    gp.player.setGold(gp.player.getGold() - gp.storeItem.get(gp.ui.getItemIndexOnSlot()).price );
+                    System.out.println("Player Gold = "+ gp.player.getGold());
                 }
             }
         }
-    }
+
 }
