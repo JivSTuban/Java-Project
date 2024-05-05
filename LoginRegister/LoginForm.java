@@ -103,13 +103,33 @@ public class LoginForm extends JDialog {
         return itemCount;
     }
 
+    public void resetDB() throws SQLException {
+            query = "UPDATE `users` SET WorldX = '"+3+"', WorldY = '" + 78 + "',Money = '"+100+"', mana='"+100+"',Health='"+100+"' WHERE username = '" + playerUser.username + "'";
+            preparedStatement = conn.prepareStatement(query);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+    }
+
+    public void deleteItemsOnDB() throws SQLException {
+        String query = "DELETE * FROM items WHERE username = ?";
+        preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setString(1, playerUser.username);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
 
 
-    public void addItemToDatabase(String itemName) throws SQLException {
-        query = "INSERT INTO items (ItemName, Username) VALUES (?, ?)";
+ /* ******************************************************************************************************************************
+                                                           ADD Methods
+    ****************************************************************************************************************************** */
+
+    public void addItemToDatabase(String itemName, int itemIndex, int quantity) throws SQLException {
+        query = "INSERT INTO items (name,itemIndex,quantity, username) VALUES (?, ?, ?, ?)";
         preparedStatement = conn.prepareStatement(query);
         preparedStatement.setString(1, itemName);
-        preparedStatement.setString(2, playerUser.username);
+        preparedStatement.setInt(2, itemIndex);
+        preparedStatement.setInt(3, quantity);
+        preparedStatement.setString(4, playerUser.username);
         preparedStatement.executeUpdate();
         preparedStatement.close();
     }
@@ -121,68 +141,27 @@ public class LoginForm extends JDialog {
         preparedStatement.executeUpdate();
         preparedStatement.close();
     }
-    public void updateLocationToDB(String x, String y) throws SQLException {
-        query = "UPDATE `users` SET WorldX = '" + x + "', WorldY = '" + y + "' WHERE username = '" + playerUser.username + "'";
-        preparedStatement = conn.prepareStatement(query);
-        preparedStatement.executeUpdate();
-        preparedStatement.close();
-    }
-    public void updateMoneyToDB(double x) throws SQLException {
-        query = "UPDATE `users` SET Money = '" + x + "' WHERE username = '" + playerUser.username + "'";
-        preparedStatement = conn.prepareStatement(query);
-        preparedStatement.executeUpdate();
-        preparedStatement.close();
-    }
 
-    public int lastX(User user) throws SQLException {
-        int x = 0;
-        query = "SELECT `WorldX` FROM `users` WHERE username = ?";
-        preparedStatement = conn.prepareStatement(query);
-        preparedStatement.setString(1,user.username);
+    /* ******************************************************************************************************************************
+                                                        Search Methods
+    ****************************************************************************************************************************** */
 
-        ResultSet resultSet = preparedStatement.executeQuery();
+    public boolean isItemAvailable(int itemIndex) throws SQLException {
+        int indexCount = 0;
 
-        if (resultSet.next()) { // Move to the first row of the result set
-            x = resultSet.getInt("WorldX"); // Get the value of WorldX column
+        try (PreparedStatement preparedStatement = conn.prepareStatement("SELECT COUNT(*) AS index_count FROM items WHERE `itemIndex` = ? AND username = ?")) {
+            preparedStatement.setInt(1, itemIndex);
+            preparedStatement.setString(2, playerUser.username);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    indexCount = resultSet.getInt("index_count");
+                }
+            }
+        } catch (SQLException e) {
+            throw e;
         }
 
-        resultSet.close();
-        preparedStatement.close();
-
-        return x;
-    }
-    public double lastMoney(User user) throws SQLException {
-        double x = 0;
-        query = "SELECT `Money` FROM `users` WHERE username = ?";
-        preparedStatement = conn.prepareStatement(query);
-        preparedStatement.setString(1,user.username);
-
-        ResultSet resultSet = preparedStatement.executeQuery();
-
-        if (resultSet.next()) { // Move to the first row of the result set
-            x = resultSet.getDouble("Money"); // Get the value of WorldX column
-        }
-
-        resultSet.close();
-        preparedStatement.close();
-
-        return x;
-    }
-    public int lastY(User user) throws SQLException {
-        int y = 0;
-
-        query = "SELECT `WorldY` FROM `users` WHERE username = ?";
-        preparedStatement = conn.prepareStatement(query);
-        preparedStatement.setString(1, user.username);
-        ResultSet resultSet = preparedStatement.executeQuery();
-
-        if (resultSet.next()) { // Move to the first row of the result set
-            y = resultSet.getInt("WorldY"); // Get the value of WorldX column
-        }
-        resultSet.close();
-        preparedStatement.close();
-
-        return y;
+        return indexCount > 0;
     }
     public boolean isEnemyDead(int enemyIndex) throws SQLException {
         int indexCount = 0;
@@ -260,17 +239,19 @@ public class LoginForm extends JDialog {
                 while (resultSet.next()) { // Iterate through all rows returned by the query
                     String itemName = resultSet.getString("name");
                     switch (itemName) {
-                        case "Salve":
+                        case "salve":
                             player.addToInventoryFromDatabase("salve", player);
-                            player.salveCount++;
+                            player.inventory.get(player.searchInventoryIndex("salve")).quantity= getItemQuantity("salve");
                             break;
-                        case "AccessCard":
+                        case "accessCard":
                             player.addToInventoryFromDatabase("AccessCard", player);
-                            player.accessCard++;
+                            player.inventory.get(player.searchInventoryIndex("accessCard")).quantity= getItemQuantity("accessCard");
                             break;
-                        case "Boots":
-                            player.addToInventory("boots");
-                            player.gotBoots = true;
+                        case "hackingDevice":
+                            player.addToInventoryFromDatabase("hackingDevice", player);
+                            break;
+                        case "boots":
+                            player.addToInventoryFromDatabase("boots",player);
                             break;
                         // Add more cases as needed for other item types
                         default:
@@ -284,5 +265,146 @@ public class LoginForm extends JDialog {
         }
 
     }
+//    public void addItemsToPlayer(){
+//        query = "SELECT name FROM items WHERE Username = ?";
+//    }
+
+
+
+     /* ******************************************************************************************************************************
+                                                           GET Methods
+    ****************************************************************************************************************************** */
+
+    public int lastX(User user) throws SQLException {
+        int x = 0;
+        query = "SELECT `WorldX` FROM `users` WHERE username = ?";
+        preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setString(1,user.username);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) { // Move to the first row of the result set
+            x = resultSet.getInt("WorldX"); // Get the value of WorldX column
+        }
+
+        resultSet.close();
+        preparedStatement.close();
+
+        return x;
+    }
+    public double lastMoney(User user) throws SQLException {
+        double x = 0;
+        query = "SELECT `Money` FROM `users` WHERE username = ?";
+        preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setString(1,user.username);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) { // Move to the first row of the result set
+            x = resultSet.getDouble("Money"); // Get the value of WorldX column
+        }
+
+        resultSet.close();
+        preparedStatement.close();
+
+        return x;
+    }
+    public int lastY(User user) throws SQLException {
+        int y = 0;
+
+        query = "SELECT `WorldY` FROM `users` WHERE username = ?";
+        preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setString(1, user.username);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) { // Move to the first row of the result set
+            y = resultSet.getInt("WorldY"); // Get the value of WorldX column
+        }
+        resultSet.close();
+        preparedStatement.close();
+
+        return y;
+    }
+    public int lastHP(User user) throws SQLException {
+        int y = 0;
+
+        query = "SELECT `Health` FROM `users` WHERE username = ?";
+        preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setString(1, user.username);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) { // Move to the first row of the result set
+            y = resultSet.getInt("Health"); // Get the value of WorldX column
+        }
+        resultSet.close();
+        preparedStatement.close();
+
+        return y;
+    }
+    public int getItemQuantity(String itemName) throws SQLException {
+        int quantity = 0;
+
+        // Using parameterized query to prevent SQL injection
+        String query = "SELECT `quantity` FROM `items` WHERE `username` = ? AND `name` = ?";
+        preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setString(1, playerUser.username);
+        preparedStatement.setString(2, itemName);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) { // Move to the first row of the result set
+            quantity = resultSet.getInt("quantity"); // Get the value of quantity column
+        }
+        resultSet.close();
+        preparedStatement.close();
+
+        return quantity;
+    }
+
+    public int lastMana(User user) throws SQLException {
+        int y = 0;
+
+        query = "SELECT `mana` FROM `users` WHERE username = ?";
+        preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setString(1, user.username);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) { // Move to the first row of the result set
+            y = resultSet.getInt("mana"); // Get the value of WorldX column
+        }
+        resultSet.close();
+        preparedStatement.close();
+
+        return y;
+    }
+
+    /* ******************************************************************************************************************************
+                                                           Update Methods
+    ****************************************************************************************************************************** */
+
+    public void updateLocationToDB(String x, String y) throws SQLException {
+        query = "UPDATE `users` SET WorldX = '" + x + "', WorldY = '" + y + "' WHERE username = '" + playerUser.username + "'";
+        preparedStatement = conn.prepareStatement(query);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+    public void updateMoneyToDB(double x) throws SQLException {
+        query = "UPDATE `users` SET Money = '" + x + "' WHERE username = '" + playerUser.username + "'";
+        preparedStatement = conn.prepareStatement(query);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+    public void updateHealthToDB(int x) throws SQLException {
+        query = "UPDATE `users` SET Health = '" + x + "' WHERE username = '" + playerUser.username + "'";
+        preparedStatement = conn.prepareStatement(query);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+    public void updateManaToDB(int x) throws SQLException {
+        query = "UPDATE `users` SET mana = '" + x + "' WHERE username = '" + playerUser.username + "'";
+        preparedStatement = conn.prepareStatement(query);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+
 
 }

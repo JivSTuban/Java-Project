@@ -1,5 +1,6 @@
 package Entities;
 
+import Controles.Cooldown;
 import Controles.KeyHandler;
 import Entities.Items.*;
 import Entities.PlayerSkills.*;
@@ -15,18 +16,22 @@ import java.util.Random;
 
 public class Player extends Entity {
     public boolean devMode = false;
+    public Cooldown printDelay = new Cooldown(3000);
 
+    boolean draw = false;
     GamePanel GP;
     KeyHandler KH;
 
     int defaultSpeed = 3;
     public  int screenX = 0;
     public  int screenY = 0;
-    LoginForm loginForm;
+    public LoginForm loginForm;
     User user ;
 
     public ArrayList<SuperItem> inventory = new ArrayList<>();
     public ArrayList<PlayerSkills> skills = new ArrayList<>();
+
+
     public final int invetntorySize = 20;
     public int NPCCollision ;
     public int accessCardDropCount =0;
@@ -111,7 +116,8 @@ public class Player extends Entity {
         }
         setGold(loginForm.lastMoney(user));
         loginForm.addItemsToPlayer(this);
-
+        mana = loginForm.lastMana(user);
+        setPlayerHP(loginForm.lastHP(user));
         setSpeed(4);
         direction = "down";
     }
@@ -138,6 +144,8 @@ public class Player extends Entity {
 
     public void update(KeyHandler keyH){
         // updateSkills();
+        if(gp.haveKnuckles)
+            skill1.setSkillDamage(30);
 
         developerSettings(keyH);
 //        if(keyH.pPressed)
@@ -188,6 +196,7 @@ public class Player extends Entity {
                 NPCCollision = GP.collisionChecker.checkEntity(this,gp.npc);
                 interactNPC(NPCCollision, keyH);
 
+
                 if (!collisionOn ){
                     switch (direction){
                         case"up":
@@ -235,7 +244,7 @@ public class Player extends Entity {
                     GP.objItem[i] = null;
                     addToInventory("salve");
                     addToInventory(itemName,1);
-                    loginForm.addItemToDatabase("salve");
+                    loginForm.addItemToDatabase("salve",i,1);
                     break;
                 case "boots":
                     gotBoots = true;
@@ -243,13 +252,14 @@ public class Player extends Entity {
                     GP.objItem[i] = null;
                     if(devMode)System.out.println(getSpeed());
                     inventory.add(new ItemBoots());
+                    loginForm.addItemToDatabase("boots",i,1);
                     break;
                 case "hackingDevice":
                     GP.objItem[i] = null;
                     addToInventory("hackingDevice");
                     addToInventory(itemName,1);
                     System.out.println("hackingDevice");
-                    loginForm.addItemToDatabase("hackingDevice");
+                    loginForm.addItemToDatabase("hackingDevice",i,1);
                     break;
                 case "accessCard":
                     GP.objItem[i] = null;
@@ -285,7 +295,7 @@ public class Player extends Entity {
                         addToInventory("card");
                         addToInventory("accessCard",1);
                         System.out.println("got card");
-                        loginForm.addItemToDatabase("AccessCard");
+                        loginForm.addItemToDatabase("AccessCard",i,1);
                     }
 
                     else{
@@ -293,7 +303,7 @@ public class Player extends Entity {
                         addToInventory("salve");
                         addToInventory("salve",1);
                         System.out.println("got Salve");
-                        loginForm.addItemToDatabase("salve");
+                        loginForm.addItemToDatabase("salve",i,1);
                     }
                     break;
 
@@ -348,14 +358,23 @@ public class Player extends Entity {
     public void interactNPC(int i,KeyHandler keyH){
         if(i!=999){
             // playerHP--;
+//            if(printDelay.isOnCooldown() && !draw) {
+//                gp.ui.drawToTalk(900, 500, 300, 100, 200);
+//                draw = true;
+//            }
 
             if(gp.npc[i].isEnemy && gp.npc[i].NPC_name != null)
                 gp.gameState = gp.versusScreen;
-            else{
+            else {
+                if(!printDelay.isOnCooldown())
+                    printDelay.trigger();
+
+                if (keyH.zPressed){
                     gp.gameState = gp.dialogueState;
                     gp.npc[i].speak();
                     gp.npc[i].dialoguesCd.trigger();
                     gp.keyH.zPressed = false;
+                 }
             }
 
         }
@@ -456,6 +475,11 @@ public class Player extends Entity {
         }
         if(!player.searchInventory("boots") && name.equals("boots")){
             player.inventory.add(new ItemBoots());
+            gotBoots = true;
+            justGotBoots = true;
+        }
+        if(!player.searchInventory("hackingDevice") && name.equals("hackingDevice")){
+            player.inventory.add(new HackingDevice());
         }
     }
     @Override

@@ -32,7 +32,18 @@ public class InventoryHUD {
         drawInventoryScreen();
     }
     private void hudBg(){
-        ui.drawSubWindow(1450, 12, 450,970,230);
+        drawSubWindow(1450, 12, 450,970,230);
+
+    }
+    public void drawSubWindow(int x, int y, int width, int height, int alpha){
+        Color backgroundColor = new Color(24, 57, 43);
+        g2.setColor(backgroundColor);
+        g2.fillRoundRect(x, y, width, height, 10, 10);
+
+        Color Border = new Color(34,221,13);
+        g2.setColor(Border);
+        g2.setStroke(new BasicStroke(6));
+        g2.drawRect(x+5,y+5,width-10,height-10);
 
     }
     private void drawInventoryScreen() {

@@ -22,15 +22,17 @@ public class AssetSetter {
         this.gp = gp;
     }
 
-    public void setImage(int index, int x, int y, SuperItem item,boolean collision) {
-        try {
-            gp.objItem[index] = item.getClass().newInstance();
-            gp.objItem[index].worldX = x * gp.tileSize;
-            gp.objItem[index].worldY = y * gp.tileSize;
-            gp.objItem[index].collision = collision;
-        } catch (InstantiationException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
+    public void setImage(int index, int x, int y, SuperItem item,boolean collision) throws SQLException {
+       if(!gp.loginForm.isItemAvailable(index)){
+           try {
+               gp.objItem[index] = item.getClass().newInstance();
+               gp.objItem[index].worldX = x * gp.tileSize;
+               gp.objItem[index].worldY = y * gp.tileSize;
+               gp.objItem[index].collision = collision;
+           } catch (InstantiationException | IllegalAccessException e) {
+               e.printStackTrace();
+           }
+       }
     }
     public void setFootStep(int i, int x, int y) {
         gp.footStep[i] = new FootStep();
@@ -67,7 +69,7 @@ public class AssetSetter {
         setImage(10,5,74,  new HackingDevice(),false);
 
     }
-    public void dropAccessCard(int x ,int y) {
+    public void dropAccessCard(int x ,int y) throws SQLException {
 
         setItemDrop(gp.player.accessCardDropCount,x,y);
         gp.player.accessCardDropCount++;

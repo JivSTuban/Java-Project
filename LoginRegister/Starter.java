@@ -39,7 +39,9 @@ public class Starter extends MainGameSettings {
         }
         GamePanel gamePanel = getGamePanel(loginForm);
         gamePanel.startGameThread();
+
     }
+
 
 
     @Override
@@ -63,6 +65,8 @@ public class Starter extends MainGameSettings {
 
         window.setVisible(true);
         gamePanel.setupGame(loginForm);
+
         return gamePanel;
+
     }
 }

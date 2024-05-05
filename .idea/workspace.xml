@@ -5,16 +5,50 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6c05f8e2-d282-4ed7-b789-e33fe27d5050" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Controles/NewGameHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controles/StoreHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Entities/Items/Clarity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Entities/Items/EndingDoor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Entities/Items/Vanguard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Entities/Items/knuckles.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/NewGameUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Inventory/StoreHUD.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controles/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controles/KeyHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/NPC_Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/NPC_Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controles/VersusHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controles/VersusHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/Items/AccessCard.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/Items/Chest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/Items/DoorClose.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/Items/DoorOpen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/Items/FootStep.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/Items/HackingDevice.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/Items/ItemBoots.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/Items/ItemSalve.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/Items/SuperItem.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/AssetSetter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/CollisionChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/InventoryHUD.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/InventoryHUD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/StoreUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/StoreUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/VersusScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/VersusScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoginRegister/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoginRegister/LoginForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoginRegister/RegistrationForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoginRegister/RegistrationForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoginRegister/Starter.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoginRegister/Starter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/KeyHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/KeyHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Entity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_Console.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_Console.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/VersusHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/VersusHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/AssetSetter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/AssetSetter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/CollisionChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/CollisionChecker.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/GamePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/StoreUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/StoreUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/UI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/UI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/VersusScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/VersusScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/Starter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/Starter.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,12 +71,12 @@
     &quot;assignee&quot;: &quot;Sting421&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/JivSTuban/Mitsu-Realm.git&quot;,
-    &quot;accountId&quot;: &quot;e89d4f42-4f36-42ad-bcca-01071da967c0&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/JivSTuban/Mitsu-Realm.git",
+    "accountId": "09aa4fbc-8c06-41ec-9692-fcbf79e8a02b"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 0
@@ -56,11 +90,16 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
-    "git-widget-placeholder": "Merging main"
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE": "right",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE": "left",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/STING/Desktop/Mitsu-Realm/res/Inventory"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\STING\Desktop\Mitsu-Realm\res\Inventory" />
       <recent name="D:\JavaProject\Mitsu-Realm\res\font" />
       <recent name="C:\Users\STING\Desktop\Mitsu-Realm\res\NPCViper" />
       <recent name="C:\Users\STING\Desktop\Mitsu-Realm\res\npc\NPCOptimusKhai" />
@@ -91,7 +130,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="bb09f887-d28d-4ee8-8d2c-f69bb00afeef" name="Changes" comment="" />
+      <changelist id="6c05f8e2-d282-4ed7-b789-e33fe27d5050" name="Changes" comment="" />
       <created>1713853868725</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />

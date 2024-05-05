@@ -29,16 +29,16 @@ public class StoreUI {
     }
     public void draw(Graphics2D g2){
         this.g2 = g2;
-        drawInventoryScreen();
+        drawStoreScreen();
     }
     private void hudBg(){
         ui.drawSubWindow(1450, 12, 450,970,230);
 
     }
-    private void drawInventoryScreen() {
+    private void drawStoreScreen() {
         hudBg();
         try {
-            invHud = ImageIO.read(getClass().getResourceAsStream("/res/Inventory/InventoryHUD.png"));
+            invHud = ImageIO.read(getClass().getResourceAsStream("/res/Inventory/StoreHUD.png"));
         }catch (Exception e){
             e.printStackTrace();
         }

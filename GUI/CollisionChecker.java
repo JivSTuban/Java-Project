@@ -94,6 +94,7 @@ public class CollisionChecker {
                 if(gp.tileManager.tiles[toxin1].toxin  || gp.tileManager.tiles[toxin2].toxin){
                     if(player)
                         gp.toxinOn = true;
+
                 }
                 break;
 

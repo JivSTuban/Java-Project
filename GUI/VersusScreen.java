@@ -47,9 +47,12 @@ public class VersusScreen {
                 g2.drawImage(blackBG, 90, 670, 1700,330,null);
                 selectHUD =  setup("/res/versus/select");
                 g2.drawImage(selectHUD, 90, 670, 1700,330,null);
-                float playerTemp = 100-((float)gp.player.getPlayerHP() / (float)gp.player.maxHP)*100;
-                int playerWidth = 230 - (int)(230 * (playerTemp / 100));
-                drawPlayerHpBar(playerWidth,300,185);
+                float playerHpTemp = 100-((float)gp.player.getPlayerHP() / (float)gp.player.maxHP)*100;
+                int playerHpWidth = 230 - (int)(230 * (playerHpTemp / 100));
+                drawPlayerHpBar(playerHpWidth,300,185);
+                float playerManaTemp = 100-((float)gp.player.mana / (float)gp.player.maxMana)*100;
+                int playerManaWidth = 230 - (int)(230 * (playerManaTemp / 100));
+                drawPlayerManaBar(playerManaWidth,300,200);
                 playerHPHUD =  setup("/res/versus/vsHPBarPlayer");
                 g2.drawImage(playerHPHUD, 160, 55, 400,170,null);
 
@@ -175,11 +178,15 @@ public class VersusScreen {
 
     }
     void drawPlayerHpBar(int width,int x, int y){
-
       //  Color color = Color.decode("#2DFE54");
         g2.setColor(Color.RED);
-        g2.fillRoundRect(x,y,width,32,10,10);
+        g2.fillRoundRect(x,y,width,20,10,10);
 
+    }
+    void drawPlayerManaBar(int width,int x, int y){
+        //  Color color = Color.decode("#2DFE54");
+        g2.setColor(Color.BLUE);
+        g2.fillRoundRect(x,y,width,16,10,10);
 
     }
     void drawNPCHpBar(int width,int x, int y){

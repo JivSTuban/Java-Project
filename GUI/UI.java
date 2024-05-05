@@ -30,6 +30,7 @@ public class UI {
     public int slotRow = 0;
 
      InventoryHUD  invHUD = new InventoryHUD(gp,this);
+     StoreUI  storeHUD = new StoreUI(gp,this);
 
 
     public UI(GamePanel gp ) {
@@ -75,7 +76,10 @@ public class UI {
         if(gp.gameState == gp.inventoryState){
             invHUD.draw(g2);
             drawInventoryScreen();
-
+        }
+        if(gp.gameState == gp.buyState){
+            storeHUD.draw(g2);
+            drawStoreScreen();
         }
         if(gp.gameState == gp.hackingState){
             drawSubWindow(440,80,1100,700,200);
@@ -107,6 +111,17 @@ public class UI {
         }
 
 
+    }
+    public void drawToTalk(int x, int y, int width, int height, int alpha){
+        Color backgroundColor = new Color(24, 57, 43);
+        g2.setColor(backgroundColor);
+        g2.fillRoundRect(x, y, width, height, 10, 10);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,28F));
+        g2.drawString("Press [Z] to talk",x+30,y+40);
+        Color Border = new Color(34,221,13);
+        g2.setColor(Border);
+        g2.setStroke(new BasicStroke(2));
+        g2.drawRoundRect(x+5,y+5,width-10,height-10,10,10);
     }
      /*-------------------------------------------------------------------------------
                                     Pause Screen
@@ -186,6 +201,75 @@ public class UI {
             e.printStackTrace();
         }
            g2.drawImage(selectItem, cursorX, cursorY, cursorWidth+5, cursorHeight, null);
+
+        int dFrameX = frameX;
+        int dFrameY = frameY +frameHeight;
+        int dFrameWidth = frameWidth;
+        int dFrameHeight = gp.tileSize*3;
+        drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight,0);
+
+        int textX = dFrameX + 20;
+        int textY = (dFrameY + gp.tileSize)-70;
+        g2.setFont(g2.getFont().deriveFont(12F));
+
+        int itemIndex = getItemIndexOnSlot();
+        if(itemIndex < gp.player.inventory.size()){
+            g2.setFont(arial_20);
+            g2.drawString(gp.player.inventory.get(itemIndex).invLabel,1480,490);
+            g2.setFont(arial_16);
+            for(String line: gp.player.inventory.get(itemIndex).description.split("\n")){
+                g2.drawString(line,textX,textY-30);
+                textY += 32;
+            }
+
+        }
+
+
+    }
+    private void drawStoreScreen(){
+        //Frame
+        int frameX = (gp.tileSize*18)+18;
+        int frameY = gp.tileSize+20;
+        int frameWidth = gp.tileSize * 6 ;
+        int frameHeight= gp.tileSize * 6;
+
+        //Slot
+        final int slotXStart = frameX + 10;
+        final int slotYStart = frameY + 30;
+        int slotX = slotXStart;
+        int slotY = slotYStart;
+        int slotSize = gp.tileSize +4;
+        //draw Players Item
+        for(int i=0; i<gp.storeItem.size();i++){
+            g2.drawImage(gp.storeItem.get(i).image, slotX, slotY+7, 70, 70, null);
+            g2.setFont(arial_20);
+            if(gp.storeItem.get(i).quantity != 0)
+                g2.drawString(String.valueOf(gp.storeItem.get(i).quantity),slotX+60,slotY+65);
+            g2.setFont(arial_14);
+
+            slotX += slotSize;
+            if(i == 4 || i == 9 || i == 14){
+                slotX = slotXStart;
+                slotY += slotSize;
+            }
+        }
+
+
+        //cursor
+        int cursorX = slotXStart + (gp.tileSize * slotCol);
+        int cursorY = slotYStart + (gp.tileSize * slotRow);
+        int cursorWidth = gp.tileSize;
+        int cursorHeight = gp.tileSize;
+        // Draw Cursor
+        g2.setColor(Color.white);
+        g2.setStroke(new BasicStroke(3));
+
+        try {
+            selectItem = ImageIO.read(getClass().getResourceAsStream("/res/Inventory/selectItem.png"));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        g2.drawImage(selectItem, cursorX, cursorY, cursorWidth+5, cursorHeight, null);
 
         int dFrameX = frameX;
         int dFrameY = frameY +frameHeight;

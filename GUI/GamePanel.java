@@ -3,10 +3,7 @@ package GUI;
 import Controles.Cooldown;
 import Controles.KeyHandler;
 import Entities.Entity;
-import Entities.Items.AccessCard;
-import Entities.Items.SuperItem;
-import Entities.NPC_Drone;
-import Entities.NPC_OptimusKhai;
+import Entities.Items.*;
 import Entities.Player;
 import LoginRegister.LoginForm;
 import Sound.Sound;
@@ -21,12 +18,9 @@ import Users.User;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 
@@ -44,6 +38,9 @@ public class GamePanel extends JPanel implements Runnable {
     public boolean footStepOn = false;
     public boolean NPCCollide = false;
 
+    public ArrayList<String> newGameOption = new ArrayList<>();
+
+
 
     //World settings
     public int maxWorldCol = 80;
@@ -55,6 +52,8 @@ public class GamePanel extends JPanel implements Runnable {
     Cooldown footRemoveCd = new Cooldown(1000);
     //Main Map
     User user;
+
+    ArrayList <SuperItem> storeItem = new ArrayList<>();
 
 
 
@@ -93,6 +92,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final int versusScreen = 4;
     public final int inventoryState = 5;
     public final int hackingState = 6;
+    public final int newGameState = 7;
+    public final int buyState = 8;
 
 
     public SuperItem[] objItem = new SuperItem[99];
@@ -100,6 +101,10 @@ public class GamePanel extends JPanel implements Runnable {
     public SuperItem[] accessCardDrop = new SuperItem[4];
     public int accessCardDropCount = 0;
 
+     /*-----------------------------------------------------------------------------------------------------------------------
+                                                      Store enabler
+     -----------------------------------------------------------------------------------------------------------------------*/
+    public boolean haveVanguard = false, haveKnuckles = false;
 
 
     /*-----------------------------------------------------------------------------------------------------------------------
@@ -121,6 +126,11 @@ public class GamePanel extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
+        //test option;
+        newGameOption.add("NewGame");
+        newGameOption.add("Exit");
+        setStoreItem();
+
     }
 
 
@@ -129,7 +139,7 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setNPC();
 
          //playMusic(0);
-        // playSE(1);
+         playSE(1);
 
     }
 
@@ -147,10 +157,19 @@ public class GamePanel extends JPanel implements Runnable {
         double nextDrawTime = System.nanoTime() + drawInterval;
 
         while (gameThread != null ) {
+            if(player.getPlayerHP() <1){
+                break;
+            }
 
-           try{
+            try {
+                loginForm.updateHealthToDB(player.getPlayerHP());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            try{
               if(gameState!=pauseState){
                   update(keyH);
+
               }
                loginForm.updateLocationToDB(String.valueOf(Math.round((((float) player.worldX / (this.tileSize))))), String.valueOf(Math.round((float) (player.worldY+20.5 )/ (this.tileSize))));
                loginForm.updateMoneyToDB(player.getGold());
@@ -173,8 +192,18 @@ public class GamePanel extends JPanel implements Runnable {
             }
 
         }
+        try {
+           // loginForm.deleteItemsOnDB();
+            loginForm.resetDB();
+
+            startGameThread();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
 
     }
+
 
     public void update(KeyHandler keyH) throws SQLException {
 
@@ -183,6 +212,7 @@ public class GamePanel extends JPanel implements Runnable {
            if(gameState != versusScreen){
                player.update(keyH);
                footStepSettings();
+
            }
            if(gameState == versusScreen)
                versusMethod();
@@ -219,6 +249,7 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState != versusScreen) {
             mainMap(g2);
         }
+
         else {
             if(player.NPCCollision != 999){
                 vsScreen.draw(g2);
@@ -366,7 +397,15 @@ public class GamePanel extends JPanel implements Runnable {
 //
                         if(turnTimer.isOnCooldown() && !(npcAttackCD.isOnCooldown() )){
                             if(npc[player.NPCCollision].getNpcHp() > 1){
-                                player.setPlayerHP(player.getPlayerHP() - npc[player.NPCCollision].getDamage());
+                                if(haveVanguard){
+                                    int currDamage = npc[player.NPCCollision].getDamage();
+                                    int deduct =(currDamage - (int)(currDamage *0.2));
+                                    player.setPlayerHP(player.getPlayerHP() -deduct);
+                                }
+
+                                else{
+                                    player.setPlayerHP(player.getPlayerHP() - npc[player.NPCCollision].getDamage());
+                                }
                                 npcAttackCD.trigger();
                                 System.out.println("Damage taken: " + player.getPlayerHP());
                                 System.out.println("NPC last HP: "+npc[player.NPCCollision].getNpcHp());
@@ -389,6 +428,13 @@ public class GamePanel extends JPanel implements Runnable {
             }
 
 
+        }
+        private void setStoreItem(){
+            storeItem.add(new Vanguard());
+            storeItem.add(new knuckles());
+            storeItem.add(new Clarity());
+            storeItem.add(new ItemBoots());
+            storeItem.add(new ItemSalve());
         }
 
 

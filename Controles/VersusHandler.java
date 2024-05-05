@@ -3,10 +3,11 @@ package Controles;
 import GUI.GamePanel;
 
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
 
 public class VersusHandler {
 
-    public void versusKeys(GamePanel gp, int code){
+    public void versusKeys(GamePanel gp, int code) throws SQLException {
         if(gp.gameState == gp.versusScreen) {
 
                 if (code == KeyEvent.VK_UP) {
@@ -31,6 +32,7 @@ public class VersusHandler {
                if (code == KeyEvent.VK_ENTER ) {
                    if(gp.player.mana >= gp.player.skills.get(gp.vsScreen.getSkillIndexOnSlot()).getManaCost()){ //check if mana is enough
                        gp.player.mana -= gp.player.skills.get(gp.vsScreen.getSkillIndexOnSlot()).getManaCost();
+                        gp.player.loginForm.updateManaToDB(gp.player.mana);
 
                         if(gp.player.NPCCollision == 50) {
                             if(gp.npc[gp.player.NPCCollision].droneSpawn){

@@ -17,9 +17,11 @@ public class KeyHandler implements KeyListener {
     public boolean selectIp = false;
     InventoryKeyHandler invHandler = new InventoryKeyHandler();
     VersusHandler verHandler = new VersusHandler();
+    StoreHandler storeHandler = new StoreHandler();
     public boolean doorOpen = false;
     public boolean isfight = false;
     int dialogueIndex=0;
+    public boolean openStore = false;
 
     //UseItem
 
@@ -54,6 +56,17 @@ public class KeyHandler implements KeyListener {
         //test
         if (code == KeyEvent.VK_H) {
             gp.gameState = gp.hackingState;
+        }
+        if (code == KeyEvent.VK_B) {
+           if(!openStore){
+               gp.gameState = gp.buyState;
+               openStore = true;
+               storeHandler.openStoreHandler(true,code,gp);
+           }
+           else{
+               gp.gameState = gp.playState;
+               openStore = false;
+           }
         }
         if (code == KeyEvent.VK_P ){
             if(!pPressed){
@@ -143,7 +156,9 @@ public class KeyHandler implements KeyListener {
 
             }while(!valid);
         }
-
+            if(openInventory){
+                invHandler.inventoryKeys(openInventory,code,gp);
+            }
         /*-------------------------------------------------------------------------------------------------------------
                                                   Inventory
          -------------------------------------------------------------------------------------------------------------*/
@@ -162,7 +177,7 @@ public class KeyHandler implements KeyListener {
             }
 
         }
-        invHandler.inventoryKeys(openInventory,code,gp);
+
         /*-------------------------------------------------------------------------------------------------------------
                                                   Game State
          -------------------------------------------------------------------------------------------------------------*/
@@ -254,10 +269,15 @@ public class KeyHandler implements KeyListener {
         if(gp.gameState == gp.versusScreen){
             if((code == KeyEvent.VK_Z  || isfight)) {
                 isfight = true;
-                verHandler.versusKeys(gp, code);
+                try {
+                    verHandler.versusKeys(gp, code);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
             if (code == KeyEvent.VK_X ) {
                 gp.gameState = gp.playState;
+                gp.npc[gp.player.NPCCollision].setNpcHp(gp.npc[gp.player.NPCCollision].maxHP);
                 isfight = false;
 
             }
