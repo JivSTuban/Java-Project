@@ -19,12 +19,13 @@ public class NPC_OptimusKhai extends Entity{
         NPC_VSname = "Optimus Khai";
         NPC_getVSImgae = "/res/npc/NPCOptimusKhai/sprite_ok8";
         NPC_getVSGIF = "/res/npc/NPCOptimusKhai/Optimus-Khai-Skill-GIF";
+        NPC_getSFX = 8;
 
         collision = true;
         direction = "down";
         getImage();
         type = 2;
-        maxHP = 150;
+        maxHP = 50;
         npcHp = maxHP;
         speed = 1;
         npcScaleX = gp.tileSize+400;

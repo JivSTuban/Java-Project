@@ -11,6 +11,14 @@ public class Sound {
     public Sound(){
         soundURL[0] = getClass().getResource("/res/_Sound/BG_music.wav");
         soundURL[1] = getClass().getResource("/res/_Sound/ToxinSE.wav");
+        soundURL[2] = getClass().getResource("/res/_Sound/2defeatSfx.wav");
+        soundURL[3] = getClass().getResource("/res/_Sound/3EncounterWithEnemy.wav");
+        soundURL[4] = getClass().getResource("/res/_Sound/4FinalBossDefeated.wav");
+        soundURL[5] = getClass().getResource("/res/_Sound/5HackingDeviceSfx.wav");
+        soundURL[6] = getClass().getResource("/res/_Sound/6LaserSFX.wav");
+        soundURL[7] = getClass().getResource("/res/_Sound/7LevelUp.wav");
+        soundURL[8] = getClass().getResource("/res/_Sound/8OptimusKhai_SFX.wav");
+        soundURL[9] = getClass().getResource("/res/_Sound/9SelectingItems.wav");
     }
 
     public void setFile(int i){

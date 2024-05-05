@@ -16,6 +16,7 @@ public class NPC_Drone extends Entity{
         NPC_getVSGIF = "/res/npc/NPCDrone/DroneGIF";
         speed = 1;
         getImage();
+        NPC_getSFX = 8;
         type = 2;
         maxHP = 50;
         npcHp = maxHP;

@@ -8,6 +8,7 @@ import Entities.Player;
 import LoginRegister.Ded;
 import LoginRegister.LoginForm;
 import LoginRegister.Starter;
+import LoginRegister.Won;
 import Sound.Sound;
 import Tile.Versus.BackgroundTM;
 import Tile.Versus.DesignTM;
@@ -43,6 +44,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     public ArrayList<String> newGameOption = new ArrayList<>();
+    public boolean sfxPlayed = false;
 
 
     private Starter starter;
@@ -401,6 +403,10 @@ public class GamePanel extends JPanel implements Runnable {
     ---------------------------------------------------------------------------------------------------------------------------*/
         private void versusMethod(){
             try{
+                if(!sfxPlayed){
+                    playSE(3);
+                    sfxPlayed = true;
+                }
                 if(player.NPCCollision == 6 ){//this is the boss
                     if(gameState == versusScreen){
 
@@ -421,14 +427,18 @@ public class GamePanel extends JPanel implements Runnable {
                     if(npc[player.NPCCollision].getNpcHp() < 1){
                         keyH.isfight = false;
                         player.setGold(player.getGold() +  goldDrop(npc[player.NPCCollision].NPC_name));
-
+                        sfxPlayed =false;
+                        playSE(4);
                         gameState = playState;
+                        Won won = new Won();
                     }
 
                 }
                 else if(player.NPCCollision != 999  ){
                     if(gameState == versusScreen){
-//
+
+
+
                         if(turnTimer.isOnCooldown() && !(npcAttackCD.isOnCooldown() )){
                             if(npc[player.NPCCollision].getNpcHp() > 1){
                                 if(haveVanguard){
@@ -453,6 +463,7 @@ public class GamePanel extends JPanel implements Runnable {
                           //  enemySkillUsed = npc[player.NPCCollision].getSkillName();
                             keyH.isfight = false;
                             player.setGold(player.getGold() +  goldDrop(npc[player.NPCCollision].NPC_name));
+                            sfxPlayed = false;
                             gameState = playState;
                         }
                     }

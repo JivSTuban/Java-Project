@@ -20,7 +20,7 @@ public class NPC_Veemax extends Entity{
         npcScaleY = gp.tileSize+70;
         NPC_getVSImgae = "/res/npc/NPCOptimusKhai/sprite_ok8";
         NPC_getVSGIF = "/res/npc/NPCOptimusKhai/Optimus-Khai-Skill-GIF";
-
+        NPC_getSFX = 6;
         solidArea.x = 3;
         solidArea.y = 18;
         solidArea.width = 142;

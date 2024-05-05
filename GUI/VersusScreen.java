@@ -2,6 +2,8 @@ package GUI;
 
 
 
+import Controles.Cooldown;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +18,7 @@ public class VersusScreen {
     Font arial_10;
     BufferedImage battleFieldBG,selectHUD,player,playerHPHUD,EnemyHPHUD,blackBG,enemyProfile;
     BufferedImage droneGIF;
+
 
     DecimalFormat df = new DecimalFormat("###,###.##");
     public int slotCol = 0;
@@ -72,10 +75,16 @@ public class VersusScreen {
                     int y = 300;
                     drawSubWindow(x,y,200,100);
                     g2.drawString(gp.enemySkillUsed,x+50,y+45);
+                    if(!gp.sfxPlayed){
+                        gp.playSE(gp.npc[enemyIndex].NPC_getSFX);
+                        gp.sfxPlayed = true;
+                    }
+
                     enemyProfile = loadGIFImage(gp.npc[enemyIndex].NPC_getVSGIF+".gif");
                 }else{
                     if(enemyIndex != 999 || gp.npc[enemyIndex].NPC_getVSImgae != null)
                         enemyProfile =  setup(gp.npc[enemyIndex].NPC_getVSImgae);
+
 
                 }
 
