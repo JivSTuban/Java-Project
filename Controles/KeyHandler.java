@@ -159,6 +159,9 @@ public class KeyHandler implements KeyListener {
             if(openInventory){
                 invHandler.inventoryKeys(openInventory,code,gp);
             }
+        if(openStore){
+            storeHandler.openStoreHandler(true,code,gp);
+        }
         /*-------------------------------------------------------------------------------------------------------------
                                                   Inventory
          -------------------------------------------------------------------------------------------------------------*/
@@ -203,9 +206,6 @@ public class KeyHandler implements KeyListener {
             }
 
             //pause
-
-
-
 
 
             //dialogue state

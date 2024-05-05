@@ -26,7 +26,7 @@ public class Player extends Entity {
     public  int screenX = 0;
     public  int screenY = 0;
     public LoginForm loginForm;
-    User user ;
+    public User user ;
 
     public ArrayList<SuperItem> inventory = new ArrayList<>();
     public ArrayList<PlayerSkills> skills = new ArrayList<>();
@@ -293,6 +293,7 @@ public class Player extends Entity {
                     break;
                 case "chest" :
                     GP.objItem[i] = null;
+                    loginForm.addItemToDatabase("chest",i,1);
                     if(randomizer() == 1){
                         addToInventory("card");
                         addToInventory("accessCard",1);
@@ -482,6 +483,30 @@ public class Player extends Entity {
         }
         if(!player.searchInventory("hackingDevice") && name.equals("hackingDevice")){
             player.inventory.add(new HackingDevice());
+        }
+    }
+    public void addToInventoryFromStore(String name){
+        if(!searchInventory("salve")&& name.equals("salve")) {
+            inventory.add(new ItemSalve());
+        }else{
+            inventory.get(searchInventoryIndex("salve")).quantity++;
+        }
+        if(!searchInventory("clarity")&& name.equals("clarity")){
+            inventory.add(new Clarity());
+        }
+        else{
+            inventory.get(searchInventoryIndex("clarity")).quantity++;
+        }
+        if(!searchInventory("vanguard") && name.equals("vanguard")){
+            inventory.add(new Vanguard());
+            gotBoots = true;
+            justGotBoots = true;
+        }
+        if(!searchInventory("boots") && name.equals("boots")){
+            inventory.add(new ItemBoots());
+        }
+        if(!searchInventory("knuckles") && name.equals("knuckles")){
+            inventory.add(new knuckles());
         }
     }
     @Override

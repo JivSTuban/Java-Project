@@ -30,7 +30,7 @@ public class InventoryKeyHandler {
                         gp.player.setPlayerHP(gp.player.maxHP);
 
                     }
-                    gp.player.salveCount--;
+                    (gp.player.inventory.get(gp.player.searchInventoryIndex("salve")).quantity)--;
                 }
                 if (gp.player.inventory.get(gp.ui.getItemIndexOnSlot()).name.equals("accessCard")){
                     (gp.player.inventory.get(gp.player.searchInventoryIndex("accessCard")).quantity)--;
@@ -43,8 +43,11 @@ public class InventoryKeyHandler {
                     gp.gameState = gp.hackingState;
                 }
 
-                if (gp.player.salveCount == 0) {
+                if (gp.player.inventory.get(gp.player.searchInventoryIndex("salve")).quantity < 1) {
                     gp.player.removeItem("salve");
+                }
+                if (gp.player.inventory.get(gp.player.searchInventoryIndex("accessCard")).quantity < 1) {
+                    gp.player.removeItem("accessCard");
                 }
             }
         }

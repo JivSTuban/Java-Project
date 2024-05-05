@@ -206,7 +206,7 @@ public class UI {
         int dFrameY = frameY +frameHeight;
         int dFrameWidth = frameWidth;
         int dFrameHeight = gp.tileSize*3;
-        drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight,0);
+
 
         int textX = dFrameX + 20;
         int textY = (dFrameY + gp.tileSize)-70;
@@ -216,7 +216,7 @@ public class UI {
         if(itemIndex < gp.player.inventory.size()){
             g2.setFont(arial_20);
             g2.drawString(gp.player.inventory.get(itemIndex).invLabel,1480,490);
-            g2.setFont(arial_16);
+            g2.setFont(arial_20);
             for(String line: gp.player.inventory.get(itemIndex).description.split("\n")){
                 g2.drawString(line,textX,textY-30);
                 textY += 32;
@@ -275,18 +275,18 @@ public class UI {
         int dFrameY = frameY +frameHeight;
         int dFrameWidth = frameWidth;
         int dFrameHeight = gp.tileSize*3;
-        drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight,0);
+
 
         int textX = dFrameX + 20;
         int textY = (dFrameY + gp.tileSize)-70;
         g2.setFont(g2.getFont().deriveFont(12F));
 
         int itemIndex = getItemIndexOnSlot();
-        if(itemIndex < gp.player.inventory.size()){
+        if(itemIndex < gp.storeItem.size()){
             g2.setFont(arial_20);
-            g2.drawString(gp.player.inventory.get(itemIndex).invLabel,1480,490);
+            g2.drawString(gp.storeItem.get(itemIndex).invLabel,1480,490);
             g2.setFont(arial_16);
-            for(String line: gp.player.inventory.get(itemIndex).description.split("\n")){
+            for(String line: gp.storeItem.get(itemIndex).description.split("\n")){
                 g2.drawString(line,textX,textY-30);
                 textY += 32;
             }

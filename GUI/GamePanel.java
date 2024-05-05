@@ -51,9 +51,9 @@ public class GamePanel extends JPanel implements Runnable {
     Cooldown footStepCd = new Cooldown(1200);
     Cooldown footRemoveCd = new Cooldown(1000);
     //Main Map
-    User user;
+    public User user;
 
-    ArrayList <SuperItem> storeItem = new ArrayList<>();
+    public ArrayList <SuperItem> storeItem = new ArrayList<>();
 
 
 
@@ -94,7 +94,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int hackingState = 6;
     public final int newGameState = 7;
     public final int buyState = 8;
-
+    Cooldown manaRegen = new Cooldown(2000);
 
     public SuperItem[] objItem = new SuperItem[99];
     public SuperItem[] footStep = new SuperItem[99];
@@ -159,6 +159,21 @@ public class GamePanel extends JPanel implements Runnable {
         while (gameThread != null ) {
             if(player.getPlayerHP() <1){
                 break;
+            }
+            try {
+                player.setGold(player.loginForm.lastMoney(player.user));
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            if(!manaRegen.isOnCooldown()){
+               if(player.mana<80)
+                   player.mana++;
+                manaRegen.trigger();
+            }
+            try {
+                loginForm.updateManaToDB(player.mana);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
 
             try {
@@ -416,7 +431,7 @@ public class GamePanel extends JPanel implements Runnable {
                         }
                         if(npc[player.NPCCollision].getNpcHp() < 1){
                             loginForm.addEnemyKilledToDB(player.NPCCollision);
-                            enemySkillUsed = npc[player.NPCCollision].getSkillName();
+                          //  enemySkillUsed = npc[player.NPCCollision].getSkillName();
                             keyH.isfight = false;
                             player.setGold(player.getGold() +  goldDrop(npc[player.NPCCollision].NPC_name));
                             gameState = playState;
