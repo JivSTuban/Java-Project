@@ -37,8 +37,8 @@ public class NPC_Console extends Entity{
                 "            and technology. ";
         dialogues[1] = "\nC    A    U    T    I    O    N  !  !  ! \n\nBe aware of drones and toxins that you will encounter, Remember the boss is \nstill waiting somewhere in" +
                 "the map. Take care of you're health or else you might \nregret it later!";
-        dialogues[2] = "\nThere are some item drops you might find use it well. \n\n-Salve is to heal yourself to 20hp" +
-                "\n-Boots to you give speed 8horse power, \n-Hacking Device to hack some systems if you don't have keys" +
+        dialogues[2] = "\nThere are some item drops you might find so use it well. \n\n-Salve is to heal yourself to 20hp" +
+                "\n-Boots that can give you 8horse power speed, \n-Hacking Device to hack some systems" +
                 "\n-Key gives you access to doors you can find it anywhere in the map";
         dialogues[3] = "\n\nThat's all for me,\n\n          Good Luck! Have Fun! and Hope you enjoy the game";
     }
