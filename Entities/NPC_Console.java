@@ -39,12 +39,14 @@ public class NPC_Console extends Entity{
         dialogues[0] = "\nHello to our dear Player! \n\n        Welcome to Mitsu Realm, \n          " +
                 "  Realm of Technology Veemax, the technomancer, deptly manipulates machines \n" +
                 "            and technology. ";
-        dialogues[1] = "\nC    A    U    T    I    O    N  !  !  ! \n\nBe aware of drones and toxins that you will encounter, Remember the boss is \nstill waiting somewhere in" +
+        dialogues[1]= "\n\n\nFor you to accomplish this game you must defeat the Boss somewhere in the map! ";
+        dialogues[2] = "\nC    A    U    T    I    O    N  !  !  ! \n\nBe aware of drones and toxins that you will encounter, Remember the boss is \nstill waiting somewhere in" +
                 "the map. Take care of you're health or else you might \nregret it later!";
-        dialogues[2] = "\nThere are some item drops you might find so use it well. \n\n-Salve is to heal yourself to 20hp" +
+        dialogues[3] = "\nThere are some item drops you might find so use it well. \n\n-Salve is to heal yourself to 20hp" +
                 "\n-Boots that can give you 8horse power speed, \n-Hacking Device to hack some systems" +
                 "\n-Key gives you access to doors you can find it anywhere in the map";
-        dialogues[3] = "\n\nThat's all for me,\n\n          Good Luck! Have Fun! and Hope you enjoy the game";
+        dialogues[4]= "\n\n\nAlso if you destroy the drone it will drop a Key that will be used to \nopen the door";
+        dialogues[5] = "\n\nThat's all for me,\n\n          Good Luck! Have Fun! and Hope you enjoy the game";
     }
     public void speak(){
 
@@ -53,7 +55,9 @@ public class NPC_Console extends Entity{
         }
 
         gp.ui.currentDialogue = dialogues[dialogueIndex];
+        //if(gp.keyH.spacePressed) {
             dialogueIndex++;
+        //}
 
         switch (gp.player.direction){
             case "up":

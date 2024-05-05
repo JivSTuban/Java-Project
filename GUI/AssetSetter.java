@@ -56,7 +56,7 @@ public class AssetSetter {
       //  }
      //   if (loginForm.getItemCountInDatabase("AccessCard") < 2) {
             setImage(3,4,78,  new AccessCard(),false);
-            setImage(10,10,75,  new Chest(),false);
+            setImage(10,14,75,  new Chest(),false);
       //  }
         setImage(4,8,50,  new DoorOpen(),false);
         setImage(5,8,50,  new DoorClose(),true);

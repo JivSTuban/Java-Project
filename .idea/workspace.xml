@@ -6,16 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="6c05f8e2-d282-4ed7-b789-e33fe27d5050" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Entities/NPC_Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/NPC_Console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/AssetSetter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_Console.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_Console.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/maps/world1/CollisionTile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/maps/world1/CollisionTile.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/maps/world1/BackGroundTiles.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/maps/world1/BackGroundTiles.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/maps/world1/CollisionTile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/maps/world1/CollisionTile.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/maps/world1/design.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/maps/world1/design.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/AssetSetter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/AssetSetter.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
