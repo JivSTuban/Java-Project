@@ -124,7 +124,7 @@ public class LoginForm extends JDialog {
     ****************************************************************************************************************************** */
 
     public void addItemToDatabase(String itemName, int itemIndex, int quantity) throws SQLException {
-        query = "INSERT INTO items (name,itemIndex,quantity, username) VALUES (?, ?, ?, ?)";
+        query = "INSERT INTO items (name,itemIndex,quantity, username ) VALUES (?, ?, ?, ?)";
         preparedStatement = conn.prepareStatement(query);
         preparedStatement.setString(1, itemName);
         preparedStatement.setInt(2, itemIndex);

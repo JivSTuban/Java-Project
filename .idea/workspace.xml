@@ -5,34 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b66a4094-9249-40ea-82af-759f2fab06c5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LoginRegister/DeathForm.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LoginRegister/DeathForm.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mitsu_realm.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/npc/NPCDrone/DroneGIF.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/npc/NPCDrone/DroneVS.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/All Mc Skill.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/LeftRun1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/LeftRun2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/LeftRun3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/LeftRun4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/LeftRun5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/LeftRun6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/LeftRun7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/MC2 standing.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/MC2_backLeft.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/MC2_backRight.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/Mc2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/Mc2Run1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/Run2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/Run3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/Run4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/Run5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/Run6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/Run7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/Skill GIF MC.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controles/InventoryKeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controles/InventoryKeyHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controles/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controles/KeyHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controles/StoreHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controles/StoreHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/Items/Clarity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Items/Clarity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/Items/ItemBoots.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Items/ItemBoots.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/Items/ItemSalve.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Items/ItemSalve.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/Items/SuperItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Items/SuperItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/Items/Vanguard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Items/Vanguard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/Items/knuckles.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Items/knuckles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/NPC_Drone.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/NPC_Drone.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/AssetSetter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/GamePanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/UI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoginRegister/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoginRegister/LoginForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/InventoryKeyHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/InventoryKeyHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/KeyHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/KeyHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/StoreHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/StoreHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_Drone.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_Drone.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/AssetSetter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/AssetSetter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/GamePanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/UI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/UI.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,6 +74,9 @@
       <recent name="C:\Users\STING\Desktop\Mitsu-Realm\res\npc\NPCDrone" />
       <recent name="C:\Users\STING\Desktop\Mitsu-Realm" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\STING\Desktop\Mitsu-Realm\res\PlayerImageNew" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application">
@@ -93,5 +97,15 @@
       <updated>1714919793921</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

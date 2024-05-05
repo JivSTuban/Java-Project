@@ -90,7 +90,11 @@ public class UI {
             }
             hacking.draw(g2);
             hacking.drawHackingScreen();
-           // gp.gameState = gp.versusScreen;
+            if(!hacking.cdToHack.isOnCooldown()){
+                gp.gameState = gp.playState;
+                gp.player.setPlayerHP(gp.player.getPlayerHP() - 10);
+            }
+
         }
     }
     public void drawDialogueScreen(){

@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 public class StoreHandler {
 
     public void openStoreHandler(boolean openStore, int code, GamePanel gp) {
+        System.out.println("Working");
 
             if (code == KeyEvent.VK_UP && gp.ui.slotRow != 0) gp.ui.slotRow--;
             if (code == KeyEvent.VK_DOWN && gp.ui.slotRow != 3) gp.ui.slotRow++;

@@ -43,10 +43,10 @@ public class InventoryKeyHandler {
                     gp.gameState = gp.hackingState;
                 }
 
-                if (gp.player.inventory.get(gp.player.searchInventoryIndex("salve")).quantity < 1) {
+                if (gp.player.searchInventory("salve") && gp.player.inventory.get(gp.player.searchInventoryIndex("salve")).quantity < 1) {
                     gp.player.removeItem("salve");
                 }
-                if (gp.player.inventory.get(gp.player.searchInventoryIndex("accessCard")).quantity < 1) {
+                if (gp.player.searchInventory("accessCard") && gp.player.inventory.get(gp.player.searchInventoryIndex("accessCard")).quantity < 1) {
                     gp.player.removeItem("accessCard");
                 }
             }

@@ -495,7 +495,8 @@ public class Player extends Entity {
             inventory.add(new Clarity());
         }
         else{
-            inventory.get(searchInventoryIndex("clarity")).quantity++;
+            if(searchInventoryIndex("clarity") != -1)
+                inventory.get(searchInventoryIndex("clarity")).quantity++;
         }
         if(!searchInventory("vanguard") && name.equals("vanguard")){
             inventory.add(new Vanguard());
