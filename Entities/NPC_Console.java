@@ -39,7 +39,7 @@ public class NPC_Console extends Entity{
         dialogues[0] = "\nHello to our dear Player! \n\n        Welcome to Mitsu Realm, \n          " +
                 "  Realm of Technology Veemax, the technomancer, deptly manipulates machines \n" +
                 "            and technology. ";
-        dialogues[1]= "\n\n\nFor you to accomplish this game you must defeat the Boss somewhere in the map! ";
+        dialogues[1]= "\nN O T E ! \n\nFor you to accomplish this game you must defeat the Boss somewhere in the map! ";
         dialogues[2] = "\nC    A    U    T    I    O    N  !  !  ! \n\nBe aware of drones and toxins that you will encounter, Remember the boss is \nstill waiting somewhere in" +
                 "the map. Take care of you're health or else you might \nregret it later!";
         dialogues[3] = "\nThere are some item drops you might find so use it well. \n\n-Salve is to heal yourself to 20hp" +
