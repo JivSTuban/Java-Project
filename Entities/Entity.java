@@ -28,8 +28,6 @@ public abstract class Entity {
     public boolean collisionOn = false;
     public boolean toxinOn = false;
     public boolean isEnemy = false;
-    String[] dialogues = new String[20];
-    public int dialogueIndex = 0;
     //Item
     public String discription = "";
     public int pickSkill;
@@ -37,6 +35,9 @@ public abstract class Entity {
 
     public int actionCounter =0;
     public int holder=0;
+
+    String[] dialogues = new String[20];
+    public int dialogueIndex = 0;
     /*--------------------------------------------------------------------------------------------------------
                                         NPC settings
      --------------------------------------------------------------------------------------------------------*/

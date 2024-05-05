@@ -152,7 +152,7 @@ public class Player extends Entity {
 //            gp.gameState = gp.pauseState;
 //
 //        if(gp.gameState != gp.pauseState){
-            if(keyH.wPressed || keyH.aPressed || keyH.sPressed || keyH.dPressed || keyH.shiftPressed){
+            if(keyH.wPressed || keyH.aPressed || keyH.sPressed || keyH.dPressed || keyH.shiftPressed || keyH.zPressed==true){
                 if(keyH.wPressed){
                     direction = "up";
                 }
@@ -286,6 +286,8 @@ public class Player extends Entity {
 
                     //}
                     else {
+                        gp.gameState = gp.dialogueState;
+                        gp.ui.currentDialogue="You need a key to access this door!";
                         System.out.println("You need Access Card to open this Door");
                     }
                     break;

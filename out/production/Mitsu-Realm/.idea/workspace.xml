@@ -7,6 +7,7 @@
     <list default="true" id="6c05f8e2-d282-4ed7-b789-e33fe27d5050" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/Entities/Items/EndingDoor.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/GUI/NewGameUI.java" afterDir="false" />
+    <list default="true" id="6c05f8e2-d282-4ed7-b789-e33fe27d5050" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controles/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controles/KeyHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controles/VersusHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controles/VersusHandler.java" afterDir="false" />
@@ -19,6 +20,7 @@
       <change beforePath="$PROJECT_DIR$/Entities/Items/ItemBoots.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Entities/Items/ItemSalve.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Entities/Items/SuperItem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/NPC_Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/NPC_Console.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/AssetSetter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/GamePanel.java" afterDir="false" />
@@ -38,6 +40,7 @@
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/RegistrationForm.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/Starter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/Starter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/maps/world1/CollisionTile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/maps/world1/CollisionTile.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,8 +86,14 @@
     &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE&quot;: &quot;left&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/JavaProject/Mitsu-Realm"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\JavaProject\Mitsu-Realm\res\font" />

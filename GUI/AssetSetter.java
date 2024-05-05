@@ -58,7 +58,7 @@ public class AssetSetter {
       //  }
      //   if (loginForm.getItemCountInDatabase("AccessCard") < 2) {
             setImage(3,4,78,  new AccessCard(),false);
-            setImage(10,10,75,  new Chest(),false);
+            setImage(10,14,75,  new Chest(),false);
       //  }
         setImage(4,8,50,  new DoorOpen(),false);
         setImage(5,8,50,  new DoorClose(),true);
@@ -66,7 +66,9 @@ public class AssetSetter {
         setImage(7,2,19,  new DoorClose(),true);
         setImage(8,1,6,  new DoorOpen(),false);
         setImage(9,1,6,  new DoorClose(),true);
-        setImage(10,5,74,  new HackingDevice(),false);
+        setImage(10,15,74,  new HackingDevice(),false);
+        setImage(11,15,76,  new DoorOpen(),false);
+        setImage(12,15,76,  new DoorClose(),true);
 
     }
     public void dropAccessCard(int x ,int y) throws SQLException {
