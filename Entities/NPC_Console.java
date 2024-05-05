@@ -53,8 +53,23 @@ public class NPC_Console extends Entity{
         }
 
         gp.ui.currentDialogue = dialogues[dialogueIndex];
-        if(!dialoguesCd.isOnCooldown())
             dialogueIndex++;
+
+        switch (gp.player.direction){
+            case "up":
+                direction= "down";
+                break;
+            case "down":
+                direction= "up";
+                break;
+            case "left":
+                direction= "right";
+                break;
+            case "right":
+                direction= "left";
+                break;
+
+        }
 
     }
 
