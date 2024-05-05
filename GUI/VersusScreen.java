@@ -3,6 +3,7 @@ package GUI;
 
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -13,10 +14,13 @@ public class VersusScreen {
     Graphics2D g2;
     Font arial_16;
     Font arial_10;
-    BufferedImage battleFieldBG,selectBG,player,playerHPHUD,EnemyHPHUD;
+    BufferedImage battleFieldBG,selectHUD,player,playerHPHUD,EnemyHPHUD,blackBG,enemyProfile;
+    BufferedImage droneGIF;
+
     DecimalFormat df = new DecimalFormat("###,###.##");
     public int slotCol = 0;
     public int slotRow = 0;
+
 
     public VersusScreen(GamePanel gp ) {
         this.gp = gp;
@@ -30,34 +34,74 @@ public class VersusScreen {
     public void draw(Graphics2D g2){
         this.g2 = g2;
         int enemyIndex = gp.player.NPCCollision;
-        if(gp.keyH.isfight) {
-            battleFieldBG =  setup("/res/versus/versusBg");
-            g2.drawImage(battleFieldBG, 0, -40, 1920,1080,null);
+        try{
 
-            player =  setup("/res/PlayerImage/playerVS");
-            g2.drawImage(player, 80, 170, 240,300,null);
-            selectBG =  setup("/res/versus/blackBG");
-            g2.drawImage(selectBG, 90, 670, 1700,330,null);
-            selectBG =  setup("/res/versus/select");
-            g2.drawImage(selectBG, 90, 670, 1700,330,null);
+                battleFieldBG =  setup("/res/versus/versusBg");
+                g2.drawImage(battleFieldBG, 0, -40, 1920,1080,null);
+                /* **************************************************
+                 *                  Player side                    *
+                 ************************************************** */
+                player =  setup("/res/PlayerImage/playerVS");
+                g2.drawImage(player, 80, 270, 340,500,null);
+                blackBG =  setup("/res/versus/blackBG");
+                g2.drawImage(blackBG, 90, 670, 1700,330,null);
+                selectHUD =  setup("/res/versus/select");
+                g2.drawImage(selectHUD, 90, 670, 1700,330,null);
+                float playerTemp = 100-((float)gp.player.getPlayerHP() / (float)gp.player.maxHP)*100;
+                int playerWidth = 230 - (int)(230 * (playerTemp / 100));
+                drawPlayerHpBar(playerWidth,300,185);
+                playerHPHUD =  setup("/res/versus/vsHPBarPlayer");
+                g2.drawImage(playerHPHUD, 160, 55, 400,170,null);
 
-            drawPlayerHpBar(gp.player.getPlayerHP(),118,115);
-            playerHPHUD =  setup("/res/versus/vsHPBarPlayer");
-            g2.drawImage(playerHPHUD, 160, 55, 400,170,null);
-            float temp = 100-((float)gp.npc[enemyIndex].getNpcHp() / (float)gp.npc[enemyIndex].maxHP)*100;
-            int width = 230 - (int)(230 * (temp / 100));
-            drawNPCHpBar(width,1287+(230-width),190);
-            EnemyHPHUD =  setup("/res/versus/vsHPBarEnemy");
-            g2.drawImage(EnemyHPHUD, 1260, 55, 400,170,null);
+                Font font = new Font("Arial", Font.PLAIN, 40);
+                g2.setFont(font);
+                g2.setColor(Color.WHITE);
+                g2.drawString(gp.loginForm.playerUser.username.toUpperCase(), 300, 150);
 
-            Font font = new Font("Arial", Font.PLAIN, 20);
-            g2.setFont(font);
-            g2.setColor(Color.WHITE);
-            g2.drawString(gp.npc[enemyIndex].NPC_VSname, 600, 93);
-            drawSkillSection();
-            if(gp.npc[enemyIndex].getNpcHp() <1)
-                gp.npc[enemyIndex] = null;
+                /* **************************************************
+                 *                  Enemy side                    *
+                 ************************************************** */
 
+
+                if(gp.npcAttackCD.timeRemaining()>1000 && gp.npcAttackCD.timeRemaining()<3400){
+                    g2.setFont(new Font("Arial", Font.PLAIN, 20));
+                    int x =1200;
+                    int y = 300;
+                    drawSubWindow(x,y,200,100);
+                    g2.drawString(gp.enemySkillUsed,x+50,y+45);
+                    enemyProfile = loadGIFImage(gp.npc[enemyIndex].NPC_getVSGIF+".gif");
+                }else{
+                    if(enemyIndex != 999 || gp.npc[enemyIndex].NPC_getVSImgae != null)
+                        enemyProfile =  setup(gp.npc[enemyIndex].NPC_getVSImgae);
+
+                }
+
+                if(enemyIndex == 6){
+                    droneGIF = loadGIFImage("/res/npc/NPCOptimusKhai/Drone_with_optimus_khai.gif");
+                    g2.drawImage(droneGIF, 1000, 210, 900,900,null);
+                }
+
+
+                g2.drawImage(enemyProfile, 1300, 270, 340,500,null);
+
+
+                float temp = 100-((float)gp.npc[enemyIndex].getNpcHp() / (float)gp.npc[enemyIndex].maxHP)*100;
+                int width = 230 - (int)(230 * (temp / 100));
+                drawNPCHpBar(width,1287+(230-width),190);
+                EnemyHPHUD =  setup("/res/versus/vsHPBarEnemy");
+                g2.drawImage(EnemyHPHUD, 1260, 55, 400,170,null);
+                //Display enemy skill used
+
+
+
+                g2.setFont(new Font("Arial", Font.PLAIN, 20));
+                g2.setColor(Color.WHITE);
+                g2.drawString(gp.npc[enemyIndex].NPC_VSname, 1350, 130);
+                drawSkillSection();
+
+
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -130,17 +174,17 @@ public class VersusScreen {
         g2.drawString("[Enter] Use",textX,textY);
 
     }
-    void drawPlayerHpBar(int hp,int x, int y){
+    void drawPlayerHpBar(int width,int x, int y){
 
-        Color color = Color.decode("#2DFE54");
-        g2.setColor(color);
-        int hpPrint = (gp.player.getPlayerHP()/((gp.player.maxHP)))*100;
-        g2.fillRoundRect(x,y,  (hpPrint)-18,10,10,10);
+      //  Color color = Color.decode("#2DFE54");
+        g2.setColor(Color.RED);
+        g2.fillRoundRect(x,y,width,32,10,10);
+
 
     }
     void drawNPCHpBar(int width,int x, int y){
-        Color color = Color.decode("#2DFE54");
-        g2.setColor(color);
+       // Color color = Color.decode("#2DFE54");
+        g2.setColor(Color.RED);
         g2.fillRoundRect(x,y,width,32,10,10);
     }
     public int getSkillIndexOnSlot(){
@@ -153,6 +197,17 @@ public class VersusScreen {
         }catch (IOException e){
             e.printStackTrace();
         }
+        return image;
+    }
+    /* ********************************
+            This is the GIF loader
+     ******************************** */
+    private BufferedImage loadGIFImage(String path) {
+        ImageIcon icon = new ImageIcon(getClass().getResource(path));
+        BufferedImage image = new BufferedImage(icon.getIconWidth(), icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+        Graphics g = image.createGraphics();
+        icon.paintIcon(null, g, 0, 0);
+        g.dispose();
         return image;
     }
 

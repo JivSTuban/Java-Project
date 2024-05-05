@@ -29,6 +29,7 @@ public class LoginForm extends JDialog {
     private JButton registerbtn;
     public User user;
     User userFilled;
+    boolean triedLogin = false, rbtnc = false;
 
     public User playerUser;
     private String username;
@@ -42,6 +43,7 @@ public class LoginForm extends JDialog {
         setMinimumSize(new Dimension(600, 400));
         setModal(true);
         setLocationRelativeTo(parent);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -52,8 +54,12 @@ public class LoginForm extends JDialog {
         loginbtn.addActionListener(e -> {
 
             try {
-                loginUser();
+
+                User user = loginUser();
+                triedLogin = user == null;
                 dispose();
+
+
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             } catch (IOException ex) {
@@ -66,6 +72,7 @@ public class LoginForm extends JDialog {
         registerbtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                rbtnc = true;
                 dispose();
 
             }
@@ -99,15 +106,29 @@ public class LoginForm extends JDialog {
 
 
     public void addItemToDatabase(String itemName) throws SQLException {
-            query = "INSERT INTO items (ItemName, Username) VALUES (?, ?)";
-            preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setString(1, itemName);
-            preparedStatement.setString(2, playerUser.username);
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
+        query = "INSERT INTO items (ItemName, Username) VALUES (?, ?)";
+        preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setString(1, itemName);
+        preparedStatement.setString(2, playerUser.username);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+    public void addEnemyKilledToDB(int index) throws SQLException {
+        query = "INSERT INTO `enemy`(`index`, `username`) VALUES (?,?)";
+        preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setInt(1, index);
+        preparedStatement.setString(2, playerUser.username);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
     }
     public void updateLocationToDB(String x, String y) throws SQLException {
         query = "UPDATE `users` SET WorldX = '" + x + "', WorldY = '" + y + "' WHERE username = '" + playerUser.username + "'";
+        preparedStatement = conn.prepareStatement(query);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+    public void updateMoneyToDB(double x) throws SQLException {
+        query = "UPDATE `users` SET Money = '" + x + "' WHERE username = '" + playerUser.username + "'";
         preparedStatement = conn.prepareStatement(query);
         preparedStatement.executeUpdate();
         preparedStatement.close();
@@ -123,6 +144,23 @@ public class LoginForm extends JDialog {
 
         if (resultSet.next()) { // Move to the first row of the result set
             x = resultSet.getInt("WorldX"); // Get the value of WorldX column
+        }
+
+        resultSet.close();
+        preparedStatement.close();
+
+        return x;
+    }
+    public double lastMoney(User user) throws SQLException {
+        double x = 0;
+        query = "SELECT `Money` FROM `users` WHERE username = ?";
+        preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setString(1,user.username);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) { // Move to the first row of the result set
+            x = resultSet.getDouble("Money"); // Get the value of WorldX column
         }
 
         resultSet.close();
@@ -146,14 +184,33 @@ public class LoginForm extends JDialog {
 
         return y;
     }
+    public boolean isEnemyDead(int enemyIndex) throws SQLException {
+        int indexCount = 0;
 
-    private String loginUser() throws SQLException, IOException {
+        try (PreparedStatement preparedStatement = conn.prepareStatement("SELECT COUNT(*) AS index_count FROM enemy WHERE `index` = ? AND username = ?")) {
+            preparedStatement.setInt(1, enemyIndex);
+            preparedStatement.setString(2, playerUser.username);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    indexCount = resultSet.getInt("index_count");
+                }
+            }
+        } catch (SQLException e) {
+            throw e;
+        }
+
+        return indexCount > 0;
+    }
+
+
+
+    private User loginUser() throws SQLException, IOException {
         String username = tfname.getText();
         String password = pfpass.getText();
 
         if (username.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Username and password are required.", "Try again", JOptionPane.ERROR_MESSAGE);
-            return "";
+            return null;
         }
         user = getUserFromDatabase(username, password);
         if (user != null) {
@@ -161,11 +218,11 @@ public class LoginForm extends JDialog {
             dispose(); // Close the login form
 
             System.out.println(user.username);
-
+            return user;
         } else {
             JOptionPane.showMessageDialog(this, "Invalid username or password.", "Try again", JOptionPane.ERROR_MESSAGE);
         }
-        return username;
+        return null;
     }
 
     public User getUserFromDatabase(String username, String password) throws SQLException {
@@ -195,13 +252,13 @@ public class LoginForm extends JDialog {
     }
 
     public void addItemsToPlayer(Player player){
-        query = "SELECT ItemName FROM items WHERE Username = ?";
+        query = "SELECT name FROM items WHERE Username = ?";
         try (PreparedStatement preparedStatement = conn.prepareStatement(query)) {
             preparedStatement.setString(1, playerUser.username);
             System.out.println(playerUser.username);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) { // Iterate through all rows returned by the query
-                    String itemName = resultSet.getString("ItemName");
+                    String itemName = resultSet.getString("name");
                     switch (itemName) {
                         case "Salve":
                             player.addToInventoryFromDatabase("salve", player);

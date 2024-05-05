@@ -31,11 +31,26 @@ public class VersusHandler {
                if (code == KeyEvent.VK_ENTER ) {
                    if(gp.player.mana >= gp.player.skills.get(gp.vsScreen.getSkillIndexOnSlot()).getManaCost()){ //check if mana is enough
                        gp.player.mana -= gp.player.skills.get(gp.vsScreen.getSkillIndexOnSlot()).getManaCost();
-                       gp.npc[gp.player.NPCCollision].setNpcHp(gp.npc[gp.player.NPCCollision].getNpcHp() -
-                               gp.player.skills.get(gp.vsScreen.getSkillIndexOnSlot()).getSkillDamage()); //return player damage
-                       System.out.println("Skill Damage =  "+gp.player.skills.get(gp.vsScreen.getSkillIndexOnSlot()).getSkillDamage());
-                       System.out.println("Skill name: "+ gp.player.skills.get(gp.vsScreen.getSkillIndexOnSlot()).skillName);
-                       System.out.println( gp.npc[gp.player.NPCCollision].NPC_VSname+" "+gp.player.NPCCollision+" Hp: " +gp.npc[gp.player.NPCCollision].getNpcHp());
+
+                        if(gp.player.NPCCollision == 50) {
+                            if(gp.npc[gp.player.NPCCollision].droneSpawn){
+                                int splitDamage = gp.player.skills.get(gp.vsScreen.getSkillIndexOnSlot()).getSkillDamage();
+                                gp.npc[gp.player.NPCCollision].setNpcHp(gp.npc[gp.player.NPCCollision].getNpcHp() - splitDamage/2);
+                                gp.npc[gp.player.NPCCollision].droneHp -= splitDamage/2;
+
+                            }else{
+                                gp.npc[gp.player.NPCCollision].setNpcHp(gp.npc[gp.player.NPCCollision].getNpcHp() -
+                                        gp.player.skills.get(gp.vsScreen.getSkillIndexOnSlot()).getSkillDamage());
+                            }
+
+                        }else{
+                            gp.npc[gp.player.NPCCollision].setNpcHp(gp.npc[gp.player.NPCCollision].getNpcHp() -
+                                    gp.player.skills.get(gp.vsScreen.getSkillIndexOnSlot()).getSkillDamage());
+                        }
+
+                       System.out.println("(Player) -- Skill Damage =  "+gp.player.skills.get(gp.vsScreen.getSkillIndexOnSlot()).getSkillDamage());
+                       System.out.println("(Player) -- name: "+ gp.player.skills.get(gp.vsScreen.getSkillIndexOnSlot()).skillName);
+                       System.out.println("(Enemy) -- "+gp.npc[gp.player.NPCCollision].NPC_VSname+" "+gp.player.NPCCollision+" Hp: " +gp.npc[gp.player.NPCCollision].getNpcHp());
                        gp.turnTimer.trigger();
                    }
 

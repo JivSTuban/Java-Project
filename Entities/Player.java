@@ -7,7 +7,6 @@ import GUI.GamePanel;
 import LoginRegister.LoginForm;
 import Users.User;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.sql.SQLException;
@@ -30,6 +29,7 @@ public class Player extends Entity {
     public ArrayList<PlayerSkills> skills = new ArrayList<>();
     public final int invetntorySize = 20;
     public int NPCCollision ;
+    public int accessCardDropCount =0;
 
 
 
@@ -79,7 +79,7 @@ public class Player extends Entity {
                                             Constructor
      -----------------------------------------------------------------------------------------------*/
 
-    public Player(GamePanel GP, KeyHandler KH, User user,LoginForm loginForm) {
+    public Player(GamePanel GP, KeyHandler KH, User user,LoginForm loginForm) throws SQLException {
         super(GP);
         this.loginForm = loginForm;
         this.GP = GP;
@@ -89,7 +89,7 @@ public class Player extends Entity {
         screenX = GP.screenWidth/2;
         screenY = GP.screenHeight/2;
         solidArea = new Rectangle(9,17,55,60);
-        solidAreaDefaultX = 2;
+        solidAreaDefaultX = 8;
         solidAreaDefaultY = 16;
         setDefault();
         getPlayerImage();
@@ -100,16 +100,17 @@ public class Player extends Entity {
         skills.add(skill4);
 
     }
-    public void setDefault(){
-        worldX = GP.tileSize * 2;//kilid
-        worldY = GP.tileSize * 18;//ibabaw
+    public void setDefault() throws SQLException {
+//        worldX = GP.tileSize * 3;//kilid
+//        worldY = GP.tileSize * 74;//ibabaw
         try{
             worldX = GP.tileSize * loginForm.lastX(user);
             worldY = GP.tileSize * loginForm.lastY(user);
         }catch (SQLException e){
             e.printStackTrace();
         }
-
+        setGold(loginForm.lastMoney(user));
+        loginForm.addItemsToPlayer(this);
 
         setSpeed(4);
         direction = "down";
@@ -120,101 +121,107 @@ public class Player extends Entity {
       -----------------------------------------------------------------------------------------------*/
     public void getPlayerImage(){
 
-            up1 = setup("/res/PlayerImage/walkForward1");
-            up2 = setup("/res/PlayerImage/walkForward2");
-            left1 = setup("/res/PlayerImage/walkLeft1");
-            left2 = setup("/res/PlayerImage/walkLeft2");
-            down1 = setup("/res/PlayerImage/walkDown1");
-            down2 = setup("/res/PlayerImage/walkDown2");
-            right1 = setup("/res/PlayerImage/walkRight1");
-            right2 = setup("/res/PlayerImage/walkRight2");
+        up1 = setup("/res/PlayerImage/walkForward1");
+        up2 = setup("/res/PlayerImage/walkForward2");
+        left1 = setup("/res/PlayerImage/walkLeft1");
+        left2 = setup("/res/PlayerImage/walkLeft2");
+        down1 = setup("/res/PlayerImage/walkDown1");
+        down2 = setup("/res/PlayerImage/walkDown2");
+        right1 = setup("/res/PlayerImage/walkRight1");
+        right2 = setup("/res/PlayerImage/walkRight2");
 
     }
 
     /*-----------------------------------------------------------------------------------------------
                                         Update scene
        -----------------------------------------------------------------------------------------------*/
+
     public void update(KeyHandler keyH){
-       // updateSkills();
+        // updateSkills();
 
         developerSettings(keyH);
-
-        if(keyH.wPressed || keyH.aPressed || keyH.sPressed || keyH.dPressed || keyH.shiftPressed || keyH.zPressed == true){
-            if(keyH.wPressed){
-                direction = "up";
-            }
-            else if(keyH.aPressed){
-                direction = "left";
-            }
-
-            else if(keyH.sPressed){
-                direction = "down";
-            }
-
-            else if(keyH.dPressed){
-                direction = "right";
-            }
-
-            if(gotBoots){
-                if(keyH.shiftPressed){
-                    setSpeed(7);
+//        if(keyH.pPressed)
+//            gp.gameState = gp.pauseState;
+//
+//        if(gp.gameState != gp.pauseState){
+            if(keyH.wPressed || keyH.aPressed || keyH.sPressed || keyH.dPressed || keyH.shiftPressed){
+                if(keyH.wPressed){
+                    direction = "up";
                 }
-                keyH.activateBoots = true;
+                else if(keyH.aPressed){
+                    direction = "left";
+                }
 
-                if(!keyH.shiftPressed)
-                    setSpeed(defaultSpeed);
-            }
+                else if(keyH.sPressed){
+                    direction = "down";
+                }
+
+                else if(keyH.dPressed){
+                    direction = "right";
+                }
+
+                if(gotBoots){
+                    if(keyH.shiftPressed){
+                        setSpeed(7);
+                    }
+                    keyH.activateBoots = true;
+
+                    if(!keyH.shiftPressed)
+                        setSpeed(defaultSpeed);
+                }
 
 
-            if(devMode)System.out.println("x ="+Math.round((((float) worldX /(GP.tileSize)+1))) + "\ny = "+Math.round((((float) worldY /(GP.tileSize)+1))));
-            //Check collision
-            gp.toxinOn = false;//reset the toxin
-            collisionOn = false;
-            GP.collisionChecker.checkTile(this, true);//check the collision and toxin again
+                if(devMode)System.out.println("x ="+Math.round((((float)worldX / (gp.tileSize)))) + "\ny = "+Math.round((float) (worldY+20.5 )/ (gp.tileSize)));
+                //Check collision
+                gp.toxinOn = false;//reset the toxin
+                collisionOn = false;
+                GP.collisionChecker.checkTile(this, true);//check the collision and toxin again
 
-            int objIndex = GP.collisionChecker.checkObject(this,true);
+                int objIndex = GP.collisionChecker.checkObject(this,true);
                 try{
                     pickUpItem(objIndex);
                 }catch (SQLException e){
                     e.printStackTrace();
                 }
-            //toxin
+                //toxin
 
-            NPCCollision = GP.collisionChecker.checkEntity(this,gp.npc);
+                NPCCollision = GP.collisionChecker.checkEntity(this,gp.npc);
                 interactNPC(NPCCollision, keyH);
 
-            if (!collisionOn && keyH.zPressed == false){
-                switch (direction){
-                    case"up":
-                        worldY -= getSpeed();
-                        break;
-                    case"down":
-                        worldY += getSpeed();
-                        break;
-                    case"left":
-                        worldX -= getSpeed();
-                        break;
-                    case"right":
-                        worldX += getSpeed();
-                        break;
+                if (!collisionOn ){
+                    switch (direction){
+                        case"up":
+                            worldY -= getSpeed();
+                            break;
+                        case"down":
+                            worldY += getSpeed();
+                            break;
+                        case"left":
+                            worldX -= getSpeed();
+                            break;
+                        case"right":
+                            worldX += getSpeed();
+                            break;
 
+                    }
+                }
+                gp.keyH.zPressed = false;
+
+                spriteCount++;
+                if(spriteCount>12){
+                    if (spriteNum==1){
+                        spriteNum=2;
+                    } else if (spriteNum==2) {
+                        spriteNum=1;
+                    }
+                    spriteCount = 0;
                 }
             }
-            gp.keyH.zPressed = false;
-
-            spriteCount++;
-            if(spriteCount>12){
-                if (spriteNum==1){
-                    spriteNum=2;
-                } else if (spriteNum==2) {
-                    spriteNum=1;
-                }
-                spriteCount = 0;
-            }
-        }
+        //}
 
 
     }
+
     /*-----------------------------------------------------------------------------------------------
                                        PickUp Item
       -----------------------------------------------------------------------------------------------*/
@@ -251,25 +258,24 @@ public class Player extends Entity {
                     addToInventory(itemName,1);
                     break;
                 case "DoorClose":
-                 //  if(searchInventoryIndex("accessCard") >-1){
+                    //  if(searchInventoryIndex("accessCard") >-1){
 
-                       if(searchInventory("accessCard") || searchInventory("hackingDevice")){
+                    if(searchInventory("accessCard") || searchInventory("hackingDevice")){
                         if(!gp.keyH.doorOpen)
-                            gp.gameState = gp.inventoryState;
-                            if (gp.keyH.doorOpen) {
-                                GP.objItem[i] = null;
-                                KH.doorOpen = false;
-                            }
-                         if(gp.player.searchInventory("accessCard")){
-                             if( (gp.player.inventory.get(gp.player.searchInventoryIndex("accessCard")).quantity) == 0)
-                                 gp.player.removeItem("accessCard");
-                         }
-                       }
+                            gp.gameState  = gp.inventoryState;
+                        if(gp.keyH.doorOpen){
+                            GP.objItem[i] = null;
+                            KH.doorOpen =false;
+                        }
 
-                   //}
+                        if(gp.player.searchInventory("accessCard")){
+                            if( (gp.player.inventory.get(gp.player.searchInventoryIndex("accessCard")).quantity) == 0)
+                                gp.player.removeItem("accessCard");
+                        }
+                    }
+
+                    //}
                     else {
-                        gp.gameState = gp.dialogueState;
-
                         System.out.println("You need Access Card to open this Door");
                     }
                     break;
@@ -283,7 +289,7 @@ public class Player extends Entity {
                     }
 
                     else{
-                       // (inventory.get(i).quantity)++;
+                        // (inventory.get(i).quantity)++;
                         addToInventory("salve");
                         addToInventory("salve",1);
                         System.out.println("got Salve");
@@ -331,7 +337,7 @@ public class Player extends Entity {
                 image = right2;
             }
 
-       }
+        }
         g2.drawImage(image, screenX, screenY, GP.tileSize, GP.tileSize, null    );
     }
 
@@ -341,9 +347,9 @@ public class Player extends Entity {
     }
     public void interactNPC(int i,KeyHandler keyH){
         if(i!=999){
-           // playerHP--;
+            // playerHP--;
 
-            if(gp.npc[i].isEnemy)
+            if(gp.npc[i].isEnemy && gp.npc[i].NPC_name != null)
                 gp.gameState = gp.versusScreen;
             else{
                 if(gp.keyH.zPressed) {
@@ -444,15 +450,20 @@ public class Player extends Entity {
             gotBoots = true;
     }
     public void addToInventoryFromDatabase(String name, Player player){
-        if(player.searchInventory("salve")&& name.equals("salve")) {
+        if(!player.searchInventory("salve")&& name.equals("salve")) {
             player.inventory.add(new ItemSalve());
         }
-        if(player.searchInventory("accessCard")){
+        if(!player.searchInventory("accessCard")){
             player.inventory.add(new AccessCard());
         }
-        if(player.searchInventory("boots") && name.equals("boots")){
+        if(!player.searchInventory("boots") && name.equals("boots")){
             player.inventory.add(new ItemBoots());
         }
     }
-
+    @Override
+    public int getDamage(){return 0;}
+    @Override
+    public String getSkillName(){return "";}
+    @Override
+    public void setSkills(){}
 }

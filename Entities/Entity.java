@@ -10,15 +10,14 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
 
-public class Entity {
-
+public abstract class Entity {
+    public Random rand = new Random();
     GamePanel gp;
 
     public int speed;
     public int worldX, worldY;
     public boolean collision = false;
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
-    public BufferedImage redup1, redup2, reddown1, reddown2, redleft1, redleft2, redright1, redright2;
     public String direction;
     public int spriteCount = 0;
     public int spriteNum = 1;
@@ -31,20 +30,26 @@ public class Entity {
     public int dialogueIndex = 0;
     //Item
     public String discription = "";
+    public int pickSkill;
 
 
     public int actionCounter =0;
     public int holder=0;
-        /*--------------------------------------------------------------------------------------------------------
-                                            NPC settings
-         --------------------------------------------------------------------------------------------------------*/
+    /*--------------------------------------------------------------------------------------------------------
+                                        NPC settings
+     --------------------------------------------------------------------------------------------------------*/
     public String NPC_name = "";
     public String NPC_VSname = "";
     public int maxHP =0;
     public int npcHp ;
+    public int npcScaleX;
+    public int npcScaleY;
     public int type = 2;
-    public int npcDamage = 0;
-
+    public int npcDamage = 10;
+    public String npcSkillName = "";
+    public boolean droneSpawn  = false;
+    public boolean skill2Activated = false;
+    public int droneHp = 30;
     public int getNpcHp() {
         return npcHp;
     }
@@ -53,9 +58,9 @@ public class Entity {
         this.npcHp = npcHp;
     }
 
-    public int getNpcDamage() {
-        return npcDamage;
-    }
+    public int turnCounter = 1;
+
+    public String  NPC_getVSImgae = "", NPC_getVSGIF="";
     /*--------------------------------------------------------------------------------------------------------
                                             NPC settings End here
        --------------------------------------------------------------------------------------------------------*/
@@ -74,7 +79,7 @@ public class Entity {
         collisionOn = false;
 
         gp.collisionChecker.checkTile(this, false);
-        if (!collisionOn ){
+        if (!collisionOn  ){
             switch (direction){
                 case"up":
                     worldY -= getSpeed();
@@ -90,7 +95,7 @@ public class Entity {
                     break;
 
             }
-        }
+       }
         spriteCount++;
         if(spriteCount>12){
             if (spriteNum==1){
@@ -110,7 +115,7 @@ public class Entity {
         this.speed = speed;
     }
 
-    public void draw(Graphics2D g2){
+    public void draw(Graphics2D g2, int scaleX, int scaleY){
         BufferedImage image = null;
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
         int screenY = worldY - gp.player.worldY + gp.player.screenY;
@@ -150,7 +155,9 @@ public class Entity {
                     image = right2;
                 }
             }
-            g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+
+              g2.drawImage(image, screenX, screenY, scaleX, scaleY, null);
+
         }
 
     }
@@ -166,122 +173,126 @@ public class Entity {
 
     public void setAction(String npc){
         actionCounter++;
-       if(!gp.player.collision) {
-           if(npc.equals("drone")) {
+        if(!gp.player.collision) {
+            if(npc.equals("drone")) {
 
-               if (actionCounter == 120) {
-                   Random random = new Random();
-                   int i = random.nextInt(2) + 1;
+                if (actionCounter == 120) {
+                    Random random = new Random();
+                    int i = random.nextInt(2) + 1;
 
-                   if (i == 1) {
-                       holder++;
-                       if (holder == 4)
-                           direction = "down";
-                       else
-                           direction = "up";
-                   }
-                   if (i == 2) {
-                       direction = "down";
-                       holder = 0;
-                   }
+                    if (i == 1) {
+                        holder++;
+                        if (holder == 4)
+                            direction = "down";
+                        else
+                            direction = "up";
+                    }
+                    if (i == 2) {
+                        direction = "down";
+                        holder = 0;
+                    }
 
-                   actionCounter = 0;
+                    actionCounter = 0;
 
-               }
-           }
-           else {
-               if (actionCounter == 120) {
-                   Random random = new Random();
-                   int i = random.nextInt(4) + 1;
+                }
+            }
+            else {
+                if (actionCounter == 120) {
+                    Random random = new Random();
+                    int i = random.nextInt(4) + 1;
 
-                   if (i == 1) {
-                       holder++;
-                       if (holder == 4)
-                           direction = "down";
-                       else
-                           direction = "up";
+                    if (i == 1) {
+                        holder++;
+                        if (holder == 4)
+                            direction = "down";
+                        else
+                            direction = "up";
 
-                   }
-                   if (i == 2) {
-                       direction = "down";
-                       holder = 0;
-                   }
-                   if (i == 3) {
-                       holder++;
-                       if (holder == 4)
-                           direction = "right";
-                       else
-                           direction = "up";
+                    }
+                    if (i == 2) {
+                        direction = "down";
+                        holder = 0;
+                    }
+                    if (i == 3) {
+                        holder++;
+                        if (holder == 4)
+                            direction = "right";
+                        else
+                            direction = "up";
 
-                   }
-                   if (i == 4) {
-                       direction = "left";
-                       holder = 0;
-                   }
+                    }
+                    if (i == 4) {
+                        direction = "left";
+                        holder = 0;
+                    }
 
-                   actionCounter = 0;
+                    actionCounter = 0;
 
-               }
-               actionCounter++;
-               if(npc.equals("console")) {
+                }
+                actionCounter++;
+                if(npc.equals("console") || npc.equals("optimusKhai")) {
 
-                   if (actionCounter == 120) {
-                       Random random = new Random();
-                       int i = random.nextInt(2) + 1;
+                    if (actionCounter == 120) {
+                        Random random = new Random();
+                        int i = random.nextInt(2) + 1;
 
-                       if (i == 1) {
-                           holder++;
-                           if (holder == 4)
-                               direction = "down";
-                           else
-                               direction = "up";
-                       }
-                       if (i == 2) {
-                           direction = "down";
-                           holder = 0;
-                       }
+                        if (i == 1) {
+                            holder++;
+                            if (holder == 4)
+                                direction = "down";
+                            else
+                                direction = "up";
+                        }
+                        if (i == 2) {
+                            direction = "down";
+                            holder = 0;
+                        }
 
-                       actionCounter = 0;
+                        actionCounter = 0;
 
-                   }
-               }
-               else {
-                   if (actionCounter == 120) {
-                       Random random = new Random();
-                       int i = random.nextInt(4) + 1;
+                    }
+                }
+                else if(npc.equals("khai")){
+                    if (actionCounter == 120) {
+                        Random random = new Random();
+                        int i = random.nextInt(4) + 1;
 
-                       if (i == 1) {
-                           holder++;
-                           if (holder == 4)
-                               direction = "down";
-                           else
-                               direction = "up";
+                        if (i == 1) {
+                            holder++;
+                            if (holder == 4)
+                                direction = "left";
+                            else
+                                direction = "left";
 
-                       }
-                       if (i == 2) {
-                           direction = "down";
-                           holder = 0;
-                       }
-                       if (i == 3) {
-                           holder++;
-                           if (holder == 4)
-                               direction = "down";
-                           else
-                               direction = "up";
+                        }
+                        if (i == 2) {
+                            direction = "left";
+                            holder = 0;
+                        }
+                        if (i == 3) {
+                            holder++;
+                            if (holder == 4)
+                                direction = "left";
+                            else
+                                direction = "left";
+                        }
+                        if (i == 4) {
+                            direction = "left";
+                            holder = 0;
+                        }
+                        actionCounter = 0;
+                    }
+                }
+            }
 
-                       }
-                       if (i == 4) {
-                           direction = "up";
-                           holder = 0;
-                       }
-
-                       actionCounter = 0;
-
-                   }
-               }
-       }
+        }
 
     }
 
-}
+    public abstract void setSkills();
+    public abstract int getDamage();
+
+    public abstract String getSkillName();
+
+
 }

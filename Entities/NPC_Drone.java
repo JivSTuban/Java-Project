@@ -2,6 +2,8 @@ package Entities;
 
 import GUI.GamePanel;
 
+import java.util.Random;
+
 public class NPC_Drone extends Entity{
 
     public NPC_Drone(GamePanel gp){
@@ -10,11 +12,15 @@ public class NPC_Drone extends Entity{
         NPC_VSname = "Drone";
         collision = true;
         direction = "own";
+        NPC_getVSImgae = "/res/npc/NPCDrone/DroneUP";
+        NPC_getVSGIF = "/res/npc/NPCOptimusKhai/Optimus-Khai-Skill-GIF";
         speed = 1;
         getImage();
         type = 2;
         maxHP = 50;
         npcHp = maxHP;
+        npcScaleX = gp.tileSize;
+        npcScaleY = gp.tileSize;
 
 
         solidArea.x = 3;
@@ -24,6 +30,7 @@ public class NPC_Drone extends Entity{
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         setDialogue();
+
         npcDamage = 10;
         isEnemy = true;
 
@@ -32,10 +39,10 @@ public class NPC_Drone extends Entity{
 
     public void getImage() {
 
-        up1 = setup("/res/npc/DroneUP");
-        up2 = setup("/res/npc/DroneUp2");
-        down1 = setup("/res/npc/DroneDown");
-        down2 = setup("/res/npc/DroneDown2");
+        up1 = setup("/res/npc/NPCDrone/DroneUP");
+        up2 = setup("/res/npc/NPCDrone/DroneUp2");
+        down1 = setup("/res/npc/NPCDrone/DroneDown");
+        down2 = setup("/res/npc/NPCDrone/DroneDown2");
     }
     public void setDialogue(){
         dialogues[0] = "You hit the Drone \n You hit the Drone";
@@ -59,6 +66,17 @@ public class NPC_Drone extends Entity{
         }
 
     }
+    @Override
+    public int getDamage(){
+        return npcDamage;
+    }
+    @Override
+    public String getSkillName(){
+        return "Basic Attack";
+    }
+    @Override
+    public void setSkills(){}
+
 
 
 
