@@ -1,5 +1,6 @@
 package Entities;
 
+import Controles.Cooldown;
 import GUI.GamePanel;
 
 
@@ -13,6 +14,7 @@ import java.util.Random;
 public abstract class Entity {
     public Random rand = new Random();
     GamePanel gp;
+    public Cooldown dialoguesCd = new Cooldown(1000);
 
     public int speed;
     public int worldX, worldY;
@@ -42,8 +44,8 @@ public abstract class Entity {
     public String NPC_VSname = "";
     public int maxHP =0;
     public int npcHp ;
-    public int npcScaleX;
-    public int npcScaleY;
+    public int npcScaleX ;
+    public int npcScaleY ;
     public int type = 2;
     public int npcDamage = 10;
     public String npcSkillName = "";

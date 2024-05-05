@@ -194,11 +194,7 @@ public class KeyHandler implements KeyListener {
 
 
             //dialogue state
-            else if(gp.gameState == gp.dialogueState){
-                if (code == KeyEvent.VK_Z){
-                    gp.gameState = gp.playState;
-                }
-            }
+
             if(activateBoots){
                 //method for Movement Speed
                 if(canUse){
@@ -231,6 +227,11 @@ public class KeyHandler implements KeyListener {
                     if (this.devMode)
                         System.out.println(cd.timeRemaining()/1000+" sec");
                 }
+            }
+        }
+        else if(gp.gameState == gp.dialogueState){
+            if (code == KeyEvent.VK_Z){
+                gp.gameState = gp.playState;
             }
         }
 

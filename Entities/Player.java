@@ -352,12 +352,10 @@ public class Player extends Entity {
             if(gp.npc[i].isEnemy && gp.npc[i].NPC_name != null)
                 gp.gameState = gp.versusScreen;
             else{
-                if(gp.keyH.zPressed) {
                     gp.gameState = gp.dialogueState;
                     gp.npc[i].speak();
+                    gp.npc[i].dialoguesCd.trigger();
                     gp.keyH.zPressed = false;
-                }
-
             }
 
         }
