@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.DecimalFormat;
 
 public class UI {
@@ -16,7 +17,7 @@ public class UI {
     public Graphics2D g2;
     boolean startUp = true;
     public boolean hackFailed = false;
-    Font arial_20,arial_16, arial_14, arial_10, arial_12;
+    Font arial_20,arial_16, arial_14, arial_10, arial_12,maruMonica;
 
     Cooldown blink = new Cooldown(300);
     public HackingUI hacking   ;
@@ -38,6 +39,14 @@ public class UI {
         arial_10 = new Font("Arial", Font.PLAIN,10);
         arial_14 = new Font("Arial", Font.PLAIN,14);
         arial_12 = new Font("Arial", Font.PLAIN,14);
+        try {
+            InputStream is = getClass().getResourceAsStream("/res/font/x12y16pxMaruMonica.ttf");
+            maruMonica = Font.createFont(Font.TRUETYPE_FONT,is);
+        } catch (FontFormatException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         AccessCard accessCard = new AccessCard();
         // Player player1 = new Player();
 
@@ -47,7 +56,8 @@ public class UI {
      this.g2 = g2;
         gameHud(g2);
 
-        g2.setFont(arial_10);
+        //g2.setFont(arial_20);
+        g2.setFont(maruMonica);
         g2.setColor(Color.white);
 
         //playstate
@@ -87,7 +97,8 @@ public class UI {
         int height = gp.tileSize*5;
         drawSubWindow(x,y,width,height,0);
 
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,18F));
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN,38F));
         x += gp.tileSize;
         y += gp.tileSize;
         for(String line: currentDialogue.split("\n")){
@@ -117,13 +128,13 @@ public class UI {
 
 
     public void drawSubWindow(int x, int y, int width, int height, int alpha){
-       Color c = new Color(28,32,36,alpha);
-        g2.setColor(c);
-        g2.fillRoundRect(x,y,width,height,10,10);
+        Color backgroundColor = new Color(24, 57, 43);
+        g2.setColor(backgroundColor);
+        g2.fillRoundRect(x, y, width, height, 10, 10);
 
-        c = new Color(254,196,13);
-        g2.setColor(c);
-        g2.setStroke(new BasicStroke(2));
+        Color Border = new Color(34,221,13);
+        g2.setColor(Border);
+        g2.setStroke(new BasicStroke(6));
         g2.drawRect(x+5,y+5,width-10,height-10);
 
     }

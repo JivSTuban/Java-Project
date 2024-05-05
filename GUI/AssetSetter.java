@@ -72,6 +72,8 @@ public class AssetSetter {
         setItemDrop(gp.player.accessCardDropCount,x,y);
         gp.player.accessCardDropCount++;
 
+        setImage(10,14,2,  new DoorClose(),true);
+        setImage(11,13,1,  new SecretPackage(),false);
     }
     public void setToxin(int x ,int y) {
 
