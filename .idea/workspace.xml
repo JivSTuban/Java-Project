@@ -5,21 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bb09f887-d28d-4ee8-8d2c-f69bb00afeef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Tile/world1/Foreground.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/maps/world1/Foreground.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/AssetSetter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/NPC_Drone.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/NPC_Drone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/NPC_OptimusKhai.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/NPC_OptimusKhai.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/NPC_Veemax.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/NPC_Veemax.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LoginRegister/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoginRegister/LoginForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tile/world1/CollisionTileManger.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tile/world1/DesignTileManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tile/world1/TileManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tile/world1/_SuperTile.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tile/world1/Foreground.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tile/world1/Foreground.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/KeyHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/KeyHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Entity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_Drone.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_Drone.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_OptimusKhai.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_OptimusKhai.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_Veemax.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_Veemax.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/AssetSetter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/AssetSetter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/GamePanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

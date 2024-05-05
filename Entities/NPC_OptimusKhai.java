@@ -27,6 +27,8 @@ public class NPC_OptimusKhai extends Entity{
         maxHP = 150;
         npcHp = maxHP;
         speed = 1;
+        npcScaleX = gp.tileSize+400;
+        npcScaleY = gp.tileSize+400;
 
         solidArea.x = 3;
         solidArea.y = 18;

@@ -15,7 +15,7 @@ public class Foreground extends _SuperTile {
     }
     public void getTileImage() {
         addTile(0,"tiles/Design/0transparent",false);
-        addTile(0,"tiles/foreground/0transparent",false);
+        //addTile(0,"tiles/foreground/0transparent",false);
 
     }
 

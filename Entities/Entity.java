@@ -42,6 +42,8 @@ public abstract class Entity {
     public String NPC_VSname = "";
     public int maxHP =0;
     public int npcHp ;
+    public int npcScaleX;
+    public int npcScaleY;
     public int type = 2;
     public int npcDamage = 10;
     public String npcSkillName = "";
@@ -113,7 +115,7 @@ public abstract class Entity {
         this.speed = speed;
     }
 
-    public void draw(Graphics2D g2, boolean isBoss){
+    public void draw(Graphics2D g2, int scaleX, int scaleY){
         BufferedImage image = null;
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
         int screenY = worldY - gp.player.worldY + gp.player.screenY;
@@ -154,12 +156,8 @@ public abstract class Entity {
                 }
             }
 
-          if(isBoss){
-              g2.drawImage(image, screenX-100, screenY-150, gp.tileSize+400, gp.tileSize+400, null);
-          }
-          else{
-              g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
-          }
+              g2.drawImage(image, screenX, screenY, scaleX, scaleY, null);
+
         }
 
     }

@@ -17,11 +17,15 @@ public class NPC_Veemax extends Entity{
         type = 2;
         maxHP = 150;
         npcHp = maxHP;
+        npcScaleX = gp.tileSize+100;
+        npcScaleY = gp.tileSize+100;
+        NPC_getVSImgae = "/res/npc/NPCOptimusKhai/sprite_ok8";
+        NPC_getVSGIF = "/res/npc/NPCOptimusKhai/Optimus-Khai-Skill-GIF";
 
         solidArea.x = 3;
         solidArea.y = 18;
-        solidArea.width = 42;
-        solidArea.height = 30;
+        solidArea.width = 142;
+        solidArea.height = 130;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         setDialogue();
@@ -66,6 +70,10 @@ public class NPC_Veemax extends Entity{
         up2 = setup("/res/npc/Veemax/sprite_Veemax1");
         right1 = setup("/res/npc/Veemax/sprite_Veemax1");
         right2 = setup("/res/npc/Veemax/sprite_Veemax1");
+        down1 = setup("/res/npc/Veemax/sprite_Veemax1");
+        down2 = setup("/res/npc/Veemax/sprite_Veemax1");
+        left1 = setup("/res/npc/Veemax/sprite_Veemax1");
+        left2 = setup("/res/npc/Veemax/sprite_Veemax1");
     }
     public void setDialogue(){
         dialogues[0] = "You hit the Drone \n You hit the Drone";

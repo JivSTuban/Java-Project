@@ -270,10 +270,7 @@ public class GamePanel extends JPanel implements Runnable {
         designTileManager.draw(g2);
         for (Entity entity : npc) {
             if (entity != null) {
-                if(entity.NPC_name.equals("OptimusKhai"))
-                    entity.draw(g2,true);
-                else
-                    entity.draw(g2,false);
+                    entity.draw(g2,entity.npcScaleX,entity.npcScaleY);
             }
         }
         ui.draw(g2);

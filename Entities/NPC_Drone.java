@@ -19,6 +19,8 @@ public class NPC_Drone extends Entity{
         type = 2;
         maxHP = 50;
         npcHp = maxHP;
+        npcScaleX = gp.tileSize;
+        npcScaleY = gp.tileSize;
 
 
         solidArea.x = 3;
