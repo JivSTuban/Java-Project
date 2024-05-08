@@ -11,7 +11,7 @@ public class Vanguard extends SuperItem{
         description = "A bottle of mojitos with calamansi\nand salt. \n\nAdds up 20 to your current HP";
         price = 100;
         try{
-            image = ImageIO.read(getClass().getResourceAsStream("/res/Inventory/invImgSalve.png"));
+            image = ImageIO.read(getClass().getResourceAsStream("/res/Items/armor.png"));
         }catch(IOException e){
             e.printStackTrace();
 

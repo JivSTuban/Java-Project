@@ -12,11 +12,11 @@ public class Skill1 extends PlayerSkills{
         skillName = "Ching Chong";
         manaCost = 0;
         setSkillDamage(10);
-        description = "this is skill 1 \nDamage:"+getSkillDamage()+"\nMana cost: "+manaCost;
+        description = "A kim's specialty \nDamage:"+getSkillDamage()+"\nMana cost: "+manaCost;
 
     }
     public void update(){
-        description = "this is skill 1 \nDamage:"+getSkillDamage()+"\nMana cost: "+manaCost;
+        description = "A kim's specialty \nDamage:"+getSkillDamage()+"\nMana cost: "+manaCost;
     }
 
 

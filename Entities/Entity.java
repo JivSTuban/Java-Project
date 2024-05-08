@@ -41,6 +41,7 @@ public abstract class Entity {
     /*--------------------------------------------------------------------------------------------------------
                                         NPC settings
      --------------------------------------------------------------------------------------------------------*/
+    public int NPC_getSFX;
     public String NPC_name = "";
     public String NPC_VSname = "";
     public int maxHP =0;

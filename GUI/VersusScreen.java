@@ -2,6 +2,8 @@ package GUI;
 
 
 
+import Controles.Cooldown;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +18,7 @@ public class VersusScreen {
     Font arial_10;
     BufferedImage battleFieldBG,selectHUD,player,playerHPHUD,EnemyHPHUD,blackBG,enemyProfile;
     BufferedImage droneGIF;
+
 
     DecimalFormat df = new DecimalFormat("###,###.##");
     public int slotCol = 0;
@@ -59,7 +62,7 @@ public class VersusScreen {
                 Font font = new Font("Arial", Font.PLAIN, 40);
                 g2.setFont(font);
                 g2.setColor(Color.WHITE);
-                g2.drawString(gp.loginForm.playerUser.username.toUpperCase(), 300, 150);
+                g2.drawString(gp.user.username.toUpperCase(), 300, 150);
 
                 /* **************************************************
                  *                  Enemy side                    *
@@ -72,10 +75,16 @@ public class VersusScreen {
                     int y = 300;
                     drawSubWindow(x,y,200,100);
                     g2.drawString(gp.enemySkillUsed,x+50,y+45);
+                    if(!gp.sfxPlayed){
+                        gp.playSE(gp.npc[enemyIndex].NPC_getSFX);
+                        gp.sfxPlayed = true;
+                    }
+
                     enemyProfile = loadGIFImage(gp.npc[enemyIndex].NPC_getVSGIF+".gif");
                 }else{
                     if(enemyIndex != 999 || gp.npc[enemyIndex].NPC_getVSImgae != null)
                         enemyProfile =  setup(gp.npc[enemyIndex].NPC_getVSImgae);
+
 
                 }
 
@@ -135,7 +144,7 @@ public class VersusScreen {
         int slotSize = gp.tileSize+10;
         //draw Players Item
         for(int i=0; i<gp.player.skills.size();i++){
-            g2.drawString(gp.player.skills.get(i).skillName,slotX+220,slotY+90);
+            g2.drawString(gp.player.skills.get(i).skillName,slotX+190,slotY+90);
             slotX += slotSize+64;
             if(i == 1){
                 slotX = slotXStart;
@@ -161,7 +170,7 @@ public class VersusScreen {
         int dFrameHeight = gp.tileSize*3;
         // drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
 
-        int textX = dFrameX + 30;
+        int textX = dFrameX + 25;
         int textY = 760;
         g2.setFont(g2.getFont().deriveFont(32F));
 

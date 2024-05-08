@@ -5,7 +5,10 @@ import Controles.KeyHandler;
 import Entities.Entity;
 import Entities.Items.*;
 import Entities.Player;
+import LoginRegister.Ded;
 import LoginRegister.LoginForm;
+import LoginRegister.Starter;
+import LoginRegister.Won;
 import Sound.Sound;
 import Tile.Versus.BackgroundTM;
 import Tile.Versus.DesignTM;
@@ -37,11 +40,14 @@ public class GamePanel extends JPanel implements Runnable {
     public boolean toxinOn = false;
     public boolean footStepOn = false;
     public boolean NPCCollide = false;
+    private volatile boolean isRunning = true;
+
 
     public ArrayList<String> newGameOption = new ArrayList<>();
+    public boolean sfxPlayed = false;
 
 
-
+    private Starter starter;
     //World settings
     public int maxWorldCol = 80;
     public int maxWorldRow = 80;
@@ -76,11 +82,11 @@ public class GamePanel extends JPanel implements Runnable {
 
     //Sound
     Sound sound = new Sound();
-
+    public VersusScreen vsScreen;
     public Player player;
     public UI ui = new UI(this);
+    Ded ded;
 
-    public VersusScreen vsScreen  = new VersusScreen(this);
     public Entity[] npc = new Entity[99];
     /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
                                                                        Game State
@@ -115,11 +121,12 @@ public class GamePanel extends JPanel implements Runnable {
     public Cooldown npcAttackCD = new Cooldown( 6100);
 
 
-    public GamePanel(User user) throws SQLException, IOException {
+    public GamePanel(User user, Starter starter, LoginForm loginForm) throws SQLException, IOException {
+        vsScreen  = new VersusScreen(this);
         this.user = user;
-        loginForm = new LoginForm(user, "");
+        this.starter = starter;
+        this.loginForm = loginForm;
         player = new Player(this, keyH, user,loginForm);
-        LoginForm loginForm = new LoginForm(user, "");
    //     loginForm.addItemsToPlayer(player);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
@@ -139,7 +146,7 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setNPC();
 
          //playMusic(0);
-         playSE(1);
+         //playSE(1);
 
     }
 
@@ -156,12 +163,33 @@ public class GamePanel extends JPanel implements Runnable {
 
         double nextDrawTime = System.nanoTime() + drawInterval;
 
-        while (gameThread != null ) {
+        while (gameThread != null && isRunning) {
             if(player.getPlayerHP() <1){
-                break;
+
+                starter.closeFrame();
+                ded = new Ded(loginForm);
+                try {
+                    while (!ded.retried)Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                if (ded.retried){
+
+                    try {
+
+                         starter = new Starter(loginForm);
+                        isRunning = false;
+                    } catch (SQLException | IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
+
+                }
+
+
             }
             try {
-                player.setGold(player.loginForm.lastMoney(player.user));
+                player.setGold(player.loginForm.lastMoney(loginForm));
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -207,14 +235,7 @@ public class GamePanel extends JPanel implements Runnable {
             }
 
         }
-        try {
-           // loginForm.deleteItemsOnDB();
-            loginForm.resetDB();
 
-            startGameThread();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
 
 
     }
@@ -263,30 +284,39 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
         if (gameState != versusScreen) {
             mainMap(g2);
-        }
-
-        else {
-            if(player.NPCCollision != 999){
+        } else {
+            if (player.NPCCollision != 999) {
                 vsScreen.draw(g2);
-                int dropChance = rand.nextInt(1,100);
-                if(npc[player.NPCCollision].getNpcHp() < 1){
-                    if(dropChance <= 30 && accessCardDropCount < 3){
-                        aSetter.setItemDrop(player.accessCardDropCount,Math.round((((float) player.worldX / (this.tileSize)))), Math.round((float) (player.worldY+20.5 )/ (this.tileSize)));
+                int dropChance = rand.nextInt(1, 100);
+                if (npc[player.NPCCollision].getNpcHp() < 1) {
+                    if (dropChance <= 30 && accessCardDropCount < 3) {
+                        aSetter.setItemDrop(player.accessCardDropCount, Math.round((((float) player.worldX / (this.tileSize)))), Math.round((float) (player.worldY + 20.5) / (this.tileSize)));
                         accessCardDropCount++;
-                    }
-
-                    else
+                    } else {
                         System.out.println("No Drop");
-                    npc[player.NPCCollision] = null;
+                    }
+                    try {
+                        loginForm.addEnemyKilledToDB(player.NPCCollision);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    enemySkillUsed = npc[player.NPCCollision].getSkillName();
+                    keyH.isfight = false;
+                    player.setGold(player.getGold() +  goldDrop(npc[player.NPCCollision].NPC_name));
+                    sfxPlayed = false;
+
+                        npc[player.NPCCollision] = null;
+                        gameState = playState;
+
                 }
+
             }
 
+            long drawEnd = System.nanoTime();
+            long passed = drawEnd - drawStart;
+            //System.out.println("Draw Time: "+passed);
+
         }
-
-        long drawEnd = System.nanoTime();
-        long passed = drawEnd - drawStart;
-        //System.out.println("Draw Time: "+passed);
-
     }
 
 
@@ -382,6 +412,10 @@ public class GamePanel extends JPanel implements Runnable {
     ---------------------------------------------------------------------------------------------------------------------------*/
         private void versusMethod(){
             try{
+                if(!sfxPlayed){
+                    playSE(3);
+                    sfxPlayed = true;
+                }
                 if(player.NPCCollision == 6 ){//this is the boss
                     if(gameState == versusScreen){
 
@@ -402,14 +436,16 @@ public class GamePanel extends JPanel implements Runnable {
                     if(npc[player.NPCCollision].getNpcHp() < 1){
                         keyH.isfight = false;
                         player.setGold(player.getGold() +  goldDrop(npc[player.NPCCollision].NPC_name));
-
+                        sfxPlayed =false;
+                        playSE(4);
                         gameState = playState;
+                        Won won = new Won();
                     }
 
                 }
                 else if(player.NPCCollision != 999  ){
                     if(gameState == versusScreen){
-//
+
                         if(turnTimer.isOnCooldown() && !(npcAttackCD.isOnCooldown() )){
                             if(npc[player.NPCCollision].getNpcHp() > 1){
                                 if(haveVanguard){
@@ -430,11 +466,12 @@ public class GamePanel extends JPanel implements Runnable {
                             }
                         }
                         if(npc[player.NPCCollision].getNpcHp() < 1){
-                            loginForm.addEnemyKilledToDB(player.NPCCollision);
-                          //  enemySkillUsed = npc[player.NPCCollision].getSkillName();
-                            keyH.isfight = false;
-                            player.setGold(player.getGold() +  goldDrop(npc[player.NPCCollision].NPC_name));
-                            gameState = playState;
+//                            loginForm.addEnemyKilledToDB(player.NPCCollision);
+//                            enemySkillUsed = npc[player.NPCCollision].getSkillName();
+//                            keyH.isfight = false;
+//                            player.setGold(player.getGold() +  goldDrop(npc[player.NPCCollision].NPC_name));
+//                            sfxPlayed = false;
+//                            gameState = playState;
                         }
                     }
                 }

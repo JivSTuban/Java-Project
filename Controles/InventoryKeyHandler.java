@@ -10,10 +10,10 @@ public class InventoryKeyHandler {
     public void inventoryKeys(boolean openInventory, int code, GamePanel gp) {
         if (openInventory) {
 
-            if (code == KeyEvent.VK_UP && gp.ui.slotRow != 0)  gp.ui.slotRow--;
-            if (code == KeyEvent.VK_DOWN && gp.ui.slotRow != 3)  gp.ui.slotRow++;
-            if (code == KeyEvent.VK_LEFT && gp.ui.slotCol != 0) gp.ui.slotCol--;
-            if (code == KeyEvent.VK_RIGHT && gp.ui.slotCol != 4)  gp.ui.slotCol++;
+            if (code == KeyEvent.VK_UP && gp.ui.slotRow != 0) { gp.ui.slotRow--; gp.playSE(9);}
+            if (code == KeyEvent.VK_DOWN && gp.ui.slotRow != 3)  {gp.ui.slotRow++; gp.playSE(9);}
+            if (code == KeyEvent.VK_LEFT && gp.ui.slotCol != 0) {gp.ui.slotCol--; gp.playSE(9);};
+            if (code == KeyEvent.VK_RIGHT && gp.ui.slotCol != 4)  {gp.ui.slotCol++; gp.playSE(9);};
 
 
             if (code == KeyEvent.VK_ESCAPE) {

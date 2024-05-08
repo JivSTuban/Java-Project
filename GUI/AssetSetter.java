@@ -49,16 +49,16 @@ public class AssetSetter {
 
     public void setItem(LoginForm loginForm) throws SQLException {
        // if (loginForm.getItemCountInDatabase("Salve") < 2) {
-            setImage( 5, 76, new ItemSalve(), false);
-        setImage( 5, 76, new Chest(), false);
-        setImage( 7, 76, new Chest(), false);
+       //     setImage( 5, 76, new ItemSalve(), false);
+     //   setImage( 2, 8, new Chest(), false);
+        //setImage( 7, 76, new Chest(), false);
      //   }
      //   if (loginForm.getItemCountInDatabase("Boots") == 0){
             setImage(14,74,  new ItemBoots(), false);
       //  }
       //  if (loginForm.getItemCountInDatabase("Salve") < 2) {
-            setImage(spawnRand(),spawnRand(),  new ItemSalve(),false);
-            setImage(4,75,  new Chest(),false);
+        //    setImage(spawnRand(),spawnRand(),  new ItemSalve(),false);
+      //      setImage(4,75,  new Chest(),false);
       //  }
      //   if (loginForm.getItemCountInDatabase("AccessCard") < 2) {
             setImage(4,78,  new AccessCard(),false);
@@ -141,7 +141,7 @@ public class AssetSetter {
 
 
 
-        setNPCChar(7, 0, 0, new NPC_Drone(gp));;
+       // setNPCChar(7, 0, 0, new NPC_Drone(gp));;
 
     }
 //    public void footStep(int x, int y) {

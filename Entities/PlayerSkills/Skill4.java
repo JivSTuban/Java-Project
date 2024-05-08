@@ -9,10 +9,10 @@ public class Skill4 extends PlayerSkills{
         setSkillDamage(40);
         skillName = "Wabalo";
         manaCost = 15;
-        description = "this is skill 4 \nDamage:"+getSkillDamage()+"\nMana cost: "+manaCost;
+        description = "Don't know  \nDamage:"+getSkillDamage()+"\nMana cost: "+manaCost;
 
     }
     public void update(){
-        description = "this is skill 4 \nDamage:"+getSkillDamage()+"\nMana cost: "+manaCost;
+        description = "Don't know \nDamage:"+getSkillDamage()+"\nMana cost: "+manaCost;
     }
 }

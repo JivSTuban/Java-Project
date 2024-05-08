@@ -30,6 +30,7 @@ public class VersusHandler {
            if(!gp.turnTimer.isOnCooldown()){
 
                if (code == KeyEvent.VK_ENTER ) {
+//                   gp.sfxPlayed = false;
                    if(gp.player.mana >= gp.player.skills.get(gp.vsScreen.getSkillIndexOnSlot()).getManaCost()){ //check if mana is enough
                        gp.player.mana -= gp.player.skills.get(gp.vsScreen.getSkillIndexOnSlot()).getManaCost();
                         gp.player.loginForm.updateManaToDB(gp.player.mana);

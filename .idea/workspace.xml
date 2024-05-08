@@ -5,36 +5,238 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b66a4094-9249-40ea-82af-759f2fab06c5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/All Mc Skill.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/LeftRun1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/LeftRun2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/LeftRun3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/LeftRun4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/LeftRun5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/LeftRun6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/LeftRun7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/MC2 standing.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/MC2_backLeft.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/MC2_backRight.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/Mc2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/Mc2Run1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/Run2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/Run3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/Run4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/Run5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/Run6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/Run7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/PlayerImageNew/Skill GIF MC.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LoginRegister/Ded.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LoginRegister/Ded.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LoginRegister/Won.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LoginRegister/Won.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/Ded$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/Ded$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/Ded.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/Won$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/Won.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/Java Project.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/mysql-connector-j-8.3.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Boots/boots1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Boots/boots10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Boots/boots11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Boots/boots12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Boots/boots13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Boots/boots14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Boots/boots15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Boots/boots16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Boots/boots17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Boots/boots18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Boots/boots19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Boots/boots2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Boots/boots20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Boots/boots3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Boots/boots4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Boots/boots5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Boots/boots6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Boots/boots7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Boots/boots8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Boots/boots9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Door/SDoorClose.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Door/SDoorOpen.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/FORMS/Register.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/HealthBar/HealthBar-01.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/HealthBar/HealthBar-010.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/HealthBar/HealthBar-02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/HealthBar/HealthBar-03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/HealthBar/HealthBar-04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/HealthBar/HealthBar-05.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/HealthBar/HealthBar-06.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/HealthBar/HealthBar-07.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/HealthBar/HealthBar-08.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/HealthBar/HealthBar-09.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Inventory/InvAccessCard.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Inventory/InvSalve.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Inventory/InventoryHUD.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Inventory/invImgSalve.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Inventory/selectItem.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Items/Boots.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Items/Chest.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Items/Salve.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/Items/accessCard.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/UI/Coin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/_Sound/BG_music.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/_Sound/ToxinSE.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/bird.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/blueKnight/down1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/blueKnight/down2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/blueKnight/left1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/blueKnight/left2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/blueKnight/right1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/blueKnight/right2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/blueKnight/up1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/blueKnight/up2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/icons/Mitsu.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/maps/OutsideTile.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/maps/world1/BackGroundTiles.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/maps/world1/CollisionTile.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/maps/world1/design.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/midDesignDragon/2upperMid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/midDesignDragon/3upperRight.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/midDesignDragon/4leftMid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/midDesignDragon/5mid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/midDesignDragon/6rightMid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/midDesignDragon/7lowerLeft.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/midDesignDragon/8lowerMid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/midDesignDragon/9lowerRight.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/npc/DroneDown.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/npc/DroneDown2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/npc/DroneUp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/npc/DroneUp2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/npc_console/entryrobot1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/npc_console/entryrobot2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/npc_console/entryrobot3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Background/0bgTiles.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Background/1TileBridge.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Background/2WaterMid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Background/3WaterUpper.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Background/4blankTileDesign.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Background/5TileDesign2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Design/0transparent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Design/10SDoorOpen.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Design/1capsuleTop.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Design/2capsuleBot.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Design/3toxin1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Design/4toxin2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Design/5trashCanTop.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Design/6trashCanBot.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Design/7DDoorCloseL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Design/8DDoorCloseR.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Design/9SDoorClose.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Design/capsuleBot.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Design/capsuleTop.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/0transparent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/10wallDownRight.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/11SideWallL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/12WallMidCenter.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/13WallMidL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/14SideWallC.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/15EndingWallLowerLeft.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/16EndingWallLowerRight.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/17EndingWallUpperLeft.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/18EndingWallUpperRight.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/19Corner.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/1CornerWallLeft.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/20UpperCornerRight2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/21WallMidR.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/22WallMidL.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/23UpperCornerLeft2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/24tesss.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/2CornerWallRight.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/3EndingWallCLower.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/4EndingWallCUpper.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/5SideWallR.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/6UpperCornerLeft.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/7UpperCornerRight.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/8wallMid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/Wall/9WallDownLeft.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/tiles/outsideTile.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/toxicSet.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/versus/BGbackground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/versus/blackBG.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/versus/g2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/versus/select.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/versus/vsHPBarEnemy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/out/production/Java Project/res/versus/vsHPBarPlayer.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/_Sound/2defeatSfx.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/_Sound/3EncounterWithEnemy.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/_Sound/4FinalBossDefeated.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/_Sound/5HackingDeviceSfx.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/_Sound/6LaserSFX.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/_Sound/7LevelUp.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/_Sound/8OptimusKhai_SFX.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/_Sound/9SelectingItems.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/died.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/uwon.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/Items/armor.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/_Sound/2defeatSfx.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/_Sound/3EncounterWithEnemy.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/_Sound/4FinalBossDefeated.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/_Sound/5HackingDeviceSfx.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/_Sound/6LaserSFX.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/_Sound/7LevelUp.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/_Sound/8OptimusKhai_SFX.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/_Sound/9SelectingItems.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/died.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/uwon.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_j_8_3_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/mysql_connector_j_8_3_01.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controles/InventoryKeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controles/InventoryKeyHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controles/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controles/KeyHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controles/StoreHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controles/StoreHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controles/VersusHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controles/VersusHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/Items/Vanguard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Items/Vanguard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/NPC_Console.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/NPC_Console.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/NPC_Drone.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/NPC_Drone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/NPC_OptimusKhai.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/NPC_OptimusKhai.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/NPC_Veemax.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/NPC_Veemax.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/UI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/PlayerSkills/Skill1.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/PlayerSkills/Skill1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/PlayerSkills/Skill2.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/PlayerSkills/Skill2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/PlayerSkills/Skill3.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/PlayerSkills/Skill3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Entities/PlayerSkills/Skill4.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entities/PlayerSkills/Skill4.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/AssetSetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/AssetSetter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/VersusScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/VersusScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LoginRegister/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoginRegister/LoginForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoginRegister/RegistrationForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoginRegister/RegistrationForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoginRegister/Starter.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoginRegister/Starter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mitsu-Realm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Mitsu-Realm.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sound/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/Sound/Sound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tile/Tile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tile/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tile/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tile/world1/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tile/world1/TileManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/InventoryKeyHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/InventoryKeyHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/KeyHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/KeyHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/StoreHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/StoreHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/VersusHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Controles/VersusHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Entity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Items/Vanguard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Items/Vanguard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_Console.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_Console.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_Drone.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_Drone.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_OptimusKhai.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_OptimusKhai.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_Veemax.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/NPC_Veemax.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/UI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/UI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/PlayerSkills/Skill1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/PlayerSkills/Skill1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/PlayerSkills/Skill2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/PlayerSkills/Skill2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/PlayerSkills/Skill3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/PlayerSkills/Skill3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/PlayerSkills/Skill4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Entities/PlayerSkills/Skill4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/AssetSetter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/AssetSetter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/GamePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/GamePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/VersusScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/GUI/VersusScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/LoginForm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/Starter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/LoginRegister/Starter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Mitsu-Realm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Mitsu-Realm.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Sound/Sound.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Sound/Sound.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Tile/world1/TileManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Tile/world1/TileManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/Users/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/Users/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/maps/world1/CollisionTile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/maps/world1/CollisionTile.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/npc/NPCDrone/DroneGIF.gif" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Mitsu-Realm/res/npc/NPCDrone/DroneGIF.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/maps/world1/CollisionTile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/maps/world1/CollisionTile.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/npc/NPCDrone/DroneGIF.gif" beforeDir="false" afterPath="$PROJECT_DIR$/res/npc/NPCDrone/DroneGIF.gif" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,26 +253,42 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;scottypepot&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/JivSTuban/Mitsu-Realm.git&quot;,
+    &quot;accountId&quot;: &quot;09aa4fbc-8c06-41ec-9692-fcbf79e8a02b&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2g3INHR6ABgi2YLzr9G2SsRdc8w" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/STING/Desktop/Mitsu-Realm/res/npc/NPCDrone"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.main.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Merging main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/STING/Desktop/gAme&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\STING\Desktop\Mitsu-Realm\res\Items" />
+      <recent name="C:\Users\Acer\Desktop\Mitsu-Realm\res\_Sound" />
+      <recent name="C:\Users\Acer\Desktop\Mitsu-Realm\res\npc\NPCDrone" />
       <recent name="C:\Users\STING\Desktop\Mitsu-Realm\res\npc\NPCDrone" />
       <recent name="C:\Users\STING\Desktop\Mitsu-Realm" />
     </key>
@@ -97,6 +315,9 @@
       <updated>1714919793921</updated>
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

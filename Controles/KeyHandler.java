@@ -279,6 +279,7 @@ public class KeyHandler implements KeyListener {
                 gp.gameState = gp.playState;
                 gp.npc[gp.player.NPCCollision].setNpcHp(gp.npc[gp.player.NPCCollision].maxHP);
                 isfight = false;
+                gp.sfxPlayed = false;
 
             }
         }

@@ -10,10 +10,10 @@ public class Skill2 extends PlayerSkills{
         skillName = "IP Man punch";
         manaCost = 30;
 
-        description = "this is skill 2 \nDamage:"+getSkillDamage()+"\nMana cost: "+manaCost;
+        description = "Kim say bagay \nDamage:"+getSkillDamage()+"\nMana cost: "+manaCost;
 
     }
     public void update(){
-        description = "this is skill 2 \nDamage:"+getSkillDamage()+"\nMana cost: "+manaCost;
+        description = "Kim say bagay \nDamage:"+getSkillDamage()+"\nMana cost: "+manaCost;
     }
 }

@@ -8,15 +8,15 @@ public class Skill3 extends PlayerSkills{
     public Skill3(GamePanel gp) {
         this.gp = gp;
         setSkillDamage( 30);
-        skillName = "skill 3";
+        skillName = "Stab";
         manaCost = 10;
-        description = "this is skill 3 \nDamage:"+getSkillDamage()+"\nMana cost: "+manaCost;
+        description = "Kill you enemy at the back \nDamage:"+getSkillDamage()+"\nMana cost: "+manaCost;
         isArea = true;
 
 
     }
     public void update(){
-        description = "this is skill 3 \nDamage:"+getSkillDamage()+"\nMana cost: "+manaCost;
+        description = "Kill you enemy at the back \nDamage:"+getSkillDamage()+"\nMana cost: "+manaCost;
     }
 
 }
